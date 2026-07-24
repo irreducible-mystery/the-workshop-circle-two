@@ -1,0 +1,63 @@
+# c2_pointers_exempt.txt — exemption record for audit/c2_pointers.sh
+# Format: <token><TAB><reason>. Reason is MANDATORY; the gate exits 1 on a
+# reasonless line. Elided hash pins are recorded as their hex prefix (or the
+# full hash where it is on record); the gate prefix-matches pins against
+# pure-hex entries here. Tokens are recorded WITHOUT the ellipsis character.
+#
+# -- Circle One artifacts (the sealed record) --
+PROOFS.md	circle-one artifact, lives in the sealed record — DECISION: ambiguous name; it exists in Circle One and is chartered as Circle Two's future proof ledger, but no C2 PROOFS.md exists in this tree yet, so today the pointer resolves to the sealed record; when the C2 file lands it resolves as a path and this entry retires
+HANDOFF.md	circle-one artifact, lives in the sealed record
+CLOSING.md	circle-one artifact, lives in the sealed record
+ROUND4.md	circle-one artifact, lives in the sealed record (Circle One's round ledger)
+ROUND7.md	circle-one artifact, lives in the sealed record (Circle One's round ledger)
+axioms.sh	circle-one artifact, lives in the sealed record (its C2 re-instantiation is REGISTER row 4, due with the first Lean delivery)
+audit/axioms.sh	circle-one artifact, lives in the sealed record (path in the Circle One tree)
+transcript.sh	circle-one artifact, lives in the sealed record
+audit/transcript.sh	circle-one artifact, lives in the sealed record (path in the Circle One tree)
+ship.sh	circle-one artifact, lives in the sealed record
+pointers.sh	circle-one artifact, lives in the sealed record (the C1 prose gate this script ports)
+views.sh	circle-one artifact, lives in the sealed record (prose gate, port pending)
+transcription.sh	circle-one artifact, lives in the sealed record (prose gate, port pending)
+numerals.sh	circle-one artifact, lives in the sealed record (prose gate, port pending)
+pointers	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8; the C2 port is this script)
+views	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8, port pending)
+transcription	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8, port pending)
+numerals	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8, port pending)
+the-workshop	circle-one artifact, lives in the sealed record (the Circle One private repository name)
+lean/	circle-one artifact, lives in the sealed record (directory in the Circle One tree)
+/home/claude/workshop	circle-one artifact, lives in the sealed record (the Circle One builder's machine-local layout, quoted in the handshake report)
+b82cf31	circle-one artifact, lives in the sealed record (Circle One record commit; sealed history, not in this repo's object store)
+499ebb8	circle-one artifact, lives in the sealed record (Circle One builder's last-pass commit; sealed history, not in this repo's object store)
+#
+# -- Lean toolchain vocabulary and pins (resolve in the toolchain, not this tree) --
+sorry	Lean 4 keyword (norm 10 prose); resolves in the toolchain, not this tree
+omega	Lean 4 tactic named in the charge; resolves in the toolchain, not this tree
+lake	Lean 4 build tool named in the norms; resolves in the toolchain, not this tree
+Classical.choice	Lean 4 library axiom named in the charge; resolves in the toolchain, not this tree
+.olean	Lean object-file extension; names a format, not a path in this tree
+leanprover/lean4:v4.32.0	pinned toolchain name (REGISTER row 3); resolves at the Lean release channel, not this tree
+release.lean-lang.org	external Lean release host named in the handshake report
+8c9756b2	Lean 4 v4.32.0 toolchain commit pin, quoted in the handshake report; lives in the lean4 repository, not this one
+x86_64-unknown-linux-gnu	platform triple in the handshake report; toolchain vocabulary, not a repo pointer
+sha256sum	POSIX tool named in the courier protocol; not a repo pointer
+#
+# -- Courier-side objects (pinned in the letters; live on Kelly's machine) --
+b8eea58	courier-line commit carrying the byte-original ROUND1-REPLY.md; grafted into the record at the reconciliation merge (now a merge parent; also resolves as a git object)
+claude/courier-circle-two-dulbsg	courier branch on Kelly's machine (reconciliation item 2); ferries next leg, not in this record yet
+ROUND1-REPLY.md	byte-original ferried at b8eea58 and landed at letters/ROUND1-REPLY.md in the reconciliation merge; the transcription letters/ROUND1-REPLY-handover.md is kept beside it, superseded per its own header
+letters/ROUND1-REPLY.md	the byte-original handover, landed here at the reconciliation merge (reconciliation item 2, now done); resolves as a file path
+circletworound1.zip	round-1 courier zip; transport artifact, hash pinned outside it (full fb3a1809… hash below)
+#
+# -- Courier-card local instructions (COURIER-CARD.md, grafted at the reconciliation merge) --
+Documents/the-workshop-circle-two	illustrative local extraction folder on the courier's machine (GitHub Desktop target, COURIER-CARD.md step 1), not a repo path — cf. /home/claude/workshop
+cd	POSIX shell builtin quoted in the courier's Git Bash setup (COURIER-CARD.md step 2), not a repo pointer — cf. sha256sum
+#
+# -- Artifact SHA-256 pins (full where on record, prefix where only the elided form ever reached this side) --
+c269c755037e40f5a26692e7d519eff0209674f991a02676d218e05584116ea2	SHA-256 pin: Circle One crate as received (README lineage)
+f4e74c0ab17be12908a1c9a4878e179f37f15ebaa88289f5981486e12356901d	SHA-256 pin: CHARTER.md as received, byte-verbatim (README lineage)
+db474c4c94f0aef8a47e6ed6c584c49ba505e30aeb1499424dfe056506023ea7	SHA-256 pin: certification instrument as originally couriered (README lineage)
+fb3a1809628f8a7e5da1c1b6a0d03342824a6cc661a2c920285b0a61968501b6	SHA-256 pin: circletworound1.zip (round-1 courier crate); full hash now on record in COURIER-CARD.md, grafted at the reconciliation merge — resolves the full literal and the elided fb3a1809…8501b6 form alike
+3a02fd1e	SHA-256 pin prefix: couriered ROUND1.md copy, byte-identity check in the handover audit
+b2841041	SHA-256 pin prefix: couriered handshake-report copy, byte-identity check in the handover audit
+a016099e	SHA-256 pin prefix: the revised certification instrument, as diffed in the handover audit
+fbcd0a0d	SHA-256 pin prefix: the round-1 close crate cut at 62d64bf (reconciliation letter)
