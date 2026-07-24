@@ -42,7 +42,8 @@ corrections loudest first, and nothing trusted that was not measured.
 | `NORMS.md` | The canon settlement: norms 1–16 adopted from Circle One's capstone, numbering frozen, floor habits annexed with provenance. |
 | `REGISTER.md` | Circle Two's artifact classes and adjudicators, declared at birth, with the norm-15 question answered. |
 | `ROUND1.md` | The builder's round-1 letter: the crop, and the charge to the third body (S1–S3). |
-| `letters/` | Primary sources: the couriered letters, round by round (the round-1 handshake report, the handover-audit transcription, the round-2 reconciliation). |
+| `COURIER-CARD.md` | Kelly's one-page courier checklist — the operating instrument for the loop: pin in the message, every leg, both directions. Ferried on the cloud/courier line and grafted into the record at the reconciliation merge. |
+| `letters/` | Primary sources: the couriered letters, round by round — the round-1 handshake report, the byte-original handover reply (`ROUND1-REPLY.md`) beside its earlier transcription (`ROUND1-REPLY-handover.md`), the round-2 reconciliation, and the third-body seating letter. |
 | `floor/` | The floor, inherited verbatim from Circle One's crate except crop item #1 (`symmetric_statistics.py` docstring + pinned assert). Run: `python3 run_all.py` → 29/29. |
 | `audit/c2_gift_certificates.py` | The chartering certificate: 70 exact checks. Run from repo root: `C2_WORKSHOP=$(pwd)/floor C1_LEAN=<circle-one>/lean python3 audit/c2_gift_certificates.py` → 70/70, exit 0. |
 
