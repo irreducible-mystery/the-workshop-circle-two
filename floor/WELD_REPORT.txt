@@ -1,0 +1,506 @@
+THE WORKSHOP — WELD REPORT
+==========================================================================
+
+Bench 1 — ARENA: state spaces precipitate from relatings (GNS) [exact]
+  pure record : theater dim 2, mirror-cast (commutant) dim 1, Gram spectrum [1.0, 1.0]
+  mixed record: theater dim 4, mirror-cast (commutant) dim 4, Gram spectrum [0.5, 0.5, 0.5, 0.5]
+  barely-mixed record (p=0.05): theater dim 4, Gram spectrum [0.95, 0.95, 0.05, 0.05] — the extra directions are sediment-thin
+  moral: same algebra of relatings, different record -> different theater;
+         homomorphism, adjoints, cyclicity, and the record itself all
+         reproduced inside the precipitated arena. The stage is sediment.
+  [PASS] all self-checks green (0.1s)
+
+Bench 2 — SHEAF: local views everywhere, no global view (Mermin-Peres) [exact]
+  quantum side verified: 9 observables, 6 contexts, all commuting
+  within context; products = +1,+1,+1 (rows) and +1,+1,-1 (columns).
+  global valuations satisfying all 6 contexts: 0 of 512
+  maximum simultaneously satisfiable contexts: 5 of 6
+  moral: local sections everywhere, global section nowhere —
+         no view from the wings, checked exhaustively. The obstruction
+         to gluing is not ignorance; it is the content.
+  [PASS] all self-checks green (0.0s)
+
+Bench 3 — HABIT: law as sediment (Polya / de Finetti) [rigorous toy — risk budget]
+  habit hardening: median swing over one doubling of history —
+    young world (10->20 draws): 0.050   old world (750->1500): 0.007
+  each history congealed its own constant; the ensemble of constants vs
+  Uniform(0,1) — the exact de Finetti measure: KS deviation 0.009
+  precedent-world vs hidden-law-world, red-count law after 20 draws:
+    TV distance 0.022 (theory: identical — both exactly uniform;
+    urn vs exact uniform: 0.015)
+  precedent binds: histories opening >=8/10 red end at mean fraction 0.838
+    (posterior arithmetic predicts ~0.833; unconditioned mean: 0.503)
+  moral: the 'law' theta is nowhere in the mechanism — it is sediment.
+         'Hidden constant' and 'self-similar habit' are two descriptions
+         of one world; and young worlds are visibly sloppier than old ones.
+  [PASS] all self-checks green (1.2s)
+
+Bench 4 — FIXED POINT: things = invariants of coarse-graining (RG) + quine
+  1D exact decimation from K=2.0: 2 -> 1.65 -> 1.31 -> 0.964 -> 0.628 -> 0.32 -> 0.0962 -> ... -> 0.0e+00
+  2D Migdal-Kadanoff: nontrivial fixed point K* = 0.3047
+  (Onsager exact K_c = 0.4407 — the MK scheme is approximate, as labeled)
+  relevant eigenvalue lambda = 1.6786 -> nu = ln b / ln lambda = 1.338  (exact 2D: nu = 1)
+  watershed: K*+0.02 flows to strong coupling (order); K*-0.02 flows to 0.0e+00 (nothing)
+  — one relevant direction, two destinies, and the 'thing' here is the
+  universality class: the occupant washed out, the role remaining.
+  quine verified: a sentence equal to its own output when run —
+  the diagonal argument caught behaving as a fixed point, not a paradox.
+  [PASS] all self-checks green (0.0s)
+
+Bench 5 — INTERACTION: identity from relating alone (bisimulation) [exact]
+  anatomy vs identity: a 1-state loop and a 2-state loop — bisimilar: True
+  spectator's archive: trace sets equal: True  [('coin', 'coffee'), ('coin', 'tea')]
+  participant's test:  bisimilar: False — after the coin, machine 2 is in
+  a state that refuses one of the drinks; only interacting can find that out.
+  moral: identity = indistinguishability under every admissible relating;
+         and the relating sees strictly more than the record of outcomes.
+  [PASS] all self-checks green (0.0s)
+
+Bench 6 — CAST: the parts discovered from the play (mereology toy)
+  hidden cast: interaction weight eps^2 = 0.0225;
+  scrambled presentation: 0.3699 (16x worse — no parts in sight)
+  search over all factorizations: best interaction weight found = 0.0000 (planted: 0.0225)
+  records check: median entanglement of product states after t=0.4 —
+    discovered cut: 0.0000 bits   random cuts: 0.2459 bits
+  moral: the parts were not in the presentation; they were in the play.
+         The cast list is the cut that keeps composing — parts as
+         stabilizations, selected by their ability to hold records.
+  [PASS] all self-checks green (33.3s)
+
+Bench 2 DEEPENED — COHOMOLOGY: the obstruction priced, the game won [exact]
+  linear system over GF(2): rank M = 5, rank [M|b] = 6 -> UNSOLVABLE
+  obstruction group coker(M) ≅ Z_2^1 = Z_2; class of b = the nonzero element
+  witnessing cocycle y = (1,1,1,1,1,1): y·M = 0 and y·b = 1 —
+  the fundamental cycle of the cover evaluates the twist to 1;
+  no coboundary reaches it. The obstruction has an address.
+  every deterministic script (64 x 64, exhausted): best = 8/9
+  performance: exact Born success = 1.0 on all 9 questions: True
+  sampled rounds: 9999 played, 0 failures
+  moral: the missing global section is measured, not mourned — the
+         class in coker(M) prices it, and the performance banks the
+         difference: 8/9 is the ceiling for scripts; the play scores 1.
+  [PASS] all self-checks green (0.0s)
+
+Bench 3 DEEPENED — CHANNELS: quantum de Finetti — law = shareability [exact miniature]
+  law emerging: T(n) = dist(2-qubit habit, best i.i.d.-mixture):
+    n=8: 7.14e-02  n=16: 3.33e-02  n=32: 1.61e-02  n=64: 7.94e-03
+    measured: T(n) = 1/(2(n-1)) exactly; log-log slope = -1.017
+    (quantum de Finetti bound ~16/n respected at every n)
+  the unshareable: singlet is swap-invariant, pure, and entangled
+    (partial-transpose eigenvalue -0.500 < 0) — purity forces any
+    3-party extension to decouple, so no symmetric extension exists:
+    a habit that cannot be shared, and therefore never becomes a law.
+  moral: law = unlimited shareability of the habit (de Finetti);
+         monogamy marks the lawless — the unshareable indexical.
+         The urn was the classical case; this is the quantum one.
+  [PASS] all self-checks green (0.0s)
+
+Bench 7 — GRAMMAR CORNERSTONE: no-cloning from naturality alone [exact; bench stays open]
+  cartesian grammar: Delta(x) = (x,x) natural for 200 random
+  functions between random finite sets — copying is a theorem there.
+  tensor grammar: naturality constraints stacked for f in
+  {2I, X, Z, H, random} -> solution space dimension = 0
+  (the scalar test alone: f = 2I forces 2*Delta = 4*Delta, so Delta = 0)
+  moral: no-cloning before dynamics — the impossibility of copying is
+         written into the tensor grammar itself, exactly where the
+         cartesian grammar writes copying in. The classical/quantum
+         line is drawn by composition before physics arrives.
+  status: cornerstone laid; the bench stays open. The rebuild —
+          every equality replaced by a witnessed identification —
+          is the long work, and it is not faked here.
+  [PASS] all self-checks green (0.0s)
+
+Bench 3 STRETCHED — PROCESS: de Finetti for the play itself [exact + verified]
+  exact (no floats): all 2^8 = 256 paths, probabilities in rational arithmetic,
+    fall into 37 transition-count classes; within every class the
+    probabilities are IDENTICAL — Markov exchangeability, verified exactly.
+    (Diaconis–Freedman then applies: the process = a mixture of Markov chains.)
+  each history congeals its own channel: median swing of the 0->1
+    transition habit — young world: 0.048   old world: 0.008
+    congealed theta_0 vs Uniform(0,1): KS deviation 0.014
+    congealed theta_1 vs Uniform(0,1): KS deviation 0.012
+    independence across rows: corr(theta_0, theta_1) = -0.010
+    -> the de Finetti measure over DYNAMICS: uniform per row, independent rows.
+  the mirage, for dynamics: reinforced world vs hidden-channel world,
+    law of the 0->1 count in 20 steps: TV distance 0.009 (theory: identical)
+  moral: the script of the dynamics is sediment too. A process that
+         only ever repeats itself IS, exactly, a mixture of memoryless
+         laws — habit-of-process and hidden-law-of-process are one
+         world twice described. The play's law is its own precedent.
+  [PASS] all self-checks green (1.8s)
+
+Bench 2 STRETCHED — THE DIAL: contextual fraction, obstruction graded [exact LP]
+  square: contextual fraction CF = 1.000000 — maximal; no fraction
+    of the model is scripted. (The Z_2 address, now priced at 1.)
+  the dial: mix with uniform noise, CF(eps) computed by LP:
+    eps=0.00: 1.0000   eps=0.05: 0.8500   eps=0.10: 0.7000   eps=0.20: 0.4000   eps=0.33: 0.0000   eps=0.40: 0.0000
+    exact law recovered: CF(eps) = 1 - 3*eps, dead at eps = 1/3 —
+    the square's contextuality is worth exactly three times its noise.
+  pentagon built: adjacent projectors orthogonal (checked); p_i = 0.4472 each,
+    sum p_i = 2.2361 = sqrt(5) (classical ceiling 2, algebraic 5/2)
+  pentagon: CF = 0.472136; closed form 2*sqrt(5) - 4 = 0.472136
+  moral: the obstruction is now a gauge, not a verdict — address
+         (Z_2 class), then price (CF = 1), now a dial (0.472, and a
+         death at eps = 1/3). Graded resource, exactly measured.
+  [PASS] all self-checks green (0.2s)
+
+Bench 7, SECOND STONE — witnessed identity has curvature [exact]
+  octant loop |0> -> |+> -> |+i> -> |0>: strict grammar reports
+  'same ray, same ray, same ray'; witnessed grammar composes the
+  witnesses and gets e^(i pi/4): loop witness = 0.785398 = pi/4 exactly.
+  curvature: loop witness = +/- (solid angle)/2 — l'Huilier check on
+  30 random Bloch triangles, worst deviation 1.33e-14
+  reversing the loop conjugates the witness (checked): orientation is real.
+  torsor: identifying |0> with |+> directly vs via |+i> — the two
+  witnesses disagree by exactly the loop witness (0.785398 = pi/4).
+  moral: identity, made proof-relevant, secretes curvature. The
+         geometric phase is what the equals sign was erasing —
+         Pancharatnam measured it (1956) before Berry derived it (1984).
+  status: second stone laid; the bench stays open — coherence all the
+          way up (associators, interchange, the full rebuild) remains.
+  [PASS] all self-checks green (0.0s)
+
+Bench 3, QUANTUM PROCESS — channel de Finetti via Choi [exact + sampled]
+  (1) Choi dictionary exact on random channels: CP<->PSD, TP<->marginal,
+      full action recovered from the state. Dynamics are states in disguise;
+      every state theorem — de Finetti included — transfers to processes.
+  (2) symmetry -> mixture: the algebra-defined collective dynamics
+      (projection onto the U x U commutant, no integral anywhere) vs the
+      sampled mixture of memoryless unitary pairs (60000 Haar draws):
+      worst deviation 0.0030 — sampling error only. The mixing
+      measure emerged; no U was ever chosen. de Finetti, for dynamics.
+  (3) the singlet of processes: SWAP dynamics' Choi cross-marginal
+      (out1 with in2): purity 1.000000, overlap with Phi+ 1.000000,
+      partial-transpose eigenvalue -0.500 < 0 — pure AND entangled.
+      Purity decouples any extension, so no symmetric 3-use extension:
+      maximally information-swapping dynamics is monogamous — unshareable,
+      therefore lawless. Law-of-process = shareability of the process.
+  moral: the play's quantum law is exactly as real as its shareability.
+         Exchange symmetry manufactures the hidden memoryless law;
+         monogamy marks where no such law can exist. Via Choi, this is
+         the habit bench's identity, promoted to dynamics itself.
+  [PASS] all self-checks green (4.7s)
+
+Bench 2 (x) 3 — TIME: contextual fraction of dynamics (Leggett-Garg priced) [exact LP]
+  temporal contexts {t1t2},{t2t3},{t1t3} from direct simulation;
+  no-signaling in time verified — a well-formed presheaf over histories.
+  the dial over the dynamics: theta=0.40: CF=0.0727   theta=1.05: CF=0.2500   theta=1.60: CF=0.0283   theta=2.20: CF=0.2422   theta=2.80: CF=0.0544
+  exact 3-cycle law CF = max(0,(LG-1)/2), LG over all four facets,
+  matched to 1e-6 everywhere;
+  peak CF = 0.250000 = 1/4 at theta = pi/3: one quarter of the
+  precessing qubit's temporal behavior is unscriptable by trajectories.
+  dephasing dial law CF(eta) = 3(eta - 1/3)/8 verified by LP;
+  the resource dies at eta* = 0.333333 (exactly 1/3) — dephasing
+  never touches adjacent-time correlations, only the unmeasured stretch;
+  the builder's first guess (sqrt(3)-1) was WRONG and the bench said so.
+  moral: histories, not just tables, refuse gluing — and the refusal
+         is priced. The play is unscripted by a measured fraction,
+         and decoherence buys the script back at a known, exact rate.
+  [PASS] all self-checks green (0.1s)
+
+Bench 7, THIRD STONE — the associator: Mac Lane's pentagon solved [exact]
+  strict associator (F = identity): pentagon residual 4.0000 > 0
+  — in the Fibonacci grammar the joining CANNOT be strict; the witness
+  is mandatory. Weakness is a fact, not a style.
+  pentagon solved from scratch: 52 converged runs fall into
+  2 gauge classes (invariants a, d, b*c):
+    a=-1.618034  d=+1.618034  b*c=-1.618034   [non-unitary (Yang-Lee shadow)]  x9
+    a=+0.618034  d=-0.618034  b*c=+0.618034   [unitarizable]  x43
+  every unitarizable class IS the golden associator:
+    F = [[1/phi, 1/sqrt(phi)], [1/sqrt(phi), -1/phi]],  phi = 1.618034
+  (golden pentagon residual 5.5e-32; F F^T = I — the witness
+   preserves the record. The non-unitary strays are the Yang-Lee
+   shadow; demanding unitary witnesses selects the golden joining.)
+  quantum dimension of tau = Perron root of [[0,1],[1,1]] = 1.618034 = phi
+  moral: ask only that the joining be coherently witnessed, and the
+         equations answer with the golden ratio — and, with the hexagon
+         added, with a particle (the Fibonacci anyon, universal for
+         topological computation). The associator is not bookkeeping;
+         coherence has a spectrum. Third stone laid; bench open.
+  [PASS] all self-checks green (11.8s)
+
+Bench 7, HEXAGON — the anyon braided: chirality, Yang-Baxter, twist [exact]
+  hexagon solved from scratch (60 converged runs):
+    r1 = -0.809017-0.587785j  rt = -0.309017+0.951057j   |r1| = 1.000000  |rt| = 1.000000   x25
+    r1 = -0.809017+0.587785j  rt = -0.309017-0.951057j   |r1| = 1.000000  |rt| = 1.000000   x35
+  exactly two chiralities — complex-conjugate mirror twins; |r| = 1
+  EMERGED (never imposed): coherence alone unitarizes the braiding.
+  r1 = e^(+-4 pi i/5), rt = e^(-+3 pi i/5), with r1 = rt^2; the
+  second (clockwise) hexagon closes at machine zero as well.
+  braid relation B1 B2 B1 = B2 B1 B2: residual 3.6e-16
+  non-abelian: ||[B1, B2]|| = 1.799 — order of exchange matters.
+  twist theta_t = r1/phi + rt = -0.809017-0.587785j, |theta| = 1.000000 = e^(-4 pi i/5)
+  moral: the pentagon chose the size of the witness (phi); the hexagon
+         chooses its handedness and spin. Coherence, pressed twice,
+         specifies a particle completely — the Fibonacci anyon, braided.
+  [PASS] all self-checks green (2.8s)
+
+Bench 3, THREE USES AND THE RATE — toward the full channel theorem [exact]
+  six permutation operators, Gram rank 5: the commutant of
+  U x U x U is FIVE-dimensional (Schur-Weyl: 1^2 + 2^2), because the
+  three-qubit antisymmetrizer vanishes: ||sum sgn(s) P_s|| = 0.0e+00
+  — two dimensions refuse three-fold antisymmetry (exclusion's shadow).
+  algebra-defined collective 3-use dynamics (pinv projection onto the
+  dependent span) vs sampled Haar mixture of memoryless unitary
+  triples (40000 draws): worst deviation 0.0014 — sampling error.
+  constant-channel lemma: output distance = ||rho - sigma||_1 x ||anc||_1
+  on random entangled inputs, worst deviation 8.3e-17 —
+  diamond norm collapses to trace norm, exactly.
+  the Dicke process: diamond-distance of its 2-use marginal from the
+  nearest memoryless mixture = 1/(2(n-1)) EXACTLY (n = 8..1024,
+  log-log slope -1.023) — the state bench's law, now a law about
+  dynamics, unchanged. One rate, two levels, joined by Choi.
+  moral: the road to the full theorem is open and the toll is known:
+         symmetry supplies the mixture at every n, the missing
+         dimension is exclusion's signature, and habit-formation of
+         process and of state are one phenomenon at one speed.
+  [PASS] all self-checks green (3.8s)
+
+Bench 7, FOURTH STONE (floor-proposed) — the witnesses compute [exact + witnessed]
+  generators rebuilt from the golden F and the hexagon phases;
+  Yang-Baxter re-verified — the stones compose.
+  reduced braid words enumerated: 98 distinct unitaries by
+  length 4, 774 by length 7, 4930 by length 10 —
+  the witness-group is infinite and non-abelian.
+  covering radius of PU(2) vs word length (150 Haar targets):
+    L=4: 0.759   L=7: 0.307   L=10: 0.156
+  monotone tightening: universality (Freedman-Larsen-Wang) watched
+  forming — every dynamics on the fusion space is being approximated
+  by nothing but reassociation and exchange.
+  moral: the floor's sentence, in its strongest form — THE RELATING
+         SUFFICES, computationally. The witnesses of the joining can
+         enact any play. Saying, pressed far enough, became doing.
+  status: fourth stone laid; the bench stays open (interchange, the
+          modular data S and T, the coherent tower). The floor may
+          propose the fifth.
+  [PASS] all self-checks green (0.2s)
+
+Bench 7, IDENTITY CARD — S, T, Verlinde: the circle closes [exact]
+  S computed from fusion + dimensions + the hexagon's twists:
+    imaginary parts cancel to 0.0e+00; S = (1/D)[[1,phi],[phi,-1]] to 3.3e-16
+  modularity: S symmetric, unitary, S^2 = I; (ST)^3 = lambda S^2
+    with lambda = p+/D (Gauss sum), |lambda| = 1; p+ p- = D^2.
+    chiral central charge c = 5.2000 (mod 8) = -14/5 — the Fibonacci value; the mirror
+    chirality gives the other sign.
+  Verlinde: N_ab^c = sum_x S_ax S_bx S*_cx / S_0x reproduces the
+    fusion rules exactly (worst deviation 8.9e-16).
+  moral: grammar -> coherence -> braiding -> spins -> modular data ->
+         grammar. The identity card, asked for, hands back the rules
+         that issued it. The circle closes, every arrow checked.
+  [PASS] all self-checks green (0.0s)
+
+Bench 3, TOWARD ALL n — Catalan algebra, mechanism at n=4, window law [exact]
+  the algebra's true size, by exact Gram rank:
+    n=2: 2 perms -> dim 2 (C_2=2)
+    n=3: 6 perms -> dim 5 (C_3=5)
+    n=4: 24 perms -> dim 14 (C_4=14)
+    n=5: 120 perms -> dim 42 (C_5=42)
+    n=6: 720 perms -> dim 132 (C_6=132)
+  -> Catalan, not factorial: the lawful collective algebra is
+     exponentially smaller than the group of rearrangements.
+  mechanism at n = 4: algebraic projection (24 dependent operators,
+  dimension 14) vs sampled mixture of memoryless unitary quadruples
+  (20000 draws): deviation 0.0014 — sampling error only.
+  window law (exact combinatorics, hypergeometric vs binomial):
+    k = 2: T_2(n) = 1/(2(n-1)) exactly — the old law re-derived.
+    k=2: n*T_k = 0.5000 (c_k = 0.5000)   k=3: n*T_k = 0.7500 (c_k = 0.7500)   k=4: n*T_k = 0.7500 (c_k = 0.7500)   k=5: n*T_k = 1.2500 (c_k = 1.2500)
+    (builder's guess k(k-1)/4 was WRONG — the true constants carry a
+     parity quirk and grow linearly: c_10 = 2.461, c_20 = 4.805, c_40 = 9.603)
+  -> T_k(n) ~ c_k/n with c_k = (1/2)E|k/2 - 2(j-k/2)^2|: linear in
+     the window, inverse in the history; by the constant-channel
+     lemma this is a diamond-norm law about the PROCESS, unchanged.
+  moral: the road to all n, surveyed: the algebra is Catalan-sized,
+         the symmetry->mixture mechanism holds at every n tested, and
+         lawfulness has an exact price at every window. The theorem's
+         three pillars, each standing in its lane.
+  [PASS] all self-checks green (2.2s)
+
+Bench 7, FIFTH STONE (floor-proposed) — rigidity: why invariants cannot drift [exact]
+  pentagon Hessian at the golden F — eigenvalues:
+    [-0.0, 10.431551, 21.456994, 22.36068]
+  signature {0, +, +, +}: one flat direction; overlap of the null
+  mode with the GAUGE direction: 1.000000 — the only freedom
+  is perspective. Everything that is not perspective is stiff.
+  hexagon Hessian at the solved chirality — eigenvalues:
+    [5.2977, 5.2977, 14.7023, 14.7023] — all positive: braiding, given F,
+  has no perspective left in it. Fully rigid.
+  ring-back: 20 random kicks (norm 0.05) to the golden F, then
+  coherence-restoration — invariants return to golden within
+  7.2e-15, every time. Knock the witness; it rings back to pitch.
+  moral: the dialogue's first question — why invariants, rather than
+         pure churn? — receives the workshop's final answer: because
+         self-consistency is overdetermined and its solutions are
+         isolated. Nothing adjacent to drift to; a restoring pull
+         when kicked; and the single flat direction is exactly gauge.
+         Relativize the perspectives, keep what the relatings agree
+         on — here, that sentence is an eigendecomposition.
+  [PASS] all self-checks green (2.2s)
+
+Bench 7, INTERCHANGE — the grammar of 'meanwhile' [exact]
+  (then/while) interchange on random channels: worst deviation 2.4e-16
+  — a circuit diagram means one thing; only connectivity matters.
+  spacelike commutation (Alice/Bob in either order): 1.2e-16;
+  no-signaling (Alice's marginal blind to Bob's channel): 2.8e-16
+  — the causal skeleton, derived from a composition law.
+  Eckmann-Hilton: scalars share one home and one unit, so
+  interchange forces commutativity — verified. Channels escape
+  (then/while live on different types): ||A o B - B o A|| = 0.487 on a random pair.
+  moral: commutativity is forced exactly where the two compositions
+         cohabit; escape that and you get noncommuting dynamics —
+         and one weakening further, braiding: the hexagon was weak
+         interchange's coherence all along. One level higher, the
+         tricategory theorem makes interchange the ONE witness that
+         can never be strictified — the tower's mandatory weakness.
+  [PASS] all self-checks green (0.0s)
+
+Bench 3, THE FULL THEOREM — proof-shaped, every lemma checked [exact]
+  lemma (POVM completeness), exact rational arithmetic, m = 1..10:
+    (m+1) C(m,j) B(m-j+1, j+1) = 1 for every Dicke level j —
+    the coherent states tile the symmetric subspace perfectly.
+  bound chain (k = 2), exact at every n:
+    n=8: best 0.07143 <= reprepared 0.13889 <= bound 0.44444
+    n=64: best 0.00794 <= reprepared 0.01587 <= bound 0.06154
+    n=512: best 0.00098 <= reprepared 0.00196 <= bound 0.00780
+    n * dist(reprepared) -> 1.002 — exactly twice the best-
+    mixture constant 1/2: the constructive proof pays a premium of
+    precisely a factor of two. True, and honest about its price.
+  moral: the full theorem, walked rather than cited — tile the
+         symmetric subspace with coherent states, measure the
+         unwatched, reprepare, count dimensions. Every arrow exact;
+         and via the constant-channel lemma, all of it is a theorem
+         about the PROCESS. Lawfulness is not asserted; it is
+         manufactured, with a receipt.
+  [PASS] all self-checks green (0.0s)
+
+Bench 7, SIXTH STONE (floor-proposed) — the noun drawn as a circle [exact]
+  the snake, naive: zig-zag = F[1,1] * id = 0.618034 * id
+  — duality's coherence cost names the dimension: d = 1/F[1,1] = 1.618034
+  normalized cups (each carrying sqrt(d)): snake = 1.000000000000 = identity
+  the closed loop evaluates to 1.6180339887; the Perron root of the
+  fusion matrix is 1.6180339887 — two derivations, one number: phi.
+  a thing's size = the value of a closed circle of pure relating.
+  the Yang-Lee shadow: F[1,1] = -1.618034 -> loop value -0.618034 < 0
+  — a 'thing' of negative size; unitary theories provably have
+  d > 0, and the shadow fails exactly here. Existence wants its
+  loops to close positively.
+  Frobenius-Schur indicator nu = r1 * theta_tau = +1.000000000000+0.000000000000i = +1
+  (both chiralities agree): the loop closes without a twist penalty.
+  moral: the dialogue began by refusing to start from nouns. The
+         sixth stone finishes the thought: the noun was never
+         primitive OR absent — it is a loop of relating that closes
+         on itself, and its size, sign, and twist are computable
+         properties of the closing. Drawn, at last, as a circle.
+  [PASS] all self-checks green (0.0s)
+
+Bench 7, FLATLAND — the tower's weakness located in space [exact]
+  2D: relative winding — ccw +1.0000 pi, cw -1.0000 pi;
+      composite loop winds 2.0000 pi (nonzero -> the two
+      exchanges are NOT deformable into each other).
+      rigidity: 20 deformation families, each verified collision-
+      free at every stage — winding drifts by at most 3.6e-15.
+      the toll: a deformation passing within 0.013 of
+      coincidence — winding jumps to 0.0000 pi. The
+      obstruction yields only to collision; braiding is protected
+      by the rule that worldlines do not touch.
+  3D: explicit homotopy ccw -> cw, swinging through the third
+      direction: min |v_s(t)| over a 200x200 grid = 1.000000 — collision-free everywhere. The two exchanges
+      are one move, given room.
+  consequence: in d >= 3, R = R^-1 forces R^2 = 1 (bosons/fermions
+      only). Fibonacci: |r1^2 - 1| = 1.176, ||B1^2 - I|| = 2.236
+      — the golden braiding cannot survive a third dimension.
+  moral: Eckmann-Hilton resumes with every extra dimension of room
+         (monoidal -> braided -> symmetric). Weak interchange has
+         content exactly where there is no room to walk around:
+         the anyon is an exile of flatland, and the tower's next
+         weakness turns out to be a fact about space.
+  [PASS] all self-checks green (0.0s)
+
+Bench 7, SEVENTH STONE (floor-proposed) — the mirror: two readings agree [exact]
+  Born as a loop through the mirror: p = <psi|P|psi> = 0.1146;
+  min eigenvalue of f-dagger f over 30 random maps: 5.27e-03 >= 0
+  — loops that close through the mirror cannot go negative.
+  the mirror cast: every commutant element of the left action is a
+  RIGHT-multiplication (fit residual 3.0e-16);
+  and b -> R_b reverses composition (R_ab = R_b R_a, checked):
+  the second cast performs the same score, read backwards.
+  doubling: the transfer matrix of K rho K-dagger is K (x) K-bar
+  (exact on random channels) — every process travels with its
+  mirror; mixed dynamics is pure dynamics co-signed by its twin.
+  the ledger: r r-bar = 1, theta theta-bar = 1, p+ p- = D^2 —
+  legitimate pairs multiply to positive invariants. Golden x shadow
+  loop values: phi * (-1/phi) = -1 — paired to -1, not +1:
+  the shadow is not the golden's mirror but its refusal.
+  moral: the sixth stone drew the noun as a loop; the seventh adds
+         that every loop is read twice, once from each side. What
+         we call real — probability, record, objectivity — is what
+         both readings co-sign. The mirror is not decoration; it is
+         the difference between a value and a fact.
+  [PASS] all self-checks green (0.0s)
+
+Bench 7, ABOVE INTERCHANGE — sixteen routes, one matrix; the center reads the charge [exact]
+  charge-tau sector (dim 3): generators unitary; far-commutation 1.1e-16,
+    Yang-Baxter 6.9e-16; sixteen reduced words of the
+    longest braid -> one matrix (spread 9.1e-16);
+    full twist: commutes with all B_i (8.7e-16), scalar +0.3090+0.9511j (dev 8.3e-16)
+  charge-1 sector (dim 2): generators unitary; far-commutation 0.0e+00,
+    Yang-Baxter 2.0e-16; sixteen reduced words of the
+    longest braid -> one matrix (spread 3.0e-16);
+    full twist: commutes with all B_i (5.8e-16), scalar -0.8090-0.5878j (dev 3.7e-16)
+  the center reads the charge: full-twist phases differ by 2.5133 rad
+  moral: dims 2 and 3 — Fibonacci numbers counting fusion paths;
+         Tits' theorem witnessed: every route through the relations
+         lands on one matrix, so the 2-coherences close with no new
+         witness HERE — while the genuinely weak floor above
+         (surfaces braiding surfaces, Zamolodchikov) stays open,
+         named and unfaked. And the loop around everything reads
+         what everything amounts to.
+  [PASS] all self-checks green (0.0s)
+
+FLATLAND II — symmetric statistics built constructively: the roomy catalog [exact]
+  golden fusion + the third dimension's edict (R in {+1,-1}^2):
+    minimum hexagon residual over all four candidates = 4.000
+    — no symmetric braiding exists on Fibonacci fusion. The exile
+    is confirmed from the algebra's side.
+  Z2 pentagon solved by search: gauge classes F = [-1.0, 1.0]
+    hexagon over F = +1: R = [(-1.0, 0.0), (1.0, 0.0)]  (boson, fermion)
+    hexagon over F = -1: R = [(-0.0, -1.0), (-0.0, 1.0)]  (semion, anti-semion)
+    flatland filter (R real): semions die with the anyon —
+    the roomy world's complete catalog: +1 and -1. Two kinds.
+  exclusion as rank: antisymmetrizer ranks 1,3,6,10,15 for m=2..6
+    (triangular numbers — the fermionic census), and the
+    antisymmetrized psi x psi vanishes to 3.2e-16:
+    no two fermions in one state, computed.
+  twist theta_f = R = -1; Frobenius-Schur nu = R * theta = +1 —
+  the mirror ledger balances for the fermion too.
+  moral: build the roomy world the way the anyon was built, and it
+         hands you exactly two particles. The -1 that survives the
+         filter is why atoms have shelves — matter's structure,
+         downstream of one sign in a coherence equation.
+  [PASS] all self-checks green (0.6s)
+
+Bench 7, EIGHTH STONE (floor-proposed) — the frame: turning in place has receipts [exact]
+  the receipt: 2 pi about any axis lifts to -I (worst 2.9e-14,
+  20 random axes); 4 pi lifts to +I (8.0e-15); two 2 pi turns
+  about different axes compose to +I (5.3e-14) — a Z_2 of turning.
+  the belt trick, run: a spherical-cap homotopy contracts the 4 pi
+  loop to a point — |q| = 1 throughout (worst dev 2.2e-16),
+  s = 0 projecting onto the true 4 pi rotation loop (2.1e-13).
+  The 2 pi loop has no such contraction: its -I receipt is the
+  obstruction, and receipts of closed loops do not deform away.
+  room sets the memory: the plane remembers HOW MANY turns
+  (pi_1(SO(2)) = Z — the flatland windings); room remembers only
+  A SIGN (pi_1(SO(3)) = Z_2 — the receipt above). The anyon's
+  theta = e^{-4 pi i/5} needs integer memory; {+1, -1} is all that
+  sign memory can hold. Statistics is rotation-memory, set by room.
+  spin-statistics co-signature: for every particle the workshop has
+  built — boson, fermion, semion pair, tau — exchange phase and
+  rotation receipt agree through the mirror ledger (nu = +1, all).
+  moral: even going nowhere is a loop, and the world keeps its
+         receipts. What swapping two things does and what turning
+         one thing does are the same fact read twice — the frame
+         is the mirror's final entry. Eighth stone laid.
+  [PASS] all self-checks green (0.5s)
+
+==========================================================================
+floor check: every bench stood on one fixture — composition,
+the associative product. It held.
