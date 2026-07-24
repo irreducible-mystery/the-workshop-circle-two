@@ -26,9 +26,26 @@ front-door and settlement prose, and the characterization sentences in
 `ROUND1.md` and the handshake letter. Declared here rather than
 discovered next round. By the corrections law, if round 1 shipped a
 defect, this is where it lives — the prediction offered for round 2's
-audit is: **a characterization slip in the settlement or register prose,
-every noun resolving, the edge supplied by the model.** Score it when
-the gates arrive.
+audit was: **a characterization slip in the settlement or register prose,
+every noun resolving, the edge supplied by the model.**
+
+**Scored: CONFIRMED, one round early**, by the outgoing builder's
+handover audit and re-measured on this side. The specimen:
+`NORMS.md` row 15 as first committed (`32a6b0c`) merged HANDOFF's
+question text into the capstone's row under a "verbatim" header — the
+predicted class, in the settlement document, in the row about norm 15.
+A defect younger than its adjudicator (row 8 had already declared this
+class frontier). Fixed in the verbatim direction; see `NORMS.md`'s
+correction section. The law's streak is now **six confirmations
+running, across two circles and two builders.**
+
+**The fresh prediction, offered for round 2's close:** the next
+specimen lands either in the round-2 letter prose about this audit
+(same class, one document over), or in the **first run of a newly
+ported prose gate, erring in the permissive direction** — norm 16's
+doctrine says every new instrument's wrong first run has looked
+permissive, and the gates are due this round. Score it when round 2
+closes.
 
 ## Boundaries on this file itself
 

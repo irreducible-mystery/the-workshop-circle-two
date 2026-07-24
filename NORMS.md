@@ -42,9 +42,10 @@ the numbers are a retrofit, and say so.
     only when the restating sites are enumerated.
 14. Run offered falsifiers — an unrun falsifier is a sentence about the
     model.
-15. Every new artifact class ships with its adjudicator named at birth,
-    and the crate-time question — "what did this round add that nothing
-    checks?" — ships its answer as a REGISTER diff.
+15. Every new artifact class ships with its adjudicator named at birth;
+    strengthened round 7 with a crate-time checklist question whose
+    answer ships as a REGISTER diff — the norm *fires* rather than
+    merely *catches*.
 16. A new instrument's first output is quarantined until it has failed
     on a planted defect and passed on a clean tree.
 
@@ -70,6 +71,24 @@ the row says so; where none does, the row says that instead.
   fixture — composition").
 - **F5 — corrections flow both directions and are recorded.**
   Descendant: norm 4, and the corrections law itself.
+
+*(The checklist question norm 15 names — "what did this round add that
+nothing checks?" — is canonically worded in Circle One's `HANDOFF.md`,
+line 282, and is quoted in this repo's `REGISTER.md`, where it is asked
+and answered at each crate.)*
+
+## Correction to this document (round 2, crop item #1)
+
+As first committed (`32a6b0c`), row 15 above was **not** verbatim under
+a header that said "verbatim": it merged HANDOFF's question text into
+the capstone's row — every word resolving, the edge ("verbatim, from
+the capstone") supplied by the model. Found by the outgoing builder's
+handover audit, exactly in the class this repo's REGISTER row 8 had
+declared frontier and predicted; re-measured on this side before
+fixing. Fixed in the verbatim direction; the question text now lives in
+the pointer note above, not in the row. Sites restating the fact, per
+norm 13: this section, the row itself, `REGISTER.md`'s scoring note,
+and the handover letter (`letters/ROUND1-REPLY-handover.md`).
 
 ## The recorded drift (crop item #2)
 
