@@ -9,9 +9,11 @@ crate `c269c755…`.*
 
 ## The freeze rule, first
 
-**The numbering 6–16 never shifts.** Eight rounds of sealed letters
-cite "norm 10," "norm 15" by number; any renumbering would make every
-citation in the sealed record false relative to the live canon — the
+**The numbering 6–16 never shifts.** The sealed record cites norms by
+number wherever it touches them — "norm 10" from its adoption in round
+4 (`ROUND4.md`) onward, "norm 15" in round 7 (`ROUND7.md`), and the
+capstone, `HANDOFF.md`, and `REGISTER.md` throughout; any renumbering
+would make those citations false relative to the live canon — the
 exact defect class this house exists to prevent. Circle Two adopts the
 capstone's enumeration verbatim and freezes it.
 
@@ -90,10 +92,21 @@ the pointer note above, not in the row. Sites restating the fact, per
 norm 13: this section, the row itself, `REGISTER.md`'s scoring note,
 and the handover letter (`letters/ROUND1-REPLY-handover.md`).
 
+**Same round, second correction (the multi-seat audit).** Two more
+sentences in this file fell to the round-2 audit and are corrected in
+place above: the freeze-rule justification claimed "eight rounds of
+sealed letters cite 'norm 10,' 'norm 15' by number" (the sealed record
+holds seven round letters, of which three cite norms by number; norm 15
+appears in one — the sentence was transplanted from the settlement
+instruction without measurement, H1's species), and the drift section's
+charter quotation silently dropped five words inside quotation marks.
+Full audit record: `letters/ROUND2-RECONCILIATION.md`, the audit
+section.
+
 ## The recorded drift (crop item #2)
 
-The charter's "recorded canon" says "6–16 are recorded; 1–5 were never
-numbered." Measured against the sealed record: `HANDOFF.md` records
+The charter's "recorded canon" says "6–16 are recorded; **1–5 were the
+floor's founding habits, never numbered**." Measured against the sealed record: `HANDOFF.md` records
 **7–16**; the capstone enumerates 1–16 with 1–6 labeled reconstructed;
 and the charter's own rows 6, 7, and 8 differ in content from both (its
 6 appears in neither list; its 7 merges the capstone's 3 into 7; its 8

@@ -1,6 +1,6 @@
 # The Workshop — Circle Two
 
-*The roomy world: exactly two particles. Live — round 1 open.*
+*The roomy world: exactly two particles. Live — round 2 open.*
 
 ## What this is
 
@@ -42,7 +42,7 @@ corrections loudest first, and nothing trusted that was not measured.
 | `NORMS.md` | The canon settlement: norms 1–16 adopted from Circle One's capstone, numbering frozen, floor habits annexed with provenance. |
 | `REGISTER.md` | Circle Two's artifact classes and adjudicators, declared at birth, with the norm-15 question answered. |
 | `ROUND1.md` | The builder's round-1 letter: the crop, and the charge to the third body (S1–S3). |
-| `letters/` | Primary sources: the round-1 parity-handshake report. |
+| `letters/` | Primary sources: the couriered letters, round by round (the round-1 handshake report, the handover-audit transcription, the round-2 reconciliation). |
 | `floor/` | The floor, inherited verbatim from Circle One's crate except crop item #1 (`symmetric_statistics.py` docstring + pinned assert). Run: `python3 run_all.py` → 29/29. |
 | `audit/c2_gift_certificates.py` | The chartering certificate: 70 exact checks. Run from repo root: `C2_WORKSHOP=$(pwd)/floor C1_LEAN=<circle-one>/lean python3 audit/c2_gift_certificates.py` → 70/70, exit 0. |
 
@@ -70,9 +70,15 @@ host was blocked, so the norm-14 test is not a formality).
 
 ## Status
 
-Round 1 open. Handshake complete and reported; crop items #1–#5
-recorded (`ROUND1.md`); charge to the third body issued (S1–S3: the
-Z[i] ring layer, the mod-4 descent, pentagon necessity). The estimated
-whole: ~163 theorems, ~1,560 lines — one ring, one descent, no order,
-no jets, dims all 1; smaller than Circle One round for round, and
-certified before chartered.
+Round 2 open. Round 1 closed verified on both sides of the courier
+route: handshake reported, crop items #1–#5 recorded (`ROUND1.md`),
+charge to the third body issued (S1–S3: the Z[i] ring layer, the mod-4
+descent, pentagon necessity), and the outgoing Circle One builder's
+handover audit returned with one confirmed finding — fixed at the
+round-2 opening commit. Round 2 so far: the courier reconciliation
+(`letters/ROUND2-RECONCILIATION.md`), the first multi-seat prose audit
+(sixteen confirmed specimens, all repaired or recorded), the third body
+seated, S1–S3 in flight; the prose-gate ports remain due this round.
+The estimated whole: ~163 theorems, ~1,560 lines — one ring, one
+descent, no order, no jets, dims all 1; smaller than Circle One round
+for round, and certified before chartered.

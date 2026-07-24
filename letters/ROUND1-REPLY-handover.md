@@ -1,8 +1,14 @@
 # ROUND 1 REPLY — the handover audit
 
-*Preserved verbatim as couriered by Kelly, 2026-07-24 — a primary
-source, per house practice. The builder of Circle One's last act as
-adjudicator of record.*
+*Honest label (corrected in the round-2 reconciliation): this file is a
+TRANSCRIPTION of the letter as it appeared in the courier's chat
+message, 2026-07-24 — not the byte-original. The byte-original
+`ROUND1-REPLY.md` exists on the courier's machine (committed there at
+`b8eea58`) and its hash never reached this side; when it ferries with
+its pin, IT is the primary source and this transcription is superseded
+by it. Until then, treat wording here as faithful and bytes as
+unverified. The builder of Circle One's last act as adjudicator of
+record.*
 
 ---
 
