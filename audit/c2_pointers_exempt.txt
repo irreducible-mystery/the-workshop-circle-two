@@ -61,3 +61,6 @@ fb3a1809628f8a7e5da1c1b6a0d03342824a6cc661a2c920285b0a61968501b6	SHA-256 pin: ci
 b2841041	SHA-256 pin prefix: couriered handshake-report copy, byte-identity check in the handover audit
 a016099e	SHA-256 pin prefix: the revised certification instrument, as diffed in the handover audit
 fbcd0a0d	SHA-256 pin prefix: the round-1 close crate cut at 62d64bf (reconciliation letter)
+7d2f288298f283c9e55ad6016c1704037465bb4c053661897ab895af4c4f234c	SHA-256 pin: circletworound2.zip (round-2 crate at a19fb4c), ferried this leg; recorded in the round-2 handshake report
+c1d755f550d2381232a9b4837db8a490458f182c25a1deb34460b59ee4cadb71	SHA-256 pin: circletwogates.zip (the gate ports), ferried this leg with its pin in Kelly's message; recorded in the round-2 handshake report
+53bbdfb1dd00c028009903d5b21307b528f829182aa97947851c15cd70d34ae0	SHA-256 pin: the byte-original letters/ROUND1-REPLY.md, landed at the reconciliation merge; content hash measured on this side
