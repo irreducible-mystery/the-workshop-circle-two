@@ -18,7 +18,9 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 | `courier/Zi_statements_v5.txt` | statements v5, 115 stmts, proof-stripped | `d195b3de0ead` |
 | `seatB/verify_zi_s4.py` | blind verifier, 36/36, 4-indeterminate poly ring | `acfa68424e8b` |
 
-commit: `b98fcdb`
+zip: `dual-seat-experiment-s4.zip` sha256 `3d8cc366250f`
+
+commit: `b98fcdb` (+ `3411fab` tracker touch-up)
 
 ## S3 — pentagon necessity
 
