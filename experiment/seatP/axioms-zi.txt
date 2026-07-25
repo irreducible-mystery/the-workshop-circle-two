@@ -1,6 +1,6 @@
-theorems in source : 115
-census lines       : 115
-axiom-free         : 44
+theorems in source : 141
+census lines       : 141
+axiom-free         : 59
 sorryAx            : 0
 Classical.choice   : 0
 --- per-theorem profile ---
@@ -119,4 +119,30 @@ Classical.choice   : 0
 'Zi.control_wrong_R_per_class' does not depend on any axioms
 'Zi.control_Zi_mod5_splits' does not depend on any axioms
 'Zi.control_filter_needs_catalog' does not depend on any axioms
+'Zi.twist_catalog' does not depend on any axioms
+'Zi.twist_fermion_minus_one' does not depend on any axioms
+'Zi.ribbon_identity' depends on axioms: [propext, Quot.sound]
+'Zi.ribbon_nest_3_plus_1' depends on axioms: [propext, Quot.sound]
+'Zi.catalog_r_fourth' does not depend on any axioms
+'Zi.nu_survivors_plus_one' does not depend on any axioms
+'Zi.nu_fork_on_semions' does not depend on any axioms
+'Zi.fork_nest_2_plus_2' does not depend on any axioms
+'Zi.fork_locus_is_real_locus' depends on axioms: [propext, Quot.sound]
+'Zi.fork_locus_coordinates' depends on axioms: [propext, Quot.sound]
+'Zi.filter_closes_fork' does not depend on any axioms
+'Zi.nuML_is_normSq' depends on axioms: [propext, Quot.sound]
+'Zi.nuML_blind_on_units' depends on axioms: [propext, Quot.sound]
+'Zi.spin_statistics_seed' does not depend on any axioms
+'Zi.spin_equals_statistics' does not depend on any axioms
+'Zi.fusion_matrix_squares_to_identity' does not depend on any axioms
+'Zi.dimension_charpoly_factors' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_boson' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_fermion' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_semion' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_antisemion' depends on axioms: [propext, Quot.sound]
+'Zi.live_fork_off_catalog' does not depend on any axioms
+'Zi.control_fork_locus_needs_nonzero' does not depend on any axioms
+'Zi.control_wrong_twist_breaks_ledger' does not depend on any axioms
+'Zi.control_ribbon_forcing_bites' does not depend on any axioms
+'Zi.control_nuFS_separates' does not depend on any axioms
 RESULT: PASS
