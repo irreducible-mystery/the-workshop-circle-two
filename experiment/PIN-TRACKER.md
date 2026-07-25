@@ -10,13 +10,14 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Closing artifact — final consolidated report (current)
+## Closing artifacts (current)
 
 | artifact | what | sha256 (short) |
 |---|---|---|
+| `NORMS-RETROSPECTIVE.md` | all 16 norms scored against the experiment: 5 caught, 11 held, 0 idle; costs priced; 5 adoption proposals | _(added at ship)_ |
 | `FINAL-EXPERIMENT-REPORT.md` | the whole arc S1→S6, one document: protocol, mathematics, corrections law, independence routes, all ship pins | `d67fe1d6152c` |
 
-commit: `9492c77`
+commits: `9492c77` (final report), _(retrospective at ship)_
 
 ## S6 — capstone + exclusion
 
