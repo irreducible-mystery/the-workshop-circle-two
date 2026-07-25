@@ -475,4 +475,394 @@ theorem control_z4_has_zero_divisors :
     (2 * 2 : Int) % 4 = 0 ∧ (2 : Int) % 4 ≠ 0 := by decide
 
 
+/- ======================================================================
+   S3 — PENTAGON NECESSITY (ROUND1.md §S3, ~18 thm chartered)
+
+   Over ANY commutative ring — here over Zi, which is enough for the
+   chartered claim and lets S2's domain finish the count: the 16 pentagon
+   instances for the Z₂ F-symbol classify as 11 reading 1 = 1, 4 reading
+   f = f, and exactly ONE forcing — (a,b,c,d) = (1,1,1,1), where
+   lhs = f² and rhs = 1 (certificate: G1a_pentagon_16_instances_classified,
+   G1a_forcing_instance_is_1111_f2_eq_1).
+
+   Index conventions, sourced per C1's lesson — ALL from
+   floor/symmetric_statistics.py in this repo:
+   - F-symbol Fsym_z2(f, a,b,c,d,x,y): LINE 102 — admissible iff
+     x = (a+b)%2, y = (b+c)%2, d = (a+b+c)%2; value f iff
+     (a,b,c) = (1,1,1), else 1.
+   - Pentagon plumbing (x,y,t,w,v,u as functions of a,b,c,d):
+     pent_residual_z2, LINE 108 — transcribed verbatim below.
+
+   NEST (norm 9): 16 = 2⁴ label assignments; 11 + 4 + 1 = 16, tied by
+   the counted classification at a separating witness (f = ⟨5,0⟩:
+   1 ≠ 5 ≠ 25 keeps the three kinds apart). No admissibility zeros on
+   the path (the plumbing hits only admissible slots — the bench's
+   residual counts every quadruple).
+
+   ANTI-VACUITY (norm 3): the pentagon ∀ is guarded by a < 2 ∧ … ∧ d < 2
+   — live on exactly 16 quadruples (`pent_nest_card`). The forcing
+   hypothesis is live at exactly 1 of 16 — the 1-of-N shape seat B's S2
+   crop #2 predicted would return here; it has.
+
+   WORDING (charter flag 2, certificate G1c): the headline below is in
+   SLICE-PLUS-INVARIANCE form. The (1,1,1) slot is a gauge invariant of
+   the normalized slice (proved symbolically, `gauge_slot_invariant`),
+   so F = +1 and F = −1 are genuinely distinct classes; with the
+   16-instance derivation: exactly two. The remaining step to the full
+   "H³(Z₂) = Z₂" sentence — EVERY class has a normalized representative
+   — is NOT proven here and NOT bench-certified (certificate G1c's own
+   label); this file does not state that sentence.
+   ====================================================================== -/
+
+/-- the bench F-symbol on Z₂ fusion, transcribed from
+    floor/symmetric_statistics.py LINE 102: admissibility gates to zero;
+    the single free slot is (a,b,c) = (1,1,1) ↦ f -/
+def Fz2 (f : Zi) (a b c d x y : Nat) : Zi :=
+  if x = (a+b) % 2 ∧ y = (b+c) % 2 ∧ d = (a+b+c) % 2 then
+    (if a = 1 ∧ b = 1 ∧ c = 1 then f else one)
+  else zero
+
+/-- pentagon lhs — the bench's three-factor side, plumbing transcribed
+    verbatim from pent_residual_z2, LINE 108 -/
+def pentL (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  let u := (b+c) % 2
+  mul (mul (Fz2 f a b c y x u) (Fz2 f a u d t y v)) (Fz2 f b c d v u w)
+
+/-- pentagon rhs — the bench's two-factor side, same source line -/
+def pentR (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  mul (Fz2 f x c d t y w) (Fz2 f a b w t x v)
+
+/-- "f satisfies the pentagon": all 16 instances — guarded ∀, live on
+    exactly the 16 quadruples of {0,1}⁴ (nest: `pent_nest_card`) -/
+def pentagon (f : Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 →
+    pentL f a b c d = pentR f a b c d
+
+/- == the classification: 11 + 4 + 1 = 16 ============================== -/
+
+/-- the 15 off-forcing instances hold for EVERY f — 11 read 1 = 1 and
+    4 read f = f, so both sides agree identically; the sweep is the
+    full 16-case rcases with the forcing quadruple excluded by
+    hypothesis (certificate: G1a — "the other 15 are ring identities") -/
+theorem pentagon_offdiag (f : Zi) : ∀ a b c d : Nat,
+    a < 2 → b < 2 → c < 2 → d < 2 → ¬(a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1) →
+    pentL f a b c d = pentR f a b c d := by
+  intro a b c d ha hb hc hd hne
+  have ha' : a = 0 ∨ a = 1 := by omega
+  have hb' : b = 0 ∨ b = 1 := by omega
+  have hc' : c = 0 ∨ c = 1 := by omega
+  have hd' : d = 0 ∨ d = 1 := by omega
+  rcases ha' with rfl | rfl <;> rcases hb' with rfl | rfl <;>
+    rcases hc' with rfl | rfl <;> rcases hd' with rfl | rfl <;>
+    first
+      | exact absurd ⟨rfl, rfl, rfl, rfl⟩ hne
+      | simp +decide only [pentL, pentR, Fz2, if_true, if_false, one_mul, mul_one]
+
+/-- the forcing instance, lhs: at (1,1,1,1) the three-factor side is f²
+    (certificate: G1a_forcing_instance_is_1111_f2_eq_1, lhs) -/
+theorem pentagon_forcing_lhs (f : Zi) : pentL f 1 1 1 1 = mul f f := by
+  simp +decide only [pentL, Fz2, if_true, if_false, mul_one]
+
+/-- the forcing instance, rhs: at (1,1,1,1) the two-factor side is 1
+    (certificate: G1a_forcing_instance_is_1111_f2_eq_1, rhs) -/
+theorem pentagon_forcing_rhs (f : Zi) : pentR f 1 1 1 1 = one := by
+  simp +decide only [pentR, Fz2, if_true, if_false, mul_one]
+
+/-- pentagon ⟹ f² = 1: the single forcing instance, applied -/
+theorem pentagon_forces_f_sq_one (f : Zi) (h : pentagon f) :
+    mul f f = one := by
+  have h1 := h 1 1 1 1 (by decide) (by decide) (by decide) (by decide)
+  rw [pentagon_forcing_lhs, pentagon_forcing_rhs] at h1
+  exact h1
+
+/-- f² = 1 ⟹ pentagon: the forcing instance closes by hypothesis, the
+    other 15 by the sweep — so pentagon ⟺ f² = 1, over any f in Zi
+    (and the proof shape is the any-commutative-ring one: nothing
+    Zi-specific is used until the domain enters at the root count) -/
+theorem f_sq_one_gives_pentagon (f : Zi) (h : mul f f = one) :
+    pentagon f := by
+  intro a b c d ha hb hc hd
+  have ha' : a = 0 ∨ a = 1 := by omega
+  have hb' : b = 0 ∨ b = 1 := by omega
+  have hc' : c = 0 ∨ c = 1 := by omega
+  have hd' : d = 0 ∨ d = 1 := by omega
+  rcases ha' with rfl | rfl <;> rcases hb' with rfl | rfl <;>
+    rcases hc' with rfl | rfl <;> rcases hd' with rfl | rfl <;>
+    first
+      | (rw [pentagon_forcing_lhs, pentagon_forcing_rhs]; exact h)
+      | simp +decide only [pentL, pentR, Fz2, if_true, if_false, one_mul, mul_one]
+
+/-- the headline equivalence at the instance level -/
+theorem pentagon_iff_f_sq_one (f : Zi) : pentagon f ↔ mul f f = one :=
+  ⟨pentagon_forces_f_sq_one f, f_sq_one_gives_pentagon f⟩
+
+/- == the counted classification — nest 16, tied (norm 9) =============== -/
+
+/-- the 16 quadruples, explicitly — the nest itself -/
+def pentQuads : List (Nat × Nat × Nat × Nat) :=
+  [(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),
+   (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),
+   (1,0,0,0),(1,0,0,1),(1,0,1,0),(1,0,1,1),
+   (1,1,0,0),(1,1,0,1),(1,1,1,0),(1,1,1,1)]
+
+/-- nest cardinality: 16 = 2⁴ -/
+theorem pent_nest_card : pentQuads.length = 16 := by decide
+
+/-- the counted classification at the separating witness f = ⟨5,0⟩
+    (1, 5, 25 pairwise distinct, so the three kinds cannot be
+    conflated): 11 instances read 1 = 1, 4 read f = f, 1 forces —
+    and 11 + 4 + 1 = 16 ties the count to its nest (norm 9;
+    certificate: G1a_pentagon_16_instances_classified = (11,4,1,0)).
+    SCOPE, per seat B crop #1 (S3): the filters classify by LHS value
+    alone; the lhs-rhs pairing that makes this a classification of
+    INSTANCES is supplied by `pentagon_offdiag` (lhs = rhs off the
+    forcing site) + `pentagon_forcing_lhs`/`_rhs` (f², 1 there) —
+    without those three, this count would not classify -/
+theorem pent_classification_counted :
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = one))).length = 11 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨5,0⟩))).length = 4 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨25,0⟩))).length = 1 ∧
+    11 + 4 + 1 = 16 := by decide
+
+/-- the four f = f instances, named: both sides equal f symbolically at
+    (0,1,1,1), (1,0,1,1), (1,1,0,1), (1,1,1,0) — the bench's f_eq_f
+    kind, here as identities in a symbolic f -/
+theorem pent_f_eq_f_instances (f : Zi) :
+    (pentL f 0 1 1 1 = f ∧ pentR f 0 1 1 1 = f) ∧
+    (pentL f 1 0 1 1 = f ∧ pentR f 1 0 1 1 = f) ∧
+    (pentL f 1 1 0 1 = f ∧ pentR f 1 1 0 1 = f) ∧
+    (pentL f 1 1 1 0 = f ∧ pentR f 1 1 1 0 = f) := by
+  refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩⟩ <;>
+    simp +decide only [pentL, pentR, Fz2, if_true, if_false, one_mul, mul_one]
+
+/- == from f² = 1 to exactly two, via S2's domain ======================= -/
+
+/-- sub z w = 0 ⟺ z = w — the cancellation bridge -/
+theorem sub_eq_zero_iff (z w : Zi) : sub z w = zero ↔ z = w := by
+  cases z; cases w
+  simp only [sub, add, neg, zero, Zi.mk.injEq]
+  constructor
+  · intro ⟨h1, h2⟩; exact ⟨by omega, by omega⟩
+  · intro ⟨h1, h2⟩; exact ⟨by omega, by omega⟩
+
+/-- the factorization f² − 1 = (f−1)(f+1), symbolic over Zi
+    (certificate: G3a_factorization_symbolic) -/
+theorem factorization_symbolic (f : Zi) :
+    mul (sub f one) (add f one) = sub (mul f f) one := by
+  cases f
+  simp only [mul, sub, add, neg, one, Zi.mk.injEq,
+             Int.mul_add, Int.add_mul, Int.mul_one, Int.one_mul, Int.neg_mul]
+  refine ⟨?_, ?_⟩ <;> omega
+
+/-- f² = 1 ⟺ f = +1 or f = −1 — the DOMAIN theorem: the factorization
+    plus S2's no_zero_divisors; over a non-domain this fails
+    (`control_z8_four_roots` below). char 0 keeps the roots distinct -/
+theorem f_sq_one_iff_pm_one (f : Zi) :
+    mul f f = one ↔ (f = one ∨ f = neg one) := by
+  constructor
+  · intro h
+    have hz : mul (sub f one) (add f one) = zero := by
+      rw [factorization_symbolic, h]
+      decide
+    rcases no_zero_divisors _ _ hz with h1 | h1
+    · exact Or.inl ((sub_eq_zero_iff f one).mp h1)
+    · right
+      cases f
+      simp only [add, one, zero, Zi.mk.injEq] at h1
+      simp only [neg, one, Zi.mk.injEq]
+      exact ⟨by omega, by omega⟩
+  · intro h
+    rcases h with rfl | rfl <;> decide
+
+/-- both roots land, and they are distinct: at least two — and by the
+    domain, at most two: EXACTLY TWO (certificate: G3a_both_roots_land) -/
+theorem both_roots_land :
+    mul one one = one ∧ mul (neg one) (neg one) = one ∧ one ≠ neg one := by
+  decide
+
+/-- THE HEADLINE, slice-plus-invariance form (charter flag 2): a
+    normalized F-symbol on Z₂ fusion satisfies the pentagon iff its one
+    free slot F(1,1,1) is +1 or −1 — exactly two solutions on the
+    normalized slice, distinct by char 0, and the slot is a gauge
+    invariant of the slice (`gauge_slot_invariant` below), so the two
+    are genuinely distinct classes. NOT claimed: that every class meets
+    the slice (not proven here; not bench-certified — G1c's own label) -/
+theorem pentagon_exactly_two (f : Zi) :
+    pentagon f ↔ (f = one ∨ f = neg one) := by
+  rw [pentagon_iff_f_sq_one]
+  exact f_sq_one_iff_pm_one f
+
+/- == live instances (norm 3) =========================================== -/
+
+/-- live: f = +1 (the boson-side class representative) satisfies all 16 -/
+theorem live_pentagon_plus_one : pentagon one :=
+  f_sq_one_gives_pentagon one (by decide)
+
+/-- live: f = −1 (the fermion-side class representative) satisfies all 16 -/
+theorem live_pentagon_minus_one : pentagon (neg one) :=
+  f_sq_one_gives_pentagon (neg one) (by decide)
+
+/-- live, the forcing site: at f = ⟨5,0⟩ the forcing instance separates
+    (25 ≠ 1) while an f = f instance holds — the hypothesis structure of
+    the classification is live, not vacuous -/
+theorem live_forcing_separates :
+    pentL ⟨5,0⟩ 1 1 1 1 ≠ pentR ⟨5,0⟩ 1 1 1 1 ∧
+    pentL ⟨5,0⟩ 0 1 1 1 = pentR ⟨5,0⟩ 0 1 1 1 := by decide
+
+/-- live, off the real axis (seat B crop #3, S3): at the genuinely
+    Gaussian point f = 1+i the forcing lhs is f² = 2i = ⟨0,2⟩ ≠ 1 while
+    an f = f instance still holds — the symbolic claims are tied to a
+    witness that exercises the imaginary coordinate -/
+theorem live_gaussian_witness :
+    pentL ⟨1,1⟩ 1 1 1 1 = ⟨0,2⟩ ∧ pentR ⟨1,1⟩ 1 1 1 1 = one ∧
+    pentL ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩ ∧ pentR ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩ := by decide
+
+/- == negative controls (norm 5) ======================================== -/
+
+/-- NEGATIVE CONTROL (non-domain): in Z/8, f² = 1 has FOUR solutions
+    {1,3,5,7} — exactly-two is a DOMAIN theorem, not arithmetic luck
+    (certificate: G3a_control_Z8_four_roots); nest 8, tied by the iff -/
+theorem control_z8_four_roots : ∀ x : Fin 8,
+    (x.val * x.val) % 8 = 1 ↔
+    (x.val = 1 ∨ x.val = 3 ∨ x.val = 5 ∨ x.val = 7) := by decide
+
+/-- NEGATIVE CONTROL (Gaussian): f = i — a UNIT of Z[i] — still fails
+    the pentagon: i² − 1 = −2 ≠ 0, residual N(i²−1) = 4 exactly
+    (certificate: G1a_control_f_eq_i_fails_pentagon; the charge's
+    "residual exactly 4") -/
+theorem control_f_eq_i_fails_pentagon :
+    ¬ pentagon I ∧ sub (mul I I) one = ⟨-2, 0⟩ ∧ normSq ⟨-2, 0⟩ = 4 := by
+  refine ⟨fun h => ?_, by decide, by decide⟩
+  have := pentagon_forces_f_sq_one I h
+  exact absurd this (by decide)
+
+/-- NEGATIVE CONTROL (non-root, non-unit): f = 2 fails the pentagon —
+    4 ≠ 1 at the forcing instance (the certificate's f = 2 → residual 9
+    point, here at the instance level) -/
+theorem control_f_eq_two_fails_pentagon : ¬ pentagon ⟨2, 0⟩ := by
+  intro h
+  have := pentagon_forces_f_sq_one ⟨2, 0⟩ h
+  exact absurd this (by decide)
+
+/- == gauge: the slot is an invariant of the normalized slice =========== -/
+/- Vertex gauge η : Z₂ × Z₂ → units, coboundary
+   (dη)(a,b,c) = η(b,c) · η(a,(b+c)%2) / [η((a+b)%2,c) · η(a,b)]
+   — certificate G1c, symbolic. Division-free here: numerator and
+   denominator carried separately, equalities in cleared form. -/
+
+/-- coboundary numerator at (a,b,c) -/
+def detaNum (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta b c) (eta a ((b+c) % 2))
+
+/-- coboundary denominator at (a,b,c) -/
+def detaDen (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta ((a+b) % 2) c) (eta a b)
+
+/-- the raw motion of the (1,1,1) slot: (dη)(1,1,1) = [η11·η10]/[η01·η11]
+    — i.e. η10/η01 after the common factor (certificate:
+    G1c_slot_moves_by_n10_over_n01), stated in cleared form -/
+theorem gauge_slot_motion (eta : Nat → Nat → Zi) :
+    detaNum eta 1 1 1 = mul (eta 1 1) (eta 1 0) ∧
+    detaDen eta 1 1 1 = mul (eta 0 1) (eta 1 1) := ⟨rfl, rfl⟩
+
+/-- cancellation in the domain: from a·x = a·y with a ≠ 0, x = y —
+    S2's no_zero_divisors doing gauge work -/
+theorem mul_left_cancel (a x y : Zi) (ha : a ≠ zero)
+    (h : mul a x = mul a y) : x = y := by
+  have hz : mul a (sub x y) = zero := by
+    have hd : mul a (sub x y) = sub (mul a x) (mul a y) := by
+      show mul a (add x (neg y)) = add (mul a x) (neg (mul a y))
+      rw [mul_add, mul_neg]
+    rw [hd, h]
+    exact (sub_eq_zero_iff _ _).mpr rfl
+  rcases no_zero_divisors _ _ hz with h1 | h1
+  · exact absurd h1 ha
+  · exact (sub_eq_zero_iff x y).mp h1
+
+/-- slice-preservation forces η01 = η10: the zero-slot conditions at
+    (1,0,0) and (0,0,1) — in cleared form, with the shared factors
+    cancelled through the domain. η maps into UNITS per the certificate
+    (G1c: "eta : Z2 x Z2 -> units"), so nonzero-ness is hypothesis, not
+    accident; only the three values that get cancelled are needed
+    (certificate: G1c_slice_preserving_gauges_characterized, the
+    n00 = n01 = n10 reduction, the two rows that reach the slot) -/
+theorem slice_forces_eta_symmetric (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    eta 0 1 = eta 1 0 := by
+  -- (1,0,0): num = η00·η10, den = η10·η10 ⟹ η00 = η10 (cancel η10)
+  have e1 : eta 0 0 = eta 1 0 := by
+    have h1 : mul (eta 1 0) (eta 0 0) = mul (eta 1 0) (eta 1 0) := by
+      have hc := c100
+      simp only [detaNum, detaDen] at hc
+      calc mul (eta 1 0) (eta 0 0) = mul (eta 0 0) (eta 1 0) := mul_comm _ _
+        _ = mul (eta 1 0) (eta 1 0) := hc
+    exact mul_left_cancel _ _ _ h10 h1
+  -- (0,0,1): num = η01·η01, den = η01·η00 ⟹ η01 = η00 (cancel η01)
+  have e2 : eta 0 1 = eta 0 0 := by
+    have h2 : mul (eta 0 1) (eta 0 1) = mul (eta 0 1) (eta 0 0) := by
+      have hc := c001
+      simp only [detaNum, detaDen] at hc
+      exact hc
+    exact mul_left_cancel _ _ _ h01 h2
+  rw [e2, e1]
+
+/-- THE SLOT IS A GAUGE INVARIANT of the normalized slice: for any
+    slice-preserving gauge (η into units, zero-slot conditions at
+    (1,0,0) and (0,0,1) — the two rows of G1c's seven that reach the
+    slot), the motion of F(1,1,1) is trivial: (dη)(1,1,1) reads
+    num = den in cleared form (certificate:
+    G1c_slot_invariant_under_slice_gauges). So F = +1 and F = −1 are
+    genuinely distinct classes — with `pentagon_exactly_two`: exactly
+    two on the slice. NOT claimed: every class meets the slice.
+    STRENGTH, per seat B crop #2 (S3): this is STRONGER than the
+    certificate's row — two of G1c's seven zero-slot conditions
+    suffice; the other five are not hypothesized and not silently
+    used (norm 6: the label matches the term graph) -/
+theorem gauge_slot_invariant (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    detaNum eta 1 1 1 = detaDen eta 1 1 1 := by
+  have he := slice_forces_eta_symmetric eta h10 h01 c100 c001
+  show mul (eta 1 1) (eta 1 0) = mul (eta 0 1) (eta 1 1)
+  rw [he, mul_comm]
+
+/-- live gauge witness (norm 3): a slice-preserving gauge with η11 = i —
+    the one FREE vertex value (G1c: "n11 FREE") — satisfies both
+    zero-slot conditions and moves the slot trivially; and it is not the
+    identity gauge, so the invariance theorem is exercised off the
+    trivial point -/
+theorem live_gauge_witness :
+    let eta := fun a b : Nat => if a = 1 ∧ b = 1 then I else one
+    detaNum eta 1 0 0 = detaDen eta 1 0 0 ∧
+    detaNum eta 0 0 1 = detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 = detaDen eta 1 1 1 ∧
+    eta 1 1 ≠ one := by
+  refine ⟨by decide, by decide, by decide, by decide⟩
+
+/-- NEGATIVE CONTROL (gauge): a NON-slice-preserving η — η01 = ⟨2,0⟩,
+    all else 1 — violates a zero-slot condition AND moves the slot:
+    the invariance is a consequence of slice-preservation, not of the
+    coboundary shape (norm 5 for the gauge family) -/
+theorem control_gauge_moves_slot :
+    let eta := fun a b : Nat => if a = 0 ∧ b = 1 then ⟨2,0⟩ else one
+    detaNum eta 0 0 1 ≠ detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 ≠ detaDen eta 1 1 1 := by
+  refine ⟨by decide, by decide⟩
+
 end Zi

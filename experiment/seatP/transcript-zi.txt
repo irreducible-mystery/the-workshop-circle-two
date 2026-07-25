@@ -1,18 +1,20 @@
-COMPILE TRANSCRIPT — Zi.lean v3 (S1+S2, post-crop) — dual-seat experiment, seat P
-machine: Linux x86_64, 2026-07-25T02:14:05Z
+COMPILE TRANSCRIPT — Zi.lean v4 (S1+S2+S3, post-crop) — dual-seat experiment, seat P
+machine: Linux x86_64, 2026-07-25T05:15:23Z
 toolchain: Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-source: sha256 fbe854890a5e839089d3c0154139695d8ff5bb11085127c3f388bc124c3c65f1
-lean Zi.lean -> exit 0, 0 bytes, 1371ms
-theorems: 57; lines: 478
-census: 57 covered, 23 axiom-free, 0 sorryAx, 0 Classical.choice
+source: sha256 49e850e1f04333552c97633ef5afdae903757b75ea8473eddc8a46c553ab7e8a
+lean Zi.lean -> exit 0, 0 bytes, 2097ms
+theorems: 84; lines: 868
+census: 84 covered, 32 axiom-free, 0 sorryAx, 0 Classical.choice
 
-CORRECTION OF RECORD, loudest first (norm 4): the S2 first draft
-shipped SIX theorems carrying Classical.choice — omega closing
-conjunctive goals (mod4_forces_even's 16-case, descent_core's zero
-case, and four downstream dependents). HANDOFF.md's twice-bitten
-trap, bitten a third time, by a third author. The census caught it
-the same run (ALARM line, exit 1); repaired by splitting every
-conjunctive goal before omega (exact ⟨by omega, by omega⟩);
-re-censused clean. The trap's third confirmation rides in this
-transcript on purpose: the alarm existed before the defect, and
-fired — register age holds.
+S3 NOTES, loudest first (norm 4): no correction of record this
+sub-round — the census stayed clean on the first full compile;
+the S2 lesson (split conjunctive goals before omega) was applied
+at write time and the trap did not fire. One honest dead-end at
+write time, preserved in the tree's history: the first draft of
+slice_forces_eta_symmetric omitted the eta-01 unit hypothesis and
+could not close (the certificate's 'eta -> units' was the missing
+transcription); repaired by carrying the unit hypotheses the
+G1c row states. Seat B's crop: classification tie scoped (#1),
+stronger-than-certificate label (#2), Gaussian witness added (#3).
+The wording boundary held: no statement in this file says H-cubed
+or every-class-meets-the-slice (charter flag 2).
