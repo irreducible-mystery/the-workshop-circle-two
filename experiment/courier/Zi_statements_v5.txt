@@ -1,0 +1,402 @@
+STATEMENTS ONLY — v5 (S1+S2+S3+S4) — mechanically extracted from Zi.lean.
+Proof bodies stripped by courier script; seat B sees definitions and claims only.
+
+structure Zi where
+  re : Int
+  im : Int
+deriving DecidableEq
+namespace Zi
+def zero : Zi := ⟨0, 0⟩
+def one : Zi := ⟨1, 0⟩
+def I : Zi := ⟨0, 1⟩
+def add (z w : Zi) : Zi := ⟨z.re + w.re, z.im + w.im⟩
+def mul (z w : Zi) : Zi := ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
+def neg (z : Zi) : Zi := ⟨-z.re, -z.im⟩
+def sub (z w : Zi) : Zi := add z (neg w)
+def conj (z : Zi) : Zi := ⟨z.re, -z.im⟩
+def normSq (z : Zi) : Int := z.re * z.re + z.im * z.im
+def fakeMirror (z : Zi) : Zi := ⟨z.re, 2 * z.im⟩
+def coordMul (z w : Zi) : Zi := ⟨z.re * w.re, z.im * w.im⟩
+theorem add_comm (z w : Zi) : add z w = add w z
+
+theorem add_assoc (z w v : Zi) : add (add z w) v = add z (add w v)
+
+theorem zero_add (z : Zi) : add zero z = z
+
+theorem add_zero (z : Zi) : add z zero = z
+
+theorem add_neg (z : Zi) : add z (neg z) = zero
+
+theorem neg_add (z : Zi) : add (neg z) z = zero
+
+theorem sub_add_cancel (z w : Zi) : add (sub z w) w = z
+
+theorem mul_comm (z w : Zi) : mul z w = mul w z
+
+theorem mul_assoc (z w v : Zi) : mul (mul z w) v = mul z (mul w v)
+
+theorem one_mul (z : Zi) : mul one z = z
+
+theorem mul_one (z : Zi) : mul z one = z
+
+theorem zero_mul (z : Zi) : mul zero z = zero
+
+theorem mul_zero (z : Zi) : mul z zero = zero
+
+theorem mul_add (z w v : Zi) : mul z (add w v) = add (mul z w) (mul z v)
+
+theorem add_mul (z w v : Zi) : mul (add z w) v = add (mul z v) (mul w v)
+
+theorem neg_mul (z w : Zi) : mul (neg z) w = neg (mul z w)
+
+theorem mul_neg (z w : Zi) : mul z (neg w) = neg (mul z w)
+
+theorem i_squared_is_minus_one : mul I I = neg one
+
+theorem conj_add (z w : Zi) : conj (add z w) = add (conj z) (conj w)
+
+theorem conj_mul (z w : Zi) : conj (mul z w) = mul (conj z) (conj w)
+
+theorem conj_zero : conj zero = zero
+
+theorem conj_one : conj one = one
+
+theorem conj_conj (z : Zi) : conj (conj z) = z
+
+theorem conj_I : conj I = neg I
+
+theorem conj_fixes_real (a : Int) : conj ⟨a, 0⟩ = ⟨a, 0⟩
+
+theorem conj_fixed_iff_real (z : Zi) : conj z = z ↔ z.im = 0
+
+theorem mul_conj_eq_normSq (z : Zi) : mul z (conj z) = ⟨normSq z, 0⟩
+
+theorem conj_mul_eq_normSq (z : Zi) : mul (conj z) z = ⟨normSq z, 0⟩
+
+theorem brahmagupta_fibonacci_int (a b c d : Int) :
+    (a*c - b*d)*(a*c - b*d) + (a*d + b*c)*(a*d + b*c)
+      = (a*a + b*b)*(c*c + d*d)
+
+theorem normSq_mul (z w : Zi) : normSq (mul z w) = normSq z * normSq w
+
+theorem normSq_zero : normSq zero = 0
+
+theorem normSq_one : normSq one = 1
+
+theorem normSq_I : normSq I = 1
+
+theorem normSq_conj (z : Zi) : normSq (conj z) = normSq z
+
+theorem live_mul_witness : mul ⟨1, 2⟩ ⟨3, 4⟩ = ⟨-5, 10⟩
+
+theorem live_normSq_witness : normSq ⟨3, 4⟩ = 25
+
+theorem live_add_witness : add ⟨1, 2⟩ ⟨3, 4⟩ = ⟨4, 6⟩
+
+theorem live_conj_witness : conj ⟨3, 4⟩ = ⟨3, -4⟩
+
+theorem control_fake_mirror_fails :
+    fakeMirror (mul I I) ≠ mul (fakeMirror I) (fakeMirror I)
+
+theorem control_coordMul_differs : coordMul I I ≠ mul I I
+
+theorem control_conj_not_id : conj I ≠ I
+
+theorem control_normSq_not_additive :
+    normSq (add one one) ≠ normSq one + normSq one
+
+theorem sq_mod4 (r : Int) : (r*r) % 4 = 0 ∨ (r*r) % 4 = 1
+
+theorem mod4_forces_even (a b : Int) (h : (a*a + b*b) % 4 = 0) :
+    a % 2 = 0 ∧ b % 2 = 0
+
+theorem descent_core : ∀ fuel : Nat, ∀ a b : Int,
+    a.natAbs + b.natAbs ≤ fuel → a*a + b*b = 0 → a = 0 ∧ b = 0
+
+theorem normSq_eq_zero_iff (z : Zi) : normSq z = 0 ↔ z = zero
+
+theorem normSq_ne_zero (z : Zi) (h : z ≠ zero) : normSq z ≠ 0
+
+theorem intScalar_mul (n : Int) (z : Zi) :
+    mul ⟨n, 0⟩ z = ⟨n * z.re, n * z.im⟩
+
+theorem torsion_free (n : Int) (z : Zi) (hn : n ≠ 0)
+    (h : mul ⟨n, 0⟩ z = zero) : z = zero
+
+theorem no_zero_divisors (z w : Zi) (h : mul z w = zero) :
+    z = zero ∨ w = zero
+
+theorem live_descent_witness : normSq zero = 0
+
+theorem live_normSq_nonzero : normSq ⟨1, 2⟩ = 5
+
+theorem live_zero_mul_witness : mul zero ⟨3, 4⟩ = zero
+
+theorem live_sq_mod4_nest :
+    (0*0) % 4 = 0 ∧ (1*1) % 4 = 1 ∧ (2*2) % 4 = 0 ∧ (3*3 : Int) % 4 = 1
+
+theorem control_mod2_insufficient :
+    (1*1 + 1*1 : Int) % 2 = 0 ∧ (1 : Int) % 2 ≠ 0
+
+theorem control_descent_needs_hypothesis :
+    normSq ⟨1, 2⟩ ≠ 0 ∧ (⟨1, 2⟩ : Zi) ≠ zero
+
+theorem control_z4_has_zero_divisors :
+    (2 * 2 : Int) % 4 = 0 ∧ (2 : Int) % 4 ≠ 0
+
+def Fz2 (f : Zi) (a b c d x y : Nat) : Zi :=
+  if x = (a+b) % 2 ∧ y = (b+c) % 2 ∧ d = (a+b+c) % 2 then
+    (if a = 1 ∧ b = 1 ∧ c = 1 then f else one)
+  else zero
+def pentL (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  let u := (b+c) % 2
+  mul (mul (Fz2 f a b c y x u) (Fz2 f a u d t y v)) (Fz2 f b c d v u w)
+def pentR (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  mul (Fz2 f x c d t y w) (Fz2 f a b w t x v)
+def pentagon (f : Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 →
+    pentL f a b c d = pentR f a b c d
+theorem pentagon_offdiag (f : Zi) : ∀ a b c d : Nat,
+    a < 2 → b < 2 → c < 2 → d < 2 → ¬(a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1) →
+    pentL f a b c d = pentR f a b c d
+
+theorem pentagon_forcing_lhs (f : Zi) : pentL f 1 1 1 1 = mul f f
+
+theorem pentagon_forcing_rhs (f : Zi) : pentR f 1 1 1 1 = one
+
+theorem pentagon_forces_f_sq_one (f : Zi) (h : pentagon f) :
+    mul f f = one
+
+theorem f_sq_one_gives_pentagon (f : Zi) (h : mul f f = one) :
+    pentagon f
+
+theorem pentagon_iff_f_sq_one (f : Zi) : pentagon f ↔ mul f f = one
+
+def pentQuads : List (Nat × Nat × Nat × Nat) :=
+  [(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),
+   (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),
+   (1,0,0,0),(1,0,0,1),(1,0,1,0),(1,0,1,1),
+   (1,1,0,0),(1,1,0,1),(1,1,1,0),(1,1,1,1)]
+theorem pent_nest_card : pentQuads.length = 16
+
+theorem pent_classification_counted :
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = one))).length = 11 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨5,0⟩))).length = 4 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨25,0⟩))).length = 1 ∧
+    11 + 4 + 1 = 16
+
+theorem pent_f_eq_f_instances (f : Zi) :
+    (pentL f 0 1 1 1 = f ∧ pentR f 0 1 1 1 = f) ∧
+    (pentL f 1 0 1 1 = f ∧ pentR f 1 0 1 1 = f) ∧
+    (pentL f 1 1 0 1 = f ∧ pentR f 1 1 0 1 = f) ∧
+    (pentL f 1 1 1 0 = f ∧ pentR f 1 1 1 0 = f)
+
+theorem sub_eq_zero_iff (z w : Zi) : sub z w = zero ↔ z = w
+
+theorem factorization_symbolic (f : Zi) :
+    mul (sub f one) (add f one) = sub (mul f f) one
+
+theorem f_sq_one_iff_pm_one (f : Zi) :
+    mul f f = one ↔ (f = one ∨ f = neg one)
+
+theorem both_roots_land :
+    mul one one = one ∧ mul (neg one) (neg one) = one ∧ one ≠ neg one
+
+theorem pentagon_exactly_two (f : Zi) :
+    pentagon f ↔ (f = one ∨ f = neg one)
+
+theorem live_pentagon_plus_one : pentagon one
+
+theorem live_pentagon_minus_one : pentagon (neg one)
+
+theorem live_forcing_separates :
+    pentL ⟨5,0⟩ 1 1 1 1 ≠ pentR ⟨5,0⟩ 1 1 1 1 ∧
+    pentL ⟨5,0⟩ 0 1 1 1 = pentR ⟨5,0⟩ 0 1 1 1
+
+theorem live_gaussian_witness :
+    pentL ⟨1,1⟩ 1 1 1 1 = ⟨0,2⟩ ∧ pentR ⟨1,1⟩ 1 1 1 1 = one ∧
+    pentL ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩ ∧ pentR ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩
+
+theorem control_z8_four_roots : ∀ x : Fin 8,
+    (x.val * x.val) % 8 = 1 ↔
+    (x.val = 1 ∨ x.val = 3 ∨ x.val = 5 ∨ x.val = 7)
+
+theorem control_f_eq_i_fails_pentagon :
+    ¬ pentagon I ∧ sub (mul I I) one = ⟨-2, 0⟩ ∧ normSq ⟨-2, 0⟩ = 4
+
+theorem control_f_eq_two_fails_pentagon : ¬ pentagon ⟨2, 0⟩
+
+def detaNum (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta b c) (eta a ((b+c) % 2))
+def detaDen (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta ((a+b) % 2) c) (eta a b)
+theorem gauge_slot_motion (eta : Nat → Nat → Zi) :
+    detaNum eta 1 1 1 = mul (eta 1 1) (eta 1 0) ∧
+    detaDen eta 1 1 1 = mul (eta 0 1) (eta 1 1)
+
+theorem mul_left_cancel (a x y : Zi) (ha : a ≠ zero)
+    (h : mul a x = mul a y) : x = y
+
+theorem slice_forces_eta_symmetric (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    eta 0 1 = eta 1 0
+
+theorem gauge_slot_invariant (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    detaNum eta 1 1 1 = detaDen eta 1 1 1
+
+theorem live_gauge_witness :
+    let eta
+
+theorem control_gauge_moves_slot :
+    let eta
+
+def Rz2 (r : Zi) (x y : Nat) : Zi :=
+  if x = 1 ∧ y = 1 then r else one
+def hexAdm (a b c d : Nat) : Prop :=
+  d = (((a+b) % 2) + c) % 2 ∧ d = (((a+c) % 2) + b) % 2
+def hexL (f r : Zi) (a b c d : Nat) : Zi :=
+  let e := (a+b) % 2
+  let z := (a+c) % 2
+  mul (Rz2 r e c) (Fz2 f c a b d z e)
+def hexR (f r : Zi) (a b c d : Nat) : Zi :=
+  let e := (a+b) % 2
+  let z := (a+c) % 2
+  let g := (b+c) % 2
+  mul (mul (Fz2 f a b c d e g) (Rz2 r b c))
+      (mul (Fz2 f a c b d z g) (Rz2 r a c))
+def hexagon (f r : Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 → hexAdm a b c d →
+    hexL f r a b c d = hexR f r a b c d
+theorem int_sq_nonneg (a : Int) : 0 ≤ a * a
+
+theorem int_sq_eq_zero (a : Int) (h : a * a = 0) : a = 0
+
+theorem int_sq_eq_one (a : Int) (h : a * a = 1) : a = 1 ∨ a = -1
+
+theorem hex_nest_8_of_16 :
+    ((List.range 2).flatMap (fun a => (List.range 2).flatMap (fun b =>
+      (List.range 2).flatMap (fun c => (List.range 2).filterMap (fun d =>
+        if hexAdm a b c d then some (a, b, c, d) else none))))).length = 8 ∧
+    (2 * 2 * 2 * 2 : Nat) = 16
+
+theorem hexagon_offdiag (f r : Zi) : ∀ a b c d : Nat,
+    a < 2 → b < 2 → c < 2 → d < 2 → hexAdm a b c d →
+    ¬(a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1) →
+    hexL f r a b c d = hexR f r a b c d
+
+theorem hexagon_forcing_lhs (f r : Zi) : hexL f r 1 1 1 1 = f
+
+theorem hexagon_forcing_rhs (f r : Zi) :
+    hexR f r 1 1 1 1 = mul (mul f r) (mul f r)
+
+theorem square_of_product (f r : Zi) :
+    mul (mul f r) (mul f r) = mul (mul f f) (mul r r)
+
+theorem hexagon_forces (f r : Zi) (h : hexagon f r) :
+    f = mul (mul f f) (mul r r)
+
+theorem hexagon_reduction_identity (f r : Zi) :
+    sub (mul (mul f f) (mul r r)) f
+      = add (sub (mul r r) f) (mul (mul r r) (sub (mul f f) one))
+
+theorem pentagon_hexagon_iff_R_sq_F (f r : Zi) (hp : mul f f = one) :
+    hexagon f r ↔ mul r r = f
+
+theorem norm_one_units (z : Zi) (h : normSq z = 1) :
+    z = one ∨ z = neg one ∨ z = I ∨ z = neg I
+
+theorem units_four_distinct :
+    normSq one = 1 ∧ normSq (neg one) = 1 ∧ normSq I = 1 ∧
+    normSq (neg I) = 1 ∧ one ≠ neg one ∧ one ≠ I ∧ one ≠ neg I ∧
+    neg one ≠ I ∧ neg one ≠ neg I ∧ I ≠ neg I
+
+theorem R_over_boson_class (r : Zi) :
+    mul r r = one ↔ (r = one ∨ r = neg one)
+
+theorem semion_factorization (r : Zi) :
+    mul (sub r I) (add r I) = add (mul r r) one
+
+theorem R_over_semion_class (r : Zi) :
+    mul r r = neg one ↔ (r = I ∨ r = neg I)
+
+theorem no_integer_semion (r : Zi) (hreal : r.im = 0) :
+    mul r r ≠ neg one
+
+theorem catalog_two_by_two :
+    (mul one one = one ∧ mul (neg one) (neg one) = one) ∧
+    (mul I I = neg one ∧ mul (neg I) (neg I) = neg one) ∧
+    (2 * 2 : Nat) = 4
+
+theorem unit_inverse_is_conj :
+    mul one (conj one) = one ∧ mul (neg one) (conj (neg one)) = one ∧
+    mul I (conj I) = one ∧ mul (neg I) (conj (neg I)) = one
+
+theorem catalog_satisfies_both_hexagons :
+    (mul one one = one ∧ mul (conj one) (conj one) = one) ∧
+    (mul (neg one) (neg one) = one ∧
+     mul (conj (neg one)) (conj (neg one)) = one) ∧
+    (mul I I = neg one ∧ mul (conj I) (conj I) = neg one) ∧
+    (mul (neg I) (neg I) = neg one ∧
+     mul (conj (neg I)) (conj (neg I)) = neg one)
+
+theorem flatland_filter :
+    (conj one = one) ∧ (conj (neg one) = neg one) ∧
+    (conj I ≠ I) ∧ (conj (neg I) ≠ neg I)
+
+theorem filter_nest_2_of_4 : (2 + 2 : Nat) = 4
+
+theorem mirror_structure :
+    (conj I = neg I ∧ conj (neg I) = I) ∧
+    (conj one = one ∧ conj (neg one) = neg one) ∧
+    conj (conj I) = I
+
+theorem live_hexagon_boson : hexagon one one
+
+theorem live_hexagon_fermion : hexagon one (neg one)
+
+theorem live_hexagon_semion : hexagon (neg one) I
+
+theorem live_hexagon_antisemion : hexagon (neg one) (neg I)
+
+theorem live_hex_forcing_separates :
+    hexL one ⟨2,0⟩ 1 1 1 1 ≠ hexR one ⟨2,0⟩ 1 1 1 1 ∧
+    hexL one ⟨2,0⟩ 0 1 1 0 = hexR one ⟨2,0⟩ 0 1 1 0
+
+theorem control_wrong_R_per_class :
+    sub (mul (mul one one) (mul I I)) one = ⟨-2, 0⟩ ∧
+    sub (mul (mul (neg one) (neg one)) (mul one one)) (neg one)
+      = ⟨2, 0⟩
+
+theorem control_Zi_mod5_splits :
+    (mul ⟨2, 1⟩ ⟨2, -1⟩ = ⟨5, 0⟩) ∧
+    ((List.range 5).flatMap (fun a => (List.range 5).filterMap (fun b =>
+      if (a*a + 5*5 - b*b) % 5 = 1 ∧ (2*a*b) % 5 = 0
+      then some (a, b) else none))).length = 4 ∧
+    ((List.range 5).flatMap (fun a => (List.range 5).filterMap (fun b =>
+      if (a*a + 5*5 - b*b) % 5 = 4 ∧ (2*a*b) % 5 = 0
+      then some (a, b) else none))).length = 4 ∧
+    (5 * 5 : Nat) = 25
+
+theorem control_filter_needs_catalog :
+    conj ⟨3, 0⟩ = ⟨3, 0⟩ ∧ mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ one ∧
+    mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ neg one
+
+end Zi

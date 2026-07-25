@@ -1,6 +1,6 @@
-theorems in source : 84
-census lines       : 84
-axiom-free         : 32
+theorems in source : 115
+census lines       : 115
+axiom-free         : 44
 sorryAx            : 0
 Classical.choice   : 0
 --- per-theorem profile ---
@@ -88,4 +88,35 @@ Classical.choice   : 0
 'Zi.gauge_slot_invariant' depends on axioms: [propext, Quot.sound]
 'Zi.live_gauge_witness' does not depend on any axioms
 'Zi.control_gauge_moves_slot' does not depend on any axioms
+'Zi.int_sq_nonneg' depends on axioms: [propext, Quot.sound]
+'Zi.int_sq_eq_zero' depends on axioms: [propext, Quot.sound]
+'Zi.int_sq_eq_one' depends on axioms: [propext, Quot.sound]
+'Zi.hex_nest_8_of_16' does not depend on any axioms
+'Zi.hexagon_offdiag' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_forcing_lhs' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_forcing_rhs' depends on axioms: [propext]
+'Zi.square_of_product' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_forces' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_reduction_identity' depends on axioms: [propext, Quot.sound]
+'Zi.pentagon_hexagon_iff_R_sq_F' depends on axioms: [propext, Quot.sound]
+'Zi.norm_one_units' depends on axioms: [propext, Quot.sound]
+'Zi.units_four_distinct' does not depend on any axioms
+'Zi.R_over_boson_class' depends on axioms: [propext, Quot.sound]
+'Zi.semion_factorization' depends on axioms: [propext, Quot.sound]
+'Zi.R_over_semion_class' depends on axioms: [propext, Quot.sound]
+'Zi.no_integer_semion' depends on axioms: [propext, Quot.sound]
+'Zi.catalog_two_by_two' does not depend on any axioms
+'Zi.unit_inverse_is_conj' does not depend on any axioms
+'Zi.catalog_satisfies_both_hexagons' does not depend on any axioms
+'Zi.flatland_filter' does not depend on any axioms
+'Zi.filter_nest_2_of_4' does not depend on any axioms
+'Zi.mirror_structure' does not depend on any axioms
+'Zi.live_hexagon_boson' depends on axioms: [propext, Quot.sound]
+'Zi.live_hexagon_fermion' depends on axioms: [propext, Quot.sound]
+'Zi.live_hexagon_semion' depends on axioms: [propext, Quot.sound]
+'Zi.live_hexagon_antisemion' depends on axioms: [propext, Quot.sound]
+'Zi.live_hex_forcing_separates' does not depend on any axioms
+'Zi.control_wrong_R_per_class' does not depend on any axioms
+'Zi.control_Zi_mod5_splits' does not depend on any axioms
+'Zi.control_filter_needs_catalog' does not depend on any axioms
 RESULT: PASS

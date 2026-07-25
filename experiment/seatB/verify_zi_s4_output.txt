@@ -1,0 +1,64 @@
+-- nest --
+PASS  hex_nest_8_of_16  — 16 loop assignments, 8 admissible
+PASS  hex_adm_is_d_eq_abc  — both admissibility legs reduce to d = (a+b+c)%2 — re-derived
+
+-- classification (symbolic in f AND r) --
+PASS  classification_5_2_1_0  — one=1:5 R=R:2 forcing:1 other:0
+PASS  hexagon_offdiag_symbolic  — all 7 off-forcing instances are polynomial identities in f, r
+PASS  forcing_site_is_1111
+PASS  hexagon_forcing_lhs_is_f
+PASS  hexagon_forcing_rhs_is_fr_fr  — rhs = (f·r)·(f·r) coefficientwise
+PASS  square_of_product  — (f·r)² = f²·r² — polynomial identity in 4 indeterminates
+
+-- reduction identity --
+PASS  hexagon_reduction_identity  — f²r² − f = (r² − f) + r²(f² − 1) — degree-4, coefficientwise
+PASS  reduction_identity_grid  — 5⁴ = 625 sample points, secondary
+PASS  pentagon_hexagon_iff_R_sq_F_reduction  — with f² = 1 the identity collapses to f²r² − f = r² − f exactly
+
+-- Int helpers --
+PASS  int_sq_nonneg_grid  — grid evidence; exact claim is the sign split (a≥0 or −a≥0, product of nonnegatives)
+PASS  int_sq_eq_zero
+PASS  int_sq_eq_one_via_factorization  — (a−1)(a+1) = a²−1 exact; roots then by the domain
+
+-- unit census --
+PASS  norm_one_units_census  — exactly 4 solutions of a²+b²=1: [(-1, 0), (0, -1), (0, 1), (1, 0)] — box complete since a² ≤ 1 forces |a| ≤ 1
+PASS  units_four_distinct
+
+-- root census (norm route, independent of the factorization) --
+PASS  R_over_boson_class  — r² = 1 ⟺ r ∈ {+1, −1}; completeness via N(r)² = 1 ⟹ N(r) = 1
+PASS  R_over_semion_class  — r² = −1 ⟺ r ∈ {+i, −i}; same norm route — NOT seat P's factorization route: two independent proofs agree
+PASS  semion_factorization  — (r − i)(r + i) = r² + 1 coefficientwise
+PASS  no_integer_semion  — grid; exact claim: (a,0)² = (a², 0) and a² ≥ 0 > −1 — flag 4: over Z the F = −1 class is EMPTY
+
+-- catalog / filter / mirror --
+PASS  catalog_two_by_two
+PASS  unit_inverse_is_conj  — on units u·conj(u) = N(u) = 1: the inverse IS the conjugate
+PASS  catalog_satisfies_both_hexagons  — r² = f AND conj(r)² = f for all four — flag 5: the bench imposes ONE hexagon; the statement claims both hold, not that the bench checked both
+PASS  flatland_filter  — conj-fixed among the four: exactly boson and fermion — the semions die on the reality filter
+PASS  filter_nest_2_of_4  — 2 survivors + 2 killed = 4
+PASS  mirror_structure  — conj swaps the semions (an order-2 conjugate pair) and fixes both F-classes — σ acts WITHIN the F = −1 fiber
+
+-- live instances --
+PASS  live_hexagon_boson  — (F,R) = (+1,+1): all 8 admissible instances
+PASS  live_hexagon_fermion  — (F,R) = (+1,−1): all 8
+PASS  live_hexagon_semion  — (F,R) = (−1,+i): all 8 — live off the real axis
+PASS  live_hexagon_antisemion  — (F,R) = (−1,−i): all 8
+PASS  live_hex_forcing_separates  — (f,r) = (1, 2): forcing fails (1 ≠ 4), an R = R instance holds — the hypothesis structure is live
+
+-- negative controls --
+PASS  control_wrong_R_per_class  — R = i over F = +1: residue (-2, 0); R = 1 over F = −1: residue (2, 0) — exact values match the statement
+PASS  control_Zi_mod5_splits  — (2+i)(2−i) = (5, 0) ≡ 0; √1 mod 5: 4 roots [(0, 2), (0, 3), (1, 0), (4, 0)]; √−1 mod 5: 4 roots [(0, 1), (0, 4), (2, 0), (3, 0)] — exactly-two fails where the domain fails; counted by direct modular squaring, independent of the statement's encoding
+PASS  control_Zi_mod5_statement_encoding_agrees  — the Lean statement's (a²+25−b²)%5 encoding names the same root sets
+PASS  control_filter_needs_catalog  — 3 passes the reality test but solves neither class equation — the filter selects among the catalog, it does not define it
+
+-- plant --
+PASS  plant_mutant_plumbing_caught  — R-at-(1,0) mutant FAILS the off-diagonal sweep — the instrument bites; a wrong transcription of line 124 would not pass
+
+====================================================================
+checks run: 36;  passed: 36;  failed: 0
+VERDICT: every S4 claim re-derived — coefficientwise in
+         Z[i][fr, fi, rr, ri] where the Lean is symbolic in f
+         and r; root censuses by the independent norm route;
+         Z[i]/5 by direct modular squaring; nests exhausted
+         and tied; the plant bitten.
+EXIT: 0
