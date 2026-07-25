@@ -1,6 +1,6 @@
-theorems in source : 141
-census lines       : 141
-axiom-free         : 59
+theorems in source : 161
+census lines       : 161
+axiom-free         : 68
 sorryAx            : 0
 Classical.choice   : 0
 --- per-theorem profile ---
@@ -145,4 +145,24 @@ Classical.choice   : 0
 'Zi.control_wrong_twist_breaks_ledger' does not depend on any axioms
 'Zi.control_ribbon_forcing_bites' does not depend on any axioms
 'Zi.control_nuFS_separates' does not depend on any axioms
+'Zi.roomy_iff_boson_or_fermion' depends on axioms: [propext, Quot.sound]
+'Zi.the_roomy_world_has_exactly_two_particles' depends on axioms: [propext, Quot.sound]
+'Zi.capstone_count_two' depends on axioms: [propext, Quot.sound]
+'Zi.capstone_nu_rider' depends on axioms: [propext, Quot.sound]
+'Zi.control_semion_fails_only_filter' depends on axioms: [propext, Quot.sound]
+'Zi.control_real_but_not_roomy' depends on axioms: [propext, Quot.sound]
+'Zi.tri_values' does not depend on any axioms
+'Zi.tri_recurrence' does not depend on any axioms
+'Zi.tri_double' depends on axioms: [propext, Quot.sound]
+'Zi.pauli_kill_symbolic' depends on axioms: [propext, Quot.sound]
+'Zi.M2_sq_eq_two_M' does not depend on any axioms
+'Zi.M2_trace' does not depend on any axioms
+'Zi.M2_image_on_line' depends on axioms: [propext, Quot.sound]
+'Zi.M2_image_attains_generator' does not depend on any axioms
+'Zi.M2_kill_iff_det_zero' depends on axioms: [propext, Quot.sound]
+'Zi.pauli_double_occupation_dies' depends on axioms: [propext, Quot.sound]
+'Zi.census_nest_m2' does not depend on any axioms
+'Zi.control_boson_no_exclusion' does not depend on any axioms
+'Zi.control_M_times_P_zero' does not depend on any axioms
+'Zi.live_nonparallel_survives' does not depend on any axioms
 RESULT: PASS
