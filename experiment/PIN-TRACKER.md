@@ -18,9 +18,9 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 | `courier/Zi_statements_v7.txt` | statements v7, 161 stmts | `97faef58cd0e` |
 | `seatB/verify_zi_s6.py` | blind verifier, 23/23, brute exhaustion + exact elimination m=2..6 | `64bdc767c785` |
 
-zip: `dual-seat-experiment-s6.zip` sha256 _(added at ship)_
+zip: `dual-seat-experiment-s6.zip` sha256 `2c94275e84fc`
 
-commit: _(added at ship)_
+commit: `26c7b2e`
 
 ## S5 — twist layer
 
