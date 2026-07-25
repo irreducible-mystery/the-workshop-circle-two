@@ -14,9 +14,9 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 | artifact | what | sha256 (short) |
 |---|---|---|
-| `FINAL-EXPERIMENT-REPORT.md` | the whole arc S1→S6, one document: protocol, mathematics, corrections law, independence routes, all ship pins | _(added at ship)_ |
+| `FINAL-EXPERIMENT-REPORT.md` | the whole arc S1→S6, one document: protocol, mathematics, corrections law, independence routes, all ship pins | `d67fe1d6152c` |
 
-commit: _(added at ship)_
+commit: `9492c77`
 
 ## S6 — capstone + exclusion
 
