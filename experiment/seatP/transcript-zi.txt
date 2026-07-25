@@ -1,9 +1,0 @@
-COMPILE TRANSCRIPT — Zi.lean v2 (post-crop) — Circle Two dual-seat experiment, seat P
-machine: Linux x86_64, 2026-07-25T01:28:22Z
-toolchain: Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-source: sha256 5930c54ab93a22de1cf9a28e6b31193116817c8c3e6a58552c69e05553bdc46a
-lean Zi.lean -> exit 0, 0 bytes stdout+stderr, 557ms
-theorems: 42; lines: 281
-hygiene: no sorry / native_decide / axiom / partial / unsafe outside prose (grep clean)
-axiom census (axioms_zi.sh): 42 covered, 16 axiom-free, 0 sorryAx, 0 Classical.choice
-  norm 16 record: census FAILED on planted sorry (exit 1, named), PASSED clean on restore (byte-identical)
