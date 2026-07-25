@@ -10,7 +10,15 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## S6 — capstone + exclusion (current)
+## Closing artifact — final consolidated report (current)
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `FINAL-EXPERIMENT-REPORT.md` | the whole arc S1→S6, one document: protocol, mathematics, corrections law, independence routes, all ship pins | _(added at ship)_ |
+
+commit: _(added at ship)_
+
+## S6 — capstone + exclusion
 
 | artifact | what | sha256 (short) |
 |---|---|---|
