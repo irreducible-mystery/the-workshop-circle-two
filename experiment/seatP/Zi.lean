@@ -278,4 +278,201 @@ theorem control_conj_not_id : conj I ≠ I := by decide
 theorem control_normSq_not_additive :
     normSq (add one one) ≠ normSq one + normSq one := by decide
 
+/- ======================================================================
+   S2 — THE DOMAIN, BY ONE MOD-4 DESCENT (sub-round 2)
+
+   The chartered route (ROUND1.md §S2, certificate G2_squares_mod_4
+   through G2_no_zero_divisors_box): squares mod 4 are exactly {0,1};
+   the 16-case decide over (Z/4)² shows N(a+bi) ≡ 0 mod 4 forces both
+   coordinates even; halving induction kills N(z) = 0; then the chain
+   z·w = 0 ⟹ conj(z)·z·w = 0 ⟹ N(z)·w = 0 ⟹ w = 0.
+
+   THE FORK, stated per the charge: the descent route is taken (the
+   pattern-preserving, order-free route matching Circle One), NOT the
+   Int-order shortcut (a² ≥ 0). The fuel measure is natAbs-sum with
+   structural Nat induction — no well-founded recursion, no `partial`;
+   omega handles only the linear bookkeeping, never a ring goal
+   (HANDOFF guardrails).
+   ====================================================================== -/
+
+/-- squares mod 4 are exactly {0, 1} — nest 4: the four residues 0,1,2,3
+    land on 0,1,0,1 (certificate: G2_squares_mod_4).
+    ROLE, per seat B crop #1 (S2): standing testimony for charter parity —
+    `mod4_forces_even` re-derives the residue facts inline and does NOT
+    depend on this theorem; the term graph is flat here on purpose
+    (routing through the disjunction would cost cases, not clarity) -/
+theorem sq_mod4 (r : Int) : (r*r) % 4 = 0 ∨ (r*r) % 4 = 1 := by
+  have h : (r*r) % 4 = ((r%4)*(r%4)) % 4 := by rw [Int.mul_emod]
+  have hr0 : 0 ≤ r % 4 := Int.emod_nonneg r (by decide)
+  have hr4 : r % 4 < 4 := Int.emod_lt_of_pos r (by decide)
+  have hc : r % 4 = 0 ∨ r % 4 = 1 ∨ r % 4 = 2 ∨ r % 4 = 3 := by omega
+  rcases hc with h1 | h1 | h1 | h1 <;> rw [h, h1] <;> omega
+
+/-- the 16-case core: over (Z/4)², a²+b² ≡ 0 mod 4 forces both residues
+    even — nest 16 = 4×4 residue pairs, exactly 4 of which satisfy the
+    hypothesis: (0,0),(0,2),(2,0),(2,2) (certificate: the mod-4 block) -/
+theorem mod4_forces_even (a b : Int) (h : (a*a + b*b) % 4 = 0) :
+    a % 2 = 0 ∧ b % 2 = 0 := by
+  have ha : (a % 4) * (a % 4) % 4 = (a*a) % 4 := (Int.mul_emod a a 4).symm
+  have hb : (b % 4) * (b % 4) % 4 = (b*b) % 4 := (Int.mul_emod b b 4).symm
+  have hra0 : 0 ≤ a % 4 := Int.emod_nonneg a (by decide)
+  have hra4 : a % 4 < 4 := Int.emod_lt_of_pos a (by decide)
+  have hrb0 : 0 ≤ b % 4 := Int.emod_nonneg b (by decide)
+  have hrb4 : b % 4 < 4 := Int.emod_lt_of_pos b (by decide)
+  have hsum : ((a % 4) * (a % 4) + (b % 4) * (b % 4)) % 4 = 0 := by
+    rw [Int.add_emod, ha, hb, ← Int.add_emod, h]
+  have hr : a % 4 = 0 ∨ a % 4 = 1 ∨ a % 4 = 2 ∨ a % 4 = 3 := by omega
+  have hs : b % 4 = 0 ∨ b % 4 = 1 ∨ b % 4 = 2 ∨ b % 4 = 3 := by omega
+  rcases hr with h1 | h1 | h1 | h1 <;> rcases hs with h2 | h2 | h2 | h2 <;>
+    rw [h1, h2] at hsum <;> exact ⟨by omega, by omega⟩
+
+/-- the halving descent: fuel-indexed strong induction. a²+b² = 0 over Z
+    kills both coordinates — order-free, by infinite descent on the
+    natAbs-sum (certificate: the halving-induction block).
+    ANTI-VACUITY (norm 3, seat B crop #2): the hypothesis is live at
+    exactly ONE point of Z², the fixed point (0,0) — necessarily, since
+    that is what the theorem forces; the content lives in the forcing,
+    and `control_descent_needs_hypothesis` shows the conclusion is not
+    free. The same 1-of-N shape returns at S3's forcing instance -/
+theorem descent_core : ∀ fuel : Nat, ∀ a b : Int,
+    a.natAbs + b.natAbs ≤ fuel → a*a + b*b = 0 → a = 0 ∧ b = 0 := by
+  intro fuel
+  induction fuel with
+  | zero =>
+    intro a b hle _
+    exact ⟨by omega, by omega⟩
+  | succ n ih =>
+    intro a b hle hN
+    have h4 : (a*a + b*b) % 4 = 0 := by rw [hN]; rfl
+    have key := mod4_forces_even a b h4
+    obtain ⟨ha2, hb2⟩ := key
+    obtain ⟨a', rfl⟩ : ∃ a', a = 2*a' := ⟨a/2, by omega⟩
+    obtain ⟨b', rfl⟩ : ∃ b', b = 2*b' := ⟨b/2, by omega⟩
+    have hN' : a'*a' + b'*b' = 0 := by
+      have h44 : 4*(a'*a' + b'*b') = 0 := by
+        rw [← hN]
+        simp [Int.add_mul, Int.mul_comm, Int.mul_left_comm, Int.mul_assoc]
+      omega
+    by_cases hz : a' = 0 ∧ b' = 0
+    · exact ⟨by omega, by omega⟩
+    · have hfa : (2*a').natAbs = 2 * a'.natAbs := by
+        rw [Int.natAbs_mul]; rfl
+      have hfb : (2*b').natAbs = 2 * b'.natAbs := by
+        rw [Int.natAbs_mul]; rfl
+      have hnz : a'.natAbs + b'.natAbs ≥ 1 := by
+        rcases Decidable.not_and_iff_or_not.mp hz with h | h <;> omega
+      have hle' : a'.natAbs + b'.natAbs ≤ n := by omega
+      have := ih a' b' hle' hN'
+      exact ⟨by omega, by omega⟩
+
+/-- N(z) = 0 ↔ z = 0 — the norm detects zero (certificate:
+    G2_norm_zero_iff_zero shape; forward by descent, backward by rfl) -/
+theorem normSq_eq_zero_iff (z : Zi) : normSq z = 0 ↔ z = zero := by
+  cases z with
+  | mk a b =>
+    constructor
+    · intro h
+      have := descent_core (a.natAbs + b.natAbs) a b (Nat.le_refl _) h
+      simp only [zero, Zi.mk.injEq]
+      exact ⟨this.1, this.2⟩
+    · intro h
+      rw [h]; rfl
+
+/-- the contrapositive, in the form the chain uses -/
+theorem normSq_ne_zero (z : Zi) (h : z ≠ zero) : normSq z ≠ 0 := by
+  intro hN
+  exact h ((normSq_eq_zero_iff z).mp hN)
+
+/-- scalar action of an integer: n·z as ⟨n,0⟩ · z, componentwise -/
+theorem intScalar_mul (n : Int) (z : Zi) :
+    mul ⟨n, 0⟩ z = ⟨n * z.re, n * z.im⟩ := by
+  cases z
+  simp only [mul, Zi.mk.injEq]
+  exact ⟨by omega, by omega⟩
+
+/-- torsion-freeness: n·z = 0 with n ≠ 0 kills z — via the norm:
+    N(n·z) = n²·N(z) (certificate: the torsion-freeness block) -/
+theorem torsion_free (n : Int) (z : Zi) (hn : n ≠ 0)
+    (h : mul ⟨n, 0⟩ z = zero) : z = zero := by
+  have hN : normSq (mul ⟨n, 0⟩ z) = 0 := by rw [h]; rfl
+  rw [normSq_mul] at hN
+  have hnn : normSq ⟨n, 0⟩ = n * n := by
+    simp only [normSq]
+    omega
+  rw [hnn] at hN
+  have hz : normSq z = 0 := by
+    rcases Int.mul_eq_zero.mp hN with h1 | h1
+    · rcases Int.mul_eq_zero.mp h1 with h2 | h2 <;> exact absurd h2 hn
+    · exact h1
+  exact (normSq_eq_zero_iff z).mp hz
+
+/-- the chain: Z[i] has no zero divisors —
+    z·w = 0 ⟹ conj(z)·(z·w) = 0 ⟹ (N(z),0)·w = 0 ⟹ N(z) kills both
+    coordinates ⟹ w = 0 (certificate: G2_no_zero_divisors_box) -/
+theorem no_zero_divisors (z w : Zi) (h : mul z w = zero) :
+    z = zero ∨ w = zero := by
+  by_cases hz : z = zero
+  · exact Or.inl hz
+  · right
+    have h1 : mul (conj z) (mul z w) = zero := by
+      rw [h, mul_zero]
+    have h2 : mul (mul (conj z) z) w = zero := by
+      rw [mul_assoc]; exact h1
+    rw [conj_mul_eq_normSq] at h2
+    have hNz : normSq z ≠ 0 := normSq_ne_zero z hz
+    cases w with
+    | mk c d =>
+      rw [intScalar_mul] at h2
+      simp only [zero, Zi.mk.injEq] at h2
+      obtain ⟨hc, hd⟩ := h2
+      simp only [zero, Zi.mk.injEq]
+      constructor
+      · rcases Int.mul_eq_zero.mp hc with h' | h'
+        · exact absurd h' hNz
+        · exact h'
+      · rcases Int.mul_eq_zero.mp hd with h' | h'
+        · exact absurd h' hNz
+        · exact h'
+
+/- == S2 anti-vacuity: live instances (norm 3) ========================== -/
+
+/-- live: the descent actually runs — N(0+0i) = 0 and the theorem's
+    conclusion is inhabited by the only witness -/
+theorem live_descent_witness : normSq zero = 0 := rfl
+
+/-- live: a nonzero element with nonzero norm — the contrapositive has
+    a live instance off the axes -/
+theorem live_normSq_nonzero : normSq ⟨1, 2⟩ = 5 := by decide
+
+/-- live: no_zero_divisors' hypothesis is satisfiable — zero·w = 0 -/
+theorem live_zero_mul_witness : mul zero ⟨3, 4⟩ = zero := by decide
+
+/-- live: sq_mod4's nest, all four residues — 0²,1²,2²,3² mod 4 = 0,1,0,1 -/
+theorem live_sq_mod4_nest :
+    (0*0) % 4 = 0 ∧ (1*1) % 4 = 1 ∧ (2*2) % 4 = 0 ∧ (3*3 : Int) % 4 = 1 := by
+  decide
+
+/- == S2 negative controls (norm 5) ===================================== -/
+
+/-- CONTROL (mandatory, chartered): the mod-2 analogue FAILS — (1,1) has
+    N = 2 ≡ 0 mod 2 with both coordinates ODD. 2 ramifies in Z[i]; the
+    modulus 4 is load-bearing (certificate: G2_control_mod2_insufficient) -/
+theorem control_mod2_insufficient :
+    (1*1 + 1*1 : Int) % 2 = 0 ∧ (1 : Int) % 2 ≠ 0 := by decide
+
+/-- CONTROL: the descent's conclusion is FALSE without the hypothesis —
+    N(1+2i) = 5 ≠ 0 and (1,2) ≠ (0,0): the theorem is not vacuously
+    closing everything it sees -/
+theorem control_descent_needs_hypothesis :
+    normSq ⟨1, 2⟩ ≠ 0 ∧ (⟨1, 2⟩ : Zi) ≠ zero := by decide
+
+/-- CONTROL: no-zero-divisors is a DOMAIN theorem, not arithmetic luck —
+    the residue world has zero divisors: 2·2 = 4 ≡ 0 mod 4 with 2 ≢ 0.
+    (The chartered Z[i]/5 split — (2+i)(2−i) = 5 — is certificate
+    territory (G3b) and rides with S3's exactly-two; this is the small
+    sibling in Z/4.) -/
+theorem control_z4_has_zero_divisors :
+    (2 * 2 : Int) % 4 = 0 ∧ (2 : Int) % 4 ≠ 0 := by decide
+
+
 end Zi

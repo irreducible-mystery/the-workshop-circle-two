@@ -1,6 +1,6 @@
-theorems in source : 42
-census lines       : 42
-axiom-free         : 16
+theorems in source : 57
+census lines       : 57
+axiom-free         : 23
 sorryAx            : 0
 Classical.choice   : 0
 --- per-theorem profile ---
@@ -46,4 +46,19 @@ Classical.choice   : 0
 'Zi.control_coordMul_differs' does not depend on any axioms
 'Zi.control_conj_not_id' does not depend on any axioms
 'Zi.control_normSq_not_additive' does not depend on any axioms
+'Zi.sq_mod4' depends on axioms: [propext, Quot.sound]
+'Zi.mod4_forces_even' depends on axioms: [propext, Quot.sound]
+'Zi.descent_core' depends on axioms: [propext, Quot.sound]
+'Zi.normSq_eq_zero_iff' depends on axioms: [propext, Quot.sound]
+'Zi.normSq_ne_zero' depends on axioms: [propext, Quot.sound]
+'Zi.intScalar_mul' depends on axioms: [propext, Quot.sound]
+'Zi.torsion_free' depends on axioms: [propext, Quot.sound]
+'Zi.no_zero_divisors' depends on axioms: [propext, Quot.sound]
+'Zi.live_descent_witness' does not depend on any axioms
+'Zi.live_normSq_nonzero' does not depend on any axioms
+'Zi.live_zero_mul_witness' does not depend on any axioms
+'Zi.live_sq_mod4_nest' does not depend on any axioms
+'Zi.control_mod2_insufficient' does not depend on any axioms
+'Zi.control_descent_needs_hypothesis' does not depend on any axioms
+'Zi.control_z4_has_zero_divisors' does not depend on any axioms
 RESULT: PASS

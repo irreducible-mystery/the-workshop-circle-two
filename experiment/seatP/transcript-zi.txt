@@ -1,9 +1,18 @@
-COMPILE TRANSCRIPT — Zi.lean v2 (post-crop) — Circle Two dual-seat experiment, seat P
-machine: Linux x86_64, 2026-07-25T01:28:22Z
+COMPILE TRANSCRIPT — Zi.lean v3 (S1+S2, post-crop) — dual-seat experiment, seat P
+machine: Linux x86_64, 2026-07-25T02:14:05Z
 toolchain: Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-source: sha256 5930c54ab93a22de1cf9a28e6b31193116817c8c3e6a58552c69e05553bdc46a
-lean Zi.lean -> exit 0, 0 bytes stdout+stderr, 557ms
-theorems: 42; lines: 281
-hygiene: no sorry / native_decide / axiom / partial / unsafe outside prose (grep clean)
-axiom census (axioms_zi.sh): 42 covered, 16 axiom-free, 0 sorryAx, 0 Classical.choice
-  norm 16 record: census FAILED on planted sorry (exit 1, named), PASSED clean on restore (byte-identical)
+source: sha256 fbe854890a5e839089d3c0154139695d8ff5bb11085127c3f388bc124c3c65f1
+lean Zi.lean -> exit 0, 0 bytes, 1371ms
+theorems: 57; lines: 478
+census: 57 covered, 23 axiom-free, 0 sorryAx, 0 Classical.choice
+
+CORRECTION OF RECORD, loudest first (norm 4): the S2 first draft
+shipped SIX theorems carrying Classical.choice — omega closing
+conjunctive goals (mod4_forces_even's 16-case, descent_core's zero
+case, and four downstream dependents). HANDOFF.md's twice-bitten
+trap, bitten a third time, by a third author. The census caught it
+the same run (ALARM line, exit 1); repaired by splitting every
+conjunctive goal before omega (exact ⟨by omega, by omega⟩);
+re-censused clean. The trap's third confirmation rides in this
+transcript on purpose: the alarm existed before the defect, and
+fired — register age holds.
