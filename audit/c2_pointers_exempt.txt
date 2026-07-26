@@ -133,3 +133,7 @@ echo	POSIX shell builtin, named in PROOFS.md correction E#3 (the boundary senten
 75f3b88bed1a77691764631a1d576b0c1e1b59978d3ef33d5f89dd2460b3653e	SHA-256 pin: VIEWS.md as couriered with the S4 delivery
 8d155afaff5fc357a573ec913ed07bf38275e034c131de71a4ff60907da87650	SHA-256 pin: lean/Zi.lean as couriered with the S4 delivery
 HEAD	git's symbolic ref for the current commit, named in the letters when reporting that a blocked commit left it unmoved; resolves in git, not in this tree (cf. the commit-id entries above, which are objects rather than refs)
+d5f5044605f90a717c18e1bd8cb75a8b25e6ca555d960766862137f73517de4c	SHA-256 pin: circletwo-hex2.zip at head 21acd79; verified exact on the builder's side
+6331448a8e3ee8faa14314af6f3fd624e6298bcf3f86269a79e38ddb01381c40	SHA-256 pin: letters/ROUND2-HEX2-DELIVERY.md as couriered
+dd936a9846c65b38144fb84d9ce47cf6acd1a75f21151f8113026e4dbf5b3d18	SHA-256 pin: VIEWS.md as couriered with the second-hexagon delivery
+97c6a6cd18775f71d8824804704f6835ca12a08ba9a0f9b99044a73757556c6c	SHA-256 pin: lean/Zi.lean as couriered with the second-hexagon delivery

@@ -125,7 +125,7 @@ appending does not touch the freeze: every citation of "norm 10" or
 follows is this circle's own ledger of what it learned, numbered from 17
 so that a later reader can tell inheritance from experience at a glance.*
 
-**17 — a repair and the first thing that depends on it never ride in the
+**Norm 17 — a repair and the first thing that depends on it never ride in the
 same crate.** Proposed by the builder in the repairs verification and
 adopted here. It is not a preference; it is the generalisation of a
 measured mechanism. The stale-label repair recreated the stale label one
@@ -135,7 +135,7 @@ S4 prose that leans on it. Ship the repair, verify it alone, then build on
 the settled base. The cost is an extra leg; the thing it buys is that a
 repair cannot be undone by its own dependent before anyone has read it.
 
-**18 — the cumulative record states what is, never what will be; plans
+**Norm 18 — the cumulative record states what is, never what will be; plans
 live in letters.** Proposed by the builder in the S4 verification and
 adopted here. A letter is dated correspondence: it goes stale honestly,
 and a reader dates it at a glance. `PROOFS.md`, `REGISTER.md` and the
@@ -148,3 +148,16 @@ promise above had gone stale. Dependencies may be stated ("X requires Y");
 schedules may not ("Y lands next crate"). The same insight one level down
 is the ordering rule the third body adopted for graduation sentences: no
 sentence written in anticipation of a theorem.
+
+**Norm 19 — a count the views render is never retyped in the cumulative record;
+the record points, the view counts.** Proposed by the builder in the
+second-hexagon verification and adopted here. Norm 18 stopped the record
+from carrying plans; this stops it carrying duplicates. The specimen: the
+ledger said a section held "Twelve theorems" when it held nine and the
+view had been rendering nine all along — and it passed the numeral gate
+because it was spelled in letters, through a door that gate's own
+declaration says is open. That is the SECOND time the word "twelve" has
+walked through it; the first was "twelve live instances", one of the four
+stale counts that bought the renderer in the first place. Duplication is
+where staleness lives, and a rendered number duplicated by hand is a
+rendered number waiting to go stale.

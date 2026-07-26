@@ -7,13 +7,13 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            97c6a6cd18775f71d8824804704f6835ca12a08ba9a0f9b99044a73757556c6c
+sha256            d01b1aa170f1708314af5a2a683d7dd14d070cebd12e565b4f8a3a9ae832452a
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
 theorems          162
 definitions       21
-lines             1384
+lines             1410
 live instances    27
 control theorems  24
 decide-settled    39
@@ -53,9 +53,9 @@ It kills staleness, not error.
 
 ```
 file                   theorems   axiom-free       rest
-Zi                          162           48        114
-TOTAL                       162           48        114
+Zi                          162           47        115
+TOTAL                       162           47        115
 sorryAx                       0
 Classical.choice              0
-Quot.sound carriers 34   (each named in the census output)
+Quot.sound carriers 35   (each named in the census output)
 ```

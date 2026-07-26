@@ -1303,12 +1303,26 @@ theorem live_24 : mul I I = neg one := I_squared
     S4 imposed the R-hexagon only, and said so. This section imposes the
     other one and retires that boundary rather than restating it.
 
-    THE BRIDGE, which is why Q8 had to come first: on a unit, the inverse
-    IS the conjugate. `mul u (conj u) = (N(u), 0)` from S1, and `N(u) = 1`
-    from the unit classification, so `R⁻¹ = conj R` for every braiding that
-    can appear. The R⁻¹-hexagon is therefore the R-hexagon read at
-    `conj R` — no new plumbing, no second set of instances, and no new
-    admissibility.
+    THE BRIDGE, and what it is actually doing. On a unit the inverse IS
+    the conjugate: `mul u (conj u) = (N(u), 0)` from S1, `N(u) = 1` from
+    the unit classification, so `R⁻¹ = conj R` for every braiding that can
+    appear. That fact does not DERIVE the definition below — `hexInvHolds`
+    is *stipulated* as the R-hexagon read at `conj R`. What the bridge does
+    is make the stipulation honest: it is why that definition deserves the
+    name "R⁻¹-hexagon" rather than merely bearing it. An earlier version of
+    this paragraph said "therefore", presenting a stipulation as a
+    derivation, in a house where "load-bearing" is a measured word; the
+    builder's audit caught it, and `catalog_braidings_are_units` is now
+    proved THROUGH the bridge so the dependency is real in the proof graph
+    rather than only in the prose.
+
+    What is reused and what is new: no new plumbing, no new admissibility,
+    and **no second set of the eight case-instances** — the case analysis
+    is inherited through `hexagonHolds`, which is this section's whole
+    economy. The qualifier matters: this section does add three live
+    instances (`live_25`–`live_27`), and "instances" is a counted category
+    in the rendered views, so the unqualified claim used the artifact's own
+    vocabulary against the artifact.
 
     `G1d_catalog4_satisfies_BOTH_hexagons` states the target and, in the
     certificate's own words, that the second is equivalent on units "at no
@@ -1352,19 +1366,31 @@ theorem catalog_braidings_are_units :
     mul one (conj one) = one ∧ mul (neg one) (conj (neg one)) = one ∧
     mul I (conj I) = one ∧ mul (neg I) (conj (neg I)) = one := by
   refine ⟨?_, ?_, ?_, ?_⟩
-  · decide
-  · decide
-  · decide
-  · decide
+  · exact mul_conj_eq_one_of_unit one ((units_are_four one).mpr (Or.inl rfl))
+  · exact mul_conj_eq_one_of_unit (neg one) ((units_are_four _).mpr (Or.inr (Or.inl rfl)))
+  · exact mul_conj_eq_one_of_unit I ((units_are_four _).mpr (Or.inr (Or.inr (Or.inl rfl))))
+  · exact mul_conj_eq_one_of_unit (neg I)
+      ((units_are_four _).mpr (Or.inr (Or.inr (Or.inr rfl))))
 
 /-! ### Controls for the second hexagon
 
-    The equivalence is a theorem about UNITS, not about everything, and
-    these say so. -/
+    There is no equivalence THEOREM here — `hexInvHolds` is a definition.
+    What these controls guard is the definition's entitlement to its name,
+    and the wrong-class rejection surviving the inverse form. -/
 
-/-- A non-unit braiding breaks the bridge: `1 + i` has norm two, so its
-    conjugate is not its inverse, and the R⁻¹-hexagon is not the R-hexagon
-    read at `conj R` for it. The equivalence genuinely needs `units_are_four`. -/
+/-- **The control guards the NAME, not the definition.** `hexInvHolds` is
+    the R-hexagon read at `conj R` for EVERY argument, unit or not — that
+    is a stipulation and cannot fail. What can fail is the entitlement to
+    call it the R⁻¹-hexagon, and that is exactly what this control shows:
+    `1 + i` has norm two, so its conjugate is not its inverse, and off the
+    units `hexInvHolds` no longer deserves its name.
+
+    An earlier docstring said the R⁻¹-hexagon "is not the R-hexagon read at
+    `conj R`" for a non-unit — denying what the definition stipulates — and
+    added that "the equivalence genuinely needs `units_are_four`". Both were
+    wrong in the same direction: there is no equivalence theorem in this
+    file, only a definition; and this control is settled by bare `decide`.
+    The catalog's real debt to Q8 flows through `Rsq_neg_one_iff`. -/
 theorem control_non_unit_breaks_the_bridge : mul ⟨1, 1⟩ (conj ⟨1, 1⟩) ≠ one := by decide
 
 /-- And the wrong-class controls survive the second hexagon: `R = i` over

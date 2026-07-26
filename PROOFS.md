@@ -270,10 +270,17 @@ the boundary stays.
 
 ## The second hexagon — the boundary RETIRED, not restated
 
-Twelve theorems. On a unit the inverse is the conjugate — `mul u (conj u) =
-(N(u), 0)` from S1, `N(u) = 1` from Q8 — so the R⁻¹-hexagon is the
-R-hexagon read at `conj R`. No new plumbing, no second set of instances, no
-new admissibility.
+*(Section theorem counts are rendered in `VIEWS.md`, per norm 19 below —
+this paragraph states none. An earlier version said "Twelve theorems"; the
+section holds nine, and the view had been rendering nine all along.)*
+
+On a unit the inverse is the conjugate — `mul u (conj u) = (N(u), 0)` from
+S1, `N(u) = 1` from Q8 — so `conj R` is entitled to the name `R⁻¹`, and
+`hexInvHolds` is *stipulated* as the R-hexagon read there. No new plumbing,
+no new admissibility, and **no second set of the eight case-instances** —
+the case analysis is inherited through `hexagonHolds`. The qualifier is
+load-bearing: this section does add three live instances, and "instances"
+is a counted category in the views.
 
 **`catalog_of_four_both_hexagons`**: imposing the R-hexagon **and** the
 R⁻¹-hexagon yields exactly the same four pairs. That is the certificate's
@@ -674,6 +681,44 @@ row prints the certificate check name with BOTH in it. Nothing claimed both
 were *imposed*, so the intent held; the ledger's normative phrasing
 ("nothing **may** say") was right and the letter's factual flattening
 overshot. The letter stays as couriered.
+
+## Corrections — the builder's second-hexagon pass, four
+
+**H#1 — "Twelve theorems"; the section holds nine.** Measured three ways —
+a direct sweep, the view's own row, and the census moving by nine. And the
+mechanism note that makes it the loudest: it walked through a door the
+numeral gate **declares open**, because it is spelled in letters rather
+than digits — the second time that exact word has done it in this circle,
+the first being "twelve live instances", one of the four stale counts that
+bought the renderer. Repaired to no count at all, and generalised as
+**norm 19**: a count the views render is never retyped in the cumulative
+record — the record points, the view counts.
+
+**H#2 — "no second set of instances", sixty-eight lines above a header
+reading "Live instances for the second hexagon".** True under one reading
+(no second battery of the eight case-instances was written, and none
+exists), false under the artifact's own counted vocabulary: this crate ships
+three new live instances. Repaired with the qualifier in all three sites.
+
+**H#3 — the control's docstring denied what the definition stipulates.**
+`hexInvHolds` *is* the R-hexagon read at `conj R`, for every argument, unit
+or not; that cannot fail. What the control actually shows is that
+conjugation fails to invert a non-unit — off the units the definition no
+longer deserves its NAME. The docstring also claimed an "equivalence"
+needing `units_are_four`; there is no equivalence theorem in the file, only
+a definition, and the control is settled by bare `decide`. Repaired to say
+what it guards, with the catalog's real debt to Q8 pointed at
+`Rsq_neg_one_iff` where it actually flows.
+
+**H#4 — the bridge the prose leaned on was used by nothing.**
+`mul_conj_eq_one_of_unit` and `catalog_braidings_are_units` had zero
+downstream uses while the prose called the bridge the thing the result
+"turns on" — dependency vocabulary in a house where load-bearing is a
+measured word. Repaired in the direction that makes the prose true rather
+than smaller: `catalog_braidings_are_units` is now proved through the
+bridge and the unit classification, so the dependency exists in the proof
+graph. The section header's "therefore" is gone too — a stipulation is no
+longer presented as a derivation.
 
 ## Honest labels — the boundaries of this delivery
 
