@@ -1,0 +1,14 @@
+# audit/c2_numerals_exempt.txt -- labeled exemptions for c2_numerals.sh.
+# Format: <token><TAB><reason>.  A line without a TAB-separated reason FAILS
+# the gate.  Tokens are digit runs after comma-merge (1,150 matches 1150).
+# Every reason names where the number comes from; "standing" means measured
+# once outside this tree's instruments and quoted since.
+1150	standing: Circle One's sealed headline (1,150 kernel-checked Lean theorems), measured in C1's own tree; reproduced in the handshake letter's axiom-census fence (TOTAL 1150) but derivable from no instrument in THIS tree
+527864	truncation: fractional part of the (-1,-1) candidate residual 5.52786404500042, measured from the bench's hex_residual_fib (handshake G1 fence; handover audit item 7); WELD_REPORT prints only the minimum 4.000, not per-candidate residuals
+52786404500042	measurement: the (-1,-1) candidate residual 5.52786404500042 at full precision, from hex_residual_fib (handshake G1 fence, reproduced in the handover audit); not rendered into WELD_REPORT
+6393	truncation: the (+1,-1) candidate residual 7.639320225002103 (same hex_residual_fib measurement as above), quoted to four places in the handover audit's residual list
+68	derived-minus: certificate capacity without C1_LEAN = 70 checks minus the two G6 calibrators that fail loudly by name (measured in the reconciliation letter, reproduced on both containers)
+594	measurement: `wc -l lean/Zi.lean` at the S2 head 20fedd6, quoted in PROOFS.md correction C#7 as the true value the ledger and letter both mis-stated as 593; a historical measurement of a past artifact state, not a claim about the current file (which measures 929)
+593	quoted-defect: the FALSE line count the S2 ledger and delivery letter both carried, quoted in the crop that corrects it (the artifact measured 594 at that head, by `wc -l`). Exempted as a quotation of the error, never as a claim — if this number ever appears as an assertion again, the reason above stops covering it
+929	quoted-defect: the FALSE line count the S3 ledger and delivery letter both carried, quoted in the crop that records it. Exempted as a quotation of the error, never as a claim — the same shape as the 593 entry above, and the pair of them is why the count is now a VIEW (VIEWS.md, audit/c2_views.sh)
+930	quoted-measurement: the TRUE line count at the S3 head 09f6fd7 (`wc -l lean/Zi.lean`), quoted beside the false 929 it corrects; historical, not a claim about the current file, which VIEWS.md renders

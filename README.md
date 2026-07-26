@@ -1,6 +1,6 @@
 # The Workshop — Circle Two
 
-*The roomy world: exactly two particles. Live — round 1 open.*
+*The roomy world: exactly two particles. Live — round 2 open.*
 
 ## What this is
 
@@ -42,9 +42,15 @@ corrections loudest first, and nothing trusted that was not measured.
 | `NORMS.md` | The canon settlement: norms 1–16 adopted from Circle One's capstone, numbering frozen, floor habits annexed with provenance. |
 | `REGISTER.md` | Circle Two's artifact classes and adjudicators, declared at birth, with the norm-15 question answered. |
 | `ROUND1.md` | The builder's round-1 letter: the crop, and the charge to the third body (S1–S3). |
-| `letters/` | Primary sources: the round-1 parity-handshake report. |
+| `COURIER-CARD.md` | Kelly's one-page courier checklist — the operating instrument for the loop: pin in the message, every leg, both directions. Ferried on the cloud/courier line and grafted into the record at the reconciliation merge. |
+| `letters/` | Primary sources: the couriered letters, round by round — the round-1 handshake report, the byte-original handover reply (`ROUND1-REPLY.md`) beside its earlier transcription (`ROUND1-REPLY-handover.md`), the round-2 reconciliation, and the third-body seating letter. |
 | `floor/` | The floor, inherited verbatim from Circle One's crate except crop item #1 (`symmetric_statistics.py` docstring + pinned assert). Run: `python3 run_all.py` → 29/29. |
 | `audit/c2_gift_certificates.py` | The chartering certificate: 70 exact checks. Run from repo root: `C2_WORKSHOP=$(pwd)/floor C1_LEAN=<circle-one>/lean python3 audit/c2_gift_certificates.py` → 70/70, exit 0. |
+| `lean/` | The Lean wing. `Zi.lean` is S1, the Z[i] ring layer: zero imports, toolchain pinned in `lean/lean-toolchain`, compiled silent. `TRANSCRIPT.txt` carries the compile measurements, the `.olean` hash, and both census plants. |
+| `PROOFS.md` | Circle Two's own proof ledger, cumulative round over round — the delivery, its families, its anti-vacuity and controls, its corrections, and the QUESTIONS block for the builder. |
+| `audit/c2_pointers.sh`, `audit/c2_numerals.sh` | The prose gates: every backticked pointer resolves, every bare-asserted numeral is sourced. Run from repo root; both exit 0 on a clean tree. |
+| `audit/c2_tree.sh` | The tree-hygiene gate (REGISTER row 10): no build artifact is ever tracked. |
+| `audit/c2_axioms.sh` | The proof-term census (REGISTER row 4): every theorem's axioms named; fails on `sorryAx` or `Classical.choice`. Needs a Lean binary — `LEAN=/path/to/lean sh audit/c2_axioms.sh`. |
 
 ## How to verify
 
@@ -56,6 +62,12 @@ corrections loudest first, and nothing trusted that was not measured.
 3. Don't trust an alarm you haven't seen fire: re-introduce a stale
    "0.53" into the bench docstring and confirm the certificate exits 1
    (`G1h_docstring_carries_exact_4`), then restore.
+4. Run the four gates — `sh audit/c2_pointers.sh`, `sh audit/c2_numerals.sh`,
+   `sh audit/c2_tree.sh`, and `LEAN=<lean> sh audit/c2_axioms.sh`. Each
+   exits 0 on a clean tree, and each has a plant recorded in its own
+   header; fire one before you trust it.
+5. Compile the Lean wing: `lean lean/Zi.lean` under the pinned toolchain —
+   the pass condition is silence, exit 0 *and* zero bytes.
 
 ## Courier protocol
 
@@ -70,9 +82,18 @@ host was blocked, so the norm-14 test is not a formality).
 
 ## Status
 
-Round 1 open. Handshake complete and reported; crop items #1–#5
-recorded (`ROUND1.md`); charge to the third body issued (S1–S3: the
-Z[i] ring layer, the mod-4 descent, pentagon necessity). The estimated
-whole: ~163 theorems, ~1,560 lines — one ring, one descent, no order,
-no jets, dims all 1; smaller than Circle One round for round, and
-certified before chartered.
+Round 2 open. Round 1 closed verified on both sides of the courier
+route: handshake reported, crop items #1–#5 recorded (`ROUND1.md`),
+charge to the third body issued (S1–S3: the Z[i] ring layer, the mod-4
+descent, pentagon necessity), and the outgoing Circle One builder's
+handover audit returned with one confirmed finding — fixed at the
+round-2 opening commit. Round 2 so far: the courier reconciliation
+(`letters/ROUND2-RECONCILIATION.md`), the first multi-seat prose audit
+(sixteen confirmed specimens, all repaired or recorded), the third body
+seated, the record reconciled to one history, the prose gates ported and
+bitten, and **S1 delivered** — the Z[i] ring layer, compiled silent under
+the pinned toolchain, censused with no `sorryAx` and no `Classical.choice`
+(`PROOFS.md`, `lean/TRANSCRIPT.txt`). S2 and S3 remain.
+The estimated whole: ~163 theorems, ~1,560 lines — one ring, one
+descent, no order, no jets, dims all 1; smaller than Circle One round
+for round, and certified before chartered.
