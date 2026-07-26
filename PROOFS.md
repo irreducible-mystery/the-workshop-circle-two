@@ -12,12 +12,12 @@ so. Opened at round 2 with S1.*
 
 ```
 source     lean/Zi.lean
-           71cc55d54af8d772f71e07f324b579c3aa71608fc57fc13b8323135c04790cc0
+           ba23f2d739249d00bb507c6f62a4292520dcec889ec208fde1af869876c2db09
 toolchain  lean/lean-toolchain  -> leanprover/lean4:v4.32.0
            2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 measured   Lean (version 4.32.0, x86_64-unknown-linux-gnu,
            commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-olean      6533e27153c3f1b51a6ec33248afea83121c7b406f8770f9b2ced8fc6d66709f
+olean      b0a2ca6b0d48c76d34e79aa3203dc06e9432323b1b268446ef00203e85d1e6a7
            (not committed — a build artifact; audit/c2_tree.sh exits 1 on
             a tracked .olean. Byte-reproducible across builds on this
             machine. Cross-machine reproducibility is now measured FALSE —
@@ -25,6 +25,15 @@ olean      6533e27153c3f1b51a6ec33248afea83121c7b406f8770f9b2ced8fc6d66709f
 ```
 
 Full measurements, including every plant fired, in `lean/TRANSCRIPT.txt`.
+
+*This block was stale too — the third site of the same defect, and the
+last one found. The source and `.olean` hashes above stood at an earlier
+head across several crates, exactly as they did in the artifact's header
+and in the transcript. It is ungated for the same structural reason those
+were: the numeral gate strips fenced blocks, which is right for code and
+wrong for a pin. **A wrong pin in the record is the courier protocol's own
+species, and this tree was carrying three of them at once.** Re-measured
+on this container and rewritten; see the repairs-pass corrections.*
 
 ## S1 — the Z[i] ring layer: DELIVERED
 
@@ -883,8 +892,16 @@ per-theorem answers — was stale in its title (it named three sections), in
 its scope sentence and wall-time ("S1 + S2 + S3 together"), in its
 **source SHA-256**, in its `.olean` hash, and in a full typed census block
 standing under a note that explained why the block was allowed to stay.
-A wrong pin in the record is the courier protocol's own species, and this
-one had been travelling for crates. Repaired by re-running the compile and
+
+And then a THIRD site, found while assembling this crate's pins: the
+ledger's own "pins for this delivery" block carried the same stale source
+and `.olean` hashes. Three files, one defect, and each ungated for its own
+structural reason — the artifact's prose was in no gate's territory, a
+plain-text transcript is in none either, and the numeral gate strips
+fenced code blocks, which is right for code and wrong for a pin. **A
+wrong pin in the record is the courier protocol's own species, and this
+tree was carrying three of them at once while every instrument ran
+green.** Repaired by re-running the compile and
 the census on this container and rewriting every measured line; the census
 block now states the two ZEROS the census judges — no `sorryAx`, no
 `Classical.choice` — and points at `VIEWS.md` for everything it counts,

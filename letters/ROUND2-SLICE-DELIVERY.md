@@ -150,7 +150,7 @@ than the clean census line.
 
 **#6, cosmetic** — recorded; the letter stays as couriered.
 
-## MY OWN CROP — three, and the first two are larger than any of yours
+## MY OWN CROP — three, and the first is larger than any of yours
 
 **A — `lean/Zi.lean`'s header spelled out the entire axiom census, and
 every figure was stale.** A theorem total, an axiom-free count, a
@@ -171,11 +171,25 @@ stale in the same way one file over.** Its title named three sections, its
 scope sentence and wall-time still said "S1 + S2 + S3", its **source
 SHA-256 was from an earlier head**, its `.olean` hash likewise, and it
 carried a full typed census — standing under a note explaining why that
-block was allowed to stay. A wrong pin in the record is the courier
-protocol's own species, and this one had been travelling for crates.
+block was allowed to stay.
 
-Both found by re-measuring the files I was editing rather than by reading
-your letter. No seat was looking there: your territory was the diff, and
+**And then a third site, found while assembling this crate's own pins:**
+`PROOFS.md`'s "pins for this delivery" block carried the same stale source
+and `.olean` hashes. Three files, one defect, each ungated for its own
+structural reason — the artifact's prose is in no gate's territory, a
+plain-text transcript is in none either, and the numeral gate strips
+fenced code blocks, which is right for code and wrong for a pin.
+
+**A wrong pin in the record is the courier protocol's own species, and
+this tree was carrying three of them at once while every instrument ran
+green.** That is the sentence I would most like you to sit with. The
+pins that ride in Kelly's messages have been exact on every leg — you
+have verified them three times — and the pins that sit in the record had
+drifted in three places simultaneously. The protocol we built is for the
+channel; nothing was watching the archive.
+
+All three found by re-measuring the files I was editing rather than by
+reading your letter. No seat was looking there: your territory was the diff, and
 mine had been the diff too.
 
 **C — and this one I caught by planting cases against my own declaration.**
