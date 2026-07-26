@@ -1,0 +1,94 @@
+theorem ext {z w : GZ} (hre : z.re = w.re) (him : z.im = w.im) : z = w := <STRIPPED>
+theorem ext_iff {z w : GZ} : z = w ↔ z.re = w.re ∧ z.im = w.im := <STRIPPED>
+theorem add_comm (z w : GZ) : add z w = add w z := <STRIPPED>
+theorem add_assoc (x y z : GZ) : add (add x y) z = add x (add y z) := <STRIPPED>
+theorem add_zero (z : GZ) : add z zero = z := <STRIPPED>
+theorem zero_add (z : GZ) : add zero z = z := <STRIPPED>
+theorem add_neg (z : GZ) : add z (neg z) = zero := <STRIPPED>
+theorem neg_add (z : GZ) : add (neg z) z = zero := <STRIPPED>
+theorem neg_neg (z : GZ) : neg (neg z) = z := <STRIPPED>
+theorem sub_self (z : GZ) : sub z z = zero := <STRIPPED>
+theorem mul_comm (z w : GZ) : mul z w = mul w z := <STRIPPED>
+theorem mul_assoc (x y z : GZ) : mul (mul x y) z = mul x (mul y z) := <STRIPPED>
+theorem mul_one (z : GZ) : mul z one = z := <STRIPPED>
+theorem one_mul (z : GZ) : mul one z = z := <STRIPPED>
+theorem mul_zero (z : GZ) : mul z zero = zero := <STRIPPED>
+theorem zero_mul (z : GZ) : mul zero z = zero := <STRIPPED>
+theorem left_distrib (x y z : GZ) : mul x (add y z) = add (mul x y) (mul x z) := <STRIPPED>
+theorem right_distrib (x y z : GZ) : mul (add x y) z = add (mul x z) (mul y z) := <STRIPPED>
+theorem mul_neg (z w : GZ) : mul z (neg w) = neg (mul z w) := <STRIPPED>
+theorem neg_mul (z w : GZ) : mul (neg z) w = neg (mul z w) := <STRIPPED>
+theorem I_squared : mul I I = neg one := <STRIPPED>
+theorem I_squared_add_one : add (mul I I) one = zero := <STRIPPED>
+theorem conj_add (z w : GZ) : conj (add z w) = add (conj z) (conj w) := <STRIPPED>
+theorem conj_mul (z w : GZ) : conj (mul z w) = mul (conj z) (conj w) := <STRIPPED>
+theorem conj_conj (z : GZ) : conj (conj z) = z := <STRIPPED>
+theorem conj_one : conj one = one := <STRIPPED>
+theorem conj_zero : conj zero = zero := <STRIPPED>
+theorem conj_re (z : GZ) : (conj z).re = z.re := <STRIPPED>
+theorem conj_I : conj I = neg I := <STRIPPED>
+theorem mul_conj (z : GZ) : mul z (conj z) = ⟨norm z, 0⟩ := <STRIPPED>
+theorem conj_mul_self (z : GZ) : mul (conj z) z = ⟨norm z, 0⟩ := <STRIPPED>
+theorem brahmagupta_fibonacci (a b c d : Int) :
+    (a * a + b * b) * (c * c + d * d)
+      = (a * c - b * d) * (a * c - b * d) + (a * d + b * c) * (a * d + b * c) := <STRIPPED>
+theorem norm_mul (z w : GZ) : norm (mul z w) = norm z * norm w := <STRIPPED>
+theorem norm_conj (z : GZ) : norm (conj z) = norm z := <STRIPPED>
+theorem norm_one : norm one = 1 := <STRIPPED>
+theorem norm_zero : norm zero = 0 := <STRIPPED>
+theorem norm_I : norm I = 1 := <STRIPPED>
+theorem norm_re (a : Int) : norm ⟨a, 0⟩ = a * a := <STRIPPED>
+theorem live_1 : mul ⟨3, 1⟩ ⟨2, -5⟩ = ⟨11, -13⟩ := <STRIPPED>
+theorem live_2 : mul ⟨1, 1⟩ ⟨1, -1⟩ = ⟨2, 0⟩ := <STRIPPED>
+theorem live_3 : norm ⟨3, 4⟩ = 25 := <STRIPPED>
+theorem live_4 : norm ⟨1, 1⟩ * norm ⟨1, -1⟩ = norm (mul ⟨1, 1⟩ ⟨1, -1⟩) := <STRIPPED>
+theorem live_5 : conj ⟨5, -7⟩ = ⟨5, 7⟩ := <STRIPPED>
+theorem live_6 : mul ⟨2, 3⟩ (conj ⟨2, 3⟩) = ⟨13, 0⟩ := <STRIPPED>
+theorem live_7 : add ⟨2, 3⟩ (neg ⟨2, 3⟩) = zero := <STRIPPED>
+theorem live_8 : mul ⟨0, 2⟩ ⟨0, 3⟩ = ⟨-6, 0⟩ := <STRIPPED>
+theorem control_one_ne_zero : one ≠ zero := <STRIPPED>
+theorem control_conj_ne_id : conj I ≠ I := <STRIPPED>
+theorem control_fake_mirror_is_additive (z w : GZ) :
+    fakeMirror (add z w) = add (fakeMirror z) (fakeMirror w) := <STRIPPED>
+theorem control_fake_mirror_fails_multiplicative :
+    fakeMirror (mul I I) ≠ mul (fakeMirror I) (fakeMirror I) := <STRIPPED>
+theorem control_split_has_zero_divisors :
+    splitMul ⟨1, 1⟩ ⟨1, -1⟩ = zero := <STRIPPED>
+theorem control_split_first_factor_is_nonzero :
+    (⟨1, 1⟩ : GZ) ≠ zero := <STRIPPED>
+theorem control_split_second_factor_is_nonzero :
+    (⟨1, -1⟩ : GZ) ≠ zero := <STRIPPED>
+theorem control_mul_of_same_factors_is_nonzero :
+    mul ⟨1, 1⟩ ⟨1, -1⟩ ≠ zero := <STRIPPED>
+theorem sq_mod_four (a : Int) : a * a % 4 = 0 ∨ a * a % 4 = 1 := <STRIPPED>
+theorem sq_mod_four_zero_of_even (a : Int) (h : a % 2 = 0) : a * a % 4 = 0 := <STRIPPED>
+theorem sq_mod_four_one_of_odd (a : Int) (h : a % 2 = 1) : a * a % 4 = 1 := <STRIPPED>
+theorem re_even_of_norm_mod_four (a b : Int) (h : (a * a + b * b) % 4 = 0) :
+    a % 2 = 0 := <STRIPPED>
+theorem im_even_of_norm_mod_four (a b : Int) (h : (a * a + b * b) % 4 = 0) :
+    b % 2 = 0 := <STRIPPED>
+theorem control_mod_two_insufficient :
+    (1 * 1 + 1 * 1) % 2 = 0 ∧ (1 : Int) % 2 ≠ 0 := <STRIPPED>
+theorem control_mod_four_rejects_odd_pair : (1 * 1 + 1 * 1) % 4 ≠ 0 := <STRIPPED>
+theorem norm_quarters (a b : Int) :
+    2 * a * (2 * a) + 2 * b * (2 * b) = 4 * (a * a + b * b) := <STRIPPED>
+theorem natAbs_two_mul (k : Int) : (2 * k).natAbs = 2 * k.natAbs := <STRIPPED>
+theorem descent_bound : ∀ n : Nat, ∀ a b : Int,
+    a.natAbs + b.natAbs ≤ n → a * a + b * b = 0 → a.natAbs + b.natAbs = 0 := <STRIPPED>
+theorem norm_zero_forces_zero (z : GZ) (h : norm z = 0) : z = zero := <STRIPPED>
+theorem norm_ne_zero_of_ne_zero (z : GZ) (h : z ≠ zero) : norm z ≠ 0 := <STRIPPED>
+theorem scalar_is_mul (n : Int) (w : GZ) :
+    mul ⟨n, 0⟩ w = ⟨n * w.re, n * w.im⟩ := <STRIPPED>
+theorem torsion_free (n : Int) (w : GZ) (hn : n ≠ 0) (h : mul ⟨n, 0⟩ w = zero) :
+    w = zero := <STRIPPED>
+theorem no_zero_divisors (z w : GZ) (hz : z ≠ zero) (h : mul z w = zero) :
+    w = zero := <STRIPPED>
+theorem mul_eq_zero_iff (z w : GZ) : mul z w = zero ↔ z = zero ∨ w = zero := <STRIPPED>
+theorem live_9 : norm ⟨0, 0⟩ = 0 := <STRIPPED>
+theorem live_10 : (5 * 5 + 3 * 3) % 4 ≠ 0 := <STRIPPED>
+theorem live_11 : (6 * 6 + 2 * 2) % 4 = 0 := <STRIPPED>
+theorem live_12 : mul ⟨2, 3⟩ ⟨1, -1⟩ ≠ zero := <STRIPPED>
+theorem control_norm_mod_four_is_not_norm_zero :
+    (6 * 6 + 2 * 2) % 4 = 0 ∧ (6 * 6 + 2 * 2 : Int) ≠ 0 := <STRIPPED>
+theorem control_split_is_not_a_domain :
+    splitMul ⟨1, 1⟩ ⟨1, -1⟩ = zero := <STRIPPED>

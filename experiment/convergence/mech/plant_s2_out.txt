@@ -1,0 +1,84 @@
+PASS  add_comm
+PASS  add_assoc
+PASS  zero_add
+PASS  add_zero
+PASS  add_neg
+PASS  neg_add
+PASS  sub_self
+PASS  sub_add_cancel
+PASS  mul_comm
+PASS  mul_assoc
+PASS  one_mul
+PASS  mul_one
+PASS  zero_mul
+PASS  mul_zero
+PASS  left_distrib
+PASS  right_distrib
+PASS  neg_mul
+PASS  mul_neg
+PASS  neg_neg
+PASS  I_squared
+PASS  conj_add
+PASS  conj_mul
+PASS  conj_conj
+PASS  conj_one
+PASS  conj_zero
+PASS  conj_re
+PASS  conj_I
+PASS  conj_neg
+PASS  conj_mul_self  — conj(z)*z = (N(z), 0) — the link the S2 chain hangs on
+PASS  mul_conj_self
+PASS  norm_conj
+PASS  norm_neg
+PASS  norm_mul  — N(zw) = N(z)N(w) — this verifier's route to the domain
+PASS  brahmagupta_fibonacci
+PASS  norm_re
+PASS  live_1_v2  — (3+i)(2-5i) = 11-13i — the replacement after their B#3 crop
+PASS  live_2
+PASS  live_3
+PASS  live_4
+PASS  live_5
+PASS  live_6
+PASS  live_7
+PASS  live_8
+PASS  control_one_ne_zero
+PASS  control_conj_ne_id
+PASS  control_fake_mirror_is_additive
+PASS  control_fake_mirror_fails_multiplicative
+PASS  control_split_has_zero_divisors
+PASS  control_split_first_factor_is_nonzero
+PASS  control_split_second_factor_is_nonzero
+PASS  control_mul_of_same_factors_is_nonzero
+PASS  engine_sq_nonneg  — a^2 >= 0 for all a in Z: both sign branches have nonneg coefficients
+PASS  engine_sq_pos_of_nonzero  — a != 0 => a^2 >= 1: (1+m)^2 and (-1-m)^2 both = 1+2m+m^2
+PASS  natAbs_two_mul  — |2k| = 2|k|: k>=0 branch 2k=2k; k<0 branch -2k = 2(-k); both identities
+PASS  sq_mod_four  — a^2 % 4 in {0,1}: residues 0,1,2,3 give 0,1,0,1 — coefficientwise
+PASS  sq_mod_four_zero_of_even  — (2K)^2 = 4K^2 — every coefficient divisible by 4
+PASS  sq_mod_four_one_of_odd  — (2K+1)^2 - 1 = 4K^2+4K — divisible by 4, remainder 1 in [0,4)
+FAIL  re_even_of_norm_mod_four [PLANTED: modulus 2]  — witness (1,1): 1+1 = 2 = 0 mod 2 but 1 is odd — the plant must FAIL here
+PASS  control_mod_two_insufficient  — their MANDATORY control: (1,1) defeats a mod-2 descent — 2 ramifies
+PASS  control_mod_four_rejects_odd_pair  — the same pair IS rejected mod 4 — why the descent makes progress
+PASS  norm_quarters  — (2a)^2+(2b)^2 = 4(a^2+b^2) — the descent's engine, coefficientwise
+PASS  descent_bound  — |a|+|b| <= n and a^2+b^2 = 0 => measure 0: any nonzero coord makes the sum >= 1
+PASS  norm_zero_forces_zero  — N(z) = 0 => z = 0 — order route, the prong their labelled fork declined
+PASS  norm_ne_zero_of_ne_zero  — contrapositive of the same certificates
+PASS  scalar_is_mul  — mul (n,0) w = (n*re w, n*im w) — coefficientwise
+PASS  torsion_free  — (|n|-1)|x| >= 0 => |nx| >= |x|; 0 >= |x| kills x — both coordinates
+PASS  no_zero_divisors  — route: norm multiplicativity + positivity — NOT their conj chain
+PASS  mul_eq_zero_iff  — forward as above; backward zero_mul / mul_zero coefficientwise
+PASS  live_9
+PASS  live_10
+PASS  live_11
+PASS  live_12
+PASS  control_norm_mod_four_is_not_norm_zero  — divisibility is not the equation — the descent needs N(z) = 0 itself
+PASS  control_split_is_not_a_domain  — split ring: chain breaks at link one, conj(z)*z is not the norm there
+PASS  cross_conj_fixed_locus  — conj z − z has im = −2·im(z) — MY theorem, THEIR definitions
+PASS  cross_sub_add_cancel
+PASS  cross_descent_needs_hypothesis  — N(1+2i) = 5 != 0 and z != 0: the descent's hypothesis is load-bearing (both lineages control this)
+====================================================================
+checks run: 77;  passed: 76;  failed: 1
+VERDICT: two-body S2 artifact verified by the dual-seat lineage's
+         instrument — the domain confirmed BY THE ORDER ROUTE their
+         labelled fork declined; every universal claim complete over
+         Z (coefficientwise / residue-decomposition / nonneg-
+         coefficient certificates), every concrete claim exact.

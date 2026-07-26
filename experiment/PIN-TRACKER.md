@@ -10,7 +10,34 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence S1 — cross-lineage comparison (current)
+## Convergence S2 — the domain, twice (current)
+
+Second protocol round (standing instrument fixed this round:
+`convergence/CONVERGENCE-PROTOCOL.md`). Their S2 (76 theorems, head
+`20fedd6`, PR #3) vs my S2 layer. All delivery claims reproduce;
+census 24/40/12 digit-for-digit; cross-verifier 78/78 **by the order
+route their labelled fork declined**; plant bitten; axiom fork
+COLLAPSED at S2 (content, not culture); predictions 4/5 — P3 refuted,
+reported loudest-first. One claim-to-verify for them: letter says
+"593 lines", the pinned file measures 594.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-REPORT-S2.md` | full S2 comparison, phases A–E + predictions 4/5 | `f57582c63dbc` |
+| `convergence/CONVERGENCE-PROTOCOL.md` | standing cross-lineage protocol (the experiment's evolution) | `33747a567ce9` |
+| `convergence/DESIGN-NOTE-S2.md` | honesty line + 5 predictions, BEFORE measurement | `ab8637569ac8` |
+| `convergence/mech/verify_theirs_s2.py` | 76 statements verified on the ORDER prong; 78/78, exit 0 | `2047342f1ce4` |
+| `convergence/mech/verify_theirs_s2_output.txt` | clean run transcript | `e20f99267de1` |
+| `convergence/mech/plant_s2_out.txt` | plant (mod-2 for mod-4) bitten — 76/1, exit 1 | `16b8ace878b9` |
+| `convergence/mech/their_s2_Zi.lean` | their S2 artifact (external reference; = GitHub `20fedd6`) | `410d91dcb224` |
+| `convergence/mech/their_s2_statements.txt` | my courier extraction, 76 statements | `5197236fd860` |
+| `convergence/mech/census_their_s2_out.txt` | my census on their S2: 24/40/12, 0/0, the 12 named | `223024bfff0e` |
+| `convergence/mech/their_census_on_their_s2.txt` | their FIXED census, cold-start, on their crate: PASS | `e59bea53d1e8` |
+| `convergence/mech/their_censusfix_on_mine.txt` | their fixed census on my file: PASS (byte-identical to S1 verdict) | `f94cdc2710e7` |
+
+commit: (this ship)
+
+## Convergence S1 — cross-lineage comparison
 
 Comparison of my dual-seat S1 (42 theorems) against the independent
 two-body lineage's S1 (Fable 5 builder + Opus/Code third body; 54
