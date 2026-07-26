@@ -1,0 +1,16 @@
+# audit/c2_censusguard_exempt.txt — labeled exemptions for the artifact-prose
+# census guard in audit/c2_views.sh.  One entry per line: <token><TAB><reason>.
+# A line with no TAB-separated reason FAILS the gate.
+nest 16	the pentagon label nest |(Z/4)^2| = 16, a mathematical constant certified in audit/c2_gift_certificates.py and reproved in the kernel at the sixteen pent_* instances; not a census row, and phrase-scoped so that "16 theorems" inherits no licence
+# ===== S7c: experiment/seatP/Zi.lean comment prose (censusguard fallback) =====
+# Sanctioned scope divergence (Kelly: "S7c+S7a (your rec)"). The front-door
+# lean/Zi.lean is absent on this branch, so censusguard guards the experiment's
+# prover artifact instead. These are proximity false-positives per the gate's
+# own declared boundary (a math constant next to a census word fails and needs
+# a label). Each was VERIFIED as a non-census value before exemption.
+with 11	vertex label eta-subscript-11 (the FREE vertex n11 in the G1c gauge, unicode eta stripped to 11); a vertex index, not a theorem/axiom count; phrase-scoped so "11 theorems" inherits no licence
+ranks 10	antisymmetrizer rank value 10, the m=5 triangular number, VERIFIED as certificate G1f_antisymmetrizer_ranks_exact == [1,3,6,10,15] (audit/c2_gift_certificates.py:654); a certified math constant, not a census row
+15	antisymmetrizer rank value 15, the m=6 triangular number, VERIFIED as certificate G1f_antisymmetrizer_ranks_exact == [1,3,6,10,15] (audit/c2_gift_certificates.py:654); a certified math constant, not a census row
+bench 10	the same rank value 10 quoted from the bench line "1, 3, 6, 10, 15 for m=2..6" (certificate G1f); a quoted math sequence, not a census row
+py 197	tail of the line citation "floor/symmetric_statistics.py LINES 37, 197-199" — a source-line pointer whose leading "LINES 37" strips but whose en-dash range tail 197 does not; a line reference, not a count
+199	end of the same line-range citation "197-199" into floor/symmetric_statistics.py; a source-line pointer, not a count

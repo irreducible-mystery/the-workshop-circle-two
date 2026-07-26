@@ -10,6 +10,40 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
+## Round Three — meta-audit + S7c gate-scope extension (current)
+
+The meta-auditor (REGISTER row 7, second instance) shipped the stranger
+audit and, on Kelly's charge "S7c+S7a (your rec)", extended the front-door
+prose gates to the row-8 boundary `experiment/**`. Sanctioned scope
+divergence from the predecessor's S7a-first recommendation, recorded in
+source/commit/report. Quarantine (norm 16): the extended gates are new
+instruments; their PASS is a claim verified by plant-and-restore on this
+tree, not a result to trust on sight. `lean/Zi.lean` ratified by none of it.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `seatMETA/verify_stranger.py` | independent blind verifier, 27/27, own routes | `cf603918357d` |
+| `audit/c2_pointers.sh` (S7c) | pointer gate, scope extended to experiment/** | `987024b9c12f` |
+| `audit/c2_numerals.sh` (S7c) | numeral gate, scope extended to experiment/** | `20eee8348e08` |
+| `audit/c2_views.sh` (S7c) | censusguard falls back to seatP/Zi.lean | `34db10a8cae5` |
+| `audit/probes/s7c_scope_probe.sh` | the S7c design probe (norm 15) | `64b0d293eda3` |
+| `audit/probes/S7C-DESIGN-NOTE.md` | the S7c design note (measured blast radius) | `f8abac6e18e1` |
+| `seatMETA/CORRECTIONS-LETTER-S7c.md` | the S7c crop (five items) | `fd69cfd84136` |
+
+Full 64-char (S7c gates, measured on the shipped tree):
+- `c2_pointers.sh`  `987024b9c12f1e641e76497555571a4877b6d0f61adbcf03aa939f6a6001bb22`
+- `c2_numerals.sh`  `20eee8348e08c970a5c773e91fd7512d9bda16d6a5b685b2ed69523ea217b0d8`
+- `c2_views.sh`     `34db10a8cae52366739b7c2d5a4cf49de56235cee14c44792e534e529bdc8387`
+- `verify_stranger.py`  `cf603918357dd97cc902a40f8c8e99b0e82c6e2e6ec87d92751b7f03c8720efe`
+
+The audit-verdict, findings, worklog, and SUBROUND7-REPORT pins are measured
+at commit and recorded in the commit message (they cite each other, so their
+hashes settle only once all are on the branch).
+
+commit: _stamped at ship in the branch history_
+
+---
+
 ## Convergence dashboard — the whole series on one page, GENERATED not typed (current)
 
 Change #2 of the retrospective, built. A generator (`mech/make_dashboard.py`)

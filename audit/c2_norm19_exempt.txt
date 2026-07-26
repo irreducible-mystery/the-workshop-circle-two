@@ -1,0 +1,4 @@
+# audit/c2_norm19_exempt.txt — labeled exemptions for rule (n2), the norm 19
+# guard in audit/c2_numerals.sh.  <phrase><TAB><reason>, matched case-insensitively
+# as a substring of the flagged line.  A line with no TAB-separated reason is ignored.
+one rendered number	REGISTER row 11 describing its own norm-16 bite ("editing one rendered number and watching check print the drift"); "one" is the article-like English usage before the adjective "rendered", not a count of anything the view holds

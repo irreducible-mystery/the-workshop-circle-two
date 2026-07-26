@@ -1,0 +1,51 @@
+# audit/c2_numerals_exempt.txt -- labeled exemptions for c2_numerals.sh.
+# Format: <token><TAB><reason>.  A line without a TAB-separated reason FAILS
+# the gate.  Tokens are digit runs after comma-merge (1,150 matches 1150).
+# Every reason names where the number comes from; "standing" means measured
+# once outside this tree's instruments and quoted since.
+1150	standing: Circle One's sealed headline (1,150 kernel-checked Lean theorems), measured in C1's own tree; reproduced in the handshake letter's axiom-census fence (TOTAL 1150) but derivable from no instrument in THIS tree
+527864	truncation: fractional part of the (-1,-1) candidate residual 5.52786404500042, measured from the bench's hex_residual_fib (handshake G1 fence; handover audit item 7); WELD_REPORT prints only the minimum 4.000, not per-candidate residuals
+52786404500042	measurement: the (-1,-1) candidate residual 5.52786404500042 at full precision, from hex_residual_fib (handshake G1 fence, reproduced in the handover audit); not rendered into WELD_REPORT
+6393	truncation: the (+1,-1) candidate residual 7.639320225002103 (same hex_residual_fib measurement as above), quoted to four places in the handover audit's residual list
+68	derived-minus: certificate capacity without C1_LEAN = 70 checks minus the two G6 calibrators that fail loudly by name (measured in the reconciliation letter, reproduced on both containers)
+594	measurement: `wc -l lean/Zi.lean` at the S2 head 20fedd6, quoted in PROOFS.md correction C#7 as the true value the ledger and letter both mis-stated as 593; a historical measurement of a past artifact state, not a claim about the current file (which measures 929)
+593	quoted-defect: the FALSE line count the S2 ledger and delivery letter both carried, quoted in the crop that corrects it (the artifact measured 594 at that head, by `wc -l`). Exempted as a quotation of the error, never as a claim — if this number ever appears as an assertion again, the reason above stops covering it
+929	quoted-defect: the FALSE line count the S3 ledger and delivery letter both carried, quoted in the crop that records it. Exempted as a quotation of the error, never as a claim — the same shape as the 593 entry above, and the pair of them is why the count is now a VIEW (VIEWS.md, audit/c2_views.sh)
+930	quoted-measurement: the TRUE line count at the S3 head 09f6fd7 (`wc -l lean/Zi.lean`), quoted beside the false 929 it corrects; historical, not a claim about the current file, which VIEWS.md renders
+# ================= S7c: experiment/** scope (sanctioned divergence) =================
+# The row-8 boundary moved to experiment/** on Kelly's charge "S7c+S7a (your rec)".
+# Each number below was VERIFIED against its instrument before exemption (norm:
+# verify, do not assume). A number that could not be verified true was NOT exempted.
+187	cumulative blind-check total, VERIFIED = 47+24+32+36+25+23 by summing "checks run: N" across the six seatB verifier output logs (verify_zi{,_s2..s6}_output.txt); a rendered view over instrument outputs, not a single log line, so the harvest cannot source it directly
+615	line count of courier/Zi_statements_v7.txt, VERIFIED by `wc -l` = 615; a file-length measurement, derivable but not printed into any harvested log
+281	historical line count of the S1 42-theorem Zi.lean (`wc -l` at that head), quoted in EXPERIMENT-REPORT and the S1 convergence comparison; a past artifact state, not the current file, and that file is not on this branch
+460	approximate line count (~460) of an early sub-round Zi.lean state cited in SUBROUND2-REPORT; historical measurement of a past artifact, quoted not asserted-current
+868	line count of the S3 crop's Gaussian-witness file (84 total, 868 lines) recorded in SUBROUND3-REPORT; a measurement of a shipped crop artifact
+2169	line count of the front-door final lean/Zi.lean (2169 lines, 215 theorems) quoted by the convergence reports comparing seats; a measurement of the other seat's artifact, not on this branch
+6817	line count of the front-door Anyon.lean (6,817 lines) quoted in CAPABILITY-AUDIT as the scale being compared against; the other seat's artifact, not on this branch
+93	census figure: 93 "rest" theorems, VERIFIED consistent 68 axiom-free + 93 = 161 total, from the axiom census (axioms_zi.sh) rendered in the convergence reports; a census split, sourced by the census instrument
+88	census figure: 88 of 161 theorems carry Quot.sound, from the axiom census breakdown; a census count sourced by the census instrument
+67	census percentage (67%) = the propext-only fraction 36/54 in the convergence comparison table; a rendered ratio over census counts
+144	historical census split (71 axiom-free + 144 rest) of the front-door 215-theorem file quoted in DESIGN-NOTE-R2CLOSE; the other seat's census, not this branch
+85	approximate count (~85 new theorems) in a census-fraction discussion in DESIGN-NOTE-R2CLOSE; a derived delta over theorem totals, quoted approximately
+82	nest label "nest 82" in CORRECTIONS-LETTER-S2 — an enumeration reference (which nest), not an asserted quantity; the nest-numbering is the letter's own index
+400	line-range endpoint in "Lines ~400-416 of Zi_statements_v7.txt" (STRANGER-AUDIT); a line reference written with a tilde-approx the c5 stripper leaves, pointing at source lines not asserting a count
+416	line-range endpoint paired with 400 in the same "Lines ~400-416" reference; a source-line pointer, not a quantity
+185	line-range endpoint in "lines 30-36 and 185-196" (SUBROUND6-REPORT); a continuation line reference where the "lines" keyword governs both ranges; a source-line pointer
+196	line-range endpoint paired with 185 in the same "185-196" reference; a source-line pointer, not a quantity
+# -- S7c: measurement figures in the meta-auditor's STRANGER-WORKLOG.md --
+# The worklog records the S7c gate-work measurements. Each is reproducible by
+# re-running the named instrument on the named commit; none is an independent
+# assertion about the mathematics. Grouped here rather than scattered because
+# they are one artifact's process log.
+631	worklog: design-probe token count (audit/probes/s7c_scope_probe.sh, design-time); recorded in S7C-DESIGN-NOTE.md
+107	worklog: design-probe bare-numeral count (same probe, design-time); recorded in S7C-DESIGN-NOTE.md
+832	worklog: the FALSE unresolved figure from the empty-exemption /tmp forecast, recorded as the caught near-miss (norm 4 loudest-first); quoted as an error, not a claim
+680	worklog: true unresolved-occurrence count under extended scope before resolution sources were taught (audit/c2_pointers.sh forecast); recorded in S7C-DESIGN-NOTE.md
+48	worklog: an intermediate pointer-gate doc count during S7c ("48 docs scanned"), a VIEW printed by c2_pointers.sh before the report and letter were added
+51	worklog: pointer-gate doc count at a later point in S7c, same rendered VIEW as scope grew
+1233	worklog: an intermediate pointer-gate occurrence count ("1233 in-scope pointer occurrences"), a VIEW printed by c2_pointers.sh
+736	worklog: pointer-gate unique-token count, a VIEW printed by c2_pointers.sh ("736 unique tokens")
+654	worklog: line number of G1f_antisymmetrizer_ranks_exact in c2_gift_certificates.py, a source-line pointer used to verify the ranks exemption
+999	worklog: the fabricated theorem total in the censusguard plant, quoted as the plant content; an error-by-design, not a claim
+424242	worklog: the fabricated bare count in the numeral-gate plant, quoted as the plant content; an error-by-design, not a claim

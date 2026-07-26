@@ -1,0 +1,31 @@
+PASS  i_squared_is_minus_one  — i^2 = -1
+PASS  normSq_mul / brahmagupta  — |zw|^2=|z|^2|w|^2 over [-3,3]^4
+PASS  live_mul_witness
+PASS  conj_mul
+PASS  normSq_eq_zero_iff
+PASS  no_zero_divisors  — brute [-5,5]^2 x [-5,5]^2
+PASS  pentagon_exactly_two  — pentagon holds exactly for [(-1, 0), (1, 0)] = {+1,-1}
+PASS  pentagon_iff_f_sq_one
+PASS  pent_classification_counted  — (=one,=f,=f^2)=(11,4,1); 11+4+1=16
+PASS  pent_nest_card
+PASS  hex_nest_8_of_16  — admissible=8/16
+PASS  norm_one_units  — normSq=1 exactly at [(-1, 0), (0, -1), (0, 1), (1, 0)]
+PASS  roomy_iff_boson_or_fermion  — roomy pairs = [((1, 0), (-1, 0)), ((1, 0), (1, 0))]
+PASS  the_roomy_world_has_exactly_two_particles  — exists-f roomy holds exactly for r in [(-1, 0), (1, 0)]
+PASS  capstone_count_two  — count=2, f pinned to one, r in {+-1}
+PASS  F6_reality_filter_is_load_bearing  — without conj r = r there are 4 pentagon&hexagon pairs (e.g. semions) -> filter genuinely cuts them
+PASS  M2_sq_eq_two_M  — M^2 = 2M for M = I - SWAP (m=2)
+PASS  M2_trace  — tr M = 2 = 2*2-2
+PASS  M2_rank_one  — rank(I-SWAP) at m=2 = 1 (M^2=2M, tr=2 => one eigenvalue 2 => rank 1; one antisymmetric mode = one Slater det). [my initial guess rank 2 was MY bug]
+PASS  census_nest_m2  — tri2+tri3 = 1+3 = 4 = 2*2
+PASS  F3_pauli_kill_is_just_commutativity  — x*y-y*x=0 for ALL x,y AND mul is commutative -> the 'exclusion' name has no content here
+PASS  ctrl_fake_mirror_fails  — fake mirror is NOT multiplicative
+PASS  ctrl_coordMul_differs
+PASS  ctrl_f_eq_i_fails_pentagon  — i is NOT a pentagon solution
+PASS  ctrl_semion_not_roomy  — semion passes pentagon+hexagon but fails reality filter -> not roomy
+PASS  ctrl_boson_no_exclusion  — boson +1 does NOT annihilate double occupation
+PASS  fermion_minus_one_kills  — fermion -1 DOES annihilate: (-1)+(+1)=0
+FAIL  PLANTED_headline  — planted: claim three particles (should FAIL)
+
+checks run: 28;  passed: 27;  failed: 1
+EXIT: 1

@@ -1,0 +1,250 @@
+# c2_pointers_exempt.txt — exemption record for audit/c2_pointers.sh
+# Format: <token><TAB><reason>. Reason is MANDATORY; the gate exits 1 on a
+# reasonless line. Elided hash pins are recorded as their hex prefix (or the
+# full hash where it is on record); the gate prefix-matches pins against
+# pure-hex entries here. Tokens are recorded WITHOUT the ellipsis character.
+#
+# -- Circle One artifacts (the sealed record) --
+PROOFS.md	circle-one artifact, lives in the sealed record — DECISION: ambiguous name; it exists in Circle One and is chartered as Circle Two's future proof ledger, but no C2 PROOFS.md exists in this tree yet, so today the pointer resolves to the sealed record; when the C2 file lands it resolves as a path and this entry retires
+HANDOFF.md	circle-one artifact, lives in the sealed record
+CLOSING.md	circle-one artifact, lives in the sealed record
+ROUND4.md	circle-one artifact, lives in the sealed record (Circle One's round ledger)
+ROUND7.md	circle-one artifact, lives in the sealed record (Circle One's round ledger)
+axioms.sh	circle-one artifact, lives in the sealed record (its C2 re-instantiation is REGISTER row 4, due with the first Lean delivery)
+audit/axioms.sh	circle-one artifact, lives in the sealed record (path in the Circle One tree)
+transcript.sh	circle-one artifact, lives in the sealed record
+audit/transcript.sh	circle-one artifact, lives in the sealed record (path in the Circle One tree)
+ship.sh	circle-one artifact, lives in the sealed record
+pointers.sh	circle-one artifact, lives in the sealed record (the C1 prose gate this script ports)
+views.sh	circle-one artifact, lives in the sealed record (prose gate, port pending)
+transcription.sh	circle-one artifact, lives in the sealed record (prose gate, port pending)
+numerals.sh	circle-one artifact, lives in the sealed record (prose gate, port pending)
+pointers	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8; the C2 port is this script)
+views	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8, port pending)
+transcription	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8, port pending)
+numerals	circle-one artifact, lives in the sealed record (prose-gate name in REGISTER row 8, port pending)
+the-workshop	circle-one artifact, lives in the sealed record (the Circle One private repository name)
+lean/	circle-one artifact, lives in the sealed record (directory in the Circle One tree)
+/home/claude/workshop	circle-one artifact, lives in the sealed record (the Circle One builder's machine-local layout, quoted in the handshake report)
+b82cf31	circle-one artifact, lives in the sealed record (Circle One record commit; sealed history, not in this repo's object store)
+499ebb8	circle-one artifact, lives in the sealed record (Circle One builder's last-pass commit; sealed history, not in this repo's object store)
+#
+# -- Lean toolchain vocabulary and pins (resolve in the toolchain, not this tree) --
+sorry	Lean 4 keyword (norm 10 prose); resolves in the toolchain, not this tree
+omega	Lean 4 tactic named in the charge; resolves in the toolchain, not this tree
+lake	Lean 4 build tool named in the norms; resolves in the toolchain, not this tree
+Classical.choice	Lean 4 library axiom named in the charge; resolves in the toolchain, not this tree
+.olean	Lean object-file extension; names a format, not a path in this tree
+leanprover/lean4:v4.32.0	pinned toolchain name (REGISTER row 3); resolves at the Lean release channel, not this tree
+release.lean-lang.org	external Lean release host named in the handshake report
+8c9756b2	Lean 4 v4.32.0 toolchain commit pin, quoted in the handshake report; lives in the lean4 repository, not this one
+x86_64-unknown-linux-gnu	platform triple in the handshake report; toolchain vocabulary, not a repo pointer
+sha256sum	POSIX tool named in the courier protocol; not a repo pointer
+#
+# -- Courier-side objects (pinned in the letters; live on Kelly's machine) --
+b8eea58	courier-line commit carrying the byte-original ROUND1-REPLY.md; grafted into the record at the reconciliation merge (now a merge parent; also resolves as a git object)
+claude/courier-circle-two-dulbsg	courier branch on Kelly's machine (reconciliation item 2); ferries next leg, not in this record yet
+ROUND1-REPLY.md	byte-original ferried at b8eea58 and landed at letters/ROUND1-REPLY.md in the reconciliation merge; the transcription letters/ROUND1-REPLY-handover.md is kept beside it, superseded per its own header
+letters/ROUND1-REPLY.md	the byte-original handover, landed here at the reconciliation merge (reconciliation item 2, now done); resolves as a file path
+circletworound1.zip	round-1 courier zip; transport artifact, hash pinned outside it (full fb3a1809… hash below)
+#
+# -- Courier-card local instructions (COURIER-CARD.md, grafted at the reconciliation merge) --
+Documents/the-workshop-circle-two	illustrative local extraction folder on the courier's machine (GitHub Desktop target, COURIER-CARD.md step 1), not a repo path — cf. /home/claude/workshop
+cd	POSIX shell builtin quoted in the courier's Git Bash setup (COURIER-CARD.md step 2), not a repo pointer — cf. sha256sum
+#
+# -- Artifact SHA-256 pins (full where on record, prefix where only the elided form ever reached this side) --
+c269c755037e40f5a26692e7d519eff0209674f991a02676d218e05584116ea2	SHA-256 pin: Circle One crate as received (README lineage)
+f4e74c0ab17be12908a1c9a4878e179f37f15ebaa88289f5981486e12356901d	SHA-256 pin: CHARTER.md as received, byte-verbatim (README lineage)
+db474c4c94f0aef8a47e6ed6c584c49ba505e30aeb1499424dfe056506023ea7	SHA-256 pin: certification instrument as originally couriered (README lineage)
+fb3a1809628f8a7e5da1c1b6a0d03342824a6cc661a2c920285b0a61968501b6	SHA-256 pin: circletworound1.zip (round-1 courier crate); full hash now on record in COURIER-CARD.md, grafted at the reconciliation merge — resolves the full literal and the elided fb3a1809…8501b6 form alike
+3a02fd1e	SHA-256 pin prefix: couriered ROUND1.md copy, byte-identity check in the handover audit
+b2841041	SHA-256 pin prefix: couriered handshake-report copy, byte-identity check in the handover audit
+a016099e	SHA-256 pin prefix: the revised certification instrument, as diffed in the handover audit
+fbcd0a0d	SHA-256 pin prefix: the round-1 close crate cut at 62d64bf (reconciliation letter)
+7d2f288298f283c9e55ad6016c1704037465bb4c053661897ab895af4c4f234c	SHA-256 pin: circletworound2.zip (round-2 crate at a19fb4c), ferried this leg; recorded in the round-2 handshake report
+c1d755f550d2381232a9b4837db8a490458f182c25a1deb34460b59ee4cadb71	SHA-256 pin: circletwogates.zip (the gate ports), ferried this leg with its pin in Kelly's message; recorded in the round-2 handshake report
+53bbdfb1dd00c028009903d5b21307b528f829182aa97947851c15cd70d34ae0	SHA-256 pin: the byte-original letters/ROUND1-REPLY.md, landed at the reconciliation merge; content hash measured on this side
+5361b0717868cbc0478d9fdee62a90fc904166e112386ce23b26832606d3ac48	SHA-256 pin: circletworound2-reconciled.zip — the reconciled crate at head e680475, ferried to the builder this round and verified exact on that side
+2771c801458ee9831b686c20178f7cfaed51e8d48255ea8ed84451a8dbf83c59	SHA-256 pin: letters/ROUND2-HANDSHAKE.md as couriered; the copy inside the reconciled crate hashes identically (measured on both sides)
+926b52d0811029f68bef91627f582140ea58bc539f42c25af076e25f6f2b7d66	SHA-256 pin: letters/ROUND2-VERIFICATION.md as couriered, pinned in Kelly's message and re-measured on receipt before commit
+#
+# -- Build-artifact patterns (c2_tree.sh vocabulary; name formats, not paths) --
+__pycache__/	Python bytecode cache directory name; a c2_tree.sh artifact PATTERN, not a path in this tree (cf. the .olean entry above)
+.pyc	compiled-Python extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.pyo	legacy optimized-Python extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.ilean	Lean incremental-info extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.lake/	Lean build directory name; c2_tree.sh artifact pattern — zero-imports forbids lake, so this never legitimately exists here
+.o	object-file extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.a	static-archive extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.so	shared-object extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+floor/__pycache__	the bytecode cache directory as TRACKED at a19fb4c (30 files); untracked at b4328b2 and ignored since — it resolves in history, not in the live tree, which is the whole point of the crop that created REGISTER row 10
+propext	Lean 4 core kernel axiom, reported by the axiom census; resolves in the toolchain, not this tree (cf. Classical.choice)
+Quot.sound	Lean 4 core kernel axiom, reported by the axiom census; resolves in the toolchain, not this tree
+sorryAx	Lean 4 core axiom marking a hole, the thing audit/c2_axioms.sh exists to find; resolves in the toolchain, not this tree
+decide	Lean 4 core tactic/term named in the proof ledger; resolves in the toolchain, not this tree (cf. omega)
+constructor	Lean 4 core tactic named in the proof ledger; resolves in the toolchain, not this tree
+deriving DecidableEq	Lean 4 core deriving handler named in the ledger's disclosure; toolchain vocabulary, not a repo pointer
+DecidableEq	Lean 4 core typeclass named in the ledger's disclosure; resolves in the toolchain, not this tree
+example	Lean 4 keyword for an anonymous declaration, named in REGISTER row 4's boundary; resolves in the toolchain, not this tree (cf. sorry, omega)
+#
+# -- Lean core lemma/tactic names quoted in the S1 ledger --
+simp	Lean 4 core tactic named in PROOFS.md and the file headers; resolves in the toolchain, not this tree (cf. omega, decide)
+Int.add_zero	Lean 4 core lemma named in PROOFS.md correction #2; resolves in the toolchain, not this tree
+Int.mul_one	Lean 4 core lemma named in PROOFS.md correction #2; resolves in the toolchain, not this tree
+Int.mul_assoc	Lean 4 core lemma named in PROOFS.md correction #2 as one of the nine removed as redundant; resolves in the toolchain, not this tree
+Int.neg_mul	Lean 4 core lemma named in PROOFS.md correction #2 as one of the nine removed as redundant; resolves in the toolchain, not this tree
+A.two	illustrative name in PROOFS.md correction #7, showing the two-namespace case rule (b2) used to over-accept; deliberately nonexistent — that is the point of the example
+error:	the literal grep pattern quoted in PROOFS.md correction #7 (the dead alarm in c2_axioms.sh); a search string, not a repo pointer
+control_split_factors_are_nonzero	SUPERSEDED theorem name, quoted in PROOFS.md correction #3 as the defect that was repaired; replaced by control_split_first_factor_is_nonzero and control_split_second_factor_is_nonzero — it resolves in history, not in the live tree
+3cb7be0684de4763b71b56ffc782db8084c80bb623df449a4edd0ed71ac577ea	SHA-256 pin: circletwo-s1.zip, the S1 delivery crate at head 6175827; verified exact on the builder's side
+c9b59768114cdf48c57a9e6ec194c551a1006ab04c81324bea2f4b4b57cdbe60	SHA-256 pin: letters/ROUND2-S1-DELIVERY.md as couriered; in-crate copy hashes identically
+f2a21f8445ff47a65263957d676026cc7b8a16803ca80ef22dbbbe7f0a284a7f	SHA-256 pin: PROOFS.md as couriered with the S1 delivery (the ledger's pre-S2 state)
+a7a515b031686ab80285001fd78f4a4c8cc40450909235c2590e5947d25634ae	SHA-256 pin: letters/ROUND2-S1-VERIFICATION.md as couriered, re-measured on receipt before commit
+9ae2dbd6	SHA-256 pin prefix: the builder's .olean for the S1 head — differs from this seat's 85f7a957..., which is the measurement that answered Q4 (cross-machine .olean reproducibility does NOT hold)
+Int.mul_emod	Lean 4 core lemma (a*b % n = (a%n)*(b%n) % n), the step that keeps S2's square-mod-4 proof free of nonlinear reasoning; resolves in the toolchain, not this tree
+Int.natAbs	Lean 4 core function, the descent's Nat measure; resolves in the toolchain, not this tree
+Int.neg_zero	Lean 4 core lemma, named in PROOFS.md correction #2's amendment as the tenth removed lemma the first count forgot; resolves in the toolchain, not this tree
+Nat	Lean 4 core type, named in S2's descent prose; resolves in the toolchain, not this tree (cf. Int usage throughout)
+Int.mul_eq_zero	Lean 4 core lemma (a*b = 0 iff a = 0 or b = 0), the last step of S2's domain chain; resolves in the toolchain, not this tree
+85f7a957	SHA-256 pin prefix: this seat's .olean for the S1 head (pre-S2), quoted in the Q4 answer as the half of the measurement that differs from the builder's 9ae2dbd6... — the pair is the evidence cross-machine .olean reproducibility fails
+4eb6105a3ae6dc863f238372e039b742e3fd51757517eb9e0f77a5bbd931d03e	SHA-256 pin: circletwo-s2.zip, the S2 delivery crate at head 20fedd6; verified exact on the builder's side
+e8f504474d8f3d60c148a8d90e5f54fd12c0bd10c05c5e9fd2f83fd23bef6b71	SHA-256 pin: letters/ROUND2-S2-DELIVERY.md as couriered
+ff18a72bddde1466b20dcece1c4872a2919514fb629668db2ff671123b7a014f	SHA-256 pin: PROOFS.md as couriered with the S2 delivery
+511fb865056c308f4f4ea7bec643b4e117539d41ab766c6e05a37ff9ae9145ca	SHA-256 pin: letters/ROUND2-S2-VERIFICATION.md — pinned HERE BY MEASUREMENT, because no pin rode in the courier's message on this leg; recorded so the next leg can compare
+528930e6085c91bdf4d2810c05a3ab3e5f09f58dafa2d5929eadd96bed8aa412	SHA-256 pin: circletwo-s3.zip, the S3 delivery crate at head 09f6fd7; verified exact on the builder's side
+cd85d5cbe22932760d00de3a442011d09440c4efe637296c51e8cdfb07197862	SHA-256 pin: letters/ROUND2-S3-DELIVERY.md as couriered
+f2f5b4687d048e20629c6671d8dff7dfaaa9266f30db7a5909e20b9d19000cf6	SHA-256 pin: PROOFS.md as couriered with the S3 delivery
+45c4760b1f671fa78ac6772bbe2fd74424bdb056b9dea0ae6ccf8b26fdb024ef	SHA-256 pin: letters/ROUND2-S3-VERIFICATION.md — pinned HERE BY MEASUREMENT; no pin rode in the courier's message on this leg either, the second consecutive leg it has been missing
+Int.natAbs_mul_self	Lean 4 core lemma (the cast identity bridging a*a to (a.natAbs)^2), the hinge of Q8's order-free route; resolves in the toolchain, not this tree
+8a3b1608833be5b7abf580e69f6aedd42b8e6f2e1e42d6ad6fbfdc6490e6870b	SHA-256 pin: circletwo-units.zip, the units crate at head 500c4fb; verified exact on the builder's side
+d72565f78829b94386b5407b27f058f95870ed8f1ef5e3d7b7dd9a2891ba0792	SHA-256 pin: letters/ROUND2-UNITS-DELIVERY.md as couriered
+162e85d820a56f01fa33b3ae6326703ef421be1b358d433e50fba05604536562	SHA-256 pin: VIEWS.md as couriered with the units delivery
+97bf3d340f1e2b2f5e75296ae15c439fe40637a33c5ab486849ef532ea9502ac	SHA-256 pin: lean/Zi.lean as couriered with the units delivery
+2bfe7bcebd2cb238decacb0a1a33658fc38e3fd124cb2be028ad6dcabdaac66a	SHA-256 pin: letters/ROUND2-UNITS-VERIFICATION.md — pinned HERE BY MEASUREMENT, the third consecutive leg with no pin in the courier's message
+control_nat_sq_sum_two_differs	SUPERSEDED theorem name, quoted in PROOFS.md correction E#2 and the builder's units verification as the decoration it convicted; replaced by control_nat_sq_sum_two_escapes_the_conclusion, which rules something out — it resolves in history, not in the live tree
+echo	POSIX shell builtin, named in PROOFS.md correction E#3 (the boundary sentence was a fixed `echo` in the renderer before it was derived); toolchain vocabulary, not a repo pointer (cf. cd, sha256sum)
+27e1bee983b8fb58a639fb69c9de6939cf85a961460364651e7fe63083954d24	SHA-256 pin: circletwo-repairs.zip at head 8ac4405; verified exact on the builder's side
+8b9249de4d2ddcd3c548970a897b597b75c74b516adf2ffdc02fded849fa08f3	SHA-256 pin: letters/ROUND2-REPAIRS-DELIVERY.md as couriered
+3c79f5102bd75ab1168e3ce7e48120f11224fabddee49db34b1c35e0f1d891ac	SHA-256 pin: VIEWS.md as couriered with the repairs delivery
+5dfac6da25ab192b5f9387c2a5f029e57383a0ac2a1152f20afc8c788c48e917	SHA-256 pin: lean/Zi.lean as couriered with the repairs delivery
+1910a0f9dbbbbd3b1b62338687a9bdca1e0de5fc3a91c57a975445e1a36afb36	SHA-256 pin: letters/ROUND2-REPAIRS-VERIFICATION.md — the FIRST leg in four where the pin rode in the courier's message; verified on receipt rather than measured after the fact
+89984cde026483ebdc825a7a55af73066af084cb421eb2feb7a95fff58c44829	SHA-256 pin: circletwo-s4.zip at head ff7ac7c; verified exact on the builder's side
+986020223c31d975ce1f3b07fea623e6f4d91fa3642e97bcb093e2b5aba3bb29	SHA-256 pin: letters/ROUND2-S4-DELIVERY.md as couriered
+75f3b88bed1a77691764631a1d576b0c1e1b59978d3ef33d5f89dd2460b3653e	SHA-256 pin: VIEWS.md as couriered with the S4 delivery
+8d155afaff5fc357a573ec913ed07bf38275e034c131de71a4ff60907da87650	SHA-256 pin: lean/Zi.lean as couriered with the S4 delivery
+HEAD	git's symbolic ref for the current commit, named in the letters when reporting that a blocked commit left it unmoved; resolves in git, not in this tree (cf. the commit-id entries above, which are objects rather than refs)
+d5f5044605f90a717c18e1bd8cb75a8b25e6ca555d960766862137f73517de4c	SHA-256 pin: circletwo-hex2.zip at head 21acd79; verified exact on the builder's side
+6331448a8e3ee8faa14314af6f3fd624e6298bcf3f86269a79e38ddb01381c40	SHA-256 pin: letters/ROUND2-HEX2-DELIVERY.md as couriered
+dd936a9846c65b38144fb84d9ce47cf6acd1a75f21151f8113026e4dbf5b3d18	SHA-256 pin: VIEWS.md as couriered with the second-hexagon delivery
+97c6a6cd18775f71d8824804704f6835ca12a08ba9a0f9b99044a73757556c6c	SHA-256 pin: lean/Zi.lean as couriered with the second-hexagon delivery
+rfl	core Lean: the reflexivity proof term, named where a definitional equality is the claim being made (Fs_eq_Fgen and the two pentagon-side lemmas); resolves in the toolchain, not in this tree
+Iff.rfl	core Lean: reflexivity for iff, named where genPentagon_slice_iff holds by definitional equality rather than by proof; resolves in the toolchain, not in this tree
+73a475f3	SHA-256 prefix: COURIER-CARD.md as pinned in the Circle One handover, quoted here as the specimen the numeral gate mis-read as a bare count; a pin fragment, not a tree object
+499ebb8	commit id: Circle One's final builder pass, quoted here as the second specimen of the same class-c8 defect; resolves in Circle One's repo, not this tree
+sed	POSIX tool name, named where the repair changes a sed rule order; resolves in the shell, not in this tree (cf. the decide/omega entries)
+gauged_symbol_is_Fs	RETIRED NAME: renamed to gauged_symbol_is_Fs_on_labels in the mirror crate (builder finding #6 — off the labels the claim is false, so the scope is content and belongs in the name). It survives in letters/ROUND2-SLICE-VERIFICATION.md and letters/ROUND2-SLICE-DELIVERY.md, which are couriered primary sources and are never edited. THE PRICE OF A RENAME, recorded rather than hidden: every frozen letter naming a theorem becomes a dead pointer the day it is renamed, and the exemption ledger is where that cost lands
+
+# =====================================================================
+# S7c (meta-auditor, REGISTER row 7) — experiment/** scope exemptions
+# SANCTIONED SCOPE DIVERGENCE from the predecessor's S7a-first plan:
+# Kelly chose "S7c+S7a (your rec)". These tokens live in experiment/**
+# prose now under scan. Each is a citation that is grounded but not to an
+# in-tree file/def/pin: a Lean stdlib name, an external tool, a git branch,
+# a courier/ephemeral artifact, a cross-reference to the front-door tree, a
+# historical name from a superseded sub-round, an evidentiary hash of an
+# artifact deliberately not in tree, or a prose-elision fragment. Grounded
+# citations were made to RESOLVE MECHANICALLY (experiment Lean harvest,
+# experiment pin ledger, doc-relative + experiment-relative paths); only the
+# genuinely-not-in-tree references remain here, each with its reason.
+# -- Lean stdlib / tactic vocabulary (real Lean, not an experiment decl) --
+sub_eq_add_neg	Lean core lemma name cited in a corrections letter; stdlib, not an experiment declaration
+have	Lean tactic keyword cited as prose (`have`); stdlib vocabulary
+by_cases	Lean tactic name cited as prose; stdlib vocabulary
+ring_nf	Lean tactic name cited as prose; stdlib vocabulary
+nlinarith	Lean tactic name cited as prose; stdlib vocabulary
+structure	Lean keyword cited as prose; stdlib vocabulary
+natAbs	Lean Int.natAbs field cited in prose; stdlib, not an experiment declaration
+Int.emod	Lean Int.emod cited in a corrections letter; stdlib, not an experiment declaration
+Nat.rec	Lean Nat.rec recursor cited in an axiom-census discussion; stdlib
+left/right_distrib	Lean distributivity lemma pair written with a slash shorthand; stdlib names, not one path
+iff	Lean `iff` connective / Iff cited as prose; stdlib vocabulary
+# -- external tools / library members (real, live outside the tree) --
+gh	GitHub CLI, an external tool cited in the GitHub-workflow prose
+grep	standard CLI tool cited in prose
+sha256	hash-algorithm name cited in prose (the tool is sha256sum, already exempt tree-wide)
+ask	the courier/agent `ask` action cited in workflow prose; not a tree artifact
+fractions.Fraction	Python stdlib member (fractions.Fraction) cited in the meta-verifier prose; external
+# -- git branches (real refs, not paths) --
+superninja/dual-seat-experiment-s1	git branch name (this experiment's S1 branch), a ref not a path
+superninja/dual-seat-round3	git branch name (this Round Three branch), a ref not a path
+irreducible-mystery/the-workshop-circle-two	GitHub owner/repo slug, a remote ref not a path
+# -- courier / ephemeral / machine paths (deliberately not in tree) --
+round3-handoff.zip	courier zip carrying this round's handoff; an ephemeral transport artifact, not tracked
+theworkshoprepo.zip	courier zip of the repo; ephemeral transport artifact, not tracked
+circletwos1.zip	courier zip (Circle Two S1 delivery); ephemeral transport artifact
+circletwos2.zip	courier zip (Circle Two S2 delivery); ephemeral transport artifact
+dual-seat-experiment-s3.zip	courier zip (S3 delivery); ephemeral transport artifact
+dual-seat-experiment-s4.zip	courier zip (S4 delivery); ephemeral transport artifact
+dual-seat-experiment-s5.zip	courier zip (S5 delivery); ephemeral transport artifact
+dual-seat-experiment-s6.zip	courier zip (S6 delivery); ephemeral transport artifact
+/workspace	sandbox machine path cited in a transcript quote; machine-absolute, never a tree path
+/tmp	sandbox machine path cited in prose; machine-absolute, never a tree path
+/workspace/experiment/	sandbox working-tree path cited in prose; machine-absolute, never a tree path
+__pycache__	Python bytecode cache dir cited in prose (it is pruned from scans by design); not a tracked path
+# -- cross-references to the front-door / main tree (not on this branch) --
+lean/Zi.lean	front-door tree's Lean wing, cited by the convergence reports comparing seats; not on this experiment branch
+lean/TRANSCRIPT.txt	front-door tree's compile transcript, cited by a convergence report; not on this branch
+VIEWS.md	front-door tree's rendered views file, cited by convergence prose; not on this branch
+workshop-canon/	the canon subtree, cited by experiment prose; sibling tree not under experiment/
+STATE-OF-THE-RECORD.md	front-door record doc cited by experiment prose; not on this branch
+ROUND2-S2-DELIVERY.md	round-2 delivery letter cited by experiment prose; not on this branch
+ROUND2-CLOSING-VERIFICATION.md	round-2 closing verification letter cited by experiment prose; not on this branch
+letters/ROUND2-CLOSING-VERIFICATION.md	same round-2 letter cited with a letters/ path; not on this branch
+ROUND2S2VERIFICATION.md	round-2 S2 verification letter (name written without hyphens in prose); not on this branch
+# -- historical names from superseded sub-rounds (document what a past version was called) --
+mul_left_cancel_grid	theorem name from an earlier sub-round, since renamed/removed; cited historically in CORRECTIONS-LETTER-S3
+negcontrol_mod5_splits	S2 verifier CHECK name (a string arg to check() in seatB/verify_zi_s2.py), cited by name in the S2 letter/report
+verify_theirs_s3	prose shorthand for experiment/convergence/mech/verify_theirs_s3.py (the .py suffix dropped in prose)
+courier/extract	prose shorthand for courier/extract_statements.py (name truncated at a word boundary in prose)
+_by_roomy_edict	fragment of a Lean proof-term phrase quoted in prose; not a standalone declaration
+_minus_one	prose fragment (a `..._minus_one` name written with the prefix elided); not a standalone declaration
+_neg_one	prose fragment (a `..._neg_one` name written with the prefix elided); not a standalone declaration
+# -- lhs/rhs slash-shorthand (two names joined by a slash in prose) --
+hexagon_forcing_lhs/rhs	the pair hexagon_forcing_lhs and hexagon_forcing_rhs written with a slash shorthand; two names, not one path
+pent_1111_lhs/rhs	the pair pent_1111_lhs and pent_1111_rhs written with a slash shorthand; two names, not one path
+# -- prose-elision fragments of real neighbouring files (shared-prefix shorthand) --
+_VIEWS.md	shorthand for their_r2close_VIEWS.md, written with the shared prefix elided beside its siblings
+_verification.md	shorthand for their_r2close_verification.md, written with the shared prefix elided beside its siblings
+_v2.txt	shorthand for Zi_statements_v2.txt, written with the shared prefix elided beside Zi_statements.txt
+# -- evidentiary hashes of artifacts deliberately not in tree (elided form; full form co-present in the same doc) --
+d3928c40	sha256 of a .olean build artifact (my build) recorded in CONVERGENCE-REPORT-S2 as divergence evidence; the .olean is a build product, not tracked; full hash co-present in the same doc
+854244ba	sha256 of their .olean per their ledger, recorded in CONVERGENCE-REPORT-S2 as divergence evidence; build product, not tracked; full hash co-present in the same doc
+80f88510	sha256 recorded in a convergence report as evidence of a build/artifact not tracked in this tree; full hash co-present in the same doc
+3d5ab812	sha256 recorded in a convergence report as evidence of an artifact not tracked in this tree; full hash co-present in the same doc
+ebd937b4	sha256 of Zi_statements_v4.txt PRE-crop, a superseded intermediate documented in SUBROUND3-REPORT; the pre-crop file was replaced by v4_final and is not tracked
+12ea1133	sha256 of courier/Zi_statements_v2.txt recorded in EXPERIMENT-REPORT provenance row; superseded intermediate, its pin documents history
+b37dd421	sha256 of courier/Zi_statements.txt (v1) recorded in EXPERIMENT-REPORT provenance row; superseded intermediate, its pin documents history
+c398c20d	sha256 recorded in a report as provenance of a superseded intermediate artifact not tracked
+6533e271	sha256 recorded in a report as provenance of a superseded intermediate artifact not tracked
+3a09a09a	tail fragment of an elided pin (3d5ab812~a09a08a style) captured by the scanner as a standalone hex run; part of an evidentiary hash, not a separate pin
+# -- S7c: tokens from the meta-auditor's own Round-3 prose (now under scan) --
+FileNotFoundError	Python builtin exception named in the meta-verifier's prose; stdlib, not a tree artifact
+PLANTED_headline	the plant marker string injected by verify_stranger.py --plant; a literal in the norm-16 plant, not a declaration
+diff	standard CLI tool named in prose
+let	Lean `let` keyword (the inline-let finding F1 quotes it); stdlib vocabulary
+roomy_pairs	a variable inside seatMETA/verify_stranger.py (roomy_pairs = sorted{...}), cited by name in the audit prose; a script-internal binding, not a def or file
+List	Lean/Python List type named in the statements-only findings; stdlib type, not a declaration
+workshop-canon/README.md	the canon README (the row-8 slip's home), a cross-reference to the sibling canon subtree, not under experiment/
+ecd63e1	a dangling git commit the worklog QUOTES as a finding; genuinely unreachable in a fresh clone (self-described "harmless pre-amend merge" in the round-2 record) — its unresolvability is the recorded fact, exempted as a documented-absent object
+# -- S7c: tokens from the meta-auditor's S7c corrections letter / design note --
+c2_gift_certificates.py:654	a file:line citation (the certificate's G1f ranks line); the file resolves, the :654 is a line pointer the pointer gate does not strip (that is the numeral gate's territory)
+c5b	the meta-auditor's label for the S7c line-citation stripper rule added to c2_numerals.sh/c2_views.sh; a rule name in the letter, not a tree artifact
+censusguard	the mode name of audit/c2_views.sh (sh c2_views.sh censusguard); a subcommand, cited in prose, not a standalone file
+sh	the POSIX shell, cited as the interpreter of the gate scripts; external tool
+# -- S7c: gate-name shorthands and format examples in SUBROUND7-REPORT --
+c2_axioms	shorthand for audit/c2_axioms.sh, the gate cited by its conceptual name in the report; the .sh file resolves, the bare name is prose
+c2_numerals	shorthand for audit/c2_numerals.sh, cited by conceptual name in the report
+c2_pointers	shorthand for audit/c2_pointers.sh, cited by conceptual name in the report
+c2_views	shorthand for audit/c2_views.sh, cited by conceptual name in the report
+c2_views/censusguard	the censusguard MODE of audit/c2_views.sh (invoked as `sh c2_views.sh censusguard`); a subcommand path in prose, not a file
+file.ext:line	a literal format example in the report describing the file:line citation shape the numeral stripper recognizes; not a path
