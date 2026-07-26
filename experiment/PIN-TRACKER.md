@@ -40,7 +40,7 @@ boundary bullet, scope prose) reproduced by measurement.
 | `convergence/mech/census_s3_cold.txt` | their repaired census, COLD (A1: no elan default, shown): PASS | `014543892af4` |
 | `convergence/mech/fable_s3_verification.md` | Fable's S3 letter (external reference) | `45c4760b1f67` |
 
-commit: (this commit)
+commit: `f24764d`
 
 ## Convergence S2 addendum — a conviction of my own report
 
