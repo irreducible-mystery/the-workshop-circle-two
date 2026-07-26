@@ -188,10 +188,17 @@ EVERY PLANT FIRED THIS SESSION — norm 16
       n2b: "The view had been rendering seventeen all along." appended
            -> named, exit 1; restored -> PASS.
     Before either plant it fired on the real tree, naming seven live
-    specimens across three documents; all seven were repaired rather than
-    exempted, and the rule needed exactly one labeled exemption to reach
-    green — an English "one rendered number" in a REGISTER row describing
-    its own norm-16 bite.
+    specimens across two documents (PROOFS.md and NORMS.md); all seven
+    were repaired rather than exempted. It also named one line in a third
+    document, REGISTER.md, which on reading was ordinary English — "one
+    rendered number", in the row describing its own norm-16 bite — and
+    that took the rule's single labeled exemption.
+
+    And it was measured against the two historical specimens rather than
+    argued about: it catches "twelve live instances" and does NOT catch
+    "tracks thirty-one compiled-bytecode files". One of two. The gate's
+    header says so; a first draft of that header said the rule covered
+    where every specimen had walked, which the measurement refuted.
 
   Plant B is worth one line of record: it confirms on THIS toolchain that
   an `omega` aimed at a conjunctive goal pulls Classical.choice — the trap

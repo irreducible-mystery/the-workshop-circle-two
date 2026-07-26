@@ -77,13 +77,28 @@
 #   matters: the MAIN gate above sees DIGITS only, and a spelled-out number
 #   ("thirty-one") is invisible to it. That door carried a real specimen in
 #   each of round 2's two halves and is scored in REGISTER row 8. Rule (n2)
-#   below now watches the part of that doorway where every specimen has
-#   actually walked -- spelled counts of RENDERED categories, in the
-#   CUMULATIVE record -- and it sees spelled and digit numbers alike. What
-#   is still invisible: a spelled number that is neither attached to a
-#   rendered category nor near the view vocabulary, anywhere; and any
-#   spelled number at all in a letter or a frozen primary source. Row 8
-#   stays open, with a smaller mouth.
+#   below watches ONE part of that doorway -- spelled or digit counts of
+#   RENDERED categories, in the CUMULATIVE record.
+#
+#   MEASURED AGAINST THE TWO SPECIMENS THE BOUNDARY WAS SCORED ON, because
+#   a first draft of this paragraph claimed the rule watched "the part of
+#   the doorway where every specimen has actually walked" and that was
+#   false:
+#     "twelve live instances"            -> CAUGHT (n2a).
+#     "tracks thirty-one compiled-       -> NOT CAUGHT, twice over: it
+#      bytecode files"                      lives in a letter, which is
+#                                           out of territory by design,
+#                                           and "compiled-bytecode files"
+#                                           is not a rendered category, so
+#                                           it would escape in territory
+#                                           too.
+#   Both measured by planting them and reading the exit code, not by
+#   reasoning about the regex. One of two. The door is NARROWER; it is not
+#   narrow, and this header is not allowed to say it is.
+#
+#   Also still invisible: a spelled number attached to no rendered category
+#   and standing near no view word, anywhere; and any spelled number at all
+#   in a letter or a frozen primary source. Row 8 stays open.
 #
 #   (An earlier version of this header, and the first draft of the sentence
 #   above, both cited "REGISTER row 9". Row 9 is multi-seat workflow

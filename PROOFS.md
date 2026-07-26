@@ -907,6 +907,21 @@ correction is here, per norm 13. **The structural proposal is built**: rule
 categories in the cumulative record, with its territory, its two rules and
 its remaining blind spots declared in the gate's own header.
 
+**#1a — MY OWN, found by measuring the gate I had just written.** The new
+rule's header claimed it "watches the part of that doorway where every
+specimen has actually walked". I then planted the two specimens the
+boundary was actually scored on. It catches "twelve live instances". It
+does NOT catch "tracks thirty-one compiled-bytecode files" — that one
+lives in a letter, out of territory by design, and its noun is not a
+rendered category, so it would escape in territory too. **One of two**,
+and the sentence claiming otherwise was written in the same hour as the
+gate, which is the shape that has convicted this file four times: a claim
+about an instrument, written by the hand that built it, before anything
+was measured. Repaired in the gate's header, which now carries the two
+plants and their verdicts, and in the transcript. The habit that caught
+it is the only part worth keeping: after writing a declaration, plant the
+cases the declaration is about.
+
 **#2 — "qualified in all three sites": two, and the third cannot be
 repaired.** Confirmed; repaired in the H#2 block above, which now states
 the boundary instead of the completion.
