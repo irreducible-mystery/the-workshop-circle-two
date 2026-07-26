@@ -14,12 +14,12 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 | artifact | what | sha256 (short) |
 |---|---|---|
-| `README.md` | experiment front-door pointer | _(at ship)_ |
-| `HANDOFF-ROUND3.md` | full continuity doc: Phase 0 verification, stranger protocol, trap ledger, S7 charge menu, sealed GitHub section | _(at ship)_ |
-| `ROUND3-BOOTSTRAP-PROMPT.md` | paste-ready first message for the fresh instance | _(at ship)_ |
+| `README.md` | experiment front-door pointer | `1367df4b19d6` |
+| `HANDOFF-ROUND3.md` | full continuity doc: Phase 0 verification, stranger protocol, trap ledger, S7 charge menu, sealed GitHub section | `537899224955` |
+| `ROUND3-BOOTSTRAP-PROMPT.md` | paste-ready first message for the fresh instance | `5b587c210a24` |
 | `round3-handoff.zip` | self-contained handoff (experiment + workshop-canon incl. bench + certificates), 121 files | `2c3f8ffb1965` |
 
-commit: _(at ship)_
+commit: `e7af3ab`
 
 ## Closing artifacts
 
