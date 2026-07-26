@@ -12,12 +12,12 @@ so. Opened at round 2 with S1.*
 
 ```
 source     lean/Zi.lean
-           410d91dcb224d7e88a7feffd35fe1d76e8a7d1931cd7cf56e4b8a5ed5ec2a4ad
+           71cc55d54af8d772f71e07f324b579c3aa71608fc57fc13b8323135c04790cc0
 toolchain  lean/lean-toolchain  -> leanprover/lean4:v4.32.0
            2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 measured   Lean (version 4.32.0, x86_64-unknown-linux-gnu,
            commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-olean      854244ba92079b31bae4b31adce61c9204b71eb456c2c685585fb93873a0e295
+olean      6533e27153c3f1b51a6ec33248afea83121c7b406f8770f9b2ced8fc6d66709f
            (not committed — a build artifact; audit/c2_tree.sh exits 1 on
             a tracked .olean. Byte-reproducible across builds on this
             machine. Cross-machine reproducibility is now measured FALSE —
@@ -34,13 +34,16 @@ first coordinate, `z · conj(z) = (N(z), 0)`, and N multiplicative by
 Brahmagupta–Fibonacci as a ring identity. All delivered.
 
 ```
-compile   lean lean/Zi.lean   exit 0, 0 bytes, 1.8s   (the pass condition)
-census    76 theorems = 24 axiom-free + 52 rest
-          of the 52:  40 propext alone,  12 propext + Quot.sound
+compile   lean lean/Zi.lean   exit 0, 0 bytes, 1.6s   (the pass condition)
+census    115 theorems = 34 axiom-free + 81 rest
+          of the 81:  64 propext alone,  17 propext + Quot.sound
           sorryAx 0,  Classical.choice 0
-size      593 lines, 11 definitions, zero imports, no sorry of either kind
-shape     12 live instances, 12 control theorems, 21 decide-settled proofs
-          S1 contributes 54 theorems; S2 adds 22
+          the 17 Quot.sound carriers are now NAMED by the census itself
+          (the builder's crop #6: counting without naming makes the
+          reader take the count on faith)
+size      929 lines, 15 definitions, zero imports, no sorry of either kind
+shape     17 live instances, 16 control theorems, 28 decide-settled proofs
+          S1 contributes 54 theorems; S2 adds 22; S3 adds 39
 ```
 
 The three census parts sum to the whole. A census whose parts do not sum
@@ -106,10 +109,14 @@ the reason it is not taken given.
 
 | family | theorems | certificate check |
 |---|---|---|
-| squares mod 4 | `sq_mod_four`, `sq_mod_four_zero_of_even`, `sq_mod_four_one_of_odd` | `G2_squares_mod_4` (nest 4) |
+| squares mod 4 | `sq_mod_four` | `G2_squares_mod_4` (nest 4) — its tested boolean is the SET fact `{(x*x)%4} = {0,1}` |
+| the even/odd refinement | `sq_mod_four_zero_of_even`, `sq_mod_four_one_of_odd` | **none.** `G2_squares_mod_4` states `0,2 -> 0; 1,3 -> 1` only in its printed message, not its boolean — see the builder's crop #5 |
 | the sixteen cases, split in two | `re_even_of_norm_mod_four`, `im_even_of_norm_mod_four` | `G2_16_case_decide` (nest 16) |
-| **the mandatory mod-2 control** | `control_mod_two_insufficient`, `control_mod_four_rejects_odd_pair` | `G2_control_mod2_insufficient` |
-| the descent | `norm_quarters`, `natAbs_two_mul`, `descent_bound`, `norm_zero_forces_zero`, `norm_ne_zero_of_ne_zero` | `G2_descent_step_strictly_decreases`, `G2_norm_zero_forces_zero` |
+| **the mandatory mod-2 control** | `control_mod_two_insufficient` | `G2_control_mod2_insufficient` |
+| the mod-4 rejection of the same pair | `control_mod_four_rejects_odd_pair` | `G2_16_case_decide` — the mod-2 check's boolean is purely mod 2 and licenses nothing about modulus 4; see the builder's crop #4 |
+| the descent measure | `natAbs_two_mul`, `descent_bound` | `G2_descent_step_strictly_decreases` — it tests the measure inequality on a box, and nothing else |
+| the quartering identity | `norm_quarters` | **none.** The quartering appears in no tested boolean; kernel-licensed only — see the builder's crop #3 |
+| the descent's conclusion | `norm_zero_forces_zero`, `norm_ne_zero_of_ne_zero` | `G2_norm_zero_forces_zero` |
 | torsion-freeness and the scalar action | `scalar_is_mul`, `torsion_free` | `G2_torsion_free` |
 | **the chain: Z[i] is a domain** | `no_zero_divisors`, `mul_eq_zero_iff` | `G2_no_zero_divisors_box` |
 | S2 live instances | `live_9` … `live_12` | norm 3 |
@@ -141,6 +148,52 @@ the split ring, where `conj(z)·z` is not the norm.
 **What S2 does not prove.** Nothing about the pentagon, and nothing about
 exactly-two. `mul_eq_zero_iff` is stated in the shape S3 will consume, and
 that is the only forward reference.
+
+## S3 — pentagon necessity, and exactly two IN THE SLICE: DELIVERED
+
+Thirty-nine theorems. The pentagon's sixteen instances are classified in
+the kernel, the one that forces is isolated, and the two roots are forced
+through S2's domain.
+
+| family | theorems | certificate check |
+|---|---|---|
+| the F-symbol and the pentagon's two sides | `Fs`, `pentLhs`, `pentRhs` (definitions) | index conventions from the bench, cited by line |
+| the fifteen non-forcing instances | `pent_0000` … `pent_1110` | `G1a_pentagon_16_instances_classified` — eleven read 1 = 1, four read f = f |
+| the one that forces | `pent_1111_lhs`, `pent_1111_rhs` | `G1a_forcing_instance_is_1111_f2_eq_1` |
+| pentagon ⟺ f² = 1 | `pentagonHolds`, `pentagon_forces_sq`, `sq_gives_pentagon`, `pentagon_iff_sq` | both directions proved; the reverse is what makes the forward one content |
+| the factorization | `factor_sq_sub_one` | `G3a_factorization_symbolic` |
+| the algebra it needs | `sub_eq_zero_iff`, `add_eq_zero_iff_eq_neg` | kernel-licensed |
+| **exactly two** | `exactly_two_roots`, `one_ne_neg_one` | `G3a_both_roots_land`; the "no third root" is S2's `mul_eq_zero_iff` |
+| anti-vacuity: both roots really satisfy the pentagon | `pentagon_holds_at_one`, `pentagon_holds_at_neg_one` | norm 3 |
+| **mandatory control: Z/8** | `control_Z8_has_four_roots`, `control_Z8_other_four_are_not_roots` | `G3a_control_Z8_four_roots` |
+| **mandatory control: f = i** | `control_f_eq_I_fails_pentagon`, `control_I_is_not_a_root` | `G1a_control_f_eq_i_fails_pentagon` |
+| the slice, made machine-visible | `Fs_normalized_off_111`, `Fs_one_of_zero_label`, `exactly_two_in_the_slice` | see Q7 below |
+| S3 live instances | `live_13` … `live_17` | norm 3 |
+
+**The classification, reproduced before it was formalised.** Computing the
+sixteen instances from the bench's own plumbing gives eleven reading
+`1 = 1`, four reading `f = f`, and exactly one forcing — at `(1,1,1,1)`,
+where the left side is `f²` and the right side is `1`. That matches the
+certificate exactly, and the fifteen non-forcing instances are theorems
+holding for **every** `f`, with no hypothesis at all.
+
+**Why the two controls matter.** Z/8's four roots say exactly-two is a
+*domain* theorem, not arithmetic luck — the same equation, a different
+ring, twice as many answers. And `f = i` is rejected: `i² = −1 ≠ 1`, so
+the pentagon really does exclude something.
+
+**Q7, answered honestly and in the kernel.** The every-class-meets-the-
+slice lemma is **not proved this round.** Rather than carry that in prose,
+the scope now lives in the statements: `Fs_normalized_off_111` proves the
+family lies in the normalized slice, and the headline is named
+`exactly_two_in_the_slice`. Nothing in this delivery writes
+`H³(Z₂) = Z₂`, and nothing may upgrade the headline until the lemma
+exists. Where it stalls, precisely: the natural route needs the units of
+Z[i] classified as `{±1, ±i}`, and the order-free half of that (ruling out
+`N(u) = −1` by squares mod 4) I have; the other half (`a² + b² = 1` forces
+a unit coordinate) wants either `Int`'s order or a second descent, and I
+would rather ask than smuggle an order into a circle that just spent a
+section avoiding one. That question is Q8.
 
 ## Corrections — loudest first
 
@@ -317,6 +370,67 @@ the dependency is real. Fixed: the census now copies the repo's
 instrument. Re-bitten after the change on both plants (`sorryAx`,
 conjunctive-`omega`), per norm 16.
 
+## Corrections — the builder's S2 pass, nine more
+
+*Three seats again, every finding re-measured here before repair. All nine
+reproduce. Two were already known to the builder before it audited; seven
+were not.*
+
+**C#1 — the ledger delivered S2 and, three sections above, denied it.**
+"Nothing here proves S2. No theorem in this file states that Z[i] has no
+zero divisors. That is next round's charge" — while `no_zero_divisors`
+stood in the same file and the S2 section said DELIVERED. True when
+written; nobody re-read it. A stale label in the section named "Honest
+labels", contradicting its own document two hundred lines away. The
+sharpest specimen this circle has produced, and it cost nothing but a
+re-read that never happened. Repaired, and the bullet now states what the
+boundary actually is (S3's slice lemma).
+
+**C#2 — my portability fix did not fix the condition it named, and its
+falsifier was never run.** The census copied the repo's `lean-toolchain`
+beside the generated file — but ran `lean` from the repo root, and a
+toolchain manager resolves the pin from the **working directory**, not the
+source file's location. So the pin travelled and was never read. Worse:
+"re-bitten on both plants, per norm 16" re-bit the *plants*, not the
+*portability condition* — the falsifier that mattered was never run,
+because this container has no toolchain manager at all and its absence
+masked the defect. Norm 14's exact species, inside a sentence about norm
+16. **Repaired properly and falsified for real:** the compile now happens
+inside the temp directory, and I built a wrapper that behaves like a
+manager with no default configured. Before the fix, that wrapper makes the
+census fail with `no default toolchain configured`, exit 1; after it, the
+census PASSES. Both plants re-bitten under the wrapper too.
+
+**C#3, C#4, C#5 — three more miscitations, exactly where my own prediction
+pointed.** The descent row cited two checks for `norm_quarters`, whose
+quartering identity appears in no tested boolean; the mod-2 control row
+cited `G2_control_mod2_insufficient` for `control_mod_four_rejects_odd_pair`,
+though that check's boolean is purely mod 2; and the squares row cited
+`G2_squares_mod_4` for the even→0 / odd→1 refinement, which lives only in
+its printed message. All three verified here by reading the check bodies.
+The S2 table now splits those rows and says, in each case, what is
+certified and what is kernel-licensed only. **My prediction, scored
+CONFIRMED one crate after I offered it — against my own delivery.**
+
+**C#6 — "the census names every one" — it named two.** The instrument
+named offenders only for the two fatal findings; twelve `Quot.sound`
+carriers were counted and none was named, while the file header cited the
+census for per-theorem answers it did not print. Repaired in the
+instrument rather than the prose: the census now prints every
+`Quot.sound` carrier by name. Seventeen, at this head.
+
+**C#7 — the size was off by one, in two documents.** "593 lines"; the
+artifact measured 594. Repaired.
+
+**C#8 — the `DecidableEq` disclosure pointed at the wrong correction**
+(#3, the half-control repair) across three commits. Its homes are ruling
+Q1 and correction #5. Repaired.
+
+**C#9 — and a second site of the builder's own B#2**, found here while
+repairing: `lean/Zi.lean`'s simp-set comment also said "nine more",
+carrying the same forgotten `Int.neg_zero`. Enumerated per norm 13 and
+fixed in both places.
+
 ## Honest labels — the boundaries of this delivery
 
 - **What the kernel checked is what the file says, not what the charge
@@ -335,9 +449,18 @@ conjunctive-`omega`), per norm 16.
   a conjunctive goal.
 - **The `.olean` hash is same-machine reproducible**, measured; nothing
   stronger is claimed.
-- **Nothing here proves S2.** No theorem in this file states that Z[i] has
-  no zero divisors. That is next round's charge, and
-  `control_split_has_zero_divisors` is why it is a real theorem.
+- **S2 is proved, and this line used to deny it.** Until the S2 delivery
+  this bullet read "Nothing here proves S2. No theorem in this file states
+  that Z[i] has no zero divisors. That is next round's charge." It was true
+  when written and nobody re-read it: `no_zero_divisors` now stands in the
+  same file, and the S2 section two hundred lines above says DELIVERED. A
+  stale label — norm 6's oldest species — inside the section named "Honest
+  labels", contradicting its own document at a distance. The builder's pass
+  caught it; it is the sharpest specimen this circle has produced, and it
+  cost nothing but a re-read that never happened. What the boundary is
+  *now*: nothing here proves **S3**. No theorem in this file states that
+  the pentagon forces `f² = 1`, and `mul_eq_zero_iff` is the only forward
+  reference — stated in the shape S3 consumes.
 - **The audit that produced the corrections above is itself a new
   instrument**, and its first outputs were treated accordingly: every
   finding had to be reproduced by an independent seat, and I re-measured

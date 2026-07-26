@@ -1,4 +1,4 @@
-CIRCLE TWO — S1 + S2 COMPILE TRANSCRIPT
+CIRCLE TWO — S1 + S2 + S3 COMPILE TRANSCRIPT
 ==================================================================
 Everything below was produced by an instrument on this machine this
 session. Wall-times are recorded and never load-bearing.
@@ -33,8 +33,8 @@ THE COMPILE — the pass condition is silence
   command : lean lean/Zi.lean
   exit    : 0
   bytes   : 0          <-- norm 10: exit 0 AND zero bytes, both measured
-  time    : 1.8s       (S1 + S2 together; the builder measured 29.8s for
-                        S1 alone on its container — wall-times are
+  time    : 1.6s       (S1 + S2 + S3 together; the builder measured 29.8s
+                        for S1 alone on its container — wall-times are
                         recorded and never load-bearing)
 
   Silence here is earned rather than configured: no linter is disabled
@@ -56,12 +56,12 @@ THE COMPILE — the pass condition is silence
 
 THE ARTIFACT
   sha256  lean/Zi.lean
-          410d91dcb224d7e88a7feffd35fe1d76e8a7d1931cd7cf56e4b8a5ed5ec2a4ad
+          71cc55d54af8d772f71e07f324b579c3aa71608fc57fc13b8323135c04790cc0
   sha256  lean/lean-toolchain
           2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
   .olean, produced by `lean -o Zi.olean lean/Zi.lean`:
-  sha256  854244ba92079b31bae4b31adce61c9204b71eb456c2c685585fb93873a0e295
+  sha256  6533e27153c3f1b51a6ec33248afea83121c7b406f8770f9b2ced8fc6d66709f
 
   REPRODUCIBILITY, measured twice, in both directions:
     SAME machine, two builds from the same source -> BYTE-IDENTICAL.
@@ -80,20 +80,21 @@ THE ARTIFACT
 
 THE CENSUS — audit/c2_axioms.sh, this tree, this toolchain
   file                   theorems   axiom-free       rest
-  Zi                           76           24         52
+  Zi                          115           34         81
   ------------------------------------------------------------
-  TOTAL                        76           24         52
+  TOTAL                       115           34         81
   sorryAx                       0
   Classical.choice              0
   RESULT: PASS
 
-  The 52 "rest", broken out by an independent per-theorem probe (the file
+  The 81 "rest", broken out by an independent per-theorem probe (the file
   plus one `#print axioms` query per theorem, compiled under the same pin):
-    40  [propext]
-    12  [propext, Quot.sound]  -- two in S1 (brahmagupta_fibonacci,
-                                  norm_mul) and ten in S2's descent, where
-                                  omega does most of the linear work
-  and 24 + 40 + 12 = 76, the whole. Neither propext nor Quot.sound is a
+    64  [propext]
+    17  [propext, Quot.sound]  -- two in S1, ten in S2's descent, five in
+                                  S3; omega does the linear work
+  and 34 + 64 + 17 = 115, the whole. The census now NAMES all seventeen
+  Quot.sound carriers, not just the two fatal classes -- it used to count
+  them and name none, which is the builder's crop #6. Neither propext nor Quot.sound is a
   defect; the census reports them rather than judging them. The two
   findings it DOES judge are both zero.
 
@@ -132,6 +133,19 @@ EVERY PLANT FIRED THIS SESSION — norm 16
     delivery produces) — both FAIL, exit 1, then PASS on restore.
   The certificate: the stale "0.53" re-introduced into the bench docstring
     -> G1h_docstring_carries_exact_4 FAIL, exit 1, restored byte-identical.
+  THE PORTABILITY FALSIFIER, run for real this time (the builder's crop
+    #2: the first fix copied the pin but kept compiling from the repo root,
+    so the pin travelled and was never read; and the falsifier that
+    mattered was never run, because this container has no toolchain manager
+    and its absence masked the defect -- norm 14's exact species inside a
+    sentence about norm 16). A wrapper standing in for a manager with NO
+    default configured:
+      BEFORE the real fix -> CENSUS ERROR ... error: no default toolchain
+        configured, RESULT: FAIL, exit 1.
+      AFTER  the real fix (compile from inside the temp directory, where
+        the pin lives) -> RESULT: PASS, exit 0.
+    Both plants re-bitten under that wrapper as well: sorryAx exit 1,
+    conjunctive-omega exit 1, clean tree PASS between them.
   The census AGAIN, after the builder's portability fix (it now copies the
     repo's lean-toolchain beside the generated query file, so the pin
     travels with the instrument instead of depending on the machine's elan

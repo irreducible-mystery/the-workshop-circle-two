@@ -52,9 +52,15 @@
 #
 # USAGE
 #   sh audit/c2_axioms.sh              (uses `lean` from PATH)
-#   The query copy is compiled beside a copy of the repo's lean-toolchain, so
-#   the pin travels with the census instead of depending on the machine's
-#   default. LEAN=<abs path> bypasses PATH resolution entirely.
+#   The query copy is compiled INSIDE a temp directory holding a copy of the
+#   repo's lean-toolchain, so a toolchain manager resolving the pin from the
+#   working directory finds the record's pin rather than the machine's
+#   default. Copying the pin is necessary but not sufficient — the compile
+#   must happen there too. LEAN=<abs path> bypasses PATH resolution entirely.
+#   FALSIFIER (norm 14, and it must actually be run): invoke this script with
+#   a `lean` that has no default toolchain configured. Before the compile-from-
+#   inside fix the census failed with "no default toolchain configured"; after
+#   it, the census PASSES.
 #   LEAN=/path/to/lean sh audit/c2_axioms.sh
 #   C2_LEAN_DIR=lean sh audit/c2_axioms.sh    (default: the repo's lean/)
 
@@ -64,6 +70,15 @@ cd "$ROOT" || exit 2
 
 LEANBIN=${LEAN:-lean}
 LEANDIR=${C2_LEAN_DIR:-lean}
+
+# Resolve the binary to an absolute path now: the query copy is compiled from
+# inside the temp directory (see below), and a relative LEANBIN would not
+# survive that `cd`.
+case $LEANBIN in
+    /*) : ;;
+    *)  _resolved=$(command -v "$LEANBIN" 2>/dev/null)
+        [ -n "$_resolved" ] && LEANBIN=$_resolved ;;
+esac
 
 command -v "$LEANBIN" >/dev/null 2>&1 || {
     echo "c2_axioms: no Lean binary — set LEAN=/path/to/lean" >&2
@@ -162,7 +177,15 @@ for f in $files; do
         fi
     done
 
-    out=$("$LEANBIN" "$gen" 2>&1)
+    # Compile FROM INSIDE the temp directory. elan resolves lean-toolchain
+    # from the WORKING DIRECTORY and its parents, not from the source file's
+    # location — so copying the pin beside the file (above) is necessary but
+    # NOT sufficient; the compile has to happen there too. The first version
+    # of this fix copied the pin and kept compiling from the repo root, which
+    # left the pin travelling and never read. Caught by the builder's pass,
+    # after its own falsifier (run with no elan default) was never run here —
+    # norm 14's exact species, inside a repair about norm 16.
+    out=$(cd "$WORK" && "$LEANBIN" "$base.lean" 2>&1)
     # a compile error in the generated copy is a census failure, loudly
     if printf '%s' "$out" | grep -qE 'error[:(]'; then
         echo "CENSUS ERROR in $f — the generated copy did not compile:"
@@ -185,6 +208,16 @@ for f in $files; do
     fi
     if [ "$n_choice" -gt 0 ]; then
         printf '%s\n' "$out" | grep 'Classical.choice' | sed 's/^/    CHOICE: /'
+    fi
+    # Name the Quot.sound carriers too. They are NOT defects — the contract
+    # above says so — but an earlier delivery counted twelve of them and no
+    # shipped document named one, while the file header cited this census for
+    # "per-theorem answers" it did not print. A census that counts without
+    # naming makes the reader take the count on faith, which is the thing
+    # this house does not do. Found by the builder's pass (its crop #6).
+    n_quot=$(printf '%s\n' "$out" | grep -c 'Quot.sound')
+    if [ "$n_quot" -gt 0 ]; then
+        printf '%s\n' "$out" | grep 'Quot.sound' | sed 's/^/    quot: /'
     fi
 
     tot_thm=$((tot_thm + n_thm)); tot_free=$((tot_free + n_free))
