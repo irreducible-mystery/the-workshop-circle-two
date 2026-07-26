@@ -64,3 +64,6 @@ fbcd0a0d	SHA-256 pin prefix: the round-1 close crate cut at 62d64bf (reconciliat
 7d2f288298f283c9e55ad6016c1704037465bb4c053661897ab895af4c4f234c	SHA-256 pin: circletworound2.zip (round-2 crate at a19fb4c), ferried this leg; recorded in the round-2 handshake report
 c1d755f550d2381232a9b4837db8a490458f182c25a1deb34460b59ee4cadb71	SHA-256 pin: circletwogates.zip (the gate ports), ferried this leg with its pin in Kelly's message; recorded in the round-2 handshake report
 53bbdfb1dd00c028009903d5b21307b528f829182aa97947851c15cd70d34ae0	SHA-256 pin: the byte-original letters/ROUND1-REPLY.md, landed at the reconciliation merge; content hash measured on this side
+5361b0717868cbc0478d9fdee62a90fc904166e112386ce23b26832606d3ac48	SHA-256 pin: circletworound2-reconciled.zip — the reconciled crate at head e680475, ferried to the builder this round and verified exact on that side
+2771c801458ee9831b686c20178f7cfaed51e8d48255ea8ed84451a8dbf83c59	SHA-256 pin: letters/ROUND2-HANDSHAKE.md as couriered; the copy inside the reconciled crate hashes identically (measured on both sides)
+926b52d0811029f68bef91627f582140ea58bc539f42c25af076e25f6f2b7d66	SHA-256 pin: letters/ROUND2-VERIFICATION.md as couriered, pinned in Kelly's message and re-measured on receipt before commit
