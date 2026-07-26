@@ -31,7 +31,7 @@ their open Q4 answered negative (.olean not cross-machine reproducible).
 | `convergence/mech/their_census_on_mine.txt` | their census on my file: 161/161, 68 free, 0/0 PASS | `f94cdc2710e7` |
 | `convergence/mech/compile_out.txt` | their file on my pinned toolchain: silent, 0 bytes | (empty file) |
 
-commit: (this ship)
+commit: `8d0cdcb`
 
 ## Round Three continuity
 
