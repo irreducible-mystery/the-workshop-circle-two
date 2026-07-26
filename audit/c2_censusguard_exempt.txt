@@ -1,0 +1,4 @@
+# audit/c2_censusguard_exempt.txt — labeled exemptions for the artifact-prose
+# census guard in audit/c2_views.sh.  One entry per line: <token><TAB><reason>.
+# A line with no TAB-separated reason FAILS the gate.
+nest 16	the pentagon label nest |(Z/4)^2| = 16, a mathematical constant certified in audit/c2_gift_certificates.py and reproved in the kernel at the sixteen pent_* instances; not a census row, and phrase-scoped so that "16 theorems" inherits no licence

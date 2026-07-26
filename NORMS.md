@@ -153,11 +153,19 @@ sentence written in anticipation of a theorem.
 the record points, the view counts.** Proposed by the builder in the
 second-hexagon verification and adopted here. Norm 18 stopped the record
 from carrying plans; this stops it carrying duplicates. The specimen: the
-ledger said a section held "Twelve theorems" when it held nine and the
-view had been rendering nine all along — and it passed the numeral gate
+ledger said a section held "Twelve theorems" when the view had been
+rendering the true figure all along — and it passed the numeral gate
 because it was spelled in letters, through a door that gate's own
 declaration says is open. That is the SECOND time the word "twelve" has
 walked through it; the first was "twelve live instances", one of the four
 stale counts that bought the renderer in the first place. Duplication is
 where staleness lives, and a rendered number duplicated by hand is a
 rendered number waiting to go stale.
+
+*This paragraph is itself a repair, and the defect is the sharpest thing
+in the norm's favour: the first version of this text convicted the ledger
+and then stated the true count twice, in the sentence adopting the rule
+against stating it. A rule written beside its own warm specimen wrote the
+specimen into itself. The builder caught it, the numeral gate's new rule
+(n2) now catches it, and the count it wanted to name is where it belongs —
+in `VIEWS.md`.*

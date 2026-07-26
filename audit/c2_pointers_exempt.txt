@@ -137,3 +137,5 @@ d5f5044605f90a717c18e1bd8cb75a8b25e6ca555d960766862137f73517de4c	SHA-256 pin: ci
 6331448a8e3ee8faa14314af6f3fd624e6298bcf3f86269a79e38ddb01381c40	SHA-256 pin: letters/ROUND2-HEX2-DELIVERY.md as couriered
 dd936a9846c65b38144fb84d9ce47cf6acd1a75f21151f8113026e4dbf5b3d18	SHA-256 pin: VIEWS.md as couriered with the second-hexagon delivery
 97c6a6cd18775f71d8824804704f6835ca12a08ba9a0f9b99044a73757556c6c	SHA-256 pin: lean/Zi.lean as couriered with the second-hexagon delivery
+rfl	core Lean: the reflexivity proof term, named where a definitional equality is the claim being made (Fs_eq_Fgen and the two pentagon-side lemmas); resolves in the toolchain, not in this tree
+Iff.rfl	core Lean: reflexivity for iff, named where genPentagon_slice_iff holds by definitional equality rather than by proof; resolves in the toolchain, not in this tree

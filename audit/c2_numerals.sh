@@ -29,7 +29,9 @@
 #       (quotations -- discussing a value is not asserting it; Circle One's
 #       graduation lesson: quoting history cannot defuse a fresh BARE count,
 #       which still fails);
-#     - spelled-out numbers ("sixteen specimens", "twenty-two seats");
+#     - spelled-out numbers ("sixteen specimens", "twenty-two seats") --
+#       for THIS rule.  Rule (n2) at the foot of this script covers the
+#       narrow case where every specimen has landed; see its declaration;
 #     - the STRUCTURAL contexts defined narrowly below.
 #   STRUCTURAL CONTEXTS (class c), each defined narrowly and stripped
 #   before extraction:
@@ -61,15 +63,34 @@
 #         (machine-readable pass line: "RESULT: ... PASS.");  1 otherwise.
 # ---------------------------------------------------------------------------
 # NORM 16
-#   Bitten before trusted: append to any scanned document a sentence
-#   carrying a fresh bare numeral that no instrument produces (e.g.
-#   "the floor ran 8675309 benches"), run this gate, watch it name the
-#   document and exit 1; then restore and confirm PASS.
+#   Bitten before trusted, each rule in both directions:
+#     - MAIN: append to any scanned document a sentence carrying a fresh
+#       bare numeral that no instrument produces (e.g. "the floor ran
+#       8675309 benches"), run this gate, watch it name the document and
+#       exit 1; then restore and confirm PASS.
+#     - n2a: append "Thirty-one theorems." to PROOFS.md -- named and exit 1;
+#       restore, PASS.
+#     - n2b: append "The view had been rendering seventeen all along." --
+#       named and exit 1; restore, PASS.
 #
-#   KNOWN BOUNDARY, and it has cost twice: this gate sees DIGITS only.
-#   A spelled-out number ("thirty-one") is invisible to it, and that
-#   boundary carried a real specimen in each of rounds 2's two halves.
-#   Scored in REGISTER row 9; not fixed here, declared here.
+#   KNOWN BOUNDARY, NARROWED rather than removed, and the difference
+#   matters: the MAIN gate above sees DIGITS only, and a spelled-out number
+#   ("thirty-one") is invisible to it. That door carried a real specimen in
+#   each of round 2's two halves and is scored in REGISTER row 8. Rule (n2)
+#   below now watches the part of that doorway where every specimen has
+#   actually walked -- spelled counts of RENDERED categories, in the
+#   CUMULATIVE record -- and it sees spelled and digit numbers alike. What
+#   is still invisible: a spelled number that is neither attached to a
+#   rendered category nor near the view vocabulary, anywhere; and any
+#   spelled number at all in a letter or a frozen primary source. Row 8
+#   stays open, with a smaller mouth.
+#
+#   (An earlier version of this header, and the first draft of the sentence
+#   above, both cited "REGISTER row 9". Row 9 is multi-seat workflow
+#   audits; the spelled-out boundary is scored in row 8's NOT-covered
+#   column. A wrong cross-reference into a frozen enumeration is the same
+#   species as this file's correction-number miscitation, and it stood in
+#   this header across several crates.)
 #
 set -u
 
@@ -265,4 +286,120 @@ END {
   print "RESULT: every bare-asserted prose numeral is sourced or labeled.  PASS."
   exit 0
 }' $DOCFILES
-exit $?
+MAIN=$?
+
+# ---------------------------------------------------------------------------
+# RULE (n2) -- THE NORM 19 GUARD.  Chartered by the builder in the
+# second-repairs verification, after the word "twelve" walked through this
+# gate's declared spelled-out door for the SECOND time.
+#
+#   NORM 19: a count the views render is never retyped in the cumulative
+#   record; the record points, the view counts.
+#
+# TERRITORY, narrower than the DOCS set above and declared because the
+# difference is the whole design:
+#   PROOFS.md, REGISTER.md, NORMS.md -- the cumulative record.
+#   NOT letters/ (dated correspondence, never edited -- norm 13 records
+#     their errors instead of repairing them, so gating them would be
+#     permanently and uselessly red);
+#   NOT VIEWS.md (it IS the view; its numbers are rendered, not retyped);
+#   NOT CHARTER.md / ROUND1.md / README.md / COURIER-CARD.md (primary
+#     sources and inherited material, frozen by the settlement).
+#
+# TWO RULES, both over SPELLED and digit numbers, quotations stripped
+# first (a quotation discusses a count; it does not assert one -- and a
+# fresh bare count beside a quotation still fails, which is Circle One's
+# graduation lesson and is why only the quoted span is removed):
+#   n2a  a SENTENCE-INITIAL number attached to a category the views RENDER
+#        (theorem/definition/live instance/control theorem/import line,
+#        singular or plural). That is the ledger's section-opener shape --
+#        "Twelve theorems.", "Twenty-two theorems," -- which is where every
+#        specimen of this species has landed.
+#   n2b  a number within four words of the view vocabulary itself
+#        (view/views/render/rendered/rendering/renders). That is the record
+#        narrating what the view counts, which is the same duplication
+#        wearing a different sentence: "the view had been rendering nine".
+#
+# WHAT IT DOES NOT CHECK, declared per norm 15, and the list is longer than
+# the rule:
+#   - a rendered count mid-sentence with no view word near it ("the section
+#     holds nine") is INVISIBLE to both rules. n2a is anchored at the
+#     sentence start on purpose -- unanchored, it flagged twenty-two lines
+#     of ordinary prose ("one theorem", "three sections below") for every
+#     real specimen, and a gate that cries that often is a gate that gets
+#     exempted into silence;
+#   - "section"/"sections" is deliberately NOT a category noun here: in
+#     this ledger it is overwhelmingly a POINTER ("three sections below"),
+#     not a count;
+#   - whether a flagged count is RIGHT. Every one of the specimens this
+#     rule was built for was accurate on the day it was typed. Staleness,
+#     not error -- the same boundary the views renderer declares.
+# This gate narrows the spelled-out door that row 9 recorded. It does not
+# close it, and the register should not be told that it does.
+#
+# EXEMPTIONS: audit/c2_norm19_exempt.txt, <phrase><TAB><reason>, matched
+# case-insensitively against the flagged phrase.
+# ---------------------------------------------------------------------------
+CUMULATIVE="$ROOT/PROOFS.md $ROOT/REGISTER.md $ROOT/NORMS.md"
+N19_EXEMPT="$SELF_DIR/c2_norm19_exempt.txt"
+NUMWORD='one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|[0-9]+'
+CATNOUN='theorems?|definitions?|live instances?|control theorems?|import lines?|decide-settled'
+VIEWWORD='views?|render|rendered|rendering|renders'
+WORDISH="[A-Za-z'’-]+"
+
+echo ""
+echo "--------------------------------------------------------------"
+echo " RULE (n2) -- norm 19: rendered counts are never retyped"
+echo "--------------------------------------------------------------"
+
+: > "$WORK/n19.txt"
+for f in $CUMULATIVE; do
+  [ -f "$f" ] || continue
+  fn=$(basename "$f")
+  # strip code spans, quotations, and the structural contexts the main
+  # gate strips (classes c1-c6), so a pointer is never read as a count
+  sed -e 's/`[^`]*`/ /g' -e 's/"[^"]*"/ /g' \
+      -e 's/[vV][0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*/ /g' \
+      -e 's/[0-9][0-9]*-[0-9][0-9]*-[0-9][0-9]*/ /g' \
+      -e 's/[A-Za-z_][A-Za-z0-9_]*[0-9][A-Za-z0-9_]*/ /g' \
+      -e 's/[Ll]ines\{0,1\} [0-9][0-9]*/ /g' \
+      -e 's/\([Nn]orm\|[Rr]ow\|[Rr]ound\|[Cc]lass\|[Ii]tem\|[Ss]tep\|[Cc]rop\|[Ss]ection\) [0-9][0-9]*/ /g' \
+      "$f" > "$WORK/n19_src.txt"
+  grep -nEi "(^|[.!?] +)($NUMWORD)(-($NUMWORD))? +($CATNOUN)([^a-z]|$)" "$WORK/n19_src.txt" \
+    | sed "s|^|n2a $fn:|" >> "$WORK/n19.txt"
+  grep -nEi "($VIEWWORD)( +$WORDISH){0,3} +($NUMWORD)([^a-z-]|$)|(^|[^a-z-])($NUMWORD)( +$WORDISH){0,3} +($VIEWWORD)([^a-z-]|$)" \
+      "$WORK/n19_src.txt" \
+    | sed "s|^|n2b $fn:|" >> "$WORK/n19.txt"
+done
+
+N19=0
+if [ -s "$WORK/n19.txt" ]; then
+  while IFS= read -r hit; do
+    body=${hit#* }
+    keep=1
+    if [ -f "$N19_EXEMPT" ]; then
+      while IFS= read -r ex; do
+        case $ex in ''|'#'*) continue ;; esac
+        phrase=${ex%%	*}
+        [ "$phrase" = "$ex" ] && continue
+        if printf '%s' "$body" | grep -qiF -- "$phrase"; then keep=0; break; fi
+      done < "$N19_EXEMPT"
+    fi
+    [ "$keep" -eq 1 ] && printf '  %s\n' "$hit"
+  done < "$WORK/n19.txt" > "$WORK/n19_live.txt"
+  if [ -s "$WORK/n19_live.txt" ]; then
+    echo "  A count the views render, retyped in the cumulative record:"
+    cat "$WORK/n19_live.txt"
+    N19=1
+  fi
+fi
+if [ "$N19" -eq 0 ]; then
+  echo "  RESULT: the cumulative record retypes no rendered count.  PASS."
+else
+  echo ""
+  echo "  RESULT: FAIL (n2) -- point at VIEWS.md instead of restating it, or"
+  echo "          add <phrase>\tTAB<reason> to audit/c2_norm19_exempt.txt."
+fi
+
+if [ "$MAIN" -ne 0 ] || [ "$N19" -ne 0 ]; then exit 1; fi
+exit 0

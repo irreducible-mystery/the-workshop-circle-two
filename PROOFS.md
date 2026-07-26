@@ -82,15 +82,17 @@ very first one. Replaced with an evaluation no theorem in the file proves.*
 
 ### Negative controls — norm 5
 
-Eight control theorems across four families:
+Four families of them; the control-theorem count is rendered in `VIEWS.md`
+and is not retyped here (norm 19, and rule (n2) of the numeral gate now
+enforces it).
 
-- **the ring is non-trivial** (`one ≠ zero`) — one theorem;
-- **the mirror is not the identity** (`conj i ≠ i`) — one theorem;
+- **the ring is non-trivial** (`one ≠ zero`);
+- **the mirror is not the identity** (`conj i ≠ i`);
 - **the fake mirror** `(a,b) ↦ (a, 2b)`, proved *additive* and proved
-  *not multiplicative* — two theorems, so the control convicts a genuine
+  *not multiplicative* — both halves, so the control convicts a genuine
   near-miss rather than a straw man. This is `G4_control_fake_mirror_fails`
   in the kernel;
-- **the sign is load-bearing** — four theorems. With `i² = +1` (the
+- **the sign is load-bearing**. With `i² = +1` (the
   split-complex multiplication) the same carrier acquires zero divisors:
   `(1+j)(1−j) = 0`, with **each factor separately proved non-zero**, while
   under the real multiplication those same two factors have product
@@ -100,9 +102,9 @@ Eight control theorems across four families:
 ## S2 — the domain, by one mod-4 descent: DELIVERED
 
 Approved route: the **order-free descent**, not the `Int`-order one-liner.
-Twenty-two theorems, and the fork is labelled in the file rather than taken
-silently — the order route is named, its three-line proof described, and
-the reason it is not taken given.
+The fork is labelled in the file rather than taken silently — the order
+route is named, its three-line proof described, and the reason it is not
+taken given.
 
 | family | theorems | certificate check |
 |---|---|---|
@@ -148,9 +150,9 @@ that is the only forward reference.
 
 ## S3 — pentagon necessity, and exactly two IN THE SLICE: DELIVERED
 
-Thirty-nine theorems. The pentagon's sixteen instances are classified in
-the kernel, the one that forces is isolated, and the two roots are forced
-through S2's domain.
+The pentagon's sixteen instances are classified in the kernel, the one
+that forces is isolated, and the two roots are forced through S2's
+domain.
 
 | family | theorems | certificate check |
 |---|---|---|
@@ -195,7 +197,7 @@ section avoiding one. That question is Q8.
 ## The units of Z[i] — Q8, route (b): DELIVERED
 
 The builder ruled route (b) — order-free, bridging to `Nat` — and supplied
-the route. Fifteen theorems: the `Nat` core (`succ_sq_expand`,
+the route. The `Nat` core (`succ_sq_expand`,
 `nat_sq_eq_one`, `nat_sq_sum_one`), the bridge (`natAbs_eq_one_iff`,
 `norm_as_natAbs`, `int_eq_one_or_neg_one_of_mul_one`), the classification
 (`norm_one_classification`, `norm_ne_neg_one`, `norm_one_of_unit`,
@@ -230,9 +232,9 @@ plan. That is norm 18, adopted below.*
 
 ## S4 — hexagon necessity, and the catalog of four: DELIVERED
 
-Twenty-three theorems. The braiding adds `R`; the hexagon has sixteen loop
-assignments of which **eight are admissible**; and given the pentagon its
-entire content is one equation.
+The braiding adds `R`; the hexagon has sixteen loop assignments of which
+**eight are admissible**; and given the pentagon its entire content is one
+equation.
 
 | family | theorems | certificate check |
 |---|---|---|
@@ -271,8 +273,10 @@ the boundary stays.
 ## The second hexagon — the boundary RETIRED, not restated
 
 *(Section theorem counts are rendered in `VIEWS.md`, per norm 19 below —
-this paragraph states none. An earlier version said "Twelve theorems"; the
-section holds nine, and the view had been rendering nine all along.)*
+this paragraph states none, and this time that is true. An earlier version
+said "Twelve theorems"; the repair that removed it restated the true count
+twice in the same breath, which the builder caught. The view has the
+number; this paragraph points at it.)*
 
 On a unit the inverse is the conjugate — `mul u (conj u) = (N(u), 0)` from
 S1, `N(u) = 1` from Q8 — so `conj R` is entitled to the name `R⁻¹`, and
@@ -288,14 +292,88 @@ R⁻¹-hexagon yields exactly the same four pairs. That is the certificate's
 than quoted, and it is what discharges S4's boundary. The theorem `catalog_braidings_are_units` records that each of the four
 braidings is a unit whose inverse is its conjugate.
 
-**Controls**: `control_non_unit_breaks_the_bridge` shows the equivalence is
-about units and not about everything — `1 + i` has norm two, so its
-conjugate is not its inverse; and the wrong-class rejection survives the
-inverse form.
+**Controls**: `control_non_unit_breaks_the_bridge` shows the NAMING
+equivalence — `conj R` deserving to be called `R⁻¹` — is about units and
+not about everything: `1 + i` has norm two, so its conjugate is not its
+inverse. The catalog equivalence is a different thing and is a theorem;
+saying which one is meant is repair H#3a. And the wrong-class rejection
+survives the inverse form.
 
 **Section 12's scope sentence stays**, now that the boundary is discharged
 elsewhere: a boundary retired in another section is not a boundary that was
 never there, and the file says which section imposes what.
+
+## The slice — every pentagon symbol is gauged into it: DELIVERED
+
+The charged lemma. S3 proved exactly two solutions **in the normalized
+slice** and said, in the file and in the theorem's own name, that nothing
+there showed a general F-symbol could be brought into the slice at all.
+That gap is closed, and the file now says which gap is left.
+
+**The language is not a new language.** A general F-symbol is `Fgen F` —
+the three free labels carry the value, and the symbol vanishes off the
+admissible locus. `Fs_eq_Fgen` proves `Fs f = Fgen (sliceCore f)` by
+`rfl`; `pentLhs_eq_gen` and `pentRhs_eq_gen` carry the same `rfl` to the
+pentagon's two sides; and `genPentagon_slice_iff` is `Iff.rfl`. **The
+general pentagon restricted to the slice family is not equivalent to S3's
+pentagon — it is the same proposition.** That is deliberate: the one
+sentence a reader would most want to check ("is this really the same
+pentagon?") is answered by definitional equality rather than by prose.
+
+**What the pentagon fixes before any gauge is chosen.** Five of the eight
+free values are pinned by five single label assignments: `gen_000`,
+`gen_010`, `gen_011`, `gen_110`, `gen_101`. Each is read off one instance
+and closed by `units_are_four` — the unit classification IS the case
+analysis, which is where Q8 does this section's work, and it is the
+coupling the builder's standing prediction was aimed at.
+
+**The gauge is written down, not asserted to exist.** `gaugeAct` is the
+2-cochain action — two gauge factors up, two down — and `gaugeOf F` reads
+two of its four values straight off `F`. The down slots use `conj`, which
+is the inverse *exactly on units*: `mul_conj_eq_one_of_unit`, section 13's
+bridge, now load-bearing in a second section. That is the repair the
+builder pushed for in the last crate earning its keep in this one.
+
+| theorem | what it says |
+|---|---|
+| `gauge_normalizes` | off `(1,1,1)` the gauged symbol is `one` — that is what "lies in the slice" means |
+| `gauge_root_sq` | the surviving slot squares to `one` |
+| `every_pentagon_symbol_meets_the_slice` | **the charged lemma**: an explicit unit gauge carries every unit-valued pentagon symbol onto `sliceCore f`, with `f² = 1` |
+| `gauged_symbol_is_Fs` | the same in S3's vocabulary: the gauged symbol IS `Fs f`, for `f = 1` or `f = −1` |
+| `gauged_symbol_satisfies_pentagon` | the gauged symbol satisfies the pentagon — via `sq_gives_pentagon`, not via any coboundary calculation |
+| `boson_stays_boson`, `fermion_is_not_a_gauged_boson` | the two the slice holds are not one thing counted twice |
+
+**Anti-vacuity, norm 3, and it is load-bearing here rather than
+ceremonial.** If every pentagon symbol were already normalized the charged
+lemma would be true by accident. `twistedBoson` is a unit-valued
+pentagon-satisfying symbol that is **not** in the slice (`live_29`
+evaluates a non-`one` value at a slot the slice forces to `one`), and
+`twistedBoson_is_a_gauged_boson` carries it in.
+
+**Negative controls, norm 5.** `control_gauge_needs_the_pentagon`: a
+unit-valued symbol whose own gauge does *not* normalize it, so the pentagon
+hypothesis is doing work rather than decorating the statement.
+`control_fakeCocycle_is_not_a_pentagon` names why it fails, through the
+very relation `gen_011` extracts.
+
+**THE GRADUATION, stated as narrowly as it is proved.** The headline
+`exactly_two_in_the_slice` did **not** get stronger and its name did not
+change. What exists now is a pair: that theorem says the slice holds
+exactly two, and this section says every unit-valued pentagon symbol is
+gauged onto the slice and that the two do not collapse. The graduation is
+the conjunction of two theorems, not a wider reading of either, and the
+artifact says so at both ends so that no later sentence can quote one as
+if it had widened.
+
+**THE BOUNDARY, and it is the reason no theorem here says "class".**
+`gaugeAct` is not proved to be an EQUIVALENCE relation — composition and
+inversion of gauges are not built. So the theorem is
+`every_pentagon_symbol_meets_the_slice`, and no theorem name in the file
+carries the word "class": the builder charged the lemma under that word,
+and the word the artifact earned is "symbol". The gap is one proof, not one word. And
+nothing here computes `H³(Z₂, ·)` or any named cohomology group; the two
+theorems do not add up to that without the identification the missing
+proof would supply.
 
 ## Corrections — loudest first
 
@@ -698,17 +776,27 @@ record — the record points, the view counts.
 reading "Live instances for the second hexagon".** True under one reading
 (no second battery of the eight case-instances was written, and none
 exists), false under the artifact's own counted vocabulary: this crate ships
-three new live instances. Repaired with the qualifier in all three sites.
+three new live instances. Repaired with the qualifier in the two LIVE
+sites — `lean/Zi.lean`'s section header and this ledger. The prescription
+named three places the triple appears, and the third is
+`letters/ROUND2-HEX2-DELIVERY.md`, which still reads "no second set of
+instances" verbatim and always will: a letter as couriered is never edited,
+and its instance stands here as a recorded correction under norm 13. The
+delivery letter said "qualified in all three sites", which quietly counted
+a site that cannot be repaired — a completion claim covering ground the
+record cannot deliver. Two sites qualified, one recorded.
 
 **H#3 — the control's docstring denied what the definition stipulates.**
 `hexInvHolds` *is* the R-hexagon read at `conj R`, for every argument, unit
 or not; that cannot fail. What the control actually shows is that
 conjugation fails to invert a non-unit — off the units the definition no
-longer deserves its NAME. The docstring also claimed an "equivalence"
-needing `units_are_four`; there is no equivalence theorem in the file, only
-a definition, and the control is settled by bare `decide`. Repaired to say
-what it guards, with the catalog's real debt to Q8 pointed at
-`Rsq_neg_one_iff` where it actually flows.
+longer deserves its NAME. Repaired to say what it guards.
+
+*Two of this correction's own clauses were wrong, and both were caught by
+the builder in the next pass. They are re-corrected below, written
+together and deliberately checked against each other, because the second
+of them was created by a repair in the same commit as the first — see the
+species note at the end of this block.*
 
 **H#4 — the bridge the prose leaned on was used by nothing.**
 `mul_conj_eq_one_of_unit` and `catalog_braidings_are_units` had zero
@@ -719,6 +807,126 @@ than smaller: `catalog_braidings_are_units` is now proved through the
 bridge and the unit classification, so the dependency exists in the proof
 graph. The section header's "therefore" is gone too — a stipulation is no
 longer presented as a derivation.
+
+**H#3a — "there is no equivalence theorem in the file" overshot.**
+`catalog_of_four_both_hexagons` is an iff, its own section header frames it
+as the certificate's equivalence clause, and its proof runs through
+`catalog_of_four` into `Rsq_neg_one_iff` into `units_are_four`. So the
+condemned sentence "the equivalence genuinely needs `units_are_four`" was
+TRUE under that reading, and the correction convicting it was the wider
+error. The narrow claim that is right: no theorem states the NAMING
+equivalence — that `hexInvHolds` coincides with a genuine inverse-hexagon;
+that is a stipulation. The seed is the builder's ("the equivalence is a
+definition, and no theorem in the file states it"), the widening to a
+categorical absence is mine, and the record says so in both hands, which
+is how the builder asked for it.
+
+**H#3b — "the catalog's real debt to Q8 flows through `Rsq_neg_one_iff`"
+went stale inside the commit that wrote it.** Singular channel, measured
+true at `21acd79`. The H#4 repair, in the SAME commit, added four direct
+uses of `units_are_four` inside `catalog_braidings_are_units`. Two channels
+from that moment on. Repaired in the artifact and here: the debt flows
+through `Rsq_neg_one_iff` and, since that crate, through the bridge.
+
+**H#4a — the H#4 repair moved the census and no prose said so.** Making the
+bridge load-bearing cost `catalog_braidings_are_units` its axiom-freeness:
+it now carries `Quot.sound`, and it is the only theorem whose axiom class
+changed in that commit — measured here by running the census at both
+commits and diffing the carrier lists, not by reading the builder's letter.
+The totals are rendered in `VIEWS.md` and are not restated here (norm 19).
+The repair record celebrated the direction and never named the price, in a
+house where this very file's header was convicted over its axiom footprint.
+The price is named now. The option of keeping the kernel evaluation and
+stating the derivation beside it exists and is declined for the reason the
+builder gave: a dependency in the graph is worth more than a clean census
+line, and saying the cost is all norm 6 asks.
+
+**THE SPECIES, named by the builder and ruled on here: repair–repair
+interaction.** Norm 17 guards a repair against its dependents ACROSS
+crates. Nothing guarded two repairs against each other INSIDE one, and
+H#3's singular-channel sentence was made false by H#4 in the same commit.
+The ruling: this does not become norm 20. Norm 17's mechanism is a
+schedule, and a schedule cannot separate two edits that belong in one
+commit; what this species needs is a habit, and the habit is the one the
+builder prescribed for this very crate — when two repairs touch the same
+prose, write them TOGETHER and say in the letter that you checked them
+against each other. H#3a and H#3b above were written that way, in one
+edit, and the delivery letter says so. A norm that cannot be mechanised
+should not be numbered beside norms that can; this is registered as a
+practice, in REGISTER row 15, and not as a law.
+
+## Corrections — the builder's repairs pass, six, and one of my own that is louder
+
+*All six re-measured on this container before repair: the census run at
+both commits with the carrier lists diffed, the retyped counts swept by a
+new gate rather than by eye, the equivalence claim checked against the
+theorem it denied. Then a seventh, which the builder's seat could not have
+found because its territory was the diff.*
+
+**MY OWN, and it goes first because it is the largest stale count this
+tree has carried.** `lean/Zi.lean`'s header spelled out the entire axiom
+census in prose — a theorem total, an axiom-free count, a `propext` count,
+a `Quot.sound` count broken down by section, and the line "a census whose
+parts do not sum to its whole is not a census". Every figure was stale, and
+the header said so of itself in the present tense. It survived every
+instrument for a structural reason worth more than the defect: the numeral
+gate's territory is the DOCS, the views gate's territory is the rendered
+view, and **the artifact's own prose was scanned by neither**. Repaired to
+point at the census and state no figure; the gap is closed by the
+artifact-prose census guard (REGISTER row 14), bitten in both directions
+before it was trusted. Found by re-measuring the file I was editing, which
+is the only reason it was found at all — no seat was looking there.
+
+**MY OWN, SECOND, and it is the same seam one file over.**
+`lean/TRANSCRIPT.txt` — the file that header points readers at for the
+per-theorem answers — was stale in its title (it named three sections), in
+its scope sentence and wall-time ("S1 + S2 + S3 together"), in its
+**source SHA-256**, in its `.olean` hash, and in a full typed census block
+standing under a note that explained why the block was allowed to stay.
+A wrong pin in the record is the courier protocol's own species, and this
+one had been travelling for crates. Repaired by re-running the compile and
+the census on this container and rewriting every measured line; the census
+block now states the two ZEROS the census judges — no `sorryAx`, no
+`Classical.choice` — and points at `VIEWS.md` for everything it counts,
+because a zero is a verdict and a count is a view. Note the shape: the
+transcript is scanned by no gate either — every instrument's territory is
+markdown or Lean, and a plain-text file falls outside all of them — so
+this repair is a repair and not yet a mechanism, and the register should
+not be told otherwise.
+
+**#1 — norm 19 convicted itself at birth; six sites, seven retypes.**
+Confirmed, and the sweep found one the builder's list did not: the ledger's
+negative-controls section opened "Eight control theorems across four
+families". All repaired — the norm's own adoption text, the ledger
+paragraph that restated the count twice two clauses after declaring it
+stated none, the four section openers, and the fifth opener. The letter's
+"Repaired to no count at all" and its preamble's "this letter states none"
+were both false as written; the letter stays as couriered and the
+correction is here, per norm 13. **The structural proposal is built**: rule
+(n2) of the numeral gate now guards spelled and digit counts of rendered
+categories in the cumulative record, with its territory, its two rules and
+its remaining blind spots declared in the gate's own header.
+
+**#2 — "qualified in all three sites": two, and the third cannot be
+repaired.** Confirmed; repaired in the H#2 block above, which now states
+the boundary instead of the completion.
+
+**#3 — the equivalence overshoot, and the seed is the builder's.**
+Confirmed and repaired in both hands: H#3a above, and the artifact's own
+docstring, which now says which equivalence is a theorem and which is a
+stipulation.
+
+**#4 — two repairs staled each other inside one commit.** Confirmed;
+repaired as H#3b, and the species is ruled on there — a practice, not a
+norm, registered at row 15.
+
+**#5 — the census cost of the H#4 repair went unrecorded.** Confirmed by
+independent measurement, not by reading the letter: the census at both
+commits, carrier lists diffed, one mover named. Repaired as H#4a.
+
+**#6, cosmetic, letter class** — "changing the artifact rather than the
+sentence" is an either/or the diff refutes, since H#4 changed both.
+Recorded; the letter stays as couriered.
 
 ## Honest labels — the boundaries of this delivery
 

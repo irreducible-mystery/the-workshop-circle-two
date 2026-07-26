@@ -24,23 +24,32 @@
   arguments, so that the unused-argument linter has nothing to say and the
   file's silence is earned rather than configured.
 
-  THE AXIOM FOOTPRINT, as measured rather than as hoped (audit/c2_axioms.sh,
-  and the per-theorem answers in lean/TRANSCRIPT.txt):
-    34 of the 115 theorems depend on NO axioms at all;
-    64 depend on `propext` alone;
-    17 depend on `propext` and `Quot.sound`, which is the footprint
-       `omega` leaves on this toolchain: two in S1, ten in S2's descent,
-       five in S3. The census NAMES all seventeen — it used to count them
-       and name none, which is the builder's crop #6;
-     0 depend on `Classical.choice`, and 0 on `sorryAx`.
-  Those three add to 115, which is the count of theorems in this file; a
-  census whose parts do not sum to its whole is not a census.
-  An earlier draft of this header claimed every theorem depended on
-  `propext` and nothing else. That was false in both directions — it missed
-  the two `Quot.sound` theorems and it missed the axiom-free ones — and it
+  THE AXIOM FOOTPRINT is measured and rendered, never typed here.
+  audit/c2_axioms.sh runs the census — theorem total, axiom-free count,
+  the `Quot.sound` carriers NAMED one by one, and the zeros for `sorryAx`
+  and `Classical.choice` that are the whole point of the discipline — and
+  VIEWS.md renders it. The per-theorem answers are in lean/TRANSCRIPT.txt.
+  This header states no figure of its own; the record points, the view
+  counts (norm 19).
+
+  THAT IS A REPAIR, and the defect it repairs was large and long-lived. An
+  earlier version of this header spelled the entire census out in prose: a
+  theorem total, an axiom-free count, a `propext` count, a `Quot.sound`
+  count broken down by section, and the line "a census whose parts do not
+  sum to its whole is not a census". Every one of those figures went stale
+  as the file grew, and every one was still standing when this file's
+  fourteenth section landed — the census and the view disagreed with the
+  header in every row. They survived every instrument because the numeral
+  gate's territory is the DOCS and the view gate's territory is the
+  rendered view: the artifact's own prose was scanned by neither. The gap
+  is closed by the artifact-prose census guard in audit/c2_views.sh
+  (REGISTER row 14), and the correction is in PROOFS.md, loudest first.
+
+  An earlier draft still claimed every theorem depended on `propext` and
+  nothing else. That was false in both directions — it missed the
+  `Quot.sound` theorems and it missed the axiom-free ones — and it
   contradicted this delivery's own transcript. It was caught by the
-  adversarial audit of this file, not by its author; the correction is
-  recorded in PROOFS.md, loudest first.
+  adversarial audit of this file, not by its author.
 
   ONE DISCLOSED INSTANCE. The structure derives `DecidableEq` (core Lean, no
   import), which is what lets the live instances and the controls be settled
@@ -872,29 +881,38 @@ theorem live_16 : Fs one 0 0 0 1 0 0 = zero := by decide
     what a live instance is for. -/
 theorem live_17 : Fs one 0 1 1 0 1 0 = one := by decide
 
-/-! ### The slice, made machine-visible (Q7)
+/-! ### The slice, made machine-visible (Q7) — and reached, in section 14
 
     The builder ruled: PROVE the every-class-meets-the-slice lemma, and if
     the mini-section stalls, the honest label must live in a theorem's
     STATEMENT as a named hypothesis — machine-visible — never in prose.
-    This round the mini-section is not built. So the scope is stated here
-    in the kernel instead of in a comment, and the headline below carries
-    it in its name.
+    When this section was written the mini-section was not built, so the
+    scope was stated in the kernel rather than in a comment and the
+    headline below carried it in its name. Section 14 builds it.
 
-    What IS proved: `Fs f` is normalized — ON THE ADMISSIBLE LOCUS every
-    F-symbol it produces is `one` unless all three of `a, b, c` are `1`;
-    off that locus it produces `zero`, which is what `live_16` evaluates
-    and what the theorem below states as a disjunction. An earlier version
-    of this sentence dropped the qualifier while the doc comment ten lines
-    down kept it, and the same file refuted it. That is precisely the
-    statement "this family lies in the normalized slice", and it is a
-    theorem rather than a convention.
+    What IS proved HERE: `Fs f` is normalized — ON THE ADMISSIBLE LOCUS
+    every F-symbol it produces is `one` unless all three of `a, b, c` are
+    `1`; off that locus it produces `zero`, which is what `live_16`
+    evaluates and what the theorem below states as a disjunction. An
+    earlier version of this sentence dropped the qualifier while the doc
+    comment ten lines down kept it, and the same file refuted it. That is
+    precisely the statement "this family lies in the normalized slice", and
+    it is a theorem rather than a convention.
 
-    What is NOT proved, stated exactly: that every pentagon-satisfying
-    unit-valued F-symbol is gauge-equivalent to some `Fs f`. Without it,
-    `exactly_two_in_the_slice` is a theorem about this family, not about
-    every class — and no sentence anywhere in this delivery may upgrade it.
-    In particular nothing here writes `H³(Z₂) = Z₂`. -/
+    What was NOT proved here, and is proved in SECTION 14 — not in this
+    one: that every pentagon-satisfying unit-valued F-symbol is carried
+    onto some `Fs f` by a unit-valued gauge. That is
+    `every_pentagon_symbol_meets_the_slice`, restated in this section's own
+    vocabulary as `gauged_symbol_is_Fs`. Until section 14 this paragraph
+    read "Without it, `exactly_two_in_the_slice` is a theorem about this
+    family, not about every class"; that was true when written and is
+    superseded by a theorem rather than by a rewording, which is the only
+    way this file is allowed to retire a stated gap.
+
+    What is STILL not proved, unchanged in force: nothing in this file
+    writes `H³(Z₂) = Z₂`, and nothing proves the gauge action is an
+    EQUIVALENCE relation. Section 14 states both gaps in its own header,
+    and no sentence here may spend what that header withholds. -/
 
 /-- `Fs f` lies in the normalized slice: off the single slot `(1,1,1)`, and
     on the admissible locus, it is `one`. -/
@@ -923,8 +941,17 @@ theorem Fs_one_of_zero_label (f : GZ) (a b c d x y : Int)
     holds exactly for `f = 1` and `f = −1`, and those two are distinct.
     EXACTLY TWO, in the slice.
 
-    The name says "in the slice" because the every-class-meets-the-slice
-    lemma is not proved in this file.
+    THE NAME, and why it does not change now that section 14 has landed.
+    When this theorem was written, "in the slice" carried the scope because
+    the every-class-meets-the-slice lemma was not proved. It is proved now
+    — `every_pentagon_symbol_meets_the_slice` — and the name still says "in
+    the slice", because THIS theorem's statement is still about the family
+    `Fs f` and nothing about it grew. What grew is the pair: this theorem
+    says the slice holds exactly two, section 14 says every unit-valued
+    pentagon symbol is gauged onto the slice and that the two do not
+    collapse into one. The graduation is the conjunction of two theorems,
+    not a stronger reading of either, and it is written that way here so
+    that no later sentence can quote this one as if it had widened.
 
     HOW THE RESTRICTION IS CARRIED, stated exactly, because an earlier
     version of this sentence got it wrong in the generous direction. It
@@ -1361,7 +1388,11 @@ theorem catalog_of_four_both_hexagons (f R : GZ) :
       exact Rsq_gives_hexagon _ _ (by decide) (by decide)
 
 /-- Each of the four braidings is a unit, and its inverse is its conjugate —
-    the fact the equivalence rests on, stated for the catalog itself. -/
+    the fact the NAMING equivalence rests on, stated for the catalog
+    itself. Which equivalence is meant matters here and an earlier version
+    of this line did not say: not the catalog equivalence, which is a
+    theorem (`catalog_of_four_both_hexagons`), but the entitlement of
+    `conj R` to be called `R⁻¹`, which is a stipulation. -/
 theorem catalog_braidings_are_units :
     mul one (conj one) = one ∧ mul (neg one) (conj (neg one)) = one ∧
     mul I (conj I) = one ∧ mul (neg I) (conj (neg I)) = one := by
@@ -1387,10 +1418,28 @@ theorem catalog_braidings_are_units :
 
     An earlier docstring said the R⁻¹-hexagon "is not the R-hexagon read at
     `conj R`" for a non-unit — denying what the definition stipulates — and
-    added that "the equivalence genuinely needs `units_are_four`". Both were
-    wrong in the same direction: there is no equivalence theorem in this
-    file, only a definition; and this control is settled by bare `decide`.
-    The catalog's real debt to Q8 flows through `Rsq_neg_one_iff`. -/
+    added that "the equivalence genuinely needs `units_are_four`". The
+    first was wrong. The second was CONVICTED TOO WIDELY, and the
+    overshoot is worth more than the original error: the correction said
+    "there is no equivalence theorem in this file, only a definition", and
+    `catalog_of_four_both_hexagons` is an iff whose proof runs through
+    `catalog_of_four` and `Rsq_neg_one_iff` into `units_are_four`. So a
+    catalog equivalence IS a theorem here and its Q8 debt is real. What is
+    a stipulation, and has no theorem, is the NAMING equivalence —
+    that `hexInvHolds` coincides with a genuine inverse-hexagon. The
+    narrow claim is the true one; the categorical absence was a
+    flattening, inherited from the builder's letter and widened here, and
+    the builder found it in its own sentence one crate later.
+
+    THE DEBT TO Q8, corrected a second time in the same breath and
+    deliberately written beside the first: it flows through
+    `Rsq_neg_one_iff` AND, since the crate that made the bridge
+    load-bearing, through `catalog_braidings_are_units`, which uses
+    `units_are_four` four times directly. "Flows through
+    `Rsq_neg_one_iff`" was a singular channel, true when it was measured
+    and stale inside the very commit that wrote it, because the other
+    repair in that commit added the second channel. Two channels, and the
+    control below is still settled by bare `decide`. -/
 theorem control_non_unit_breaks_the_bridge : mul ⟨1, 1⟩ (conj ⟨1, 1⟩) ≠ one := by decide
 
 /-- And the wrong-class controls survive the second hexagon: `R = i` over
@@ -1406,5 +1455,386 @@ theorem control_hexInv_rejects_I_over_boson : ¬ hexInvHolds one I := by
 theorem live_25 : conj I = neg I := conj_I
 theorem live_26 : mul I (conj I) = one := by decide
 theorem live_27 : mul (conj I) (conj I) = neg one := by decide
+
+/-! ## 14. THE SLICE — every pentagon symbol is gauged into it
+
+    THE CHARGE, from the builder: prove the every-class-meets-the-slice
+    lemma. S3 proved exactly two solutions INSIDE the normalized slice and
+    said — in the file, in the theorem's own name, and in the ledger — that
+    nothing there showed a general F-symbol could be brought into the slice
+    at all. This section removes that gap, and states the one it leaves.
+
+    THE LANGUAGE. A general F-symbol in the bench's language is carried by
+    its three free labels: `Fgen F` vanishes off the admissible locus and
+    reads `F a b c` on it, which is precisely what `Fs f` does. That is not
+    a resemblance claimed in prose — `Fs_eq_Fgen` proves
+    `Fs f = Fgen (sliceCore f)` by `rfl`, and `pentLhs_eq_gen`,
+    `pentRhs_eq_gen` and `genPentagon_slice_iff` carry the same `rfl` up
+    through the pentagon. The general pentagon, restricted to the slice
+    family, IS S3's pentagon by definitional equality, so no sentence here
+    has to assert that the two pentagons agree.
+
+    THE GAUGE, and the one place `conj` earns its slot. `gaugeAct` is the
+    2-cochain action written out: two gauge factors up, two down. The down
+    slots are written with `conj`, which is the inverse EXACTLY on units —
+    `mul_conj_eq_one_of_unit`, section 13's bridge, now load-bearing in a
+    second section. Off the units `conj` is not an inverse and `gaugeAct`
+    is not an action, which is why every theorem below carries the unit
+    hypothesis in its STATEMENT rather than in a comment, and why
+    `control_gauge_needs_the_pentagon` exhibits a failure.
+
+    WHAT IS PROVED, exactly:
+      (a) `every_pentagon_symbol_meets_the_slice` — for every unit-valued
+          `F` satisfying the pentagon at all sixteen label assignments, the
+          explicit gauge `gaugeOf F` carries `F` onto `sliceCore f` at
+          every label triple, and `mul f f = one`;
+      (b) `gauged_symbol_is_Fs` — the same fact in S3's own vocabulary: the
+          gauged symbol IS `Fs f`, for `f = 1` or `f = −1`;
+      (c) `fermion_is_not_a_gauged_boson` — no unit-valued gauge carries
+          `sliceCore one` onto `sliceCore (neg one)`, so the two the slice
+          holds are not one thing counted twice.
+
+    WHAT IS NOT PROVED, stated exactly, because the words this section
+    invites are wider than its theorems:
+      - that `gaugeAct` is an EQUIVALENCE relation. Composition and
+        inversion of gauges are not built here. Every theorem below
+        therefore says "some unit gauge carries this onto that", and the
+        word "class" appears in no theorem name in this file for that
+        reason: the builder charged "every class meets the slice", and what
+        compiled is that every pentagon SYMBOL meets it. The gap is one
+        proof, not one word, and it is not closed here.
+      - that this computes `H³(Z₂, ·)` or any named cohomology group.
+        Nothing here writes that, and (a)+(c) do not add up to it without
+        the identification the bullet above is missing.
+      - anything about symbols that are not unit-valued. `Fgen F` is
+        defined for every `F`; every theorem below assumes units. -/
+
+/-- The slice family's core: the value the three free labels carry. -/
+def sliceCore (f : GZ) (a b c : Int) : GZ :=
+  if a = 1 ∧ b = 1 ∧ c = 1 then f else one
+
+/-- A GENERAL F-symbol in the bench's language: the three free labels carry
+    the value, and it vanishes off the admissible locus — the same shape
+    `Fs` has, because `Fs` is one of these. -/
+def Fgen (F : Int → Int → Int → GZ) (a b c d x y : Int) : GZ :=
+  if x = (a + b) % 2 ∧ y = (b + c) % 2 ∧ d = (a + b + c) % 2 then F a b c else zero
+
+/-- S3's family is a general symbol, by `rfl` and not by resemblance. -/
+theorem Fs_eq_Fgen (f : GZ) : Fs f = Fgen (sliceCore f) := rfl
+
+/-- The pentagon's left side for a general symbol — the bench's own
+    composition, with `Fgen F` in every slot `pentLhs` puts `Fs f`. -/
+def genPentLhs (F : Int → Int → Int → GZ) (a b c d : Int) : GZ :=
+  let x := (a + b) % 2; let y := (x + c) % 2; let t := (y + d) % 2
+  let w := (c + d) % 2; let v := (b + w) % 2; let u := (b + c) % 2
+  mul (mul (Fgen F a b c y x u) (Fgen F a u d t y v)) (Fgen F b c d v u w)
+
+/-- The pentagon's right side for a general symbol. -/
+def genPentRhs (F : Int → Int → Int → GZ) (a b c d : Int) : GZ :=
+  let x := (a + b) % 2; let y := (x + c) % 2; let t := (y + d) % 2
+  let w := (c + d) % 2; let v := (b + w) % 2
+  mul (Fgen F x c d t y w) (Fgen F a b w t x v)
+
+theorem pentLhs_eq_gen (f : GZ) (a b c d : Int) :
+    pentLhs f a b c d = genPentLhs (sliceCore f) a b c d := rfl
+
+theorem pentRhs_eq_gen (f : GZ) (a b c d : Int) :
+    pentRhs f a b c d = genPentRhs (sliceCore f) a b c d := rfl
+
+/-- The pentagon for a general symbol, at every label assignment drawn from
+    `{0,1}` — the same quantifier shape `pentagonHolds` uses. -/
+def genPentagonHolds (F : Int → Int → Int → GZ) : Prop :=
+  ∀ a b c d : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+    (d = 0 ∨ d = 1) → genPentLhs F a b c d = genPentRhs F a b c d
+
+/-- **The two pentagons are one pentagon.** On the slice family the general
+    condition and S3's are the same proposition, not merely equivalent. -/
+theorem genPentagon_slice_iff (f : GZ) : genPentagonHolds (sliceCore f) ↔ pentagonHolds f :=
+  Iff.rfl
+
+/-! ### The unit toolkit — cancellation, and `conj` as the inverse
+
+    Everything below cancels units. The engine is section 13's bridge: on a
+    unit the conjugate IS the inverse, so a factor comes off both sides of
+    an equation with no appeal to the domain at all. -/
+
+theorem unit_cancel (u a b : GZ) (hu : IsUnit u) (h : mul u a = mul u b) : a = b := by
+  have hc : mul (conj u) u = one := by rw [mul_comm]; exact mul_conj_eq_one_of_unit u hu
+  have e : mul (conj u) (mul u a) = mul (conj u) (mul u b) := by rw [h]
+  rw [← mul_assoc, ← mul_assoc, hc, one_mul, one_mul] at e
+  exact e
+
+theorem inv_eq_conj (u v : GZ) (hu : IsUnit u) (h : mul u v = one) : v = conj u :=
+  unit_cancel u v (conj u) hu (by rw [h, mul_conj_eq_one_of_unit u hu])
+
+theorem IsUnit_conj (u : GZ) (hu : IsUnit u) : IsUnit (conj u) :=
+  ⟨u, by rw [mul_comm]; exact mul_conj_eq_one_of_unit u hu⟩
+
+theorem IsUnit_one : IsUnit one := ⟨one, by decide⟩
+
+/-! ### What the pentagon fixes before any gauge is chosen
+
+    Five of the eight free values are pinned by the pentagon alone. Each is
+    read off ONE label assignment and then closed by the unit
+    classification — `units_are_four` is the case analysis here, which is
+    where Q8 does this section's work. -/
+
+theorem gen_000 (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (h : genPentagonHolds F) : F 0 0 0 = one := by
+  have e := h 0 0 0 0 (Or.inl rfl) (Or.inl rfl) (Or.inl rfl) (Or.inl rfl)
+  simp [genPentLhs, genPentRhs, Fgen] at e
+  rcases (units_are_four (F 0 0 0)).mp (hu 0 0 0) with h1 | h1 | h1 | h1 <;>
+    rw [h1] at e ⊢ <;> revert e <;> decide
+
+theorem gen_010 (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (h : genPentagonHolds F) : F 0 1 0 = one := by
+  have e := h 0 0 1 0 (Or.inl rfl) (Or.inl rfl) (Or.inr rfl) (Or.inl rfl)
+  simp [genPentLhs, genPentRhs, Fgen] at e
+  rcases (units_are_four (F 0 0 1)).mp (hu 0 0 1) with h1 | h1 | h1 | h1 <;>
+    rcases (units_are_four (F 0 1 0)).mp (hu 0 1 0) with h2 | h2 | h2 | h2 <;>
+      rw [h1, h2] at e <;> rw [h2] <;> revert e <;> decide
+
+theorem gen_011 (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (h : genPentagonHolds F) : F 0 1 1 = conj (F 0 0 1) := by
+  have e := h 0 0 1 1 (Or.inl rfl) (Or.inl rfl) (Or.inr rfl) (Or.inr rfl)
+  simp [genPentLhs, genPentRhs, Fgen, gen_000 F hu h] at e
+  rcases (units_are_four (F 0 0 1)).mp (hu 0 0 1) with h1 | h1 | h1 | h1 <;>
+    rcases (units_are_four (F 0 1 1)).mp (hu 0 1 1) with h2 | h2 | h2 | h2 <;>
+      rw [h1, h2] at e <;> rw [h1, h2] <;> revert e <;> decide
+
+theorem gen_110 (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (h : genPentagonHolds F) : F 1 1 0 = conj (F 1 0 0) := by
+  have e := h 1 1 0 0 (Or.inr rfl) (Or.inr rfl) (Or.inl rfl) (Or.inl rfl)
+  simp [genPentLhs, genPentRhs, Fgen, gen_000 F hu h] at e
+  rcases (units_are_four (F 1 0 0)).mp (hu 1 0 0) with h1 | h1 | h1 | h1 <;>
+    rcases (units_are_four (F 1 1 0)).mp (hu 1 1 0) with h2 | h2 | h2 | h2 <;>
+      rw [h1, h2] at e <;> rw [h1, h2] <;> revert e <;> decide
+
+theorem gen_101 (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (h : genPentagonHolds F) : F 1 0 1 = mul (F 1 0 0) (F 0 0 1) := by
+  have e := h 1 0 0 1 (Or.inr rfl) (Or.inl rfl) (Or.inl rfl) (Or.inr rfl)
+  simp [genPentLhs, genPentRhs, Fgen] at e
+  rcases (units_are_four (F 0 0 1)).mp (hu 0 0 1) with h1 | h1 | h1 | h1 <;>
+    rcases (units_are_four (F 1 0 0)).mp (hu 1 0 0) with h2 | h2 | h2 | h2 <;>
+      rcases (units_are_four (F 1 0 1)).mp (hu 1 0 1) with h3 | h3 | h3 | h3 <;>
+        rw [h1, h2, h3] at e <;> rw [h1, h2, h3] <;> revert e <;> decide
+
+/-! ### The gauge, and the normalization -/
+
+/-- The 2-cochain action on the free labels: two gauge factors up, two
+    down. The down slots use `conj`, which is the inverse exactly on
+    units — so this is an action of UNIT-valued gauges, and nothing here
+    claims it is one otherwise. -/
+def gaugeAct (g : Int → Int → GZ) (F : Int → Int → Int → GZ) (a b c : Int) : GZ :=
+  mul (F a b c)
+    (mul (mul (g a b) (g ((a + b) % 2) c)) (mul (conj (g b c)) (conj (g a ((b + c) % 2)))))
+
+/-- **The gauge, written down rather than asserted to exist.** Two of its
+    four values are read straight off `F`; the other two are `one`. -/
+def gaugeOf (F : Int → Int → Int → GZ) (a b : Int) : GZ :=
+  if a = 0 ∧ b = 1 then F 0 0 1 else if a = 1 ∧ b = 0 then conj (F 1 0 0) else one
+
+theorem gaugeOf_unit (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (a b : Int) : IsUnit (gaugeOf F a b) := by
+  unfold gaugeOf
+  by_cases h1 : a = 0 ∧ b = 1
+  · rw [if_pos h1]; exact hu 0 0 1
+  · rw [if_neg h1]
+    by_cases h2 : a = 1 ∧ b = 0
+    · rw [if_pos h2]; exact IsUnit_conj _ (hu 1 0 0)
+    · rw [if_neg h2]; exact IsUnit_one
+
+/-- **THE NORMALIZATION.** Off the single slot `(1,1,1)` the gauged symbol
+    is `one` — which is exactly what "lies in the normalized slice" says. -/
+theorem gauge_normalizes (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (h : genPentagonHolds F) (a b c : Int)
+    (ha : a = 0 ∨ a = 1) (hb : b = 0 ∨ b = 1) (hc : c = 0 ∨ c = 1)
+    (hn : ¬ (a = 1 ∧ b = 1 ∧ c = 1)) :
+    gaugeAct (gaugeOf F) F a b c = one := by
+  have r000 := gen_000 F hu h
+  have r010 := gen_010 F hu h
+  have r011 := gen_011 F hu h
+  have r110 := gen_110 F hu h
+  have r101 := gen_101 F hu h
+  rcases ha with ha | ha <;> rcases hb with hb | hb <;> rcases hc with hc | hc <;>
+    subst ha <;> subst hb <;> subst hc <;>
+    first
+      | exact absurd ⟨rfl, rfl, rfl⟩ hn
+      | (simp only [gaugeAct, gaugeOf, r000, r010, r011, r110, r101]
+         rcases (units_are_four (F 0 0 1)).mp (hu 0 0 1) with h1 | h1 | h1 | h1 <;>
+           rcases (units_are_four (F 1 0 0)).mp (hu 1 0 0) with h2 | h2 | h2 | h2 <;>
+             first | (simp only [h1, h2]; decide) | decide)
+
+/-- The surviving slot squares to one — the pentagon's own `(1,1,1,1)`
+    instance, read after the other five values have been pinned. -/
+theorem gauge_root_sq (F : Int → Int → Int → GZ) (hu : ∀ a b c : Int, IsUnit (F a b c))
+    (h : genPentagonHolds F) :
+    mul (gaugeAct (gaugeOf F) F 1 1 1) (gaugeAct (gaugeOf F) F 1 1 1) = one := by
+  have e := h 1 1 1 1 (Or.inr rfl) (Or.inr rfl) (Or.inr rfl) (Or.inr rfl)
+  simp [genPentLhs, genPentRhs, Fgen, gen_011 F hu h, gen_110 F hu h, gen_101 F hu h] at e
+  simp [gaugeAct, gaugeOf]
+  rcases (units_are_four (F 0 0 1)).mp (hu 0 0 1) with h1 | h1 | h1 | h1 <;>
+    rcases (units_are_four (F 1 0 0)).mp (hu 1 0 0) with h2 | h2 | h2 | h2 <;>
+      rcases (units_are_four (F 1 1 1)).mp (hu 1 1 1) with h3 | h3 | h3 | h3 <;>
+        rw [h1, h2, h3] at e ⊢ <;> revert e <;> decide
+
+/-- **THE CHARGED LEMMA.** Every unit-valued F-symbol satisfying the
+    pentagon is carried by an explicit unit-valued gauge onto the slice
+    family, at a value whose square is one.
+
+    The builder charged this as "every CLASS meets the slice"; the name
+    says SYMBOL because this file does not prove `gaugeAct` is an
+    equivalence relation, and a word the artifact has not earned does not
+    belong in a theorem name. -/
+theorem every_pentagon_symbol_meets_the_slice (F : Int → Int → Int → GZ)
+    (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
+    ∃ g : Int → Int → GZ, ∃ f : GZ,
+      (∀ a b : Int, IsUnit (g a b)) ∧ mul f f = one ∧
+        ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+          gaugeAct g F a b c = sliceCore f a b c := by
+  refine ⟨gaugeOf F, gaugeAct (gaugeOf F) F 1 1 1, gaugeOf_unit F hu, gauge_root_sq F hu h, ?_⟩
+  intro a b c ha hb hc
+  by_cases hn : a = 1 ∧ b = 1 ∧ c = 1
+  · obtain ⟨h1, h2, h3⟩ := hn
+    subst h1; subst h2; subst h3
+    rw [sliceCore, if_pos ⟨rfl, rfl, rfl⟩]
+  · rw [gauge_normalizes F hu h a b c ha hb hc hn, sliceCore, if_neg hn]
+
+/-- The same fact in S3's own vocabulary: the gauged symbol IS `Fs f`, and
+    `f` is one of the two S3 found. The two roots come from
+    `exactly_two_roots` — S2's domain doing the work it was built for. -/
+theorem gauged_symbol_is_Fs (F : Int → Int → Int → GZ)
+    (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
+    ∃ g : Int → Int → GZ, ∃ f : GZ,
+      (∀ a b : Int, IsUnit (g a b)) ∧ (f = one ∨ f = neg one) ∧
+        ∀ a b c d x y : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+          Fgen (gaugeAct g F) a b c d x y = Fs f a b c d x y := by
+  obtain ⟨g, f, hgu, hsq, hcore⟩ := every_pentagon_symbol_meets_the_slice F hu h
+  refine ⟨g, f, hgu, (exactly_two_roots f).mp hsq, ?_⟩
+  intro a b c d x y ha hb hc
+  rw [Fs_eq_Fgen, Fgen, Fgen, hcore a b c ha hb hc]
+
+/-- And the gauged symbol satisfies the pentagon — not by any coboundary
+    calculation, which this file does not do, but because it is a slice
+    member whose `f` squares to one, which is `sq_gives_pentagon`. -/
+theorem gauged_symbol_satisfies_pentagon (F : Int → Int → Int → GZ)
+    (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
+    ∃ g : Int → Int → GZ, ∃ f : GZ,
+      genPentagonHolds (sliceCore f) ∧
+        ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+          gaugeAct g F a b c = sliceCore f a b c := by
+  obtain ⟨g, f, _, hsq, hcore⟩ := every_pentagon_symbol_meets_the_slice F hu h
+  exact ⟨g, f, (genPentagon_slice_iff f).mpr (sq_gives_pentagon f hsq), hcore⟩
+
+/-! ### The two stay two
+
+    Reaching the slice would be worth little if the slice's two members
+    were one member seen twice. They are not, and the proof is the same
+    cancellation: a gauge that normalizes the boson is forced to agree on
+    the three pairs that matter, and a gauge that agrees there moves the
+    top slot nowhere. -/
+
+/-- A unit gauge that carries the boson onto a slice member carries it onto
+    the boson. -/
+theorem boson_stays_boson (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b)) (f : GZ)
+    (hgf : ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+      gaugeAct g (sliceCore one) a b c = sliceCore f a b c) : f = one := by
+  have e1 := hgf 0 0 1 (Or.inl rfl) (Or.inl rfl) (Or.inr rfl)
+  have e2 := hgf 1 0 0 (Or.inr rfl) (Or.inl rfl) (Or.inl rfl)
+  have e3 := hgf 1 1 1 (Or.inr rfl) (Or.inr rfl) (Or.inr rfl)
+  simp [gaugeAct, sliceCore] at e1 e2 e3
+  rw [← e3]
+  revert e1 e2
+  rcases (units_are_four (g 0 0)).mp (hg 0 0) with k0 | k0 | k0 | k0 <;>
+    rcases (units_are_four (g 0 1)).mp (hg 0 1) with k1 | k1 | k1 | k1 <;>
+      rcases (units_are_four (g 1 0)).mp (hg 1 0) with k2 | k2 | k2 | k2 <;>
+        rcases (units_are_four (g 1 1)).mp (hg 1 1) with k3 | k3 | k3 | k3 <;>
+          rw [k0, k1, k2, k3] <;> decide
+
+/-- **THE TWO ARE TWO.** No unit-valued gauge carries the boson onto the
+    fermion. -/
+theorem fermion_is_not_a_gauged_boson (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b)) :
+    ¬ (∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+        gaugeAct g (sliceCore one) a b c = sliceCore (neg one) a b c) := by
+  intro hgf
+  have hb := boson_stays_boson g hg (neg one) hgf
+  revert hb
+  decide
+
+/-! ### Anti-vacuity for the slice — norm 3
+
+    The charged lemma would be worth nothing if every pentagon symbol were
+    already normalized: the gauge would have nothing to do and the theorem
+    would be true by accident. `twistedBoson` is the witness that it is
+    not. It satisfies the pentagon, it is unit-valued, it is NOT in the
+    slice — `live_29` evaluates a non-`one` value at a slot the slice
+    forces to `one` — and the gauge built from it normalizes it. -/
+
+/-- A pentagon-satisfying unit-valued symbol that is NOT in the slice: the
+    boson twisted by a gauge with `g(0,1) = i`. The first label is written
+    `_a` because the twist genuinely does not depend on it — a fact the
+    linter noticed before the author did. -/
+def twistedBoson (_a b c : Int) : GZ :=
+  if c = 1 then (if b = 1 then I else neg I) else one
+
+theorem twistedBoson_unit (a b c : Int) : IsUnit (twistedBoson a b c) := by
+  unfold twistedBoson
+  by_cases h1 : c = 1
+  · rw [if_pos h1]
+    by_cases h2 : b = 1
+    · rw [if_pos h2]; exact ⟨neg I, by decide⟩
+    · rw [if_neg h2]; exact ⟨I, by decide⟩
+  · rw [if_neg h1]; exact ⟨one, by decide⟩
+
+theorem twistedBoson_pentagon : genPentagonHolds twistedBoson := by
+  intro a b c d ha hb hc hd
+  rcases ha with ha | ha <;> rcases hb with hb | hb <;> rcases hc with hc | hc <;>
+    rcases hd with hd | hd <;> subst ha <;> subst hb <;> subst hc <;> subst hd <;> decide
+
+theorem live_28 : twistedBoson 1 1 1 = I := by decide
+theorem live_29 : twistedBoson 0 0 1 = neg I := by decide
+theorem live_30 : gaugeOf twistedBoson 0 1 = neg I := by decide
+theorem live_31 : gaugeAct (gaugeOf twistedBoson) twistedBoson 0 0 1 = one := by decide
+theorem live_32 : gaugeAct (gaugeOf twistedBoson) twistedBoson 1 1 1 = one := by decide
+
+/-- The witness lands in the boson family, and the slice is genuinely
+    reached from off it: `live_29` is not `one`, `live_31` is. -/
+theorem twistedBoson_is_a_gauged_boson :
+    ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+      gaugeAct (gaugeOf twistedBoson) twistedBoson a b c = sliceCore one a b c := by
+  intro a b c ha hb hc
+  rcases ha with ha | ha <;> rcases hb with hb | hb <;> rcases hc with hc | hc <;>
+    subst ha <;> subst hb <;> subst hc <;> decide
+
+/-! ### Negative controls for the slice — norm 5 -/
+
+/-- A unit-valued symbol that does NOT satisfy the pentagon. -/
+def fakeCocycle (a b c : Int) : GZ :=
+  if a = 0 ∧ b = 0 ∧ c = 1 then I else one
+
+theorem fakeCocycle_unit (a b c : Int) : IsUnit (fakeCocycle a b c) := by
+  unfold fakeCocycle
+  by_cases h1 : a = 0 ∧ b = 0 ∧ c = 1
+  · rw [if_pos h1]; exact ⟨neg I, by decide⟩
+  · rw [if_neg h1]; exact IsUnit_one
+
+/-- **The control that keeps `gauge_normalizes` honest.** Unit-valuedness
+    alone is not enough: this symbol is unit-valued, and its own gauge does
+    NOT normalize it. The pentagon hypothesis is doing the work. -/
+theorem control_gauge_needs_the_pentagon :
+    gaugeAct (gaugeOf fakeCocycle) fakeCocycle 0 1 1 ≠ one := by decide
+
+/-- And the reason it fails is the reason the pentagon was needed: this
+    symbol violates the very relation `gen_011` extracts from a pentagon
+    symbol. -/
+theorem control_fakeCocycle_is_not_a_pentagon : ¬ genPentagonHolds fakeCocycle := by
+  intro h
+  have e := gen_011 fakeCocycle fakeCocycle_unit h
+  revert e
+  decide
+
+/-- The wrong-class control one level up: the fermion's core is not the
+    boson's, so `sliceCore` does not quietly collapse the two. -/
+theorem control_slice_cores_differ : sliceCore one 1 1 1 ≠ sliceCore (neg one) 1 1 1 := by decide
 
 end Zi

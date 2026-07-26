@@ -1,13 +1,19 @@
-CIRCLE TWO — COMPILE TRANSCRIPT (S1, S2, S3, and the units)
+CIRCLE TWO — COMPILE TRANSCRIPT (the whole file, every section)
 ==================================================================
 Everything below was produced by an instrument on this machine this
 session. Wall-times are recorded and never load-bearing.
 
-This transcript was rewritten twice: after my own adversarial audit of the
-S1 delivery, and again after the builder's pass returned seven more
-specimens and S2 landed. The numbers are the current ones. What each pass
-found is in PROOFS.md, under "Corrections — loudest first" and
-"Corrections — the builder's pass".
+This transcript is rewritten whenever the artifact moves; it is a record
+of the compile that produced the hashes below, and it is dated by them
+rather than by a claim to be current. It carries NO counts of its own —
+those are rendered in VIEWS.md and gated there (norm 19). It was stale
+across several crates: its title named three sections when the file held
+many more, its scope sentence and wall-time still said "S1 + S2 + S3", its
+source hash was from an earlier head, and it carried a full typed census
+that VIEWS.md had long since contradicted — under a note explaining why
+that block was allowed to stay. That was my own crop, found by
+re-measuring the file the artifact's header points readers at, and it is
+recorded in PROOFS.md under the repairs-pass corrections.
 
 MACHINE
   Linux x86_64, cloud container (Claude Code session), 2026-07-26.
@@ -33,9 +39,12 @@ THE COMPILE — the pass condition is silence
   command : lean lean/Zi.lean
   exit    : 0
   bytes   : 0          <-- norm 10: exit 0 AND zero bytes, both measured
-  time    : 1.6s       (S1 + S2 + S3 together; the builder measured 29.8s
-                        for S1 alone on its container — wall-times are
-                        recorded and never load-bearing)
+                           (stdout 0, stderr 0, measured separately)
+  time    : 8.7s real  (the whole file, every section, on this container;
+                        the builder measured 29.8s for S1 alone on its
+                        own — wall-times are recorded and never
+                        load-bearing, and this one is not comparable to
+                        that one)
 
   Silence here is earned rather than configured: no linter is disabled
   anywhere in the file, and no `set_option` suppresses a warning. The one
@@ -56,12 +65,12 @@ THE COMPILE — the pass condition is silence
 
 THE ARTIFACT
   sha256  lean/Zi.lean
-          71cc55d54af8d772f71e07f324b579c3aa71608fc57fc13b8323135c04790cc0
+          ba23f2d739249d00bb507c6f62a4292520dcec889ec208fde1af869876c2db09
   sha256  lean/lean-toolchain
           2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
   .olean, produced by `lean -o Zi.olean lean/Zi.lean`:
-  sha256  6533e27153c3f1b51a6ec33248afea83121c7b406f8770f9b2ced8fc6d66709f
+  sha256  b0a2ca6b0d48c76d34e79aa3203dc06e9432323b1b268446ef00203e85d1e6a7
 
   REPRODUCIBILITY, measured twice, in both directions:
     SAME machine, two builds from the same source -> BYTE-IDENTICAL.
@@ -78,35 +87,32 @@ THE ARTIFACT
   audit/c2_tree.sh exits 1 on a tracked .olean. Its hash rides here
   instead, which is the whole point of shipping hashes rather than blobs.
 
-NOTE ON FIGURES. Counts that used to be typed here now live in VIEWS.md,
-rendered by audit/c2_views.sh and gated by its `check`. Four hand-typed
-counts went stale in one round; the census block below is kept because it
-is the census's own output, but the authoritative current figures are the
-rendered ones.
+NOTE ON FIGURES. This file states none. Every count — theorems,
+axiom-free, propext, the Quot.sound carriers, and the per-section
+inventory — is rendered in VIEWS.md by audit/c2_views.sh and gated by its
+`check`. An earlier version of this section carried the whole census typed
+out, under a note explaining that the block was "the census's own output"
+and therefore allowed to stand. It went stale exactly as a typed count
+does, and the note did not save it. Norm 19 has no exception for a figure
+that was correct when it was pasted.
 
 THE CENSUS — audit/c2_axioms.sh, this tree, this toolchain
-  file                   theorems   axiom-free       rest
-  Zi                          115           34         81
-  ------------------------------------------------------------
-  TOTAL                       115           34         81
-  sorryAx                       0
-  Classical.choice              0
-  RESULT: PASS
+  RESULT: PASS. The two findings the census JUDGES are both zero: no
+  sorryAx, no Classical.choice. Those two zeros are the load-bearing
+  content of a census run and they are stated here as facts, not as
+  figures — a zero is a verdict. Everything the census COUNTS is in
+  VIEWS.md.
 
-  The 81 "rest", broken out by an independent per-theorem probe (the file
-  plus one `#print axioms` query per theorem, compiled under the same pin):
-    64  [propext]
-    17  [propext, Quot.sound]  -- two in S1, ten in S2's descent, five in
-                                  S3; omega does the linear work
-  and 34 + 64 + 17 = 115, the whole. The census now NAMES all seventeen
-  Quot.sound carriers, not just the two fatal classes -- it used to count
-  them and name none, which is the builder's crop #6. Neither propext nor Quot.sound is a
-  defect; the census reports them rather than judging them. The two
-  findings it DOES judge are both zero.
+  propext and Quot.sound are reported, not judged: Quot.sound is the
+  footprint omega leaves on this toolchain, and the census NAMES every
+  carrier rather than counting them anonymously, which is the builder's
+  crop #6.
 
   An earlier header in lean/Zi.lean claimed every theorem depended on
   propext alone. That was false in both directions and contradicted this
-  transcript; it is PROOFS.md correction #1.
+  transcript; it is PROOFS.md correction #1. A LATER header spelled the
+  whole census out in prose and went stale in every row, which is the
+  repairs-pass crop, and both are why this file now points instead.
 
 EVERY PLANT FIRED THIS SESSION — norm 16
   The census (audit/c2_axioms.sh):
@@ -165,14 +171,40 @@ EVERY PLANT FIRED THIS SESSION — norm 16
     birth for the instrument that exists because four hand-typed counts
     went stale.
 
+  The artifact-prose census guard (audit/c2_views.sh censusguard), new
+    this crate and bitten before it was trusted:
+      "115 theorems depend on propext and nothing else" planted in
+      lean/Zi.lean's header -> named the paragraph, exit 1.
+      Removed -> PASS, exit 0.
+    It exists because the seam between the numeral gate's territory (the
+    DOCS) and this gate's territory (the rendered view) contained the
+    artifact's own prose, and the largest stale count in this tree lived
+    there across every crate.
+
+  The numeral gate's rule (n2), the norm 19 guard, new this crate and
+    bitten on BOTH sub-rules:
+      n2a: "Thirty-one theorems." appended to PROOFS.md -> named, exit 1;
+           restored -> PASS.
+      n2b: "The view had been rendering seventeen all along." appended
+           -> named, exit 1; restored -> PASS.
+    Before either plant it fired on the real tree, naming seven live
+    specimens across three documents; all seven were repaired rather than
+    exempted, and the rule needed exactly one labeled exemption to reach
+    green — an English "one rendered number" in a REGISTER row describing
+    its own norm-16 bite.
+
   Plant B is worth one line of record: it confirms on THIS toolchain that
   an `omega` aimed at a conjunctive goal pulls Classical.choice — the trap
   Circle One's HANDOFF.md records being bitten by twice. S1 avoids it by
   splitting every conjunctive goal (`constructor`) before any `omega` runs,
   and the census's Classical.choice count of 0 is the receipt.
 
-THE OTHER GATES, same tree, same session
-  audit/c2_pointers.sh   PASS   (14 docs, 0 unresolved)
-  audit/c2_numerals.sh   PASS   (0 unsourced)
-  audit/c2_tree.sh       PASS   (0 build artifacts tracked)
+THE OTHER GATES, same tree, same session — chained by audit/c2_gates.sh,
+one exit code, and run by .githooks/pre-commit so a red gate blocks rather
+than advises:
+  audit/c2_pointers.sh   PASS   (every backticked token resolves)
+  audit/c2_numerals.sh   PASS   (main rule and rule (n2))
+  audit/c2_tree.sh       PASS   (no build artifact tracked)
+  audit/c2_axioms.sh     PASS   (the census above)
+  audit/c2_views.sh      PASS   (no drift; artifact prose states no census)
   floor: python3 run_all.py     29 of 29 PASS, exit 0
