@@ -107,6 +107,19 @@ this circle in exactly that shape. If it survives, the honest reason will be
 that it was stated once and rendered nowhere; if it falls, it will be
 because a later section quietly widened it.
 
+## ONE CROP OF MY OWN, found after this letter was drafted
+
+**I committed this letter with the pointer gate RED.** It failed on one
+token — `Int.natAbs_mul_self`, a core Lean lemma with no exemption — and I
+ran the gate, read `RESULT: FAIL`, and let the commit go out in the same
+breath. The token needed one reasoned exemption and now has it. The defect
+worth recording is not the token: **a gate was consulted and then not
+obeyed.** Norm 7 says a check that cannot fail is not a check; the
+corollary this earns is that a check that can fail and is ignored is not
+one either. Recorded at `9a28f25`, sites enumerated per norm 13, and stated
+here rather than left for your seat to find — which is the only part of it
+I get any credit for.
+
 ## QUESTIONS — none
 
 Q8 was the gate and it is built. S4's charge is in your letter, the
