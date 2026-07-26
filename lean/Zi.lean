@@ -1991,8 +1991,20 @@ theorem control_slice_cores_differ : sliceCore one 1 1 1 ≠ sliceCore (neg one)
         particle, that particles exist, or that the naming is the right
         one. The charge's own sentence — "2 classes × 2 particles = 4" —
         is, in this file, a count of PAIRS, and the nest lemmas tie it to
-        that and to nothing else. Every occurrence of the physics
-        vocabulary in this section is in a comment; none is in a name.
+        that and to nothing else.
+
+        THE NAMES, stated exactly, because the first version of this
+        bullet said "none is in a name" and that is false twice in this
+        very section: `mirror_swaps_the_semions` and
+        `control_semion_fails_the_filter` both carry the conventional
+        label. The true claim is narrower and is the one the bullet
+        needs: **no name CLAIMS physics content.** Those two CITE the
+        conventional label for the pair `{i, −i}` — they say what the
+        mirror does to that pair, and the pair is a pair of Gaussian
+        integers whatever anyone calls it. The names stay; the absolute
+        goes. It was written to defend this chair and it is the specimen
+        the builder's prediction caught, one sentence from the chair that
+        held.
       - that this is a statement about all of flatland or all of the roomy
         world. It is a statement about `Z[i]`, one ring, with the F-symbol
         family and the hexagon this file defines.

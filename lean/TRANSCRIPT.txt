@@ -40,7 +40,7 @@ THE COMPILE — the pass condition is silence
   exit    : 0
   bytes   : 0          <-- norm 10: exit 0 AND zero bytes, both measured
                            (stdout 0, stderr 0, measured separately)
-  time    : 10.4s real (the whole file, every section, on this container;
+  time    : 10.3s real (the whole file, every section, on this container;
                         the builder measured 29.8s for S1 alone on its
                         own — wall-times are recorded and never
                         load-bearing, and this one is not comparable to
@@ -65,12 +65,12 @@ THE COMPILE — the pass condition is silence
 
 THE ARTIFACT
   sha256  lean/Zi.lean
-          2d6fdabdf35c387a8fa3866d0f45c791e916dade9f83c19143cc104b78fdc06a
+          593a223fcead9816989e9d18986aa7053f3f292dd36d4e79634e0bd4ec3c2594
   sha256  lean/lean-toolchain
           2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
   .olean, produced by `lean -o Zi.olean lean/Zi.lean`:
-  sha256  865c0e62bdfe36ba707e412c9792862d11af44ead5e81b76b982fc39393aa96f
+  sha256  9a95f4c7b82bc20712ac9240c6f9950e0bea25a1bdc3340a508e44b231ef1747
 
   REPRODUCIBILITY, measured twice, in both directions:
     SAME machine, two builds from the same source -> BYTE-IDENTICAL.

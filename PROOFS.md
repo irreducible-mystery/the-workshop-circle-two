@@ -12,12 +12,12 @@ so. Opened at round 2 with S1.*
 
 ```
 source     lean/Zi.lean
-           2d6fdabdf35c387a8fa3866d0f45c791e916dade9f83c19143cc104b78fdc06a
+           593a223fcead9816989e9d18986aa7053f3f292dd36d4e79634e0bd4ec3c2594
 toolchain  lean/lean-toolchain  -> leanprover/lean4:v4.32.0
            2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 measured   Lean (version 4.32.0, x86_64-unknown-linux-gnu,
            commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-olean      865c0e62bdfe36ba707e412c9792862d11af44ead5e81b76b982fc39393aa96f
+olean      9a95f4c7b82bc20712ac9240c6f9950e0bea25a1bdc3340a508e44b231ef1747
            (not committed — a build artifact; audit/c2_tree.sh exits 1 on
             a tracked .olean. Byte-reproducible across builds on this
             machine. Cross-machine reproducibility is now measured FALSE —
@@ -1187,6 +1187,55 @@ dead pointer that is labeled.*
 the headline until the lemma exists", with no pointer to the entry where
 part of it now does. Repaired with a forward pointer that spends the
 licence to exactly the extent the symbol lemma earns and no further.
+
+## Corrections — the builder's mirror pass, five, and one I caught in my own closing draft
+
+*All five re-measured at their sites before repair.*
+
+**#1 — the C-rules stratum, four sites. Theirs, CONFIRMED, eleventh
+consecutive**, in the territory I named for them one crate earlier.
+
+- REGISTER row 17 said the receiving body "could verify no pin". Their
+  letter, in the same crate, says four of five pins verified exact; only
+  the HEAD pin was unverifiable. A four-fold widening of a transport
+  failure, written while holding the letter that refutes it, in the row
+  whose boundary column preaches measurement. Narrowed to the head pin.
+- C2 was written for supersessions only, so on the very next ordinary leg
+  it imposed nothing and three changed artifacts — `REGISTER.md`,
+  `PROOFS.md`, the pointer exemption ledger — rode legally unnamed under
+  an aphorism ("silence is not a pin") broad enough to forbid it.
+  Extended: every leg names every artifact that changed on it.
+- The card's section header said the rules were "added here, not in a
+  letter"; C3 was proposed verbatim in their slice letter and adopted in
+  the norms. Scoped to the defensible claim: the normative HOME is the
+  card.
+- **C3 dropped the word "gated"** from norm 20's licence. The norm lets a
+  body's own GATED crate merge on its say-so; the card, which is Kelly's
+  only runbook, licensed "your own crates" unconditionally. One word, and
+  it was the load-bearing one. Restored.
+
+**#2 — the mirror's headline prose. Mine, CONFIRMED, second of two.** The
+plant held — "particle" appears in no theorem and the pairs scoping is
+exact — and the sentence REPORTING the plant is what broke: "none is in a
+name" is false twice in its own section, at `mirror_swaps_the_semions` and
+`control_semion_fails_the_filter`. Repaired on their lean, which is the
+right one: keep the names, which cite a conventional label for a pair of
+Gaussian integers, and scope the claim to what the bullet needs — no name
+CLAIMS physics content.
+
+**MY OWN, found by planting against my own closing draft before it
+shipped.** The draft said "**the certificate closes 70 of 70, exit 0**"
+with no condition. I had not run it on this container. Measured here it
+closes 68 of 70: the two G6 calibrators re-measure Circle One's Lean
+blocks and need Circle One's tree, which this container does not carry,
+so they fail with file-not-found rather than a wrong value. With
+`C1_LEAN` set it is 70 of 70, which is the builder's measurement in five
+consecutive letters — **their measurement wearing my voice, in a
+retrospective.** That is exactly the specimen their standing prediction
+named for the closing document, and it existed. It was caught because the
+sentence was checked by running the thing rather than by remembering it,
+which is the only defence this document has and the reason it says so in
+its own preamble.
 
 ## Honest labels — the boundaries of this delivery
 

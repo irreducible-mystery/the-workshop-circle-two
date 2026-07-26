@@ -89,7 +89,11 @@ One habit fixes the only recurring courier defect: **pin in the
 message, every leg, both directions.** Everything else, the bodies
 handle.
 
-## Three rules the round-2 legs bought — added here, not in a letter
+## Three rules the round-2 legs bought — their normative HOME is this card
+
+*Not their origin: C3 is the builder's proposal, made in a letter and
+adopted as norm 20 in `NORMS.md`. What lives here is the runbook form —
+the version you act on. A letter goes stale honestly; a runbook must not.*
 
 **C1 — the crate carries `.git`, every leg.** A crate is the record's
 history, not a snapshot of its files. The slice leg shipped a bare
@@ -101,15 +105,23 @@ got five green gates, so the content was clean and only the transport
 had failed. If size ever forbids the history, send a git bundle. Never a
 bare snapshot.
 
-**C2 — a superseding message states every pin by name, CHANGED or
-UNCHANGED.** On the same leg a superseding crate listed letter, source
-and views as UNCHANGED and said nothing about the compile transcript,
-which had changed. Silence is not a pin. Every artifact named on the
-first message is named again on the second, with its verdict.
+**C2 — EVERY leg's message names every artifact that changed on it, and
+a superseding message additionally names every artifact from the message
+it supersedes, CHANGED or UNCHANGED.** Silence is not a pin.
+
+The rule was first written for supersessions only, and on the very next
+ordinary leg it therefore imposed nothing: three changed artifacts —
+`REGISTER.md`, `PROOFS.md` and the pointer exemption ledger — rode legally
+unnamed while the message carried an aphorism broad enough to forbid it.
+The builder measured the gap. Under C1 the head pin now covers every file
+transitively, which is the honest mitigation; naming the changed ones is
+what lets you and the receiving body see WHAT moved without diffing.
 
 **C3 — nothing enters the default branch but on the written word of a
-seat of record** (this is norm 20). Your own crates merge on the third
-body's say-so. Material arriving from outside the loop waits on a branch
+seat of record** (this is norm 20). The third body's own **GATED** crates
+merge on its say-so — gated is the load-bearing word and this card dropped
+it once: an ungated crate is not a crate a seat has vouched for, and the
+licence does not reach it. Material arriving from outside the loop waits on a branch
 until a body audits it and rules ADMIT in a letter, and the merge pin
 rides back through you. You adopted this habit in-channel before either
 body wrote it down; it is written down now because habits that live only
