@@ -7,6 +7,11 @@
 #   resolve to something this repo (or its exemption record) knows:
 #     (a) a file or directory path, as given relative to the repo root;
 #     (b) a function/def name defined in floor/*.py or audit/*.py;
+#     (b2) a Lean declaration in lean/*.lean -- theorem/def/abbrev/structure/
+#         inductive/instance names and structure fields, accepted bare or
+#         namespace-qualified (`mul_comm`, `Zi.mul`, `GZ.re`). Harvested from
+#         the sources at run time, never hardcoded, so a new theorem is
+#         citable the moment it compiles. Added when the Lean wing landed.
 #     (c) an identifier appearing literally (word-bounded) in
 #         audit/c2_gift_certificates.py — check names, env knobs;
 #     (d) a git object this repo knows: 7-40 char hex tokens are tried with
@@ -176,6 +181,34 @@ CERT="$ROOT/audit/c2_gift_certificates.py"
 GITOK=0
 git -C "$ROOT" rev-parse --git-dir >/dev/null 2>&1 && GITOK=1
 
+# (b2) Lean declaration names in lean/*.lean, bare and namespace-qualified.
+# Added when the Lean wing landed (S1): a prose file that cites a theorem by
+# name is pointing at a real declaration, and the gate must be able to say so
+# rather than demanding an exemption per theorem. Harvested, never hardcoded.
+LEANDEFS="$TMP/leandefs"
+: > "$LEANDEFS"
+for lf in "$ROOT"/lean/*.lean; do
+    [ -f "$lf" ] || continue
+    lns=$(grep '^namespace ' "$lf" | awk '{print $2}')
+    grep -E '^(theorem|def|abbrev|structure|inductive|instance) ' "$lf" \
+        | sed -E "s/^(theorem|def|abbrev|structure|inductive|instance)[[:space:]]+([A-Za-z_][A-Za-z0-9_']*).*/\2/" \
+        | while IFS= read -r dn; do
+            [ -n "$dn" ] || continue
+            printf '%s\n' "$dn" >> "$LEANDEFS"
+            for nsp in $lns; do printf '%s.%s\n' "$nsp" "$dn" >> "$LEANDEFS"; done
+            # the structure's projections are declarations too
+            printf '%s\n' "$dn" | grep -q . && :
+        done
+    # structure fields, as Name.field and bare field
+    awk '/^structure /{instruct=1; sname=$2; next}
+         instruct && /^[ \t]+[A-Za-z_][A-Za-z0-9_]*[ \t]*:/ {
+            f=$1; sub(/:.*/,"",f); gsub(/[ \t]/,"",f);
+            if (f != "") { print f; print sname "." f }
+            next }
+         instruct && !/^[ \t]/ { instruct=0 }' "$lf" >> "$LEANDEFS"
+done
+sort -u "$LEANDEFS" -o "$LEANDEFS" 2>/dev/null || true
+
 UNTOK="$TMP/untok"   # unresolved unique tokens
 : > "$UNTOK"
 while IFS= read -r tok; do
@@ -212,8 +245,8 @@ while IFS= read -r tok; do
         *)  if grep -qxF -- "$tok" "$BASENAMES"; then continue; fi ;;
     esac
 
-    # (b) def name in floor/*.py or audit/*.py, (c) identifier in the
-    # certificate — identifier-shaped tokens only
+    # (b) def name in floor/*.py or audit/*.py, (b2) Lean declaration name in
+    # lean/*.lean, (c) identifier in the certificate — identifier-shaped only
     case $tok in
         [A-Za-z_]*)
             if printf '%s\n' "$tok" | grep -qxE '[A-Za-z_][A-Za-z0-9_]*'; then
@@ -222,6 +255,12 @@ while IFS= read -r tok; do
                     continue
                 fi
                 if [ -f "$CERT" ] && grep -qwF -- "$tok" "$CERT"; then
+                    continue
+                fi
+            fi
+            # (b2) accepts the dotted form too, so `Zi.mul` resolves
+            if printf '%s\n' "$tok" | grep -qxE "[A-Za-z_][A-Za-z0-9_']*(\.[A-Za-z_][A-Za-z0-9_']*)*"; then
+                if grep -qxF -- "$tok" "$LEANDEFS" 2>/dev/null; then
                     continue
                 fi
             fi

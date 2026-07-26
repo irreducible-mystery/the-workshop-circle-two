@@ -78,3 +78,11 @@ __pycache__/	Python bytecode cache directory name; a c2_tree.sh artifact PATTERN
 .a	static-archive extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
 .so	shared-object extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
 floor/__pycache__	the bytecode cache directory as TRACKED at a19fb4c (30 files); untracked at b4328b2 and ignored since — it resolves in history, not in the live tree, which is the whole point of the crop that created REGISTER row 10
+propext	Lean 4 core kernel axiom, reported by the axiom census; resolves in the toolchain, not this tree (cf. Classical.choice)
+Quot.sound	Lean 4 core kernel axiom, reported by the axiom census; resolves in the toolchain, not this tree
+sorryAx	Lean 4 core axiom marking a hole, the thing audit/c2_axioms.sh exists to find; resolves in the toolchain, not this tree
+decide	Lean 4 core tactic/term named in the proof ledger; resolves in the toolchain, not this tree (cf. omega)
+constructor	Lean 4 core tactic named in the proof ledger; resolves in the toolchain, not this tree
+deriving DecidableEq	Lean 4 core deriving handler named in the ledger's disclosure; toolchain vocabulary, not a repo pointer
+DecidableEq	Lean 4 core typeclass named in the ledger's disclosure; resolves in the toolchain, not this tree
+example	Lean 4 keyword for an anonymous declaration, named in REGISTER row 4's boundary; resolves in the toolchain, not this tree (cf. sorry, omega)

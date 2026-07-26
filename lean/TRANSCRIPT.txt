@@ -1,0 +1,101 @@
+CIRCLE TWO — S1 COMPILE TRANSCRIPT
+==================================================================
+Everything below was produced by an instrument on this machine this
+session. Wall-times are recorded and never load-bearing.
+
+MACHINE
+  Linux x86_64, cloud container (Claude Code session), 2026-07-26.
+  The same platform class as the round-1 handshake, and a different one
+  from the record's original MINGW64/Windows reference.
+
+TOOLCHAIN — the pin, measured, not assumed
+  requested : leanprover/lean4:v4.32.0        (lean/lean-toolchain)
+  measured  : Lean (version 4.32.0, x86_64-unknown-linux-gnu,
+              commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
+  The commit matches the reference transcript's 8c9756b2… exactly, so the
+  pin closes on this machine as it did on the builder's.
+
+  ENVIRONMENT NOTE, per norm 14 and the builder's operational intel:
+  release.lean-lang.org is unreachable from this sandbox, exactly as the
+  builder reported from theirs. The working route was the official GitHub
+  release asset for v4.32.0 (lean-4.32.0-linux.tar.zst under the
+  leanprover/lean4 releases), fetched over HTTPS (200, 559392068 bytes),
+  unpacked, and invoked by absolute path. `lean --version` adjudicates
+  identity, and it matches. No re-pin was needed; none is claimed.
+
+THE COMPILE — the pass condition is silence
+  command : lean lean/Zi.lean
+  exit    : 0
+  bytes   : 0          <-- norm 10: exit 0 AND zero bytes, both measured
+  time    : 1.3s
+
+  Silence here is earned rather than configured: no linter is disabled
+  anywhere in the file, and no `set_option` suppresses a warning. The one
+  place silence was at risk — the unused-simp-argument linter, which fires
+  on per-call simp argument lists — was resolved by declaring the
+  arithmetic normalisation lemmas ONCE as `attribute [local simp]`, so the
+  proofs carry no explicit simp arguments to be unused. The measurement
+  that this was necessary is recorded in the file's own header.
+
+THE ARTIFACT
+  sha256  lean/Zi.lean
+          c1e0ef3ddc8592d8eab85955f95287be6a7fc19d803f8023bd3bf52fe055b53a
+  sha256  lean/lean-toolchain
+          2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
+
+  .olean, produced by `lean -o Zi.olean lean/Zi.lean`:
+  sha256  Zi.olean
+          1092c8bfbea483c15831e007b91baf73fe44aff87c1949a3f7eb2e645d33a4d8
+  size    414408 bytes
+
+  REPRODUCIBILITY, measured: two independent builds from the same source
+  on this machine produced BYTE-IDENTICAL .olean files (hashes compared,
+  equal). Labelled honestly: that is same-machine, same-toolchain
+  reproducibility. Cross-machine .olean reproducibility is NOT established
+  by this measurement, and is not claimed. The source hash and the
+  toolchain commit are the pins that travel; the .olean hash is offered as
+  the builder's charge asks for it, with its scope stated.
+
+  The .olean itself is NOT committed — it is a build artifact, and
+  audit/c2_tree.sh exits 1 on a tracked .olean. Its hash rides here
+  instead, which is the whole point of shipping hashes rather than blobs.
+
+THE CENSUS — audit/c2_axioms.sh, this tree, this toolchain
+  file                   theorems   axiom-free       rest
+  Zi                           53           15         38
+  ------------------------------------------------------------
+  TOTAL                        53           15         38
+  sorryAx                       0
+  Classical.choice              0
+  RESULT: PASS
+
+  Read honestly: "rest" is 38 theorems depending on ordinary kernel axioms
+  — propext, and Quot.sound where `omega` closed a goal. Neither is a
+  defect; the census reports them rather than judging them. The two
+  findings the census DOES judge are both zero.
+
+THE CENSUS'S OWN ALARM — norm 16, both plants fired this session
+  Plant A (a hole reaches the record):
+    theorem plant : False := by sorry
+    -> SORRY: 'P.plant' depends on axioms: [sorryAx]
+    -> sorryAx 1, RESULT: FAIL, exit 1.
+  Plant B (the HANDOFF trap itself, reproduced):
+    theorem trap (a : Int) : a + 0 = a ∧ a + 1 = 1 + a := by omega
+    -> CHOICE: 'Q.trap' depends on axioms:
+       [propext, Classical.choice, Quot.sound]
+    -> Classical.choice 1, RESULT: FAIL, exit 1.
+  Both planted copies were scratch files outside the shipped tree; both
+  removed; the census returns PASS on the clean tree.
+
+  Plant B is worth one line of record: it confirms on THIS toolchain that
+  an `omega` aimed at a conjunctive goal pulls Classical.choice — the trap
+  Circle One's HANDOFF.md records being bitten by twice. S1 avoids it by
+  splitting every conjunctive goal (`constructor`) before any `omega` runs,
+  and the census's Classical.choice count of 0 is the receipt that the
+  discipline held.
+
+THE OTHER GATES, same tree, same session
+  audit/c2_pointers.sh   PASS
+  audit/c2_numerals.sh   PASS
+  audit/c2_tree.sh       PASS   (0 build artifacts tracked)
+  floor: python3 run_all.py     29 of 29 PASS, exit 0
