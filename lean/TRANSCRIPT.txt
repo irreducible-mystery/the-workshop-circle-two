@@ -194,6 +194,24 @@ EVERY PLANT FIRED THIS SESSION — norm 16
     rendered number", in the row describing its own norm-16 bite — and
     that took the rule's single labeled exemption.
 
+    THE CLASS-c8 DEFECT, found after the crate was couriered, when PR #3
+    merged and STATE-OF-THE-RECORD.md arrived on the default branch from
+    outside the loop. The gate's identifier stripping used two ordered
+    rules; on a digit-leading hex identifier the letter-first rule ate the
+    tail and left the leading digits as a bare numeral -- a SHA-256 prefix
+    and a commit id read as unsourced counts. The same ordered pair in
+    harvest() ran the other way and would have fed those stray runs into
+    the KNOWN set, sourcing a matching bare number anywhere in the record.
+    Repaired to ONE rule over maximal alphanumeric runs in the decision
+    path, and re-bitten three ways:
+      a fresh bare 8675309 in PROOFS.md      -> FAIL, exit 1.
+      a line carrying 499ebb8 and 73a475f3   -> PASS, exit 0.
+      the clean tree                         -> PASS, exit 0.
+    The census guard was re-bitten in the same commit, since it was edited
+    in the same commit: the planted census sentence named and exit 1,
+    removed and PASS. An instrument that changes gets re-bitten; norm 16
+    has no grandfather clause.
+
     And it was measured against the two historical specimens rather than
     argued about: it catches "twelve live instances" and does NOT catch
     "tracks thirty-one compiled-bytecode files". One of two. The gate's

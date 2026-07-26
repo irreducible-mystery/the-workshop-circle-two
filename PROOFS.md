@@ -960,6 +960,56 @@ commits, carrier lists diffed, one mover named. Repaired as H#4a.
 sentence" is an either/or the diff refutes, since H#4 changed both.
 Recorded; the letter stays as couriered.
 
+## Correction — a defect INSIDE the numeral gate, found by the merge
+
+*Found after the slice crate was couriered, when PR #3 merged and the
+default branch brought in `STATE-OF-THE-RECORD.md` — inherited inventory
+prose I did not write. The gate went red on it. The gate was wrong.*
+
+**THE DEFECT.** The numeral gate strips identifier words (class c8) with
+two ordered rules: letter-first, then digit-first. On a **digit-leading
+hex identifier** the letter-first rule fires on the tail and blanks it,
+leaving the leading digits behind as a bare numeral. Measured:
+`73a475f3` → `73`; `499ebb8` → `499`. Those are a SHA-256 prefix and a
+commit id — the two things this circle's courier protocol is built out
+of — and the gate read them as unsourced counts.
+
+**IT RAN BOTH WAYS, and the second direction is the worse one.** The same
+ordered pair sits in `harvest()`, which builds the gate's KNOWN set from
+the certificate and the weld report. There, that stray leading run does not raise a
+false alarm — it enters the known set and would have **sourced a matching
+bare number anywhere in the record**. A silent over-acceptance in an instrument whose
+whole job is to refuse unsourced numbers. Nothing had exercised it because
+no scanned document had put a digit-leading hex identifier in prose until
+this one did.
+
+**THE REPAIR is a rule, not an ordering.** In the decision path the two
+gsubs are replaced by a single pass over maximal alphanumeric runs: a run
+containing at least one letter is an identifier, whatever order its
+characters come in. Two ordered rules had a seam; one rule has none. In
+the two `sed` paths the digit-first rule now runs first, which fixes the
+observed class there. `audit/c2_views.sh` carried the same ordered pair
+and got the same reorder.
+
+**RE-BITTEN, because an instrument that changes gets re-bitten and norm 16
+has no grandfather clause.** Three plants, two of them new:
+a fresh bare `8675309` still FAILS; a line carrying `499ebb8` and
+`73a475f3` now PASSES; the clean tree passes. The census guard was
+re-bitten too, since it was edited in the same commit.
+
+**WHAT THIS SAYS ABOUT THE REGISTER.** Row 13 covers the gate instruments
+themselves — whether each is *right*, not merely green — and lists the
+audit loop as its live adjudicator, because "every plant is a case someone
+thought of; the defects row 9 found were all in the unplanted remainder".
+This is one more from the unplanted remainder, and the thing that found it
+was not a seat and not a plant: **it was a document arriving from outside
+the loop.** Foreign material is an adjudicator no row names. That is worth
+more than the fix.
+
+**And one more miscitation, same species as the last:**
+`audit/c2_views.sh`'s header also cited "row-9" for the spelled-out
+boundary. Row 8. Fixed in both instruments now.
+
 ## Honest labels — the boundaries of this delivery
 
 - **What the kernel checked is what the file says, not what the charge
