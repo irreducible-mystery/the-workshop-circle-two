@@ -128,9 +128,9 @@ render_to () {
       printf "Anything absent from that list is not proved here.\n"
       echo
       printf "What the derivation can and cannot do, carried in from the\n"
-      printf "renderer own boundary note: it knows a section EXISTS and how many\n"
-      printf "theorems it holds. It cannot know a section HEADING is honest. It\n"
-      printf "kills staleness, not error.\n"
+      printf "boundary note of the renderer: it knows a section EXISTS and how\n"
+      printf "many theorems it holds. It cannot know a section HEADING is honest.\n"
+      printf "It kills staleness, not error.\n"
       echo
       echo "## The census"
       echo

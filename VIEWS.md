@@ -7,16 +7,16 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            5dfac6da25ab192b5f9387c2a5f029e57383a0ac2a1152f20afc8c788c48e917
+sha256            8d155afaff5fc357a573ec913ed07bf38275e034c131de71a4ff60907da87650
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
-theorems          130
-definitions       16
-lines             1102
-live instances    20
-control theorems  18
-decide-settled    31
+theorems          153
+definitions       20
+lines             1287
+live instances    24
+control theorems  22
+decide-settled    36
 import lines      0   (zero imports is the charter)
 ```
 
@@ -35,25 +35,26 @@ import lines      0   (zero imports is the charter)
 9. S2 — THE DOMAIN, BY ONE MOD-4 DESCENT                22 theorems
 10. S3 — PENTAGON NECESSITY, AND EXACTLY TWO            39 theorems
 11. THE UNITS OF Z[i] — Q8, route (b): order-free, through `Nat`  15 theorems
+12. S4 — HEXAGON NECESSITY: R² = f, and the catalog of four  23 theorems
 ```
 
 **The boundary, derived from the inventory above:** this file proves
-the 12 sections listed and nothing else. The last of them is
-"11. THE UNITS OF Z[i] — Q8, route (b): order-free, through `Nat`".
+the 13 sections listed and nothing else. The last of them is
+"12. S4 — HEXAGON NECESSITY: R² = f, and the catalog of four".
 Anything absent from that list is not proved here.
 
 What the derivation can and cannot do, carried in from the
-renderer own boundary note: it knows a section EXISTS and how many
-theorems it holds. It cannot know a section HEADING is honest. It
-kills staleness, not error.
+boundary note of the renderer: it knows a section EXISTS and how
+many theorems it holds. It cannot know a section HEADING is honest.
+It kills staleness, not error.
 
 ## The census
 
 ```
 file                   theorems   axiom-free       rest
-Zi                          130           39         91
-TOTAL                       130           39         91
+Zi                          153           44        109
+TOTAL                       153           44        109
 sorryAx                       0
 Classical.choice              0
-Quot.sound carriers 27   (each named in the census output)
+Quot.sound carriers 32   (each named in the census output)
 ```

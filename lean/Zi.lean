@@ -1099,4 +1099,189 @@ theorem control_nat_sq_sum_two_escapes_the_conclusion :
   · decide
   · decide
 
+/-! ## 12. S4 — HEXAGON NECESSITY: R² = f, and the catalog of four
+
+    Charged in the charter and the certificate's G1d suite. The braiding
+    adds one more free parameter, `R`; the hexagon has sixteen loop
+    assignments of which **eight are admissible** (`d` is forced twice
+    over, and the two forcings must agree); and the whole content of the
+    hexagon, given the pentagon, is one equation.
+
+    THE INDEX CONVENTIONS are the bench's, cited by line as C1's lesson
+    requires: `hex_residual_z2` at `floor/symmetric_statistics.py` line 124.
+    Its internal labels: e = (a+b) mod 2, z = (a+c) mod 2, g = (b+c) mod 2,
+    with admissibility d = (e+c) mod 2 = (z+b) mod 2, and `R` applying at
+    the slot (1,1) only. -/
+
+/-- The braiding symbol: `R` at the single slot `(1,1)`, `one` elsewhere.
+    The bench's `Rs`, in Z[i]. -/
+def Rs (R : GZ) (x y : Int) : GZ := if x = 1 ∧ y = 1 then R else one
+
+/-- The hexagon's left side: one braiding and one F-symbol. -/
+def hexLhs (f R : GZ) (a b c d : Int) : GZ :=
+  let e := (a + b) % 2; let z := (a + c) % 2
+  mul (Rs R e c) (Fs f c a b d z e)
+
+/-- The hexagon's right side: two F-symbols and two braidings. -/
+def hexRhs (f R : GZ) (a b c d : Int) : GZ :=
+  let e := (a + b) % 2; let z := (a + c) % 2; let g := (b + c) % 2
+  mul (mul (mul (Fs f a b c d e g) (Rs R b c)) (Fs f a c b d z g)) (Rs R a c)
+
+/-! ### The classification — eight admissible, five and two and one
+
+    `G1d_hexagon_8_instances_classified`: of the sixteen loop assignments
+    eight survive admissibility; of those, five read `1 = 1`, two read
+    `R = R`, and exactly one forces. The seven below hold for EVERY `f` and
+    EVERY `R`. -/
+
+theorem hex_0000 (f R : GZ) : hexLhs f R 0 0 0 0 = hexRhs f R 0 0 0 0 := by
+  simp [hexLhs, hexRhs, Fs, Rs]
+
+theorem hex_0011 (f R : GZ) : hexLhs f R 0 0 1 1 = hexRhs f R 0 0 1 1 := by
+  simp [hexLhs, hexRhs, Fs, Rs]
+
+theorem hex_0101 (f R : GZ) : hexLhs f R 0 1 0 1 = hexRhs f R 0 1 0 1 := by
+  simp [hexLhs, hexRhs, Fs, Rs]
+
+theorem hex_0110 (f R : GZ) : hexLhs f R 0 1 1 0 = hexRhs f R 0 1 1 0 := by
+  simp [hexLhs, hexRhs, Fs, Rs]
+
+theorem hex_1001 (f R : GZ) : hexLhs f R 1 0 0 1 = hexRhs f R 1 0 0 1 := by
+  simp [hexLhs, hexRhs, Fs, Rs]
+
+theorem hex_1010 (f R : GZ) : hexLhs f R 1 0 1 0 = hexRhs f R 1 0 1 0 := by
+  simp [hexLhs, hexRhs, Fs, Rs]
+
+theorem hex_1100 (f R : GZ) : hexLhs f R 1 1 0 0 = hexRhs f R 1 1 0 0 := by
+  simp [hexLhs, hexRhs, Fs, Rs]
+
+/-! ### The one that forces
+
+    `G1d_forcing_instance_is_111`: at `(1,1,1,1)` the left side is `f` and
+    the right side is `f²R²`. -/
+
+theorem hex_1111_lhs (f R : GZ) : hexLhs f R 1 1 1 1 = f := by
+  simp [hexLhs, Fs, Rs]
+
+theorem hex_1111_rhs (f R : GZ) : hexRhs f R 1 1 1 1 = mul (mul f f) (mul R R) := by
+  have e : hexRhs f R 1 1 1 1 = mul (mul (mul f R) f) R := by simp [hexRhs, Fs, Rs]
+  rw [e]
+  cases f; cases R
+  simp only [mul, GZ.mk.injEq]
+  constructor
+  · first | (simp; omega) | simp
+  · first | (simp; omega) | simp
+
+/-- The hexagon, as a proposition about `(f, R)`. -/
+def hexagonHolds (f R : GZ) : Prop :=
+  ∀ a b c d : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+    (d = 0 ∨ d = 1) → d = ((a + b) % 2 + c) % 2 → d = ((a + c) % 2 + b) % 2 →
+    hexLhs f R a b c d = hexRhs f R a b c d
+
+/-- `G1d_reduction_identity`: `f²R² − f = (R² − f) + R²(f² − 1)`, a ring
+    identity over Z. It is the whole reason pentagon-plus-hexagon collapses
+    to one equation: modulo `f² = 1`, the second summand vanishes. -/
+theorem reduction_identity (f R : GZ) :
+    sub (mul (mul f f) (mul R R)) f
+      = add (sub (mul R R) f) (mul (mul R R) (sub (mul f f) one)) := by
+  cases f; cases R
+  simp only [sub, add, mul, neg, one, GZ.mk.injEq]
+  constructor
+  · simp; omega
+  · simp; omega
+
+/-- **The hexagon, with the pentagon, is exactly `R² = f`.** -/
+theorem hexagon_forces_Rsq (f R : GZ) (hp : mul f f = one) (hh : hexagonHolds f R) :
+    mul R R = f := by
+  have e := hh 1 1 1 1 (Or.inr rfl) (Or.inr rfl) (Or.inr rfl) (Or.inr rfl)
+              (by decide) (by decide)
+  rw [hex_1111_lhs, hex_1111_rhs, hp, one_mul] at e
+  exact e.symm
+
+theorem Rsq_gives_hexagon (f R : GZ) (hp : mul f f = one) (hr : mul R R = f) :
+    hexagonHolds f R := by
+  intro a b c d ha hb hc hd h1 h2
+  rcases ha with ha | ha <;> rcases hb with hb | hb <;> rcases hc with hc | hc <;>
+    rcases hd with hd | hd <;> subst ha <;> subst hb <;> subst hc <;> subst hd <;>
+    first
+      | (exfalso; omega)
+      | (rw [hex_1111_lhs, hex_1111_rhs, hp, one_mul]; exact hr.symm)
+      | simp [hexLhs, hexRhs, Fs, Rs]
+
+/-! ### The catalog of four
+
+    Pentagon gives `f ∈ {1, −1}`; hexagon gives `R² = f`; and the units
+    classification (Q8) turns `R² = −1` into `R ∈ {i, −i}`. Four pairs:
+    boson, fermion, and the semion pair. -/
+
+theorem Rsq_one_iff (R : GZ) : mul R R = one ↔ (R = one ∨ R = neg one) :=
+  exactly_two_roots R
+
+theorem Rsq_neg_one_iff (R : GZ) : mul R R = neg one ↔ (R = I ∨ R = neg I) := by
+  constructor
+  · intro h
+    have hu : IsUnit R := ⟨neg R, by rw [mul_neg, h, neg_neg]⟩
+    rcases (units_are_four R).mp hu with h1 | h1 | h1 | h1 <;> subst h1
+    · exact absurd h (by decide)
+    · exact absurd h (by decide)
+    · exact Or.inl rfl
+    · exact Or.inr rfl
+  · intro h; rcases h with h | h <;> subst h <;> decide
+
+/-- **THE CATALOG OF FOUR.** Exactly four `(f, R)` pairs satisfy pentagon
+    and hexagon together: `(1,1)` and `(1,−1)` — the boson and the fermion —
+    and `(−1, i)` and `(−1, −i)` — the semion pair. -/
+theorem catalog_of_four (f R : GZ) :
+    (mul f f = one ∧ hexagonHolds f R) ↔
+      ((f = one ∧ R = one) ∨ (f = one ∧ R = neg one) ∨
+       (f = neg one ∧ R = I) ∨ (f = neg one ∧ R = neg I)) := by
+  constructor
+  · intro h
+    have hp := h.1
+    have hr : mul R R = f := hexagon_forces_Rsq f R hp h.2
+    rcases (exactly_two_roots f).mp hp with hf | hf
+    · subst hf
+      rcases (Rsq_one_iff R).mp hr with h1 | h1
+      · exact Or.inl ⟨rfl, h1⟩
+      · exact Or.inr (Or.inl ⟨rfl, h1⟩)
+    · subst hf
+      rcases (Rsq_neg_one_iff R).mp hr with h1 | h1
+      · exact Or.inr (Or.inr (Or.inl ⟨rfl, h1⟩))
+      · exact Or.inr (Or.inr (Or.inr ⟨rfl, h1⟩))
+  · intro h
+    rcases h with ⟨hf, hr⟩ | ⟨hf, hr⟩ | ⟨hf, hr⟩ | ⟨hf, hr⟩ <;> subst hf <;> subst hr
+    · exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide)⟩
+    · exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide)⟩
+    · exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide)⟩
+    · exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide)⟩
+
+/-! ### S4's mandatory controls
+
+    `G1d_controls_wrong_R_per_class`: the classes do not accept each
+    other's particles. -/
+
+/-- `R = i` over `f = 1` fails: `R² = −1 ≠ 1 = f`. -/
+theorem control_I_over_boson_fails : mul I I ≠ (one : GZ) := by decide
+
+/-- `R = 1` over `f = −1` fails: `R² = 1 ≠ −1 = f`. -/
+theorem control_one_over_fermion_fails : mul one one ≠ (neg one : GZ) := by decide
+
+/-- And the same two, read as hexagon failures rather than arithmetic ones. -/
+theorem control_hexagon_rejects_I_over_boson : ¬ hexagonHolds one I := by
+  intro h
+  exact control_I_over_boson_fails (hexagon_forces_Rsq one I (by decide) h)
+
+theorem control_hexagon_rejects_one_over_fermion : ¬ hexagonHolds (neg one) one := by
+  intro h
+  have := hexagon_forces_Rsq (neg one) one (by decide) h
+  revert this
+  decide
+
+/-! ### S4's live instances -/
+
+theorem live_21 : hexLhs one one 1 1 1 1 = one := by decide
+theorem live_22 : Rs I 1 1 = I := by decide
+theorem live_23 : Rs I 0 1 = one := by decide
+theorem live_24 : mul I I = neg one := I_squared
+
 end Zi

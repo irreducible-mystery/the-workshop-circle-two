@@ -123,3 +123,8 @@ d72565f78829b94386b5407b27f058f95870ed8f1ef5e3d7b7dd9a2891ba0792	SHA-256 pin: le
 2bfe7bcebd2cb238decacb0a1a33658fc38e3fd124cb2be028ad6dcabdaac66a	SHA-256 pin: letters/ROUND2-UNITS-VERIFICATION.md — pinned HERE BY MEASUREMENT, the third consecutive leg with no pin in the courier's message
 control_nat_sq_sum_two_differs	SUPERSEDED theorem name, quoted in PROOFS.md correction E#2 and the builder's units verification as the decoration it convicted; replaced by control_nat_sq_sum_two_escapes_the_conclusion, which rules something out — it resolves in history, not in the live tree
 echo	POSIX shell builtin, named in PROOFS.md correction E#3 (the boundary sentence was a fixed `echo` in the renderer before it was derived); toolchain vocabulary, not a repo pointer (cf. cd, sha256sum)
+27e1bee983b8fb58a639fb69c9de6939cf85a961460364651e7fe63083954d24	SHA-256 pin: circletwo-repairs.zip at head 8ac4405; verified exact on the builder's side
+8b9249de4d2ddcd3c548970a897b597b75c74b516adf2ffdc02fded849fa08f3	SHA-256 pin: letters/ROUND2-REPAIRS-DELIVERY.md as couriered
+3c79f5102bd75ab1168e3ce7e48120f11224fabddee49db34b1c35e0f1d891ac	SHA-256 pin: VIEWS.md as couriered with the repairs delivery
+5dfac6da25ab192b5f9387c2a5f029e57383a0ac2a1152f20afc8c788c48e917	SHA-256 pin: lean/Zi.lean as couriered with the repairs delivery
+1910a0f9dbbbbd3b1b62338687a9bdca1e0de5fc3a91c57a975445e1a36afb36	SHA-256 pin: letters/ROUND2-REPAIRS-VERIFICATION.md — the FIRST leg in four where the pin rode in the courier's message; verified on receipt rather than measured after the fact

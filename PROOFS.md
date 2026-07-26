@@ -221,6 +221,46 @@ classification, and with it the machine-visible scope can graduate from
 "definitional restriction" to a proved lemma. That is the next crate, with
 S4.
 
+## S4 — hexagon necessity, and the catalog of four: DELIVERED
+
+Twenty-three theorems. The braiding adds `R`; the hexagon has sixteen loop
+assignments of which **eight are admissible**; and given the pentagon its
+entire content is one equation.
+
+| family | theorems | certificate check |
+|---|---|---|
+| the braiding symbol and the two sides | `Rs`, `hexLhs`, `hexRhs` (definitions) | bench conventions, `hex_residual_z2` cited by line |
+| the seven non-forcing admissible instances | `hex_0000` … `hex_1100` | `G1d_hexagon_8_instances_classified` — five read 1 = 1, two read R = R |
+| the one that forces | `hex_1111_lhs`, `hex_1111_rhs` | `G1d_forcing_instance_is_111` |
+| the reduction identity | `reduction_identity` | `G1d_reduction_identity` |
+| **hexagon + pentagon ⟺ R² = f** | `hexagonHolds`, `hexagon_forces_Rsq`, `Rsq_gives_hexagon` | both directions |
+| the two square roots, by class | `Rsq_one_iff`, `Rsq_neg_one_iff` | `Rsq_neg_one_iff` stands on `units_are_four` — Q8's whole purpose |
+| **THE CATALOG OF FOUR** | `catalog_of_four` | `G1d_catalog4_satisfies_BOTH_hexagons` (the primary hexagon; see the boundary below) |
+| **mandatory controls** | `control_I_over_boson_fails`, `control_one_over_fermion_fails`, `control_hexagon_rejects_I_over_boson`, `control_hexagon_rejects_one_over_fermion` | `G1d_controls_wrong_R_per_class` |
+| S4 live instances | `live_21` … `live_24` | norm 3 |
+
+**Exactly four `(f, R)` pairs** satisfy pentagon and hexagon together:
+`(1, 1)` and `(1, −1)` — the boson and the fermion — and `(−1, i)` and
+`(−1, −i)` — the semion pair. Proved as an iff, so the four are exactly
+four and not merely at least four.
+
+**The classification was reproduced before it was formalised**, from the
+bench's own plumbing: eight admissible, five reading `1 = 1`, two reading
+`R = R`, one forcing at `(1,1,1,1)` where the left side is `f` and the
+right is `f²R²`. That matches the certificate exactly.
+
+**The controls say the classes do not accept each other's particles:**
+`R = i` over `f = 1` fails and `R = 1` over `f = −1` fails, each stated
+twice — once as arithmetic and once as a hexagon rejection.
+
+**BOUNDARY, stated because the charge asked for both hexagons.** This
+section imposes the primary hexagon only. The `R⁻¹`-form is equivalent on
+units, and `units_are_four` now supplies exactly the fact that equivalence
+needs — but the second hexagon is **not** written here, so
+`catalog_of_four` is a theorem about the primary hexagon. Nothing in this
+delivery may say "both hexagons"; the next crate either adds the second or
+the boundary stays.
+
 ## Corrections — loudest first
 
 *All of the below were found by an adversarial audit of this delivery —
@@ -551,6 +591,32 @@ gate, and **the hook refused an actual commit** — I planted a drift, ran
 `git commit`, and HEAD did not move. REGISTER row 12 names the class; row
 5's boundary now records the honest gap, that a hook lives in the working
 copy and not in the commit.
+
+## Corrections — the builder's repairs pass, one and one cosmetic
+
+**F#1 — REGISTER row 12's boundary borrowed class 2's authority.** It said a
+wrong instrument passing was "class 2's problem". Class 2 is **Certificate
+claims**, covering `c2_gift_certificates.py` alone — so a wrong pointer,
+numeral, tree or views instrument was covered by no sentence in the register
+at all. Borrowed authority, in the boundary of the mechanism that had just
+saved me, one crate after the row was born. Repaired the way the builder
+said it should be: not by rewording the clause but by **adding row 13
+deliberately** — the gate instruments themselves, adjudicated by each one's
+norm-16 plant record plus row 9's audit loop, with the honest boundary that
+plants only cover cases somebody thought of.
+
+**F#2, cosmetic** — the rendered caveat read "the renderer own boundary
+note". Fixed in the **template**, then re-rendered: one edit site, not two,
+which is the view mechanism doing exactly what it was built for.
+
+**Norm 17, adopted.** The builder proposed it after ruling the packing
+disagreement in my favour: *a repair and the first thing that depends on it
+never ride in the same crate.* It is Circle Two's first appended norm; the
+Circle One canon stays frozen at 1–16, so every citation in the sealed
+record still points where it did. `NORMS.md` carries it with the measured
+reason — the stale-label repair recreated its own defect inside the commit
+that shipped it, and the abstention repair was about to ride with the S4
+prose that leans on it.
 
 ## Honest labels — the boundaries of this delivery
 

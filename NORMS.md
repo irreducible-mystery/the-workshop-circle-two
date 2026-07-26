@@ -116,3 +116,21 @@ file itself stays verbatim (it is a primary source); the correction is
 recorded here and in `ROUND1.md`, per norm 13, and the sites restating
 the canon are: `CHARTER.md` (superseded paragraph), this file (the
 canon), `ROUND1.md` crop item #2 (the record of the drift).
+
+## Circle Two's own appended norms — 17 onward
+
+*The Circle One canon is frozen at 1–16 by the settlement above, and
+appending does not touch the freeze: every citation of "norm 10" or
+"norm 15" in the sealed record still points where it always did. What
+follows is this circle's own ledger of what it learned, numbered from 17
+so that a later reader can tell inheritance from experience at a glance.*
+
+**17 — a repair and the first thing that depends on it never ride in the
+same crate.** Proposed by the builder in the repairs verification and
+adopted here. It is not a preference; it is the generalisation of a
+measured mechanism. The stale-label repair recreated the stale label one
+section forward *inside the commit that shipped the repair*, and the same
+shape threatened again when the abstention repair was due to ride with the
+S4 prose that leans on it. Ship the repair, verify it alone, then build on
+the settled base. The cost is an extra leg; the thing it buys is that a
+repair cannot be undone by its own dependent before anyone has read it.
