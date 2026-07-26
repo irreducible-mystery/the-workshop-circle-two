@@ -1,0 +1,6 @@
+MY CENSUS ON THEIR ROUND-TWO CLOSING FILE (their_r2close_Zi.lean, pin 593a223f...)
+theorems: 215  axiom-free: 71  propext-only: 81  propext+Quot.sound: 63
+sorryAx: 0  Classical.choice: 0
+VERDICT: matches VIEWS.md and ROUND2-CLOSING-VERIFICATION.md digit-for-digit
+         (215 / 71 / 81 / 63, zeros where zeros must be). PASS.
+carriers: see r2close_carriers.txt (63 names)

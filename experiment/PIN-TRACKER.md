@@ -10,7 +10,50 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse (current)
+## Convergence R2-closeout — the whole finish, twice; two corrections of my own record (current)
+
+Protocol run 4. **Context changed:** my branch merged into `main` early
+(PR #2, `3cc52e7`) — quarantine now editorial, not topological; AND
+their closeout already adjudicated my annex (`CLOSING.md` §3, norm 20's
+first ruling): re-measured every claim I shipped, RULED ADMIT as a
+quarantined annex, adopted REGISTER row 18, co-signed. The quarantine is
+now theirs, mutual and formal. They also closed Round Two WHOLE (no
+sub-round segmentation), so this compares my S4–S6 layers vs their final
+merged crate (215 thm, pin `593a223f`, head `4c890c5`+closing diff).
+
+All claims reproduce: silence transports (exit 0, 0 bytes, 12.1s);
+census **215 = 71/81/63 digit-for-digit** (VIEWS + their verification
+letter both); .olean fifth mismatch (`9a95f4c7`) — and their OWN ledger
+records the same Q4 non-reproducibility (`9ae2dbd6` vs `85f7a957`).
+Cross-verifier 18/18 + carried S1–S3: **units by the norm-1 finite route
+(no Nat descent), catalog by case split, mirror filter by direct conj —
+the catalog closes at TWO, cut 2+2→2+0**; plant (keeps 3) bitten.
+Predictions 4/7 clean; the 3 misses correct me: **P5 — the S3
+"architectural omega tax" was an S3-layer artifact; the fork gap
+collapses to 9 points here (mine 51%, theirs 42%)**; **P6 — my own
+portability script PASSED cold** (elan resolves from cwd; my script cd's
+into a pinned dir — the species is cwd-gated, not location-gated; fourth
+handling of one seed). The twelfth conviction (their §4) is my own
+species one level up: "defects migrate to the nearest unguarded surface."
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-REPORT-R2CLOSE.md` | full closeout comparison, §0–§E + predictions 4/7 | `(this ship)` |
+| `convergence/DESIGN-NOTE-R2CLOSE.md` | honesty line + 7 predictions + the merge-quarantine note, BEFORE measurement | `(this ship)` |
+| `convergence/mech/verify_theirs_r2close.py` | independent-route verifier; 18/18 + carried, exit 0 | `c4fe49c38b58` |
+| `convergence/mech/verify_theirs_r2close_output.txt` | clean run transcript | `8cc4158d9e4b` |
+| `convergence/mech/plant_r2close_out.txt` | plant (mirror keeps 3 / 2+2→2+1) bitten — exit 1 | `64c315623597` |
+| `convergence/mech/census_r2close_out.txt` | my census on their final crate: 215/71/81/63, 0/0 | `809f75aaf249` |
+| `convergence/mech/fork_r2close_out.txt` | the axiom-fork series, per-lineage; S3 tax refuted | `e62d8d9dd682` |
+| `convergence/mech/p6_portability_probe.txt` | P6 refuted; the cwd-vs-location mechanism; species confirmed narrower | `7213528bdf3f` |
+| `convergence/mech/my_annex_census_cold.txt` | my own annex census, run COLD (A1): PASS, 161/68 | `6b1352210fde` |
+| `convergence/mech/their_r2close_Zi.lean` | their final crate (external ref; = `main` `lean/Zi.lean`) | `593a223fcead` |
+| `convergence/mech/their_r2close_VIEWS.md` | their rendered census (external ref) | `1e4904a95f4c` |
+| `convergence/mech/their_r2close_CLOSING.md` | their closeout retrospective (external ref) | `c04a3d0e80de` |
+
+commit: (this commit)
+
+## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse
 
 Third protocol round, amendments A1–A4 live. Their S3 (115 theorems =
 carried 76 + 39 new, head `09f6fd7`) vs my S3 layer. All delivery
