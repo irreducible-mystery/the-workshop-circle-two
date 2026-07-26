@@ -88,3 +88,41 @@ runs on its own instruments, which was always the point.
 One habit fixes the only recurring courier defect: **pin in the
 message, every leg, both directions.** Everything else, the bodies
 handle.
+
+## Three rules the round-2 legs bought — their normative HOME is this card
+
+*Not their origin: C3 is the builder's proposal, made in a letter and
+adopted as norm 20 in `NORMS.md`. What lives here is the runbook form —
+the version you act on. A letter goes stale honestly; a runbook must not.*
+
+**C1 — the crate carries `.git`, every leg.** A crate is the record's
+history, not a snapshot of its files. The slice leg shipped a bare
+snapshot: the receiving body could not verify the head pin, could not
+see the merge or the packing, and could not run three of the five
+instruments at all, because they need a repository. It reconstructed by
+grafting the files onto its own verified copy of the previous head — and
+got five green gates, so the content was clean and only the transport
+had failed. If size ever forbids the history, send a git bundle. Never a
+bare snapshot.
+
+**C2 — EVERY leg's message names every artifact that changed on it, and
+a superseding message additionally names every artifact from the message
+it supersedes, CHANGED or UNCHANGED.** Silence is not a pin.
+
+The rule was first written for supersessions only, and on the very next
+ordinary leg it therefore imposed nothing: three changed artifacts —
+`REGISTER.md`, `PROOFS.md` and the pointer exemption ledger — rode legally
+unnamed while the message carried an aphorism broad enough to forbid it.
+The builder measured the gap. Under C1 the head pin now covers every file
+transitively, which is the honest mitigation; naming the changed ones is
+what lets you and the receiving body see WHAT moved without diffing.
+
+**C3 — nothing enters the default branch but on the written word of a
+seat of record** (this is norm 20). The third body's own **GATED** crates
+merge on its say-so — gated is the load-bearing word and this card dropped
+it once: an ungated crate is not a crate a seat has vouched for, and the
+licence does not reach it. Material arriving from outside the loop waits on a branch
+until a body audits it and rules ADMIT in a letter, and the merge pin
+rides back through you. You adopted this habit in-channel before either
+body wrote it down; it is written down now because habits that live only
+in one person's head are exactly what this circle keeps convicting.

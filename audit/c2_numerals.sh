@@ -145,9 +145,14 @@ echo "=============================================================="
 #     Identifier words (letters+digits) are stripped first so a check NAME
 #     is never read as a number; thousands-commas are merged.
 harvest() {
+  # NOTE the rule order: digit-first identifiers are stripped BEFORE
+  # letter-first ones.  Reversed -- as it was until the merged
+  # STATE-OF-THE-RECORD.md exposed it -- the letter-first rule eats the
+  # tail of `73a475f3` and leaves `73` behind, which here would silently
+  # ENTER the known set and source a bare 73 anywhere in the record.
   sed -e 's/[vV][0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*/ /g' \
-      -e 's/[A-Za-z_][A-Za-z0-9_]*[0-9][A-Za-z0-9_]*/ /g' \
       -e 's/[0-9][0-9]*[A-Za-z_][A-Za-z0-9_]*/ /g' \
+      -e 's/[A-Za-z_][A-Za-z0-9_]*[0-9][A-Za-z0-9_]*/ /g' \
       -e 's/\([0-9]\),\([0-9][0-9][0-9]\)/\1\2/g' \
       -e 's/\([0-9]\),\([0-9][0-9][0-9]\)/\1\2/g' "$1" \
     | grep -oE '[0-9]{2,}'
@@ -257,8 +262,23 @@ code { next }
   gsub(/[Ff]lags?[- #]*[0-9]+((-|\xe2\x80\x93)[0-9]+)?/, " ", line)
   gsub(/[Ss]teps?[- #]*[0-9]+((-|\xe2\x80\x93)[0-9]+)?/, " ", line)
   gsub(/SHA-256|sha-256/, " ", line)                               # c8 algorithm name
-  gsub(/[A-Za-z_][A-Za-z0-9_]*[0-9][A-Za-z0-9_]*/, " ", line)      # c8 identifiers
-  gsub(/[0-9]+[A-Za-z_][A-Za-z0-9_]*/, " ", line)                  #    (digit-first)
+  # c8 identifiers: ONE rule over maximal alphanumeric runs, because two
+  # ordered rules had a real defect.  The letter-first rule used to run
+  # first and ate the TAIL of a digit-leading hex identifier, leaving its
+  # leading digits behind as a bare numeral: `73a475f3` -> `73`,
+  # `499ebb8` -> `499`.  Latent since the port; it fired the first time a
+  # document put digit-leading commit ids and hash prefixes in prose, and
+  # the same defect ran the other way in harvest() below, where it fed
+  # those stray digit runs into the KNOWN set and would have SOURCED a
+  # bare 73 anywhere in the record.  A maximal run containing at least one
+  # letter is an identifier, whatever order its characters come in.
+  out2 = ""
+  while (match(line, /[A-Za-z0-9_]+/)) {
+    tok = substr(line, RSTART, RLENGTH)
+    out2 = out2 substr(line, 1, RSTART - 1) (tok ~ /[A-Za-z_]/ ? " " : tok)
+    line = substr(line, RSTART + RLENGTH)
+  }
+  line = out2 line
   # merge thousands-commas: 1,560 -> 1560 (digit,DDD not followed by a digit)
   out = ""
   while (match(line, /[0-9],[0-9][0-9][0-9]/)) {
@@ -376,6 +396,7 @@ for f in $CUMULATIVE; do
   sed -e 's/`[^`]*`/ /g' -e 's/"[^"]*"/ /g' \
       -e 's/[vV][0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*/ /g' \
       -e 's/[0-9][0-9]*-[0-9][0-9]*-[0-9][0-9]*/ /g' \
+      -e 's/[0-9][0-9]*[A-Za-z_][A-Za-z0-9_]*/ /g' \
       -e 's/[A-Za-z_][A-Za-z0-9_]*[0-9][A-Za-z0-9_]*/ /g' \
       -e 's/[Ll]ines\{0,1\} [0-9][0-9]*/ /g' \
       -e 's/\([Nn]orm\|[Rr]ow\|[Rr]ound\|[Cc]lass\|[Ii]tem\|[Ss]tep\|[Cc]rop\|[Ss]ection\) [0-9][0-9]*/ /g' \

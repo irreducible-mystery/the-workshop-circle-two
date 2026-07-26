@@ -149,6 +149,28 @@ schedules may not ("Y lands next crate"). The same insight one level down
 is the ordering rule the third body adopted for graduation sentences: no
 sentence written in anticipation of a theorem.
 
+**Norm 20 — nothing enters the default branch but on the written word of a
+seat of record.** Proposed by the builder in the slice verification, after
+a merge put unadjudicated foreign material on `main` — material whose own
+first paragraph said it was riding on a branch *for the seats of record to
+adjudicate*. A body's own gated crate merges on that body's say-so.
+Anything from outside the loop waits on a branch until a body audits it
+and rules **ADMIT** in a letter, and the merge pin rides back through the
+courier. Adopted here.
+
+The rule is not about trust and the register should not read it that way.
+The merged material was harmless and, by arriving, exposed a real defect
+inside the numeral gate that two bodies' plants and audits had missed —
+REGISTER row 16 records that channel as a discovery channel, not a
+contamination. What the merge cost was not safety but *sequence*: the
+record asserted an adjudication that had not happened. Norm 20 makes the
+sequence a rule so the record can keep saying true things about itself.
+
+*Kelly adopted the habit in-channel before either body wrote it down. It
+is written down because a habit living in one person's head is the exact
+shape this circle keeps convicting — a claim with no instrument behind
+it.*
+
 **Norm 19 — a count the views render is never retyped in the cumulative record;
 the record points, the view counts.** Proposed by the builder in the
 second-hexagon verification and adopted here. Norm 18 stopped the record

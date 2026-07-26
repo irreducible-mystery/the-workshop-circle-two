@@ -12,12 +12,12 @@ so. Opened at round 2 with S1.*
 
 ```
 source     lean/Zi.lean
-           ba23f2d739249d00bb507c6f62a4292520dcec889ec208fde1af869876c2db09
+           593a223fcead9816989e9d18986aa7053f3f292dd36d4e79634e0bd4ec3c2594
 toolchain  lean/lean-toolchain  -> leanprover/lean4:v4.32.0
            2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 measured   Lean (version 4.32.0, x86_64-unknown-linux-gnu,
            commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-olean      b0a2ca6b0d48c76d34e79aa3203dc06e9432323b1b268446ef00203e85d1e6a7
+olean      9a95f4c7b82bc20712ac9240c6f9950e0bea25a1bdc3340a508e44b231ef1747
            (not committed — a build artifact; audit/c2_tree.sh exits 1 on
             a tracked .olean. Byte-reproducible across builds on this
             machine. Cross-machine reproducibility is now measured FALSE —
@@ -196,7 +196,13 @@ the scope now lives in the statements: `Fs_normalized_off_111` proves the
 family lies in the normalized slice, and the headline is named
 `exactly_two_in_the_slice`. Nothing in this delivery writes
 `H³(Z₂) = Z₂`, and nothing may upgrade the headline until the lemma
-exists. Where it stalls, precisely: the natural route needs the units of
+exists. **That was the state at S3, and it is superseded: the SYMBOL form
+of the lemma is proved in the slice entry below** — every unit-valued
+pentagon symbol is gauged onto the slice — while the CLASS form still
+waits on the gauge equivalence relation, which no section builds. The
+licence above is spent to exactly that extent and no further; this
+sentence exists because a reader arriving here could otherwise cash a
+dangling permit, which the builder measured as a live risk. Where it stalls, precisely: the natural route needs the units of
 Z[i] classified as `{±1, ±i}`, and the order-free half of that (ruling out
 `N(u) = −1` by squares mod 4) I have; the other half (`a² + b² = 1` forces
 a unit coordinate) wants either `Int`'s order or a second descent, and I
@@ -312,7 +318,7 @@ survives the inverse form.
 elsewhere: a boundary retired in another section is not a boundary that was
 never there, and the file says which section imposes what.
 
-## The slice — every pentagon symbol is gauged into it: DELIVERED
+## The slice — every UNIT-VALUED pentagon symbol is gauged into it: DELIVERED
 
 The charged lemma. S3 proved exactly two solutions **in the normalized
 slice** and said, in the file and in the theorem's own name, that nothing
@@ -348,9 +354,11 @@ builder pushed for in the last crate earning its keep in this one.
 | `gauge_normalizes` | off `(1,1,1)` the gauged symbol is `one` — that is what "lies in the slice" means |
 | `gauge_root_sq` | the surviving slot squares to `one` |
 | `every_pentagon_symbol_meets_the_slice` | **the charged lemma**: an explicit unit gauge carries every unit-valued pentagon symbol onto `sliceCore f`, with `f² = 1` |
-| `gauged_symbol_is_Fs` | the same in S3's vocabulary: the gauged symbol IS `Fs f`, for `f = 1` or `f = −1` |
-| `gauged_symbol_satisfies_pentagon` | the gauged symbol satisfies the pentagon — via `sq_gives_pentagon`, not via any coboundary calculation |
-| `boson_stays_boson`, `fermion_is_not_a_gauged_boson` | the two the slice holds are not one thing counted twice |
+| `gauged_symbol_is_Fs_on_labels` | the same in S3's vocabulary: on label triples the gauged symbol IS `Fs f`, for `f = 1` or `f = −1` |
+| `gauged_symbol_satisfies_pentagon` | the GAUGED symbol satisfies the pentagon — the subject of the statement is now the subject of the sentence |
+| `boson_stays_boson`, `fermion_is_not_a_gauged_boson` | no unit gauge carries the boson onto the fermion |
+| `fermion_stays_fermion`, `boson_is_not_a_gauged_fermion` | and none carries the fermion onto the boson — the twin, built after the builder measured "the two do not collapse" as prose symmetry over a one-way theorem |
+| `genPentagonHolds_congr` | agreement on the labels is all the pentagon can see, which is the step that lets the next row name the gauged symbol |
 
 **Anti-vacuity, norm 3, and it is load-bearing here rather than
 ceremonial.** If every pentagon symbol were already normalized the charged
@@ -371,8 +379,11 @@ change. What exists now is a pair: that theorem says the slice holds
 exactly two, and this section says every unit-valued pentagon symbol is
 gauged onto the slice and that the two do not collapse. The graduation is
 the conjunction of two theorems, not a wider reading of either, and the
-artifact says so at both ends so that no later sentence can quote one as
-if it had widened.
+artifact says so at both ends — the headline's docstring and, since the
+builder measured its absence, section 14's own header — so that no later
+sentence can quote one as if it had widened. When this sentence was first
+written only one end carried it; the repair built the missing end rather
+than shrinking the claim.
 
 **THE BOUNDARY, and it is the reason no theorem here says "class".**
 `gaugeAct` is not proved to be an EQUIVALENCE relation — composition and
@@ -383,6 +394,73 @@ and the word the artifact earned is "symbol". The gap is one proof, not one word
 nothing here computes `H³(Z₂, ·)` or any named cohomology group; the two
 theorems do not add up to that without the identification the missing
 proof would supply.
+
+## The mirror — the Galois filter, and the catalog closes at two: DELIVERED
+
+The charter's charge, quoted rather than paraphrased: *"The flatland
+filter is a Galois statement: on units, u⁻¹ = conj(u), so the roomy edict
+R = R⁻¹ is literally conj(R) = R — and its fixed points among the four are
+exactly boson and fermion. 2 classes × 2 particles = 4, filtered to 2.
+Tie every count to its nest."*
+
+**"Literally" is discharged, not quoted.** `selfInverse_iff_mirror_fixed`
+proves that on a unit the roomy edict and the Galois condition are the
+same condition, both directions through `mul_conj_eq_one_of_unit`.
+Section 13's bridge — the one the builder refused to let me shrink the
+prose around — is now load-bearing in a **third** section.
+
+**The cut, stated twice on purpose.** `catalog_filtered_by_mirror` takes
+the hypothesis as `conj R = R`; `catalog_filtered_by_roomy_edict` takes it
+as `R = R⁻¹`. The charge says these are the same cut, so the file proves
+the same two survivors under each rather than asserting the equivalence
+and using one.
+
+**The nest, tied.** `catalog_over_f_one` and `catalog_over_f_neg_one` give
+the four as two over each pentagon class. `mirror_keeps_nothing_over_f_neg_one`
+shows the filter takes **both** from the first class and **none** from the
+second — the cut is 2 + 2 → 2 + 0, not one per class, and that asymmetry
+is the mathematics rather than an accident of bookkeeping.
+
+**The structural difference from Circle One, in the kernel.** Circle One's
+σ moved BETWEEN pentagon classes — golden and Yang–Lee are conjugates over
+different classes. Here `conj` FIXES both classes and swaps within the
+`f = −1` fibre: `mirror_fixes_the_survivors`, `mirror_swaps_the_semions`,
+and `catalog_closed_under_mirror` — the last proved through
+`catalog_of_four_both_hexagons`, so section 13 pays a second time.
+
+| theorem | what it says |
+|---|---|
+| `selfInverse_iff_mirror_fixed` | on a unit, `R = R⁻¹` **is** `conj R = R` |
+| `units_fixed_by_mirror` | the mirror fixes exactly `{1, −1}` among the four |
+| `catalog_filtered_by_mirror` | pentagon + hexagon + mirror ⟺ exactly two pairs |
+| `catalog_filtered_by_roomy_edict` | the same two, with the edict written `R = R⁻¹` |
+| `catalog_over_f_one`, `catalog_over_f_neg_one` | the four as 2 + 2 |
+| `mirror_keeps_nothing_over_f_neg_one` | the cut is 2 + 0, not 1 + 1 |
+| `catalog_closed_under_mirror` | the mirror acts on the catalog and fixes `f` |
+
+**Anti-vacuity, norm 3.** Both halves evaluated: `live_33`/`live_34` are
+survivors, `live_35`/`live_36` are the pair the mirror moves.
+
+**Negative controls, norm 5.** `control_mirror_fixes_a_non_unit`: `⟨2,0⟩`
+is fixed by the mirror and is *not* self-inverse, so the unit hypothesis
+in the Galois reading is load-bearing rather than decorative.
+`control_semion_fails_the_filter` exhibits a catalog member the filter
+removes.
+
+**THE WORD "PARTICLE" IS NOT EARNED AND IS IN NO THEOREM NAME.** What is
+proved is about PAIRS `(f, R)` of Gaussian integers. "Boson", "fermion"
+and "semion" are names the physics attaches; nothing here establishes that
+a pair is a particle, that particles exist, or that the naming is right.
+The charge's "2 classes × 2 particles = 4" is, in this file, a count of
+pairs, and the nest lemmas tie it to that. The builder's standing
+prediction for this crate was aimed at exactly this noun; the section
+header states the boundary before the prediction could land on it, which
+is the only defence the ordering rule allows.
+
+**THE BOUNDARY.** This is a statement about `Z[i]` with this file's
+F-symbol family and hexagon — not about flatland, not about the roomy
+world as such. And no theorem says `conj` generates `Gal(Q(i)/Q)`; it is
+exhibited and used, and nothing below needs more.
 
 ## Corrections — loudest first
 
@@ -959,6 +1037,205 @@ commits, carrier lists diffed, one mover named. Repaired as H#4a.
 **#6, cosmetic, letter class** — "changing the artifact rather than the
 sentence" is an either/or the diff refutes, since H#4 changed both.
 Recorded; the letter stays as couriered.
+
+## Correction — a defect INSIDE the numeral gate, found by the merge
+
+*Found after the slice crate was couriered, when PR #3 merged and the
+default branch brought in `STATE-OF-THE-RECORD.md` — inherited inventory
+prose I did not write. The gate went red on it. The gate was wrong.*
+
+**THE DEFECT.** The numeral gate strips identifier words (class c8) with
+two ordered rules: letter-first, then digit-first. On a **digit-leading
+hex identifier** the letter-first rule fires on the tail and blanks it,
+leaving the leading digits behind as a bare numeral. Measured:
+`73a475f3` → `73`; `499ebb8` → `499`. Those are a SHA-256 prefix and a
+commit id — the two things this circle's courier protocol is built out
+of — and the gate read them as unsourced counts.
+
+**IT RAN BOTH WAYS, and the second direction is the worse one.** The same
+ordered pair sits in `harvest()`, which builds the gate's KNOWN set from
+the certificate and the weld report. There, that stray leading run does not raise a
+false alarm — it enters the known set and would have **sourced a matching
+bare number anywhere in the record**. A silent over-acceptance in an instrument whose
+whole job is to refuse unsourced numbers. Nothing had exercised it because
+no scanned document had put a digit-leading hex identifier in prose until
+this one did.
+
+**THE REPAIR is a rule, not an ordering.** In the decision path the two
+gsubs are replaced by a single pass over maximal alphanumeric runs: a run
+containing at least one letter is an identifier, whatever order its
+characters come in. Two ordered rules had a seam; one rule has none. In
+the two `sed` paths the digit-first rule now runs first, which fixes the
+observed class there. `audit/c2_views.sh` carried the same ordered pair
+and got the same reorder.
+
+**RE-BITTEN, because an instrument that changes gets re-bitten and norm 16
+has no grandfather clause.** Three plants, two of them new:
+a fresh bare `8675309` still FAILS; a line carrying `499ebb8` and
+`73a475f3` now PASSES; the clean tree passes. The census guard was
+re-bitten too, since it was edited in the same commit.
+
+**WHAT THIS SAYS ABOUT THE REGISTER.** Row 13 covers the gate instruments
+themselves — whether each is *right*, not merely green — and lists the
+audit loop as its live adjudicator, because "every plant is a case someone
+thought of; the defects row 9 found were all in the unplanted remainder".
+This is one more from the unplanted remainder, and the thing that found it
+was not a seat and not a plant: **it was a document arriving from outside
+the loop.** Foreign material is an adjudicator no row names. That is worth
+more than the fix.
+
+**And one more miscitation, same species as the last:**
+`audit/c2_views.sh`'s header also cited "row-9" for the spelled-out
+boundary. Row 8. Fixed in both instruments now.
+
+## Corrections — the builder's slice pass, seven and two transport findings
+
+*All nine re-measured here before repair. Two of them are the two standing
+predictions landing in the same crate, which has not happened before —
+theirs a tenth consecutive time, mine for the first after three crates
+open.*
+
+**T#1 — the crate carried no repository, and it gated everything else.**
+Confirmed, and the cause is mine and specific: I built the crate with
+`git archive`, which writes a snapshot. Consequences measured on the
+receiving side: the head pin unverifiable, the merge and the packing
+unverifiable, three instruments refusing outright because they need a
+repository, and the pointer gate red on commit ids that resolve only
+against history. The builder reconstructed by grafting the files onto its
+verified copy of the previous head and got five green gates — the content
+was clean and only the transport failed, which is the one piece of luck in
+it. Repaired in `COURIER-CARD.md` as rule C1: the crate carries `.git`
+every leg; a git bundle if size ever forbids; never a bare snapshot.
+
+**T#2 — the transcript's pin did not ride the supersession.** Confirmed.
+The superseding message marked letter, source and views UNCHANGED and said
+nothing of `lean/TRANSCRIPT.txt`, which I had changed in the same commit —
+the gate-repair story was written into it. The file is better and the pin
+discipline is worse. Repaired as rule C2: a superseding message names
+every artifact from the first message, CHANGED or UNCHANGED. **Silence is
+not a pin**, and this is the courier protocol's own species landing on the
+body that has been lecturing about it for four legs.
+
+**#1 — the headline's docstring claimed the CLASS lemma is proved.**
+Confirmed at the site: "the every-class-meets-the-slice lemma was not
+proved. It is proved now — `every_pentagon_symbol_meets_the_slice`". What
+is proved is the SYMBOL lemma; the class form waits on the equivalence
+relation this file declines to build, and the crate says so in three other
+places. **The builder's first offered prediction, CONFIRMED after three
+crates standing**, at the chair it named.
+
+The wrinkle is the finding, and it is not a small one: **my ordering rule
+worked, and the defect walked around it.** The theorem compiled first, its
+statement never grew, its name never changed — the rule governs those and
+it held. The docstring one inch away widened anyway. Mechanism guards what
+it names; prose migrates to the nearest unguarded surface. Repaired to
+"its SYMBOL form is proved now", with the old sentence quoted in place.
+
+**#2 — "every theorem below assumes units" is false.** Confirmed, and
+wider than the four the builder named. Measured: `Fs_eq_Fgen`,
+`pentLhs_eq_gen`, `pentRhs_eq_gen`, `genPentagon_slice_iff` carry no unit
+hypothesis; neither do `IsUnit_one`, the `twistedBoson` and `fakeCocycle`
+facts, the five live instances, or the three controls — those PROVE
+unit-ness of a concrete symbol rather than assuming it. And the builder's
+sharpest point stands: `genPentagon_slice_iff` genuinely says something
+about non-unit symbols, since its `f` is arbitrary and the slice family at
+a non-unit value is a non-unit-valued symbol. Repaired to the scoped
+clause. **Their prediction, CONFIRMED, tenth consecutive** — in the named
+territory, in the bullet they did not name.
+
+**#3 — "the artifact says so at both ends" had one end.** Confirmed by
+search: the no-widening sentence existed only at the headline's docstring;
+section 14's header stated the division of labour and carried no such
+guard. Repaired in the better direction — the missing end is built, in
+section 14's header, and the ledger sentence now names both ends.
+
+**#4 — "the two do not collapse" was prose symmetry over a one-way
+theorem.** Confirmed: the file forbade boson→fermion and said nothing
+about fermion→boson. **The twin is built** — `fermion_stays_fermion` and
+`boson_is_not_a_gauged_fermion`, by the same sixteen-way cancellation.
+Same choice as the bridge repair two crates back, and for the reason the
+builder gave then: build the dependency, do not shrink the sentence.
+
+**#5 — the headings dropped the unit qualifier the theorems carry.**
+Confirmed. Section 14's title and this ledger's heading now say
+UNIT-VALUED.
+
+**#6 — two names claimed more than their statements quantify.** Confirmed,
+and repaired in opposite directions on purpose, because the two gaps are
+not the same gap. the theorem formerly named
+"gauged_symbol_is_Fs" — quoted rather than pointed at, because the name no
+longer resolves and the pointer gate said so — is RENAMED
+`gauged_symbol_is_Fs_on_labels`: off the labels the claim is false rather
+than unproved, so the restriction is content and belongs in the name.
+`gauged_symbol_satisfies_pentagon` is STRENGTHENED: its conclusion now
+names the gauged symbol, carried across by a new lemma
+`genPentagonHolds_congr` — the pentagon reads its symbol only at triples
+whose entries are mod-2 sums of labels, so agreement on the labels is all
+it can see. The step the builder measured as "not taken in the file" is
+taken.
+
+*One cost of #6, recorded because the gate charged it immediately: renaming
+a theorem kills every pointer to it in the couriered letters, which are
+primary sources and are never edited. The pointer gate went red on the
+builder's own verification letter the moment it entered the tree, and the
+old name now carries a labeled exemption saying so. A rename is not free
+here; it is paid for in the exemption ledger, once per frozen letter. I
+still took it, because a name that is false off its scope is worse than a
+dead pointer that is labeled.*
+
+**#7 — the S3 entry's dangling licence.** Confirmed: "nothing may upgrade
+the headline until the lemma exists", with no pointer to the entry where
+part of it now does. Repaired with a forward pointer that spends the
+licence to exactly the extent the symbol lemma earns and no further.
+
+## Corrections — the builder's mirror pass, five, and one I caught in my own closing draft
+
+*All five re-measured at their sites before repair.*
+
+**#1 — the C-rules stratum, four sites. Theirs, CONFIRMED, eleventh
+consecutive**, in the territory I named for them one crate earlier.
+
+- REGISTER row 17 said the receiving body "could verify no pin". Their
+  letter, in the same crate, says four of five pins verified exact; only
+  the HEAD pin was unverifiable. A four-fold widening of a transport
+  failure, written while holding the letter that refutes it, in the row
+  whose boundary column preaches measurement. Narrowed to the head pin.
+- C2 was written for supersessions only, so on the very next ordinary leg
+  it imposed nothing and three changed artifacts — `REGISTER.md`,
+  `PROOFS.md`, the pointer exemption ledger — rode legally unnamed under
+  an aphorism ("silence is not a pin") broad enough to forbid it.
+  Extended: every leg names every artifact that changed on it.
+- The card's section header said the rules were "added here, not in a
+  letter"; C3 was proposed verbatim in their slice letter and adopted in
+  the norms. Scoped to the defensible claim: the normative HOME is the
+  card.
+- **C3 dropped the word "gated"** from norm 20's licence. The norm lets a
+  body's own GATED crate merge on its say-so; the card, which is Kelly's
+  only runbook, licensed "your own crates" unconditionally. One word, and
+  it was the load-bearing one. Restored.
+
+**#2 — the mirror's headline prose. Mine, CONFIRMED, second of two.** The
+plant held — "particle" appears in no theorem and the pairs scoping is
+exact — and the sentence REPORTING the plant is what broke: "none is in a
+name" is false twice in its own section, at `mirror_swaps_the_semions` and
+`control_semion_fails_the_filter`. Repaired on their lean, which is the
+right one: keep the names, which cite a conventional label for a pair of
+Gaussian integers, and scope the claim to what the bullet needs — no name
+CLAIMS physics content.
+
+**MY OWN, found by planting against my own closing draft before it
+shipped.** The draft said "**the certificate closes 70 of 70, exit 0**"
+with no condition. I had not run it on this container. Measured here it
+closes 68 of 70: the two G6 calibrators re-measure Circle One's Lean
+blocks and need Circle One's tree, which this container does not carry,
+so they fail with file-not-found rather than a wrong value. With
+`C1_LEAN` set it is 70 of 70, which is the builder's measurement in five
+consecutive letters — **their measurement wearing my voice, in a
+retrospective.** That is exactly the specimen their standing prediction
+named for the closing document, and it existed. It was caught because the
+sentence was checked by running the thing rather than by remembering it,
+which is the only defence this document has and the reason it says so in
+its own preamble.
 
 ## Honest labels — the boundaries of this delivery
 

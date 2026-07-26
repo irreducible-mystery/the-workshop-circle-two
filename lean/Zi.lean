@@ -943,9 +943,16 @@ theorem Fs_one_of_zero_label (f : GZ) (a b c d x y : Int)
 
     THE NAME, and why it does not change now that section 14 has landed.
     When this theorem was written, "in the slice" carried the scope because
-    the every-class-meets-the-slice lemma was not proved. It is proved now
-    — `every_pentagon_symbol_meets_the_slice` — and the name still says "in
-    the slice", because THIS theorem's statement is still about the family
+    the every-class-meets-the-slice lemma was not proved. Its SYMBOL form
+    is proved now — `every_pentagon_symbol_meets_the_slice`, which is about
+    symbols and not about classes, because the equivalence relation this
+    file declines to build is what "class" would need. An earlier version
+    of this very paragraph said "it is proved now" with the CLASS lemma as
+    the antecedent — the exact widening the graduation apparatus below was
+    built to prevent, one paragraph above the discipline that prevents it.
+    The builder's standing prediction was aimed here and landed here. The
+    name still says "in the slice", because THIS theorem's statement is
+    still about the family
     `Fs f` and nothing about it grew. What grew is the pair: this theorem
     says the slice holds exactly two, section 14 says every unit-valued
     pentagon symbol is gauged onto the slice and that the two do not
@@ -1456,7 +1463,7 @@ theorem live_25 : conj I = neg I := conj_I
 theorem live_26 : mul I (conj I) = one := by decide
 theorem live_27 : mul (conj I) (conj I) = neg one := by decide
 
-/-! ## 14. THE SLICE — every pentagon symbol is gauged into it
+/-! ## 14. THE SLICE — every UNIT-VALUED pentagon symbol is gauged into it
 
     THE CHARGE, from the builder: prove the every-class-meets-the-slice
     lemma. S3 proved exactly two solutions INSIDE the normalized slice and
@@ -1490,9 +1497,23 @@ theorem live_27 : mul (conj I) (conj I) = neg one := by decide
           every label triple, and `mul f f = one`;
       (b) `gauged_symbol_is_Fs` — the same fact in S3's own vocabulary: the
           gauged symbol IS `Fs f`, for `f = 1` or `f = −1`;
-      (c) `fermion_is_not_a_gauged_boson` — no unit-valued gauge carries
-          `sliceCore one` onto `sliceCore (neg one)`, so the two the slice
-          holds are not one thing counted twice.
+      (c) `fermion_is_not_a_gauged_boson` and
+          `boson_is_not_a_gauged_fermion` — no unit-valued gauge carries
+          either of `sliceCore one`, `sliceCore (neg one)` onto the other,
+          so the two the slice holds are not one thing counted twice, in
+          both directions.
+
+    THE GRADUATION, and this paragraph is the second of the two ends the
+    ledger claims: `exactly_two_in_the_slice` did NOT get stronger and its
+    name did not change. What exists is a PAIR — that theorem says the
+    slice holds exactly two, this section says every unit-valued pentagon
+    symbol is gauged onto the slice and that the two do not collapse. The
+    graduation is the conjunction of two theorems, not a wider reading of
+    either, and no later sentence may quote one of them as if it had
+    widened. The delivery letter claimed this sentence stood "at both
+    ends" when it stood only at the headline's docstring; the builder
+    measured the absence, and this is the missing end rather than a
+    narrowed claim.
 
     WHAT IS NOT PROVED, stated exactly, because the words this section
     invites are wider than its theorems:
@@ -1506,8 +1527,21 @@ theorem live_27 : mul (conj I) (conj I) = neg one := by decide
       - that this computes `H³(Z₂, ·)` or any named cohomology group.
         Nothing here writes that, and (a)+(c) do not add up to it without
         the identification the bullet above is missing.
-      - anything about symbols that are not unit-valued. `Fgen F` is
-        defined for every `F`; every theorem below assumes units. -/
+      - the EXTRACTION and GAUGE results for symbols that are not
+        unit-valued. `Fgen F` is defined for every `F`, and every theorem
+        below that pins a value or acts by a gauge assumes units.
+
+        An earlier version of this bullet said "every theorem below
+        assumes units", which is false and was the builder's tenth
+        consecutive scored prediction. Measured: the definitional
+        identifications assume nothing — `Fs_eq_Fgen`, `pentLhs_eq_gen`,
+        `pentRhs_eq_gen`, `genPentagon_slice_iff` — and neither do
+        `IsUnit_one`, the `twistedBoson` and `fakeCocycle` facts, the live
+        instances, or the controls, which PROVE unit-ness of a concrete
+        symbol rather than assuming it. `genPentagon_slice_iff` genuinely
+        says something about non-unit symbols: its `f` is arbitrary, and
+        the slice family at a non-unit value is a non-unit-valued symbol.
+        The absolute was the flattening; the scoped clause is the claim. -/
 
 /-- The slice family's core: the value the three free labels carry. -/
 def sliceCore (f : GZ) (a b c : Int) : GZ :=
@@ -1700,10 +1734,17 @@ theorem every_pentagon_symbol_meets_the_slice (F : Int → Int → Int → GZ)
     rw [sliceCore, if_pos ⟨rfl, rfl, rfl⟩]
   · rw [gauge_normalizes F hu h a b c ha hb hc hn, sliceCore, if_neg hn]
 
-/-- The same fact in S3's own vocabulary: the gauged symbol IS `Fs f`, and
-    `f` is one of the two S3 found. The two roots come from
-    `exactly_two_roots` — S2's domain doing the work it was built for. -/
-theorem gauged_symbol_is_Fs (F : Int → Int → Int → GZ)
+/-- The same fact in S3's own vocabulary: on label triples the gauged
+    symbol IS `Fs f`, and `f` is one of the two S3 found. The two roots
+    come from `exactly_two_roots` — S2's domain doing the work it was built
+    for.
+
+    THE NAME CARRIES "on labels" because the statement does and an earlier
+    name did not. Off the labels the claim is false, not merely unproved:
+    `sliceCore f` reads `one` at every non-label triple while
+    `gaugeAct g F` reads whatever `F` does, so the restriction is the
+    content and belongs in the name. -/
+theorem gauged_symbol_is_Fs_on_labels (F : Int → Int → Int → GZ)
     (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
     ∃ g : Int → Int → GZ, ∃ f : GZ,
       (∀ a b : Int, IsUnit (g a b)) ∧ (f = one ∨ f = neg one) ∧
@@ -1714,17 +1755,49 @@ theorem gauged_symbol_is_Fs (F : Int → Int → Int → GZ)
   intro a b c d x y ha hb hc
   rw [Fs_eq_Fgen, Fgen, Fgen, hcore a b c ha hb hc]
 
-/-- And the gauged symbol satisfies the pentagon — not by any coboundary
-    calculation, which this file does not do, but because it is a slice
-    member whose `f` squares to one, which is `sq_gives_pentagon`. -/
+/-- Two symbols agreeing on every label triple satisfy the same pentagon.
+    The pentagon reads its symbol only at triples whose entries are mod-2
+    sums of labels, so agreement on the labels is all it can see. -/
+theorem genPentagonHolds_congr (F G : Int → Int → Int → GZ)
+    (h : ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) → F a b c = G a b c)
+    (hG : genPentagonHolds G) : genPentagonHolds F := by
+  have h000 := h 0 0 0 (Or.inl rfl) (Or.inl rfl) (Or.inl rfl)
+  have h001 := h 0 0 1 (Or.inl rfl) (Or.inl rfl) (Or.inr rfl)
+  have h010 := h 0 1 0 (Or.inl rfl) (Or.inr rfl) (Or.inl rfl)
+  have h011 := h 0 1 1 (Or.inl rfl) (Or.inr rfl) (Or.inr rfl)
+  have h100 := h 1 0 0 (Or.inr rfl) (Or.inl rfl) (Or.inl rfl)
+  have h101 := h 1 0 1 (Or.inr rfl) (Or.inl rfl) (Or.inr rfl)
+  have h110 := h 1 1 0 (Or.inr rfl) (Or.inr rfl) (Or.inl rfl)
+  have h111 := h 1 1 1 (Or.inr rfl) (Or.inr rfl) (Or.inr rfl)
+  intro a b c d ha hb hc hd
+  have e := hG a b c d ha hb hc hd
+  rcases ha with ha | ha <;> rcases hb with hb | hb <;> rcases hc with hc | hc <;>
+    rcases hd with hd | hd <;> subst ha <;> subst hb <;> subst hc <;> subst hd <;>
+      simp [genPentLhs, genPentRhs, Fgen, h000, h001, h010, h011, h100, h101, h110, h111] <;>
+        simpa [genPentLhs, genPentRhs, Fgen] using e
+
+/-- **The GAUGED symbol satisfies the pentagon** — the subject of the
+    sentence is the gauged symbol, and now so is the subject of the
+    statement. Not by any coboundary calculation, which this file does not
+    do, but because it agrees on the labels with a slice member whose `f`
+    squares to one, which is `sq_gives_pentagon` carried across by
+    `genPentagonHolds_congr`.
+
+    An earlier version of this theorem concluded `genPentagonHolds
+    (sliceCore f)` while its name and docstring spoke of the gauged
+    symbol. The content was one step away and the step was not taken in
+    the file; the builder measured the gap and the step is taken here
+    rather than the name narrowed. -/
 theorem gauged_symbol_satisfies_pentagon (F : Int → Int → Int → GZ)
     (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
     ∃ g : Int → Int → GZ, ∃ f : GZ,
-      genPentagonHolds (sliceCore f) ∧
+      genPentagonHolds (gaugeAct g F) ∧
         ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
           gaugeAct g F a b c = sliceCore f a b c := by
   obtain ⟨g, f, _, hsq, hcore⟩ := every_pentagon_symbol_meets_the_slice F hu h
-  exact ⟨g, f, (genPentagon_slice_iff f).mpr (sq_gives_pentagon f hsq), hcore⟩
+  exact ⟨g, f,
+    genPentagonHolds_congr _ _ hcore ((genPentagon_slice_iff f).mpr (sq_gives_pentagon f hsq)),
+    hcore⟩
 
 /-! ### The two stay two
 
@@ -1758,6 +1831,38 @@ theorem fermion_is_not_a_gauged_boson (g : Int → Int → GZ) (hg : ∀ a b : I
         gaugeAct g (sliceCore one) a b c = sliceCore (neg one) a b c) := by
   intro hgf
   have hb := boson_stays_boson g hg (neg one) hgf
+  revert hb
+  decide
+
+/-- A unit gauge that carries the fermion onto a slice member carries it
+    onto the fermion. The twin of `boson_stays_boson`, built rather than
+    argued for: the delivery letter said "the two do not collapse", which
+    is prose symmetry over a one-way theorem, and the builder recommended
+    building the twin instead of narrowing the sentence — the same choice,
+    for the same reason, as the bridge repair two crates back. -/
+theorem fermion_stays_fermion (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b)) (f : GZ)
+    (hgf : ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+      gaugeAct g (sliceCore (neg one)) a b c = sliceCore f a b c) : f = neg one := by
+  have e1 := hgf 0 0 1 (Or.inl rfl) (Or.inl rfl) (Or.inr rfl)
+  have e2 := hgf 1 0 0 (Or.inr rfl) (Or.inl rfl) (Or.inl rfl)
+  have e3 := hgf 1 1 1 (Or.inr rfl) (Or.inr rfl) (Or.inr rfl)
+  simp [gaugeAct, sliceCore] at e1 e2 e3
+  rw [← e3]
+  revert e1 e2
+  rcases (units_are_four (g 0 0)).mp (hg 0 0) with k0 | k0 | k0 | k0 <;>
+    rcases (units_are_four (g 0 1)).mp (hg 0 1) with k1 | k1 | k1 | k1 <;>
+      rcases (units_are_four (g 1 0)).mp (hg 1 0) with k2 | k2 | k2 | k2 <;>
+        rcases (units_are_four (g 1 1)).mp (hg 1 1) with k3 | k3 | k3 | k3 <;>
+          rw [k0, k1, k2, k3] <;> decide
+
+/-- **AND THE OTHER DIRECTION.** No unit-valued gauge carries the fermion
+    onto the boson either, so "the two stay two" is now a two-way claim
+    with a theorem under each way. -/
+theorem boson_is_not_a_gauged_fermion (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b)) :
+    ¬ (∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+        gaugeAct g (sliceCore (neg one)) a b c = sliceCore one a b c) := by
+  intro hgf
+  have hb := fermion_stays_fermion g hg one hgf
   revert hb
   decide
 
@@ -1836,5 +1941,229 @@ theorem control_fakeCocycle_is_not_a_pentagon : ¬ genPentagonHolds fakeCocycle 
 /-- The wrong-class control one level up: the fermion's core is not the
     boson's, so `sliceCore` does not quietly collapse the two. -/
 theorem control_slice_cores_differ : sliceCore one 1 1 1 ≠ sliceCore (neg one) 1 1 1 := by decide
+
+/-! ## 15. THE MIRROR — the Galois filter, and the catalog closes at two
+
+    THE CHARGE, quoted from the charter rather than paraphrased, because
+    this section's whole content is in its words: *"The flatland filter is
+    a Galois statement: on units, u⁻¹ = conj(u), so the roomy edict
+    R = R⁻¹ is literally conj(R) = R — and its fixed points among the four
+    are exactly boson and fermion. 2 classes × 2 particles = 4, filtered
+    to 2. Tie every count to its nest."*
+
+    WHAT IS PROVED, exactly:
+      (a) `selfInverse_iff_mirror_fixed` — on a UNIT, the roomy edict and
+          the Galois condition are the same condition. This is the
+          sentence the charge calls "literally", and it is literal: both
+          directions run through section 13's bridge, which is
+          load-bearing in a third section now;
+      (b) `units_fixed_by_mirror` — the mirror's fixed points among the
+          four units are exactly `{1, −1}`;
+      (c) `catalog_filtered_by_mirror` and
+          `catalog_filtered_by_roomy_edict` — the catalog of four, cut to
+          exactly two, stated once in each vocabulary because the charge
+          says they are the same cut and the file should show that rather
+          than assert it;
+      (d) the nest, tied: `catalog_over_f_one` and
+          `catalog_over_f_neg_one` give the four as 2 + 2 over the two
+          pentagon classes, and `mirror_keeps_nothing_over_f_neg_one`
+          says the filter takes BOTH from the first and NEITHER from the
+          second.
+
+    THE STRUCTURAL DIFFERENCE FROM CIRCLE ONE, which the charter asks to
+    be stated honestly rather than smoothed: Circle One's σ moved BETWEEN
+    pentagon classes — the golden braiding and Yang–Lee are Galois
+    conjugates lying over different classes. Here `conj` FIXES both
+    pentagon classes and swaps within the `f = −1` fibre.
+    `mirror_fixes_the_survivors` and `mirror_swaps_the_semions` are that
+    difference in the kernel, and `catalog_closed_under_mirror` is the
+    action itself — proved through `catalog_of_four_both_hexagons`, so
+    section 13 pays for a second time here.
+
+    WHAT IS NOT PROVED, and the first bullet is the one the builder's
+    standing prediction is aimed at:
+
+      - THE WORD "PARTICLE" IS NOT EARNED HERE AND APPEARS IN NO THEOREM.
+        What is proved is a statement about PAIRS `(f, R)` of Gaussian
+        integers satisfying the pentagon, the hexagon and the edict.
+        "Boson", "fermion" and "semion" are NAMES the physics attaches to
+        those pairs; no theorem in this file establishes that a pair is a
+        particle, that particles exist, or that the naming is the right
+        one. The charge's own sentence — "2 classes × 2 particles = 4" —
+        is, in this file, a count of PAIRS, and the nest lemmas tie it to
+        that and to nothing else.
+
+        THE NAMES, stated exactly, because the first version of this
+        bullet said "none is in a name" and that is false twice in this
+        very section: `mirror_swaps_the_semions` and
+        `control_semion_fails_the_filter` both carry the conventional
+        label. The true claim is narrower and is the one the bullet
+        needs: **no name CLAIMS physics content.** Those two CITE the
+        conventional label for the pair `{i, −i}` — they say what the
+        mirror does to that pair, and the pair is a pair of Gaussian
+        integers whatever anyone calls it. The names stay; the absolute
+        goes. It was written to defend this chair and it is the specimen
+        the builder's prediction caught, one sentence from the chair that
+        held.
+      - that this is a statement about all of flatland or all of the roomy
+        world. It is a statement about `Z[i]`, one ring, with the F-symbol
+        family and the hexagon this file defines.
+      - that the mirror is the FULL Galois group of anything. `conj` is
+        exhibited and used; no theorem here says it generates
+        `Gal(Q(i)/Q)`, and nothing below needs it to.
+      - anything about braidings that are not units. The unit hypothesis
+        in (a) is load-bearing, and `control_mirror_fixes_a_non_unit` is
+        the witness that it cannot be dropped. -/
+
+/-- The roomy edict: a braiding is its own inverse. -/
+def SelfInverse (R : GZ) : Prop := mul R R = one
+
+/-- **THE FILTER IS A GALOIS STATEMENT, and "literally" is literal.** On a
+    unit the inverse IS the conjugate, so `R = R⁻¹` and `conj R = R` are
+    the same condition. Both directions run through
+    `mul_conj_eq_one_of_unit` — section 13's bridge, load-bearing in a
+    third section now. -/
+theorem selfInverse_iff_mirror_fixed (R : GZ) (hu : IsUnit R) :
+    SelfInverse R ↔ conj R = R := by
+  constructor
+  · intro h
+    have hc : mul R (conj R) = one := mul_conj_eq_one_of_unit R hu
+    have e : mul R (conj R) = mul R R := by rw [hc, h]
+    exact unit_cancel R (conj R) R hu e
+  · intro h
+    have hc : mul R (conj R) = one := mul_conj_eq_one_of_unit R hu
+    rw [h] at hc
+    exact hc
+
+/-- The mirror's fixed points among the four units are exactly `{1, −1}`. -/
+theorem units_fixed_by_mirror (u : GZ) (hu : IsUnit u) :
+    conj u = u ↔ (u = one ∨ u = neg one) := by
+  rcases (units_are_four u).mp hu with h | h | h | h <;> subst h <;>
+    constructor <;> intro hx <;> revert hx <;> decide
+
+/-- **THE CATALOG CLOSES AT TWO.** Pentagon, hexagon, and the mirror
+    condition on the braiding: exactly two pairs survive, and both lie
+    over `f = 1`. -/
+theorem catalog_filtered_by_mirror (f R : GZ) :
+    (mul f f = one ∧ hexagonHolds f R ∧ conj R = R) ↔
+      ((f = one ∧ R = one) ∨ (f = one ∧ R = neg one)) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four f R).mp ⟨h.1, h.2.1⟩ with hc | hc | hc | hc
+    · exact Or.inl hc
+    · exact Or.inr hc
+    · rw [hc.2] at h; exact absurd h.2.2 (by decide)
+    · rw [hc.2] at h; exact absurd h.2.2 (by decide)
+  · intro h
+    rcases h with ⟨hf, hr⟩ | ⟨hf, hr⟩ <;> subst hf <;> subst hr <;>
+      exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide), by decide⟩
+
+/-- **THE SAME CUT IN THE OTHER VOCABULARY.** The charge says the roomy
+    edict and the Galois condition are the same cut; this is that claim
+    discharged rather than asserted — the identical two pairs survive when
+    the hypothesis is written `R = R⁻¹` instead of `conj R = R`. -/
+theorem catalog_filtered_by_roomy_edict (f R : GZ) :
+    (mul f f = one ∧ hexagonHolds f R ∧ SelfInverse R) ↔
+      ((f = one ∧ R = one) ∨ (f = one ∧ R = neg one)) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four f R).mp ⟨h.1, h.2.1⟩ with hc | hc | hc | hc
+    · exact Or.inl hc
+    · exact Or.inr hc
+    · rw [hc.2] at h
+      exact absurd (show mul I I = one from h.2.2) (by decide)
+    · rw [hc.2] at h
+      exact absurd (show mul (neg I) (neg I) = one from h.2.2) (by decide)
+  · intro h
+    rcases h with ⟨hf, hr⟩ | ⟨hf, hr⟩ <;> subst hf <;> subst hr <;>
+      exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide),
+             show mul _ _ = one by decide⟩
+
+/-! ### The nest, tied — the four as 2 + 2, and the filter is not one per class -/
+
+/-- Over the `f = 1` class the hexagon leaves exactly two braidings. -/
+theorem catalog_over_f_one (R : GZ) :
+    hexagonHolds one R ↔ (R = one ∨ R = neg one) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four one R).mp ⟨by decide, h⟩ with hc | hc | hc | hc
+    · exact Or.inl hc.2
+    · exact Or.inr hc.2
+    · exact absurd hc.1 (by decide)
+    · exact absurd hc.1 (by decide)
+  · intro h
+    rcases h with h | h <;> subst h <;>
+      exact Rsq_gives_hexagon _ _ (by decide) (by decide)
+
+/-- Over the `f = −1` class the hexagon leaves exactly the other two. -/
+theorem catalog_over_f_neg_one (R : GZ) :
+    hexagonHolds (neg one) R ↔ (R = I ∨ R = neg I) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four (neg one) R).mp ⟨by decide, h⟩ with hc | hc | hc | hc
+    · exact absurd hc.1 (by decide)
+    · exact absurd hc.1 (by decide)
+    · exact Or.inl hc.2
+    · exact Or.inr hc.2
+  · intro h
+    rcases h with h | h <;> subst h <;>
+      exact Rsq_gives_hexagon _ _ (by decide) (by decide)
+
+/-- **The filter is not one per class.** Nothing over `f = −1` survives the
+    mirror, so the surviving two are both drawn from the `f = 1` class and
+    the cut is 2 + 2 → 2 + 0, never 1 + 1. -/
+theorem mirror_keeps_nothing_over_f_neg_one (R : GZ) (h : hexagonHolds (neg one) R) :
+    conj R ≠ R := by
+  rcases (catalog_over_f_neg_one R).mp h with hr | hr <;> subst hr <;> decide
+
+/-! ### The mirror as an action, and the difference from Circle One -/
+
+theorem mirror_fixes_the_survivors : conj one = one ∧ conj (neg one) = neg one := by
+  constructor <;> decide
+
+theorem mirror_swaps_the_semions : conj I = neg I ∧ conj (neg I) = I := by
+  constructor <;> decide
+
+/-- **The catalog is closed under the mirror**, and `f` never moves — the
+    structural difference from Circle One, stated in the kernel rather
+    than in a comment. Proved through `catalog_of_four_both_hexagons`, so
+    section 13 pays again. -/
+theorem catalog_closed_under_mirror (f R : GZ)
+    (h : mul f f = one ∧ hexagonHolds f R) : mul f f = one ∧ hexagonHolds f (conj R) := by
+  have hb := (catalog_of_four_both_hexagons f R).mpr ((catalog_of_four f R).mp h)
+  exact ⟨hb.1, hb.2.2⟩
+
+/-! ### Anti-vacuity for the mirror — norm 3
+
+    A filter is empty talk if nothing is cut or nothing survives. Both
+    halves are evaluated: `live_33` and `live_34` are survivors, `live_35`
+    and `live_36` are the pair the mirror moves, and `live_37` is the
+    non-unit the next control needs. -/
+
+theorem live_33 : SelfInverse one := by unfold SelfInverse; decide
+theorem live_34 : SelfInverse (neg one) := by unfold SelfInverse; decide
+theorem live_35 : ¬ SelfInverse I := by unfold SelfInverse; decide
+theorem live_36 : ¬ SelfInverse (neg I) := by unfold SelfInverse; decide
+theorem live_37 : conj (⟨2, 0⟩ : GZ) = ⟨2, 0⟩ := by decide
+
+/-! ### Negative controls for the mirror — norm 5 -/
+
+/-- **The unit hypothesis in `selfInverse_iff_mirror_fixed` is
+    load-bearing.** `⟨2,0⟩` is fixed by the mirror and is NOT
+    self-inverse, so the backward direction is false without it. The
+    Galois reading of the roomy edict is a statement about units and
+    about nothing else. -/
+theorem control_mirror_fixes_a_non_unit :
+    conj (⟨2, 0⟩ : GZ) = ⟨2, 0⟩ ∧ ¬ SelfInverse (⟨2, 0⟩ : GZ) := by
+  constructor
+  · decide
+  · unfold SelfInverse; decide
+
+/-- And the filter really cuts: a catalog member that does not survive it,
+    evaluated rather than argued. -/
+theorem control_semion_fails_the_filter : hexagonHolds (neg one) I ∧ conj I ≠ I := by
+  constructor
+  · exact Rsq_gives_hexagon _ _ (by decide) (by decide)
+  · decide
 
 end Zi

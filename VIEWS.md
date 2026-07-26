@@ -7,16 +7,16 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            ba23f2d739249d00bb507c6f62a4292520dcec889ec208fde1af869876c2db09
+sha256            593a223fcead9816989e9d18986aa7053f3f292dd36d4e79634e0bd4ec3c2594
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
-theorems          195
-definitions       30
-lines             1840
-live instances    32
-control theorems  27
-decide-settled    46
+theorems          215
+definitions       31
+lines             2169
+live instances    37
+control theorems  29
+decide-settled    47
 import lines      0   (zero imports is the charter)
 ```
 
@@ -37,12 +37,13 @@ import lines      0   (zero imports is the charter)
 11. THE UNITS OF Z[i] — Q8, route (b): order-free, through `Nat`  15 theorems
 12. S4 — HEXAGON NECESSITY: R² = f, and the catalog of four  23 theorems
 13. THE SECOND HEXAGON — the R⁻¹ form, and the boundary retired   9 theorems
-14. THE SLICE — every pentagon symbol is gauged into it  33 theorems
+14. THE SLICE — every UNIT-VALUED pentagon symbol is gauged into it  36 theorems
+15. THE MIRROR — the Galois filter, and the catalog closes at two  17 theorems
 ```
 
 **The boundary, derived from the inventory above:** this file proves
-the 15 sections listed and nothing else. The last of them is
-"14. THE SLICE — every pentagon symbol is gauged into it".
+the 16 sections listed and nothing else. The last of them is
+"15. THE MIRROR — the Galois filter, and the catalog closes at two".
 Anything absent from that list is not proved here.
 
 What the derivation can and cannot do, carried in from the
@@ -54,9 +55,9 @@ It kills staleness, not error.
 
 ```
 file                   theorems   axiom-free       rest
-Zi                          195           63        132
-TOTAL                       195           63        132
+Zi                          215           71        144
+TOTAL                       215           71        144
 sorryAx                       0
 Classical.choice              0
-Quot.sound carriers 52   (each named in the census output)
+Quot.sound carriers 63   (each named in the census output)
 ```

@@ -35,8 +35,10 @@
 #   not a meaning rule. A census figure written far from every census word
 #   passes; a mathematical constant written next to the word "theorem"
 #   fails and needs a labeled exemption. It also sees DIGITS only — the
-#   spelled-out door is the numeral gate's row-9 boundary and is guarded
-#   there, not here.
+#   spelled-out door is the numeral gate's row-8 boundary and is guarded
+#   there, not here. (An earlier draft of this line said "row-9". Row 9 is
+#   multi-seat workflow audits; the same miscitation stood in the numeral
+#   gate's own header for several crates.)
 #
 # CONTRACT
 #   render      : write VIEWS.md from the artifacts (default, no argument)
@@ -209,8 +211,8 @@ census_guard () {
     stripped=$(mktemp)
     sed -e 's/`[^`]*`/ /g' -e 's/"[^"]*"/ /g' \
         -e 's/[vV][0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*/ /g' \
-        -e 's/[A-Za-z_][A-Za-z0-9_]*[0-9][A-Za-z0-9_]*/ /g' \
         -e 's/[0-9][0-9]*[A-Za-z_][A-Za-z0-9_]*/ /g' \
+        -e 's/[A-Za-z_][A-Za-z0-9_]*[0-9][A-Za-z0-9_]*/ /g' \
         -e 's/[Ll]ines\{0,1\} [0-9][0-9]*/ /g' \
         -e 's/\([Nn]orm\|NORM\|[Rr]ow\|ROW\|[Ss]ection\|SECTION\|[Rr]ound\|ROUND\|[Cc]lass\|[Ii]tem\|[Ss]tep\|[Cc]rop\) [0-9][0-9]*/ /g' \
         -e 's/^\([0-9]*\)\t! \{0,1\}## [0-9][0-9]*\./\1\t/' \
