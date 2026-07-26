@@ -132,3 +132,4 @@ echo	POSIX shell builtin, named in PROOFS.md correction E#3 (the boundary senten
 986020223c31d975ce1f3b07fea623e6f4d91fa3642e97bcb093e2b5aba3bb29	SHA-256 pin: letters/ROUND2-S4-DELIVERY.md as couriered
 75f3b88bed1a77691764631a1d576b0c1e1b59978d3ef33d5f89dd2460b3653e	SHA-256 pin: VIEWS.md as couriered with the S4 delivery
 8d155afaff5fc357a573ec913ed07bf38275e034c131de71a4ff60907da87650	SHA-256 pin: lean/Zi.lean as couriered with the S4 delivery
+HEAD	git's symbolic ref for the current commit, named in the letters when reporting that a blocked commit left it unmoved; resolves in git, not in this tree (cf. the commit-id entries above, which are objects rather than refs)
