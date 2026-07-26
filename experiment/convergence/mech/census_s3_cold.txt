@@ -1,0 +1,30 @@
+==============================================================
+ C2 AXIOM CENSUS -- what every proof term actually leaned on
+==============================================================
+ toolchain: 
+--------------------------------------------------------------
+file                   theorems   axiom-free       rest
+Zi                          115           34         81
+    quot: 'Zi.brahmagupta_fibonacci' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.norm_mul' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.sq_mod_four' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.sq_mod_four_zero_of_even' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.sq_mod_four_one_of_odd' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.re_even_of_norm_mod_four' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.im_even_of_norm_mod_four' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.descent_bound' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.norm_zero_forces_zero' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.norm_ne_zero_of_ne_zero' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.no_zero_divisors' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.mul_eq_zero_iff' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.factor_sq_sub_one' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.sub_eq_zero_iff' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.add_eq_zero_iff_eq_neg' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.exactly_two_roots' depends on axioms: [propext, Quot.sound]
+    quot: 'Zi.exactly_two_in_the_slice' depends on axioms: [propext, Quot.sound]
+--------------------------------------------------------------
+TOTAL                       115           34         81
+sorryAx                       0
+Classical.choice              0
+==============================================================
+RESULT: no sorryAx, no Classical.choice; every theorem's axioms named.  PASS.

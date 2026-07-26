@@ -10,7 +10,39 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence S2 addendum — a conviction of my own report (current)
+## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse (current)
+
+Third protocol round, amendments A1–A4 live. Their S3 (115 theorems =
+carried 76 + 39 new, head `09f6fd7`) vs my S3 layer. All delivery
+claims reproduce: silence transports; census 34/64/17
+digit-for-digit, the 5 new Quot.sound carriers exactly as named;
+census-repair falsifier PASSES COLD on the container that first
+convicted it (A1 discharged, default-removal shown); .olean fourth
+mismatch (Q4). Cross-verifier 26/26 + carried 76, **exactly-two
+re-proved by the coordinate route — no domain theorem consumed**;
+plant bitten. Predictions 6/7 by halves; the finding is P7's refuted
+half: the axiom fork RE-OPENED with MY side high (theirs 13%, mine
+71% on the same decidable layer) — style, not content, and the
+ledger entry is mine. Fable's four specimens (929/930, stale
+boundary bullet, scope prose) reproduced by measurement.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-REPORT-S3.md` | full S3 comparison, phases A–E + predictions 6/7 | `1886df18b5b5` |
+| `convergence/DESIGN-NOTE-S3.md` | honesty line + 7 predictions, BEFORE measurement | `42631031546b` |
+| `convergence/mech/verify_theirs_s3.py` | coordinate-route verifier; 26/26 + carried 76, exit 0 | `3d2f129dbe69` |
+| `convergence/mech/verify_theirs_s3_output.txt` | clean run transcript | `00eb125527c7` |
+| `convergence/mech/plant_s3_out.txt` | plant (Z/8 roots claimed {1,7}) bitten — exit 1 | `89d62b65bd14` |
+| `convergence/mech/their_s3_Zi.lean` | their S3 artifact (external ref; = GitHub `09f6fd7`) | `71cc55d54af8` |
+| `convergence/mech/their_s3_statements.txt` | my courier extraction, 115 statements (first 76 = S2's, byte-identical) | `2d70d6a4fee8` |
+| `convergence/mech/compile_s3_out.txt` | zero bytes (the empty-string hash) | `e3b0c44298fc` |
+| `convergence/mech/census_their_s3_out.txt` | my census on their S3: 34/64/17, 0/0, all 17 named | `56f056a6ceb7` |
+| `convergence/mech/census_s3_cold.txt` | their repaired census, COLD (A1: no elan default, shown): PASS | `014543892af4` |
+| `convergence/mech/fable_s3_verification.md` | Fable's S3 letter (external reference) | `45c4760b1f67` |
+
+commit: (this commit)
+
+## Convergence S2 addendum — a conviction of my own report
 
 Fable's S2 verification letter arrived (nine specimens) plus Kelly's
 provenance correction (the S2 transcripts were swapped at upload).
