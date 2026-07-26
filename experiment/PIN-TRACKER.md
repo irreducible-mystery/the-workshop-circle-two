@@ -33,7 +33,7 @@ Quarantine (norm 16): ratifies nothing in `lean/Zi.lean`.
 | `convergence/mech/make_dashboard.py` | the generator (parses receipts → dashboard) | `e27a6e339c23` |
 | `convergence/mech/dashboard_falsifiability_probe.txt` | proof that a missing receipt renders n/a, not stale | `249a8e01b3ef` |
 
-commit: _(filled by tracker touch-up)_
+commit: `e2b3bae`
 
 ## Convergence retrospective — the meta-auditor's CLOSING mirror; the time-value answer
 
