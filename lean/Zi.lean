@@ -1,5 +1,5 @@
 /-
-  Circle Two — S1: the Z[i] ring layer.
+  Circle Two — S1: the Z[i] ring layer, and S2: the domain.
 
   The roomy world's catalog is proved over Z[i]; this file builds the ring
   it is proved over, and nothing else. Zero imports: the kernel on `Int`
@@ -25,13 +25,14 @@
 
   THE AXIOM FOOTPRINT, as measured rather than as hoped (audit/c2_axioms.sh,
   and the per-theorem answers in lean/TRANSCRIPT.txt):
-    16 of the 54 theorems depend on NO axioms at all;
-    36 depend on `propext` alone;
-     2 — `brahmagupta_fibonacci` and `norm_mul` — depend on `propext` and
-       `Quot.sound`, which is the footprint `omega` leaves on this
-       toolchain;
+    24 of the 76 theorems depend on NO axioms at all;
+    40 depend on `propext` alone;
+    12 depend on `propext` and `Quot.sound`, which is the footprint
+       `omega` leaves on this toolchain — two of them in S1
+       (`brahmagupta_fibonacci`, `norm_mul`) and ten in S2's descent,
+       where `omega` does most of the linear work;
      0 depend on `Classical.choice`, and 0 on `sorryAx`.
-  Those three add to 54, which is the count of theorems in this file; a
+  Those three add to 76, which is the count of theorems in this file; a
   census whose parts do not sum to its whole is not a census.
   An earlier draft of this header claimed every theorem depended on
   `propext` and nothing else. That was false in both directions — it missed
@@ -165,10 +166,19 @@ theorem zero_mul (z : GZ) : mul zero z = zero := by
 
 /-! ## 3. Distributivity — the ring closes
 
-    `G2_ring_laws_symbolic`, third conjunct. Both sides are proved; the
-    right-distributive law is NOT inferred from commutativity by hand-wave,
-    it is proved, because a reader who trusts one inference will trust the
-    next one. -/
+    `G2_ring_laws_symbolic`'s third conjunct certifies **left**
+    distributivity only — `U·(V+W) = U·V + U·W` — and nothing else in this
+    section. `right_distrib`, `mul_neg` and `neg_mul` have no certificate
+    counterpart; they are proved here and licensed by nothing but the
+    kernel, which is stated rather than left for a reader to discover. An
+    earlier version of this comment credited the one conjunct with all four
+    theorems: the same miscitation species the S1 audit convicted in the
+    additive family, standing one section over from its own conviction, and
+    caught by the builder's pass rather than mine.
+
+    Both distributive laws are proved outright; the right-hand one is NOT
+    inferred from commutativity by hand-wave, because a reader who trusts
+    one inference will trust the next one. -/
 
 theorem left_distrib (x y z : GZ) : mul x (add y z) = add (mul x y) (mul x z) := by
   cases x; cases y; cases z; simp only [mul, add, GZ.mk.injEq]; constructor <;> simp
@@ -196,9 +206,15 @@ theorem I_squared_add_one : add (mul I I) one = zero := by
 
 /-! ## 5. Conjugation is a ring homomorphism
 
-    `G2_conj_is_a_ring_hom_symbolic`: additive and multiplicative, and an
-    involution. It fixes the first coordinate — that is what makes it the
-    mirror rather than an arbitrary automorphism. -/
+    `G2_conj_is_a_ring_hom_symbolic` certifies exactly two things: that
+    conjugation is multiplicative and that it is additive. Those are the
+    two conjuncts of its tested boolean. The involution — `conj (conj z) =
+    z` — appears only in that check's printed message, where it is called
+    "trivial"; a printed string is not a check, so `conj_conj` below is
+    licensed by the kernel alone. Same for `conj_re` and `conj_I`. An
+    earlier version of this comment credited the check with the involution
+    too. It fixes the first coordinate — that is what makes it the mirror
+    rather than an arbitrary automorphism. -/
 
 theorem conj_add (z w : GZ) : conj (add z w) = add (conj z) (conj w) := by
   cases z; cases w; simp only [conj, add, GZ.mk.injEq]; constructor <;> simp
@@ -280,10 +296,15 @@ theorem norm_re (a : Int) : norm ⟨a, 0⟩ = a * a := by
     survived the correction, which is why it is recorded quietly. The live
     risk here is the other one — that the definitions do not compute what
     the prose says. These are the live instances, and the count is stated:
-    EIGHT witnesses, each an exact evaluation in the kernel, none of them a
-    rewriting of the theorems they witness. -/
+    EIGHT witnesses, each an exact evaluation in the kernel, and none of
+    them a restatement of a theorem proved above. That last clause was
+    FALSE when first written: `live_1` used to assert `mul I I = (-1,0)`,
+    which is `I_squared`'s statement definitionally — a probe file proves
+    the old `live_1` with `I_squared`'s proof term verbatim, exit 0. The
+    builder's pass caught it; the witness is now `(3+i)(2-5i) = 11-13i`,
+    an evaluation no theorem here already proves. -/
 
-theorem live_1 : mul I I = ⟨-1, 0⟩ := by decide
+theorem live_1 : mul ⟨3, 1⟩ ⟨2, -5⟩ = ⟨11, -13⟩ := by decide
 theorem live_2 : mul ⟨1, 1⟩ ⟨1, -1⟩ = ⟨2, 0⟩ := by decide
 theorem live_3 : norm ⟨3, 4⟩ = 25 := by decide
 theorem live_4 : norm ⟨1, 1⟩ * norm ⟨1, -1⟩ = norm (mul ⟨1, 1⟩ ⟨1, -1⟩) := by decide
@@ -294,8 +315,16 @@ theorem live_8 : mul ⟨0, 2⟩ ⟨0, 3⟩ = ⟨-6, 0⟩ := by decide
 
 /-! ## 8. Negative controls — norm 5
 
-    Each of these is FALSE of some near-miss and the kernel says so; a check
-    that cannot fail is not a check. EIGHT control theorems across FOUR
+    A control earns its name by ruling something out. Six of the eight
+    below do that directly — they assert that a near-miss FAILS, and the
+    kernel agrees. The other two are the near-miss's credentials:
+    `control_fake_mirror_is_additive` is a universally quantified TRUE
+    property, and its job is to prove the fake mirror is a genuine
+    candidate rather than a straw man, so that its failure of
+    multiplicativity means something. An earlier version of this sentence
+    said each control "is FALSE of some near-miss", which misdescribed
+    that one; the builder's pass caught it. The sentence is fixed, not the
+    control. A check that cannot fail is not a check. EIGHT control theorems across FOUR
     families — the ring's non-triviality (one), the mirror's non-triviality
     (one), the fake mirror that is additive yet not multiplicative
     (`G4_control_fake_mirror_fails`, two), and the sign in `i² = -1` shown
@@ -346,5 +375,220 @@ theorem control_split_second_factor_is_nonzero :
     two multiplications differ exactly where the sign does. -/
 theorem control_mul_of_same_factors_is_nonzero :
     mul ⟨1, 1⟩ ⟨1, -1⟩ ≠ zero := by decide
+
+/-! ## 9. S2 — THE DOMAIN, BY ONE MOD-4 DESCENT
+
+    Charged in `ROUND1.md` and approved in the builder's S1 verification:
+    the order-free route. The whole argument is four moves — squares mod 4
+    are exactly {0,1}; a norm divisible by 4 forces both coordinates even;
+    halving strictly shrinks a Nat measure, so `N(z) = 0` forces `z = 0`;
+    and then the chain `z·w = 0 ⟹ conj(z)·z·w = 0 ⟹ (N(z),0)·w = 0 ⟹
+    w = 0`.
+
+    THE FORK, labelled rather than silent (the charge asks for this
+    explicitly). Lean's `Int` carries an order, and with it the domain is
+    three lines: `a*a ≥ 0`, `b*b ≥ 0`, a sum of two non-negatives is zero
+    only if both are, done. **That route is not taken here.** The descent
+    is taken instead because it is the pattern Circle One's 2-adic argument
+    established, and because an argument that never mentions an order
+    survives transport to settings that have none — which is worth more to
+    S5–S7 than the saved lines. The order route is not wrong; it is not
+    this proof.
+
+    NO NEW AXIOMS ARE INTRODUCED: `omega` appears only on goals that are
+    linear in their atoms, and never on a conjunctive goal — every
+    conjunction below is split first, and the census is the receipt. -/
+
+/-- `a·a mod 4` is `0` or `1`, never `2` or `3`. Certificate:
+    `G2_squares_mod_4`, nest 4 = |Z/4|. Proved by reducing the square to
+    the square of the residue (`Int.mul_emod`), so nothing nonlinear is
+    ever reasoned about — the four residues are then decided. -/
+theorem sq_mod_four (a : Int) : a * a % 4 = 0 ∨ a * a % 4 = 1 := by
+  have hm : a * a % 4 = (a % 4) * (a % 4) % 4 := Int.mul_emod a a 4
+  rcases (by omega : a % 4 = 0 ∨ a % 4 = 1 ∨ a % 4 = 2 ∨ a % 4 = 3) with h|h|h|h <;>
+    rw [hm, h] <;> decide
+
+theorem sq_mod_four_zero_of_even (a : Int) (h : a % 2 = 0) : a * a % 4 = 0 := by
+  have hm : a * a % 4 = (a % 4) * (a % 4) % 4 := Int.mul_emod a a 4
+  rcases (by omega : a % 4 = 0 ∨ a % 4 = 2) with h4|h4 <;> rw [hm, h4] <;> decide
+
+theorem sq_mod_four_one_of_odd (a : Int) (h : a % 2 = 1) : a * a % 4 = 1 := by
+  have hm : a * a % 4 = (a % 4) * (a % 4) % 4 := Int.mul_emod a a 4
+  rcases (by omega : a % 4 = 1 ∨ a % 4 = 3) with h4|h4 <;> rw [hm, h4] <;> decide
+
+/-! ### The sixteen cases, as two split theorems
+
+    Certificate: `G2_16_case_decide`, nest 16 = |(Z/4)²| — of the sixteen
+    residue pairs exactly four have `a² + b² ≡ 0 (mod 4)`, and those four
+    are precisely the ones with both coordinates even; twelve fail. The two
+    conclusions are proved as SEPARATE theorems rather than one conjunction,
+    because a conjunctive goal handed to `omega` is the trap this house has
+    been bitten by twice. -/
+
+theorem re_even_of_norm_mod_four (a b : Int) (h : (a * a + b * b) % 4 = 0) :
+    a % 2 = 0 := by
+  rcases (by omega : a % 2 = 0 ∨ a % 2 = 1) with ha | ha
+  · exact ha
+  · have h1 : a * a % 4 = 1 := sq_mod_four_one_of_odd a ha
+    rcases (by omega : b % 2 = 0 ∨ b % 2 = 1) with hb | hb
+    · have h2 : b * b % 4 = 0 := sq_mod_four_zero_of_even b hb
+      omega
+    · have h2 : b * b % 4 = 1 := sq_mod_four_one_of_odd b hb
+      omega
+
+theorem im_even_of_norm_mod_four (a b : Int) (h : (a * a + b * b) % 4 = 0) :
+    b % 2 = 0 := by
+  refine re_even_of_norm_mod_four b a ?_
+  omega
+
+/-- **The mandatory negative control** (`G2_control_mod2_insufficient`), and
+    the reason the modulus is 4 rather than 2: the mod-2 analogue is FALSE.
+    `(1,1)` has norm `2 ≡ 0 (mod 2)` while both coordinates are odd, so a
+    mod-2 descent would halt at its first step. Two ramifies in Z[i]
+    (`2 = -i(1+i)²`); the modulus 4 is load-bearing, and here is the
+    witness that says so. -/
+theorem control_mod_two_insufficient :
+    (1 * 1 + 1 * 1) % 2 = 0 ∧ (1 : Int) % 2 ≠ 0 := by
+  constructor
+  · decide
+  · decide
+
+/-- And the contrast at the working modulus: the same pair fails mod 4, which
+    is exactly why the descent makes progress where a mod-2 version cannot. -/
+theorem control_mod_four_rejects_odd_pair : (1 * 1 + 1 * 1) % 4 ≠ 0 := by decide
+
+/-! ### The descent
+
+    Halving a nonzero even integer strictly shrinks `Int.natAbs`, so the
+    descent terminates. The measure is a `Nat` bound carried as an explicit
+    induction parameter — ordinary structural induction on `Nat`, not
+    well-founded recursion, which keeps the proof term small and the tactic
+    budget unraised. Certificate: `G2_descent_step_strictly_decreases`,
+    `G2_norm_zero_forces_zero`. -/
+
+/-- Halving quarters the norm: the algebraic step the descent runs on. -/
+theorem norm_quarters (a b : Int) :
+    2 * a * (2 * a) + 2 * b * (2 * b) = 4 * (a * a + b * b) := by
+  simp [Int.add_mul, Int.mul_assoc, Int.mul_comm, Int.mul_left_comm]
+
+theorem natAbs_two_mul (k : Int) : (2 * k).natAbs = 2 * k.natAbs := by
+  rw [Int.natAbs_mul]; rfl
+
+/-- The descent proper, stated on a `Nat` bound so the induction is
+    structural. The conclusion is the MEASURE being zero rather than a
+    conjunction `a = 0 ∧ b = 0`, so that no `omega` in this proof ever sees
+    a conjunctive goal. -/
+theorem descent_bound : ∀ n : Nat, ∀ a b : Int,
+    a.natAbs + b.natAbs ≤ n → a * a + b * b = 0 → a.natAbs + b.natAbs = 0 := by
+  intro n
+  induction n with
+  | zero => intro a b h _; omega
+  | succ m ih =>
+    intro a b hle hz
+    have h4 : (a * a + b * b) % 4 = 0 := by omega
+    have hae : a % 2 = 0 := re_even_of_norm_mod_four a b h4
+    have hbe : b % 2 = 0 := im_even_of_norm_mod_four a b h4
+    obtain ⟨a', ha'⟩ : ∃ k, a = 2 * k := ⟨a / 2, by omega⟩
+    obtain ⟨b', hb'⟩ : ∃ k, b = 2 * k := ⟨b / 2, by omega⟩
+    subst ha'; subst hb'
+    have hq := norm_quarters a' b'
+    have hz' : a' * a' + b' * b' = 0 := by omega
+    have hna := natAbs_two_mul a'
+    have hnb := natAbs_two_mul b'
+    have hle' : a'.natAbs + b'.natAbs ≤ m := by omega
+    have hih := ih a' b' hle' hz'
+    omega
+
+/-- `N(z) = 0` forces `z = 0`. The two coordinates are concluded
+    separately and reassembled by `ext`. -/
+theorem norm_zero_forces_zero (z : GZ) (h : norm z = 0) : z = zero := by
+  have hb := descent_bound (z.re.natAbs + z.im.natAbs) z.re z.im (by omega) (by
+    simpa only [norm] using h)
+  refine ext ?_ ?_
+  · simp only [zero]; omega
+  · simp only [zero]; omega
+
+/-- The contrapositive, in the form the chain consumes. -/
+theorem norm_ne_zero_of_ne_zero (z : GZ) (h : z ≠ zero) : norm z ≠ 0 := by
+  intro hn
+  exact h (norm_zero_forces_zero z hn)
+
+/-! ### Torsion-freeness, and the scalar action
+
+    Certificate: `G2_torsion_free` — `n·w = 0` with `n ≠ 0` forces `w = 0`,
+    coordinatewise, because Z is a domain; and the scalar action IS
+    multiplication by `(n, 0)`. -/
+
+theorem scalar_is_mul (n : Int) (w : GZ) :
+    mul ⟨n, 0⟩ w = ⟨n * w.re, n * w.im⟩ := by
+  cases w; simp only [mul, GZ.mk.injEq]; constructor <;> simp
+
+theorem torsion_free (n : Int) (w : GZ) (hn : n ≠ 0) (h : mul ⟨n, 0⟩ w = zero) :
+    w = zero := by
+  rw [scalar_is_mul] at h
+  have hre : n * w.re = 0 := congrArg GZ.re h
+  have him : n * w.im = 0 := congrArg GZ.im h
+  refine ext ?_ ?_
+  · simp only [zero]
+    rcases Int.mul_eq_zero.mp hre with h1 | h1
+    · exact absurd h1 hn
+    · exact h1
+  · simp only [zero]
+    rcases Int.mul_eq_zero.mp him with h1 | h1
+    · exact absurd h1 hn
+    · exact h1
+
+/-! ### The chain — Z[i] is a domain
+
+    Certificate: `G2_no_zero_divisors_box`, and the chain it names, each
+    link proved above:
+      `z·w = 0  ⟹  conj(z)·(z·w) = 0  ⟹  (N(z),0)·w = 0  ⟹  w = 0`. -/
+
+theorem no_zero_divisors (z w : GZ) (hz : z ≠ zero) (h : mul z w = zero) :
+    w = zero := by
+  have step : mul ⟨norm z, 0⟩ w = zero := by
+    have e : mul ⟨norm z, 0⟩ w = mul (conj z) (mul z w) := by
+      rw [← conj_mul_self z, mul_assoc]
+    rw [e, h, mul_zero]
+  exact torsion_free (norm z) w (norm_ne_zero_of_ne_zero z hz) step
+
+/-- The same fact in the shape the exactly-two argument will use: a product
+    is zero only if a factor is. Stated as a disjunction, never proved by an
+    `omega` on a conjunction. -/
+theorem mul_eq_zero_iff (z w : GZ) : mul z w = zero ↔ z = zero ∨ w = zero := by
+  constructor
+  · intro h
+    rcases (by exact Decidable.em (z = zero)) with hz | hz
+    · exact Or.inl hz
+    · exact Or.inr (no_zero_divisors z w hz h)
+  · intro h
+    rcases h with h | h
+    · rw [h]; exact zero_mul w
+    · rw [h]; exact mul_zero z
+
+/-! ### S2's own live instances and controls -/
+
+theorem live_9 : norm ⟨0, 0⟩ = 0 := by decide
+theorem live_10 : (5 * 5 + 3 * 3) % 4 ≠ 0 := by decide
+theorem live_11 : (6 * 6 + 2 * 2) % 4 = 0 := by decide
+theorem live_12 : mul ⟨2, 3⟩ ⟨1, -1⟩ ≠ zero := by decide
+
+/-- Negative control for the descent's engine: a norm that is `0 mod 4`
+    does NOT make the element zero — the descent needs the full equation
+    `N(z) = 0`, not a congruence. Without this the reader might think
+    divisibility alone was doing the work. -/
+theorem control_norm_mod_four_is_not_norm_zero :
+    (6 * 6 + 2 * 2) % 4 = 0 ∧ (6 * 6 + 2 * 2 : Int) ≠ 0 := by
+  constructor
+  · decide
+  · decide
+
+/-- Negative control for the domain: in the SPLIT ring (`i² = +1`) the same
+    chain fails at its first link, because there `conj(z)·z` is not the norm.
+    `(1,1)` is non-zero and `splitMul (1,1) (1,-1) = 0`, so `no_zero_divisors`
+    is false of `splitMul` — the theorem above is about `mul`, and the sign
+    is what makes it true. -/
+theorem control_split_is_not_a_domain :
+    splitMul ⟨1, 1⟩ ⟨1, -1⟩ = zero := by decide
 
 end Zi

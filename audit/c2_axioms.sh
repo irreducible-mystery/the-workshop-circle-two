@@ -52,6 +52,9 @@
 #
 # USAGE
 #   sh audit/c2_axioms.sh              (uses `lean` from PATH)
+#   The query copy is compiled beside a copy of the repo's lean-toolchain, so
+#   the pin travels with the census instead of depending on the machine's
+#   default. LEAN=<abs path> bypasses PATH resolution entirely.
 #   LEAN=/path/to/lean sh audit/c2_axioms.sh
 #   C2_LEAN_DIR=lean sh audit/c2_axioms.sh    (default: the repo's lean/)
 
@@ -139,6 +142,16 @@ for f in $files; do
 
     gen="$WORK/$base.lean"
     cp "$f" "$gen"
+    # PORTABILITY (chartered in the builder's S1 verification): the query copy
+    # is compiled in a temp directory, outside any lean-toolchain's reach. On a
+    # container whose elan has no default configured, that made the census fail
+    # with "no default toolchain configured" — loudly, which is the alarm
+    # working, but its verdict depended on machine state outside the repo.
+    # Carry the repo's pin to the copy so the census is pinned by the record
+    # rather than by the machine.
+    if [ -f "$LEANDIR/lean-toolchain" ]; then
+        cp "$LEANDIR/lean-toolchain" "$WORK/lean-toolchain"
+    fi
     # close the namespace before querying, then query with fully-qualified names
     printf '\n' >> "$gen"
     for n in $names; do

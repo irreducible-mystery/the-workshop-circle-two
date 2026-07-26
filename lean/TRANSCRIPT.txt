@@ -1,11 +1,13 @@
-CIRCLE TWO — S1 COMPILE TRANSCRIPT
+CIRCLE TWO — S1 + S2 COMPILE TRANSCRIPT
 ==================================================================
 Everything below was produced by an instrument on this machine this
 session. Wall-times are recorded and never load-bearing.
 
-This transcript was rewritten after the adversarial audit of the S1
-delivery; the numbers are the post-repair ones. What the audit found, and
-what changed, is in PROOFS.md under "Corrections — loudest first".
+This transcript was rewritten twice: after my own adversarial audit of the
+S1 delivery, and again after the builder's pass returned seven more
+specimens and S2 landed. The numbers are the current ones. What each pass
+found is in PROOFS.md, under "Corrections — loudest first" and
+"Corrections — the builder's pass".
 
 MACHINE
   Linux x86_64, cloud container (Claude Code session), 2026-07-26.
@@ -31,7 +33,9 @@ THE COMPILE — the pass condition is silence
   command : lean lean/Zi.lean
   exit    : 0
   bytes   : 0          <-- norm 10: exit 0 AND zero bytes, both measured
-  time    : 1.3s
+  time    : 1.8s       (S1 + S2 together; the builder measured 29.8s for
+                        S1 alone on its container — wall-times are
+                        recorded and never load-bearing)
 
   Silence here is earned rather than configured: no linter is disabled
   anywhere in the file, and no `set_option` suppresses a warning. The one
@@ -42,28 +46,33 @@ THE COMPILE — the pass condition is silence
 
   THE NORMALISATION SET IS MINIMAL, measured one lemma at a time: each of
   the eleven was removed in turn and the file was recompiled; every removal
-  broke the compile. An earlier draft carried twenty, nine of which were
-  redundant, under a comment claiming the toolchain's default simp lacks
+  broke the compile. An earlier draft carried twenty-one, ten of which were
+  redundant (the tenth, Int.neg_zero, was missed by the first accounting of
+  this very correction and caught by the builder's pass), under a comment
+  claiming the toolchain's default simp lacks
   the Int units. Measured, that was backwards — `a + 0 = a` and `a * 1 = a`
   ARE closed by a bare `simp` here; `a + -a = 0` is not, which is why
   Int.add_right_neg stays. See PROOFS.md correction #2.
 
 THE ARTIFACT
   sha256  lean/Zi.lean
-          2e227702a6666f2b75f00481f8a941040106ca642046e2951ef35616b046e1d3
+          410d91dcb224d7e88a7feffd35fe1d76e8a7d1931cd7cf56e4b8a5ed5ec2a4ad
   sha256  lean/lean-toolchain
           2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
   .olean, produced by `lean -o Zi.olean lean/Zi.lean`:
-  sha256  85f7a957962a95f85ee2c0238eb38ab8a915eb8d8786c73e7b6c5b7f1246d435
+  sha256  854244ba92079b31bae4b31adce61c9204b71eb456c2c685585fb93873a0e295
 
-  REPRODUCIBILITY, measured: two independent builds from the same source
-  on this machine produced BYTE-IDENTICAL .olean files (hashes compared,
-  equal). Labelled honestly: that is same-machine, same-toolchain
-  reproducibility. Cross-machine .olean reproducibility is NOT established
-  by this measurement, and is not claimed. The source hash and the
-  toolchain commit are the pins that travel; the .olean hash is offered as
-  the builder's charge asks for it, with its scope stated.
+  REPRODUCIBILITY, measured twice, in both directions:
+    SAME machine, two builds from the same source -> BYTE-IDENTICAL.
+    CROSS machine -> DIFFERENT. The builder built the S1 head on its own
+    container, same toolchain commit, same architecture, and got
+    9ae2dbd6...; this seat got 85f7a957.... So cross-machine .olean
+    reproducibility does NOT hold, even same-platform. That is Circle One's
+    VERIFY warning, now measured from inside Circle Two, and it is the
+    answer to this delivery's Q4.
+  The source hash and the toolchain commit are the pins that travel; the
+  .olean hash is offered as the charge asks for it, with its scope stated.
 
   The .olean itself is NOT committed — it is a build artifact, and
   audit/c2_tree.sh exits 1 on a tracked .olean. Its hash rides here
@@ -71,18 +80,20 @@ THE ARTIFACT
 
 THE CENSUS — audit/c2_axioms.sh, this tree, this toolchain
   file                   theorems   axiom-free       rest
-  Zi                           54           16         38
+  Zi                           76           24         52
   ------------------------------------------------------------
-  TOTAL                        54           16         38
+  TOTAL                        76           24         52
   sorryAx                       0
   Classical.choice              0
   RESULT: PASS
 
-  The 38 "rest", broken out by an independent per-theorem probe (the file
+  The 52 "rest", broken out by an independent per-theorem probe (the file
   plus one `#print axioms` query per theorem, compiled under the same pin):
-    36  [propext]
-     2  [propext, Quot.sound]  -- Zi.brahmagupta_fibonacci, Zi.norm_mul
-  and 16 + 36 + 2 = 54, the whole. Neither propext nor Quot.sound is a
+    40  [propext]
+    12  [propext, Quot.sound]  -- two in S1 (brahmagupta_fibonacci,
+                                  norm_mul) and ten in S2's descent, where
+                                  omega does most of the linear work
+  and 24 + 40 + 12 = 76, the whole. Neither propext nor Quot.sound is a
   defect; the census reports them rather than judging them. The two
   findings it DOES judge are both zero.
 
@@ -101,7 +112,7 @@ EVERY PLANT FIRED THIS SESSION — norm 16
       -> CHOICE: 'Q.trap' depends on axioms:
          [propext, Classical.choice, Quot.sound]
       -> Classical.choice 1, RESULT: FAIL, exit 1.
-    Plant C, fired after the audit repaired the census's dead alarm:
+    Plant C, fired after my audit repaired the census's dead alarm:
       a file opening two namespaces, so a query names a constant that does
       not exist
       -> CENSUS ERROR ... error(lean.unknownIdentifier): Unknown constant
@@ -121,6 +132,13 @@ EVERY PLANT FIRED THIS SESSION — norm 16
     delivery produces) — both FAIL, exit 1, then PASS on restore.
   The certificate: the stale "0.53" re-introduced into the bench docstring
     -> G1h_docstring_carries_exact_4 FAIL, exit 1, restored byte-identical.
+  The census AGAIN, after the builder's portability fix (it now copies the
+    repo's lean-toolchain beside the generated query file, so the pin
+    travels with the instrument instead of depending on the machine's elan
+    default): both the sorryAx plant and the conjunctive-omega plant
+    re-fired, exit 1 each, PASS on the clean tree between them. An
+    instrument that changes gets re-bitten; norm 16 has no grandfather
+    clause.
 
   Plant B is worth one line of record: it confirms on THIS toolchain that
   an `omega` aimed at a conjunctive goal pulls Classical.choice — the trap
