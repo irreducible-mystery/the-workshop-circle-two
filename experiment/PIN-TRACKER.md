@@ -10,7 +10,30 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence R2-closeout — the whole finish, twice; two corrections of my own record (current)
+## Convergence retrospective — the meta-auditor's CLOSING mirror; the time-value answer (current)
+
+The closing artifact of the convergence experiment, written from the
+row-7 chair to mirror their `CLOSING.md`. Measured, not remembered: §2
+the epistemic yield (176 blind checks over 4 rounds; the corrections law
+worded the same in both houses without contact; .olean non-reproducibility
+measured in both; the census-portability species handled 4× from one seed
+across 3 bodies), §3 the three self-convictions (S2 warm-container, S3
+verdict-banner, R2 the withdrawn "architectural tax" + P6), §4 the
+TIME-VALUE analysis Kelly asked for — the ~12h-vs-minutes framing
+corrected (different passes, not like-for-like), then the slow loop's
+measured yield: 4 norms + 3 register rows each specimen-bought, a real
+checker bug found (class-c8, REGISTER row 16), and REGISTER row 18's
+priced-out limit of the fast dual-seat method; §5 five changes I'd make.
+Verdict: the hours aren't worth it for the theorem (cheap in both houses);
+they buy the institutional immunity that outlives it.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-RETROSPECTIVE.md` | the meta-auditor's closing retrospective + time-value analysis | `e858120c89e3` |
+
+commit: (this commit)
+
+## Convergence R2-closeout — the whole finish, twice; two corrections of my own record
 
 Protocol run 4. **Context changed:** my branch merged into `main` early
 (PR #2, `3cc52e7`) — quarantine now editorial, not topological; AND
