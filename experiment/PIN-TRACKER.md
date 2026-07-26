@@ -38,8 +38,8 @@ species one level up: "defects migrate to the nearest unguarded surface."
 
 | artifact | what | sha256 (short) |
 |---|---|---|
-| `convergence/CONVERGENCE-REPORT-R2CLOSE.md` | full closeout comparison, §0–§E + predictions 4/7 | `(this ship)` |
-| `convergence/DESIGN-NOTE-R2CLOSE.md` | honesty line + 7 predictions + the merge-quarantine note, BEFORE measurement | `(this ship)` |
+| `convergence/CONVERGENCE-REPORT-R2CLOSE.md` | full closeout comparison, §0–§E + predictions 4/7 | `857f6b4114c3` |
+| `convergence/DESIGN-NOTE-R2CLOSE.md` | honesty line + 7 predictions + the merge-quarantine note, BEFORE measurement | `cee04f55fdea` |
 | `convergence/mech/verify_theirs_r2close.py` | independent-route verifier; 18/18 + carried, exit 0 | `c4fe49c38b58` |
 | `convergence/mech/verify_theirs_r2close_output.txt` | clean run transcript | `8cc4158d9e4b` |
 | `convergence/mech/plant_r2close_out.txt` | plant (mirror keeps 3 / 2+2→2+1) bitten — exit 1 | `64c315623597` |
@@ -51,7 +51,7 @@ species one level up: "defects migrate to the nearest unguarded surface."
 | `convergence/mech/their_r2close_VIEWS.md` | their rendered census (external ref) | `1e4904a95f4c` |
 | `convergence/mech/their_r2close_CLOSING.md` | their closeout retrospective (external ref) | `c04a3d0e80de` |
 
-commit: (this commit)
+commit: `7e7d2f1`
 
 ## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse
 
