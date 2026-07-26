@@ -31,7 +31,7 @@ they buy the institutional immunity that outlives it.
 |---|---|---|
 | `convergence/CONVERGENCE-RETROSPECTIVE.md` | the meta-auditor's closing retrospective + time-value analysis | `e858120c89e3` |
 
-commit: (this commit)
+commit: `a4e9723`
 
 ## Convergence R2-closeout — the whole finish, twice; two corrections of my own record
 
