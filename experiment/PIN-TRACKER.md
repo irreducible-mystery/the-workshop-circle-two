@@ -10,7 +10,33 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence S2 — the domain, twice (current)
+## Convergence S2 addendum — a conviction of my own report (current)
+
+Fable's S2 verification letter arrived (nine specimens) plus Kelly's
+provenance correction (the S2 transcripts were swapped at upload).
+Loudest first: **my S2 report's "portability fix verified cold" was
+FALSE** — my container carried my own S1 workaround default. Real
+falsifier run (default removed): their fix fails (their #2 confirmed,
+third container); elan reads the pin from cwd, not file location
+(mechanism reproduced); Fable's one-line repair pre-verified PASS
+cold. Report §1 amended in place; protocol gains amendments A1–A4,
+each bought by a conviction. Cross-map of their nine specimens vs my
+report: 1 convergent (594), 1 complemented (the named-12 list their #6
+asks for already ships in my mech/), 4 missed, 1 backwards.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-S2-ADDENDUM.md` | the correction + provenance + crop cross-map + protocol amendments | `62d7d8d4448a` |
+| `convergence/CONVERGENCE-REPORT-S2.md` | amended §1 (warm-container endorsement struck, loudest-first) | `31d716c32657` |
+| `convergence/CONVERGENCE-PROTOCOL.md` | amendments A1–A4 added | `13fa5f538267` |
+| `convergence/mech/census_nodefault_out.txt` | real falsifier: their fix FAILS with no elan default, exit 1 | `dceb8d4f1675` |
+| `convergence/mech/pin_resolution_probe.txt` | elan resolves pin from cwd, not file location | `92ba59503b91` |
+| `convergence/mech/census_fixed_nodefault.txt` | Fable's one-line repair: PASS cold, 76 = 24+40+12 | `186cac925fbf` |
+| `convergence/mech/fable_s2_verification.md` | Fable's letter (external reference) | `511fb865056c` |
+
+commit: (this ship)
+
+## Convergence S2 — the domain, twice
 
 Second protocol round (standing instrument fixed this round:
 `convergence/CONVERGENCE-PROTOCOL.md`). Their S2 (76 theorems, head

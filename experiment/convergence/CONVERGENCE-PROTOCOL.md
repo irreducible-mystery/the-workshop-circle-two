@@ -93,6 +93,29 @@ Write `CONVERGENCE-REPORT-S<n>.md` (sections mirror phases; verdict +
 PIN-TRACKER block ("(current)" moves) → commit (quarantine language) →
 push → tracker touch-up with commit hash → PR comment → deliver.
 
+## Amendments (S2 addendum — each bought by a conviction)
+
+- **A1 (cold means cold).** Before crediting any environment or
+  portability claim, remove the masking condition and run the actual
+  falsifier; show the removal in the transcript (for toolchain claims:
+  `elan show` → "no active toolchain"). A pass under a warm container
+  verifies nothing. A container that changes is an instrument that
+  changed: re-bite. *(Bought by: my S2 report endorsing their census
+  fix from a container still carrying my own S1 workaround default —
+  Fable's specimen #2.)*
+- **A2 (read surface = the whole crate).** Phase E covers the ledger
+  and file headers end-to-end, not just delivery letters and
+  transcripts. *(Bought by: missing the stale "Nothing here proves
+  S2" label — their crop #1.)*
+- **A3 (citation edges are in scope).** For every certificate check a
+  new-layer table row cites, read the check's tested boolean and
+  confirm it contains what the row claims; printed strings are not
+  checks. *(Bought by: missing three miscitations their crop #3–#5
+  caught.)*
+- **A4 (transcripts are artifacts).** Pinned and author-attributed at
+  Phase 0; authorship is a recorded claim, not a filename. *(Bought
+  by: the S2 transcript swap.)*
+
 ## Standing rules
 
 1. The comparison never edits either lineage's artifacts; it only

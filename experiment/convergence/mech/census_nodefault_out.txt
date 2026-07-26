@@ -1,0 +1,14 @@
+REAL FALSIFIER — their portability-fixed census, elan default REMOVED
+prep: sed -i '/^default_toolchain/d' ~/.elan/settings.toml ; elan show -> 'no active toolchain'
+run: sh audit/c2_axioms.sh on their crate (head 20fedd6)
+exit=1
+---
+==============================================================
+ C2 AXIOM CENSUS -- what every proof term actually leaned on
+==============================================================
+ toolchain: 
+--------------------------------------------------------------
+file                   theorems   axiom-free       rest
+CENSUS ERROR in lean/Zi.lean — the generated copy did not compile:
+error: no default toolchain configured. run `elan default stable` to install & configure the latest Lean 4 stable release.
+VERDICT: Fable specimen #2 CONFIRMED on a third container — the fix does not fix the named condition; my S2 report's endorsement was a warm-container artifact.

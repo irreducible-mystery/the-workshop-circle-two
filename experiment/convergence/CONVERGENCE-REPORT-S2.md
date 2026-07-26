@@ -47,15 +47,21 @@ the courier.
   (`mech/census_their_s2_out.txt`). The 12 Quot.sound theorems are
   exactly their S1 two (`brahmagupta_fibonacci`, `norm_mul`) plus ten
   S2 theorems, named in the artifact.
-- **Their instrument, portability fix verified from a cold start**:
-  their updated `c2_axioms.sh` (the chartered fix: the repo's
-  `lean-toolchain` now travels with the census's query copy) runs
-  green on my bare container **where the S1 version had failed** with
-  "no default toolchain configured" — the fix repairs exactly the
-  failure I reported at S1. On their own S2 crate: 76/24/52, 0/0,
-  PASS. On my 161-theorem file: 161/68/93, 0/0, PASS
-  (`mech/their_censusfix_on_mine.txt`). Cross-instrumentation green
-  both directions, second round running.
+- **Their instrument** ~~portability fix verified from a cold start~~
+  **[AMENDED — see CONVERGENCE-S2-ADDENDUM.md §1, correction
+  loudest-first]**: the original sentence here credited their
+  portability fix with repairing the S1 failure "from a cold start."
+  **That verification was false** — my container carried the elan
+  default I myself had set at S1, which masked the condition. The real
+  falsifier (default removed) shows the fix does NOT close the named
+  condition (Fable's specimen #2, confirmed here on a third
+  container: `mech/census_nodefault_out.txt`); Fable's one-line repair
+  does, pre-verified cold at `mech/census_fixed_nodefault.txt`. What
+  stands from the original paragraph: their census on their own S2
+  crate 76/24/52, 0/0, PASS, and on my 161-theorem file 161/68/93,
+  0/0, PASS (`mech/their_censusfix_on_mine.txt`) — both run warm,
+  which the digits don't depend on. Cross-instrumentation green both
+  directions, second round running.
 - **.olean (the Q4 series, third data point)**: my build of their S2
   file: `d3928c40…`. Their ledger records `854244ba…` (same-machine
   reproducible, they note). Different machines, same toolchain commit,
