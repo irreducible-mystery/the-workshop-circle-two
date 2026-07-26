@@ -9,3 +9,4 @@
 6393	truncation: the (+1,-1) candidate residual 7.639320225002103 (same hex_residual_fib measurement as above), quoted to four places in the handover audit's residual list
 68	derived-minus: certificate capacity without C1_LEAN = 70 checks minus the two G6 calibrators that fail loudly by name (measured in the reconciliation letter, reproduced on both containers)
 594	measurement: `wc -l lean/Zi.lean` at the S2 head 20fedd6, quoted in PROOFS.md correction C#7 as the true value the ledger and letter both mis-stated as 593; a historical measurement of a past artifact state, not a claim about the current file (which measures 929)
+593	quoted-defect: the FALSE line count the S2 ledger and delivery letter both carried, quoted in the crop that corrects it (the artifact measured 594 at that head, by `wc -l`). Exempted as a quotation of the error, never as a claim — if this number ever appears as an assertion again, the reason above stops covering it

@@ -107,3 +107,7 @@ Int.neg_zero	Lean 4 core lemma, named in PROOFS.md correction #2's amendment as 
 Nat	Lean 4 core type, named in S2's descent prose; resolves in the toolchain, not this tree (cf. Int usage throughout)
 Int.mul_eq_zero	Lean 4 core lemma (a*b = 0 iff a = 0 or b = 0), the last step of S2's domain chain; resolves in the toolchain, not this tree
 85f7a957	SHA-256 pin prefix: this seat's .olean for the S1 head (pre-S2), quoted in the Q4 answer as the half of the measurement that differs from the builder's 9ae2dbd6... — the pair is the evidence cross-machine .olean reproducibility fails
+4eb6105a3ae6dc863f238372e039b742e3fd51757517eb9e0f77a5bbd931d03e	SHA-256 pin: circletwo-s2.zip, the S2 delivery crate at head 20fedd6; verified exact on the builder's side
+e8f504474d8f3d60c148a8d90e5f54fd12c0bd10c05c5e9fd2f83fd23bef6b71	SHA-256 pin: letters/ROUND2-S2-DELIVERY.md as couriered
+ff18a72bddde1466b20dcece1c4872a2919514fb629668db2ff671123b7a014f	SHA-256 pin: PROOFS.md as couriered with the S2 delivery
+511fb865056c308f4f4ea7bec643b4e117539d41ab766c6e05a37ff9ae9145ca	SHA-256 pin: letters/ROUND2-S2-VERIFICATION.md — pinned HERE BY MEASUREMENT, because no pin rode in the courier's message on this leg; recorded so the next leg can compare
