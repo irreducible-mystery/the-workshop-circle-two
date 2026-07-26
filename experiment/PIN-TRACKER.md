@@ -10,7 +10,32 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence retrospective — the meta-auditor's CLOSING mirror; the time-value answer (current)
+## Convergence dashboard — the whole series on one page, GENERATED not typed (current)
+
+Change #2 of the retrospective, built. A generator (`mech/make_dashboard.py`)
+reads the mech receipts and emits `CONVERGENCE-DASHBOARD.md` — the four-round
+series (verifier count, plant falsifier, census split, axiom fork) rendered
+from files, never retyped. This is the two-body lineage's NORM 19 (rendered
+counts are never retyped) adopted for my own record — and it goes one step
+further on two points their norm didn't have to:
+(1) **reproducible by hash** — the header stamps a deterministic inputs
+digest (`09059a91f953`), not a wall-clock time, so the same receipts always
+render byte-identical bytes; two runs and a cross-location run all produced
+dashboard sha `9f206376960e`;
+(2) **missing looks missing** — a receipt that vanishes renders `n/a (file
+absent)`, never a stale value; proved by a falsifiability probe (hide the S3
+receipt → the cell goes n/a; restore → the number returns).
+Quarantine (norm 16): ratifies nothing in `lean/Zi.lean`.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-DASHBOARD.md` | the rendered four-round series, one page | `9f206376960e` |
+| `convergence/mech/make_dashboard.py` | the generator (parses receipts → dashboard) | `e27a6e339c23` |
+| `convergence/mech/dashboard_falsifiability_probe.txt` | proof that a missing receipt renders n/a, not stale | `249a8e01b3ef` |
+
+commit: _(filled by tracker touch-up)_
+
+## Convergence retrospective — the meta-auditor's CLOSING mirror; the time-value answer
 
 The closing artifact of the convergence experiment, written from the
 row-7 chair to mirror their `CLOSING.md`. Measured, not remembered: §2

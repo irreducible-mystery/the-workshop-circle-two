@@ -1,0 +1,23 @@
+DASHBOARD FALSIFIABILITY PROBE
+==============================
+Claim under test: make_dashboard.py renders a MISSING receipt as
+"n/a (file absent)" -- never as a stale or guessed value. A dashboard
+that silently kept an old number when its source vanished would be the
+exact NORM-19 defect it claims to prevent, only hidden one layer down.
+
+Procedure (run 2026-07-26, from convergence/mech/):
+  1. mv verify_theirs_s3_output.txt _hidden.txt
+  2. python3 make_dashboard.py
+  3. grep the S3 verifier row
+  4. restore, regenerate, grep again
+
+Result:
+  hidden  -> | S3  pentagon -> two roots | n/a (file absent) | `verify_theirs_s3_output.txt` |
+  restored-> | S3  pentagon -> two roots | 26/26 passed, 0 failed -- PASS | `verify_theirs_s3_output.txt` |
+
+VERDICT: PASS. The generator does not carry a stale value across the
+disappearance of its source. Missing looks missing. The one number the
+dashboard cannot fake is the one whose receipt is gone.
+
+Note: this is the dashboard's analogue of the plant test for the
+verifier -- an instrument you cannot make lie by removing its evidence.
