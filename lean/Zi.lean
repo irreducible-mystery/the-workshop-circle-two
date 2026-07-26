@@ -14,16 +14,36 @@
   and this file proves them again in the kernel, which is the two-body
   standard: an exact reimplementation and a kernel, never one of them.
 
-  STYLE. Hand-rolled, in Circle One's manner: no typeclass instances, no
-  `ring` tactic (there is none without mathlib), no `omega` on a conjunctive
-  goal (the Classical.choice trap named in Circle One's HANDOFF.md, twice
-  bitten there). The ring identities are closed by an associative-
-  commutative `simp` normalisation whose lemmas are declared `local simp`
-  ONCE, below — as attributes rather than per-call arguments, so that the
-  unused-argument linter has nothing to say and the file's silence is
-  earned rather than configured. Measured consequence: every theorem here
-  depends on `propext` and nothing else — no `Classical.choice`, no
-  `Quot.sound`, no `sorryAx`. The census is audit/c2_axioms.sh.
+  STYLE. Hand-rolled, in Circle One's manner: no typeclass instances beyond
+  the one disclosed below, no `ring` tactic (there is none without mathlib),
+  no `omega` on a conjunctive goal (the Classical.choice trap named in
+  Circle One's HANDOFF.md, twice bitten there). The ring identities are
+  closed by an associative-commutative `simp` normalisation whose lemmas are
+  declared `local simp` ONCE, below — as attributes rather than per-call
+  arguments, so that the unused-argument linter has nothing to say and the
+  file's silence is earned rather than configured.
+
+  THE AXIOM FOOTPRINT, as measured rather than as hoped (audit/c2_axioms.sh,
+  and the per-theorem answers in lean/TRANSCRIPT.txt):
+    16 of the 54 theorems depend on NO axioms at all;
+    36 depend on `propext` alone;
+     2 — `brahmagupta_fibonacci` and `norm_mul` — depend on `propext` and
+       `Quot.sound`, which is the footprint `omega` leaves on this
+       toolchain;
+     0 depend on `Classical.choice`, and 0 on `sorryAx`.
+  Those three add to 54, which is the count of theorems in this file; a
+  census whose parts do not sum to its whole is not a census.
+  An earlier draft of this header claimed every theorem depended on
+  `propext` and nothing else. That was false in both directions — it missed
+  the two `Quot.sound` theorems and it missed the axiom-free ones — and it
+  contradicted this delivery's own transcript. It was caught by the
+  adversarial audit of this file, not by its author; the correction is
+  recorded in PROOFS.md, loudest first.
+
+  ONE DISCLOSED INSTANCE. The structure derives `DecidableEq` (core Lean, no
+  import), which is what lets the live instances and the controls be settled
+  by `decide` — a kernel evaluation. It is a generated typeclass instance,
+  and it is flagged here rather than buried; see PROOFS.md, correction #3.
 
   NORMS in force: no unmarked sorry (there are none of either kind); every
   claim stated once and pointed at (norm 13); anti-vacuity live instances
@@ -73,18 +93,26 @@ def conj (z : GZ) : GZ := ⟨z.re, -z.im⟩
 def norm (z : GZ) : Int := z.re * z.re + z.im * z.im
 
 /- The AC normalisation set. Declared once, as local simp attributes: this
-   is the whole automation budget of the file, and it is never raised. The
-   first line turns subtraction into addition-of-negation and distributes;
-   the second and third are associativity/commutativity for the two
-   operations; the fourth supplies the units and annihilators, which this
-   toolchain's default simp set does NOT carry for `Int` (measured: `a + 0
-   = a` is not closed by a bare `simp` here). -/
+   is the whole automation budget of the file, and it is never raised.
+   Subtraction becomes addition-of-negation and distributes; then
+   associativity and commutativity for the two operations; then the one
+   cancellation lemma.
+
+   EVERY LEMMA HERE IS LOAD-BEARING, measured one at a time: removing any
+   single one of the eleven makes this file stop compiling. That is not a
+   claim about elegance, it is the reason the list is this length and no
+   longer. An earlier draft carried nine more — the units and annihilators
+   (`Int.add_zero`, `Int.mul_one`, …) and `Int.neg_mul`, `Int.mul_assoc` —
+   together with a comment asserting, as "measured", that this toolchain's
+   default `simp` does not carry the units for `Int`. That was backwards:
+   `a + 0 = a` and `a * 1 = a` ARE closed by a bare `simp` here; what is
+   not is `a + -a = 0`, which is why `Int.add_right_neg` stays. The false
+   comment and the nine redundant lemmas were found by the adversarial
+   audit and removed together; see PROOFS.md, correction #2. -/
 attribute [local simp]
-  Int.sub_eq_add_neg Int.neg_add Int.mul_add Int.add_mul Int.mul_neg Int.neg_mul
-  Int.mul_assoc Int.mul_comm Int.mul_left_comm
-  Int.add_assoc Int.add_comm Int.add_left_comm
-  Int.add_zero Int.zero_add Int.mul_one Int.one_mul Int.mul_zero Int.zero_mul
-  Int.neg_zero Int.add_right_neg Int.neg_neg
+  Int.sub_eq_add_neg Int.neg_add Int.mul_add Int.add_mul Int.mul_neg
+  Int.mul_comm Int.mul_left_comm
+  Int.add_assoc Int.add_comm Int.add_left_comm Int.add_right_neg
 
 /-! ## 1. The additive structure — an abelian group -/
 
@@ -244,11 +272,16 @@ theorem norm_re (a : Int) : norm ⟨a, 0⟩ = a * a := by
 
 /-! ## 7. Anti-vacuity — norm 3
 
-    Nothing above is guarded by a hypothesis, so nothing above can be
-    vacuously true; the risk here is the other one — that the definitions
-    do not compute what the prose says. These are the live instances, and
-    the count is stated: EIGHT witnesses, each an exact evaluation in the
-    kernel, none of them a rewriting of the theorems they witness. -/
+    Exactly ONE theorem above is guarded by hypotheses — `ext`, which takes
+    the two coordinate equations — and its guard is satisfiable (take
+    z = w), so it is not vacuous either; every other theorem binds data,
+    not proofs. An earlier draft opened "Nothing above is guarded by a
+    hypothesis", which `ext` falsifies. The audit caught it; the conclusion
+    survived the correction, which is why it is recorded quietly. The live
+    risk here is the other one — that the definitions do not compute what
+    the prose says. These are the live instances, and the count is stated:
+    EIGHT witnesses, each an exact evaluation in the kernel, none of them a
+    rewriting of the theorems they witness. -/
 
 theorem live_1 : mul I I = ⟨-1, 0⟩ := by decide
 theorem live_2 : mul ⟨1, 1⟩ ⟨1, -1⟩ = ⟨2, 0⟩ := by decide
@@ -262,10 +295,13 @@ theorem live_8 : mul ⟨0, 2⟩ ⟨0, 3⟩ = ⟨-6, 0⟩ := by decide
 /-! ## 8. Negative controls — norm 5
 
     Each of these is FALSE of some near-miss and the kernel says so; a check
-    that cannot fail is not a check. Four controls, one per family: the
-    ring's non-triviality, the mirror's non-triviality, a fake mirror that
-    breaks multiplicativity (`G4_control_fake_mirror_fails`), and the sign
-    in `i² = -1` shown to be load-bearing. -/
+    that cannot fail is not a check. EIGHT control theorems across FOUR
+    families — the ring's non-triviality (one), the mirror's non-triviality
+    (one), the fake mirror that is additive yet not multiplicative
+    (`G4_control_fake_mirror_fails`, two), and the sign in `i² = -1` shown
+    to be load-bearing (four). An earlier draft's comment said "Four
+    controls, one per family", counting the families and calling them
+    theorems; the audit caught the arithmetic. -/
 
 /-- The ring is not the zero ring: the two-particle catalog has room to live. -/
 theorem control_one_ne_zero : one ≠ zero := by decide
@@ -294,8 +330,16 @@ def splitMul (z w : GZ) : GZ := ⟨z.re * w.re + z.im * w.im, z.re * w.im + z.im
 theorem control_split_has_zero_divisors :
     splitMul ⟨1, 1⟩ ⟨1, -1⟩ = zero := by decide
 
-theorem control_split_factors_are_nonzero :
+/-- BOTH factors, separately. The claim "the ring acquires zero divisors"
+    needs two non-zero factors with a zero product, and an earlier draft
+    proved only the first while its name and its prose said "factors".
+    Half a control is not a control; the audit caught it, and here is the
+    other half. -/
+theorem control_split_first_factor_is_nonzero :
     (⟨1, 1⟩ : GZ) ≠ zero := by decide
+
+theorem control_split_second_factor_is_nonzero :
+    (⟨1, -1⟩ : GZ) ≠ zero := by decide
 
 /-- And the honest contrast, in the real ring: the same two factors that
     kill each other under `splitMul` have product `(2,0)` under `mul`. The

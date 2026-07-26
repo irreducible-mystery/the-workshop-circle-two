@@ -26,11 +26,24 @@
 #   plus queries and nothing else. The copy is written to a temp directory
 #   and removed; it is never committed (see audit/c2_tree.sh).
 #
+#   The compile guard matches `error:` AND `error(`: Lean 4.32.0 reports an
+#   unknown constant as `error(lean.unknownIdentifier):`, so a guard keyed to
+#   `error:` alone was dead for precisely the failure this census can cause (a
+#   query naming a theorem that does not exist). Found by the adversarial audit.
+#
 # BOUNDARY
 #   It censuses `theorem` declarations only — `def`s carry no proof
 #   obligation, and a `example` has no name to ask about. It cannot see a
 #   theorem whose STATEMENT is wrong, which is norm 6's territory and class
 #   6's, not this instrument's. And it trusts the toolchain it is pointed at.
+#
+#   ONE NAMESPACE PER FILE. Queries are qualified with the file's FIRST
+#   `namespace`, so a file opening two namespaces produces a query naming a
+#   constant that does not exist. That is not silent: the compile guard above
+#   catches it and the census exits 1 (measured, with a two-namespace plant).
+#   Loud-and-wrong is the acceptable failure here; silent-and-wrong is not.
+#   When a second namespace is genuinely needed, teach the harvest to track
+#   the namespace stack — do not relax the guard.
 #
 # NORM 16
 #   Bitten before trusted: append `theorem plant : False := by sorry` to a
@@ -80,7 +93,49 @@ for f in $files; do
     base=$(basename "$f" .lean)
     # the namespace, if the file opens exactly one at top level
     ns=$(grep -m1 '^namespace ' "$f" | awk '{print $2}')
-    names=$(grep '^theorem ' "$f" | sed "s/^theorem \\([A-Za-z0-9_']*\\).*/\\1/")
+
+    # ---- harvest, comment-stripped and modifier-tolerant --------------
+    # An earlier version harvested with `grep '^theorem '` + a narrow sed.
+    # It silently missed `@[simp] theorem`, `private theorem`, and any
+    # indented declaration — and the consistency check below could not see
+    # the omission, because both of its sides came from that same grep. A
+    # census that can under-report without saying so is worse than no
+    # census. Found by the adversarial audit of the S1 delivery.
+    #
+    # Comments are stripped first (nested `/- -/`, `/-! -/`, and `--` to
+    # end of line) so that the word "theorem" in prose cannot be counted.
+    # BOUNDARY: a `theorem` keyword inside a string literal would still be
+    # seen. No file in this tree contains one; if one ever does, this is
+    # where to fix it.
+    stripped="$WORK/$base.stripped"
+    awk '
+      { line = $0; out = ""; i = 1; n = length(line)
+        while (i <= n) {
+          c = substr(line, i, 2)
+          if (depth == 0 && c == "--") { break }
+          if (c == "/-") { depth++; i += 2; continue }
+          if (c == "-/") { if (depth > 0) depth--; i += 2; continue }
+          if (depth == 0) { out = out substr(line, i, 1) }
+          i++
+        }
+        print out }
+    ' "$f" > "$stripped"
+
+    DECLRE="^[[:space:]]*(@\\[[^]]*\\][[:space:]]*)*(private[[:space:]]+|protected[[:space:]]+|nonrec[[:space:]]+)*theorem[[:space:]]"
+    ndecl=$(grep -cE "$DECLRE" "$stripped")
+    names=$(grep -E "$DECLRE" "$stripped" \
+            | sed -E "s/^[[:space:]]*(@\\[[^]]*\\][[:space:]]*)*(private[[:space:]]+|protected[[:space:]]+|nonrec[[:space:]]+)*theorem[[:space:]]+([A-Za-z_][A-Za-z0-9_']*).*/\\3/")
+    nnames=$(printf '%s\n' "$names" | grep -c .)
+
+    # detection and extraction are separate steps; if they disagree, a name
+    # was lost and the census would silently under-report. Fail loudly.
+    if [ "$ndecl" -ne "$nnames" ]; then
+        echo "CENSUS ERROR in $f — $ndecl theorem declarations detected but"
+        echo "  $nnames names extracted; the harvest lost a name. Fix the"
+        echo "  extraction, never the count."
+        hard_fail=1
+        continue
+    fi
 
     gen="$WORK/$base.lean"
     cp "$f" "$gen"
@@ -96,9 +151,9 @@ for f in $files; do
 
     out=$("$LEANBIN" "$gen" 2>&1)
     # a compile error in the generated copy is a census failure, loudly
-    if printf '%s' "$out" | grep -q 'error:'; then
+    if printf '%s' "$out" | grep -qE 'error[:(]'; then
         echo "CENSUS ERROR in $f — the generated copy did not compile:"
-        printf '%s\n' "$out" | grep 'error:' | head -5
+        printf '%s\n' "$out" | grep -E 'error[:(]' | head -5
         hard_fail=1
         continue
     fi

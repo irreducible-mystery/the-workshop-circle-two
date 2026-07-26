@@ -86,3 +86,13 @@ constructor	Lean 4 core tactic named in the proof ledger; resolves in the toolch
 deriving DecidableEq	Lean 4 core deriving handler named in the ledger's disclosure; toolchain vocabulary, not a repo pointer
 DecidableEq	Lean 4 core typeclass named in the ledger's disclosure; resolves in the toolchain, not this tree
 example	Lean 4 keyword for an anonymous declaration, named in REGISTER row 4's boundary; resolves in the toolchain, not this tree (cf. sorry, omega)
+#
+# -- Lean core lemma/tactic names quoted in the S1 ledger --
+simp	Lean 4 core tactic named in PROOFS.md and the file headers; resolves in the toolchain, not this tree (cf. omega, decide)
+Int.add_zero	Lean 4 core lemma named in PROOFS.md correction #2; resolves in the toolchain, not this tree
+Int.mul_one	Lean 4 core lemma named in PROOFS.md correction #2; resolves in the toolchain, not this tree
+Int.mul_assoc	Lean 4 core lemma named in PROOFS.md correction #2 as one of the nine removed as redundant; resolves in the toolchain, not this tree
+Int.neg_mul	Lean 4 core lemma named in PROOFS.md correction #2 as one of the nine removed as redundant; resolves in the toolchain, not this tree
+A.two	illustrative name in PROOFS.md correction #7, showing the two-namespace case rule (b2) used to over-accept; deliberately nonexistent — that is the point of the example
+error:	the literal grep pattern quoted in PROOFS.md correction #7 (the dead alarm in c2_axioms.sh); a search string, not a repo pointer
+control_split_factors_are_nonzero	SUPERSEDED theorem name, quoted in PROOFS.md correction #3 as the defect that was repaired; replaced by control_split_first_factor_is_nonzero and control_split_second_factor_is_nonzero — it resolves in history, not in the live tree

@@ -56,6 +56,15 @@
 #   then the machine-readable verdict line:  RESULT: PASS  or  RESULT: FAIL
 #   Exit 0 iff RESULT: PASS.
 #
+# NORM 16
+#   Bitten before trusted. Two plants, because this gate has two ways to be
+#   wrong: append to any scanned document a line citing `phantom_bench.py`
+#   (a dangling path -> must FAIL), and a line citing `Zi.no_such_theorem`
+#   (a well-formed but non-existent Lean name -> must also FAIL, proving
+#   rule (b2) resolves real declarations rather than anything dotted).
+#   Restore both, confirm PASS. An alarm you have not seen fire is not an
+#   alarm.
+#
 # USAGE:  sh audit/c2_pointers.sh [REPO_ROOT]      (default ".")
 # Runs in well under 15 s. POSIX sh + grep/sed/awk/sort only.
 
@@ -189,23 +198,39 @@ LEANDEFS="$TMP/leandefs"
 : > "$LEANDEFS"
 for lf in "$ROOT"/lean/*.lean; do
     [ -f "$lf" ] || continue
-    lns=$(grep '^namespace ' "$lf" | awk '{print $2}')
-    grep -E '^(theorem|def|abbrev|structure|inductive|instance) ' "$lf" \
-        | sed -E "s/^(theorem|def|abbrev|structure|inductive|instance)[[:space:]]+([A-Za-z_][A-Za-z0-9_']*).*/\2/" \
-        | while IFS= read -r dn; do
-            [ -n "$dn" ] || continue
-            printf '%s\n' "$dn" >> "$LEANDEFS"
-            for nsp in $lns; do printf '%s.%s\n' "$nsp" "$dn" >> "$LEANDEFS"; done
-            # the structure's projections are declarations too
-            printf '%s\n' "$dn" | grep -q . && :
-        done
-    # structure fields, as Name.field and bare field
-    awk '/^structure /{instruct=1; sname=$2; next}
-         instruct && /^[ \t]+[A-Za-z_][A-Za-z0-9_]*[ \t]*:/ {
-            f=$1; sub(/:.*/,"",f); gsub(/[ \t]/,"",f);
-            if (f != "") { print f; print sname "." f }
-            next }
-         instruct && !/^[ \t]/ { instruct=0 }' "$lf" >> "$LEANDEFS"
+    # Namespace-AWARE: an earlier version cross-produced every declaration
+    # against every namespace in the file, so in a two-namespace file `A.two`
+    # resolved even though `two` lived in B. One namespace hid the bug; the
+    # adversarial audit found it anyway. Now the scanner tracks the namespace
+    # stack, and a name resolves only under the namespace it is actually in.
+    awk '
+      function emit(n) { if (n != "") { print n; if (nsdepth > 0) print prefix "." n } }
+      { line = $0
+        sub(/--.*/, "", line)
+        if (line ~ /^[ \t]*namespace[ \t]+/) {
+          nm = line; sub(/^[ \t]*namespace[ \t]+/, "", nm); sub(/[ \t].*/, "", nm)
+          nsdepth++; stack[nsdepth] = nm
+          prefix = ""
+          for (k = 1; k <= nsdepth; k++) prefix = (k == 1 ? stack[k] : prefix "." stack[k])
+          next }
+        if (line ~ /^[ \t]*end[ \t]+/) {
+          if (nsdepth > 0) nsdepth--
+          prefix = ""
+          for (k = 1; k <= nsdepth; k++) prefix = (k == 1 ? stack[k] : prefix "." stack[k])
+          next }
+        if (line ~ /^[ \t]*(@\[[^]]*\][ \t]*)*(private[ \t]+|protected[ \t]+|nonrec[ \t]+)*(theorem|def|abbrev|structure|inductive|instance)[ \t]+/) {
+          d = line
+          sub(/^[ \t]*(@\[[^]]*\][ \t]*)*(private[ \t]+|protected[ \t]+|nonrec[ \t]+)*(theorem|def|abbrev|structure|inductive|instance)[ \t]+/, "", d)
+          sub(/[^A-Za-z0-9_'"'"'].*/, "", d)
+          emit(d)
+          if (line ~ /^[ \t]*structure[ \t]+/) { instruct = 1; sname = d } else { instruct = 0 }
+          next }
+        if (instruct && line ~ /^[ \t]+[A-Za-z_][A-Za-z0-9_]*[ \t]*:/) {
+          f = line; sub(/^[ \t]+/, "", f); sub(/[ \t]*:.*/, "", f)
+          if (f != "") { emit(f); emit(sname "." f) }
+          next }
+        if (instruct && line !~ /^[ \t]/ && line !~ /^[ \t]*$/) { instruct = 0 }
+      }' "$lf" >> "$LEANDEFS"
 done
 sort -u "$LEANDEFS" -o "$LEANDEFS" 2>/dev/null || true
 

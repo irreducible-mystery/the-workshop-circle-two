@@ -60,6 +60,17 @@
 # Exit:   0 iff every bare-asserted prose numeral is sourced or labeled
 #         (machine-readable pass line: "RESULT: ... PASS.");  1 otherwise.
 # ---------------------------------------------------------------------------
+# NORM 16
+#   Bitten before trusted: append to any scanned document a sentence
+#   carrying a fresh bare numeral that no instrument produces (e.g.
+#   "the floor ran 8675309 benches"), run this gate, watch it name the
+#   document and exit 1; then restore and confirm PASS.
+#
+#   KNOWN BOUNDARY, and it has cost twice: this gate sees DIGITS only.
+#   A spelled-out number ("thirty-one") is invisible to it, and that
+#   boundary carried a real specimen in each of rounds 2's two halves.
+#   Scored in REGISTER row 9; not fixed here, declared here.
+#
 set -u
 
 ROOT="${1:-.}"
