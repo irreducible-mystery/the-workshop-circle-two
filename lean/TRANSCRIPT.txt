@@ -40,7 +40,7 @@ THE COMPILE — the pass condition is silence
   exit    : 0
   bytes   : 0          <-- norm 10: exit 0 AND zero bytes, both measured
                            (stdout 0, stderr 0, measured separately)
-  time    : 8.7s real  (the whole file, every section, on this container;
+  time    : 10.4s real (the whole file, every section, on this container;
                         the builder measured 29.8s for S1 alone on its
                         own — wall-times are recorded and never
                         load-bearing, and this one is not comparable to
@@ -65,12 +65,12 @@ THE COMPILE — the pass condition is silence
 
 THE ARTIFACT
   sha256  lean/Zi.lean
-          ba23f2d739249d00bb507c6f62a4292520dcec889ec208fde1af869876c2db09
+          2d6fdabdf35c387a8fa3866d0f45c791e916dade9f83c19143cc104b78fdc06a
   sha256  lean/lean-toolchain
           2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
   .olean, produced by `lean -o Zi.olean lean/Zi.lean`:
-  sha256  b0a2ca6b0d48c76d34e79aa3203dc06e9432323b1b268446ef00203e85d1e6a7
+  sha256  865c0e62bdfe36ba707e412c9792862d11af44ead5e81b76b982fc39393aa96f
 
   REPRODUCIBILITY, measured twice, in both directions:
     SAME machine, two builds from the same source -> BYTE-IDENTICAL.
@@ -171,8 +171,14 @@ EVERY PLANT FIRED THIS SESSION — norm 16
     birth for the instrument that exists because four hand-typed counts
     went stale.
 
+  THE MIRROR'S CONTROLS, this crate: control_mirror_fixes_a_non_unit
+    evaluates a non-unit the mirror FIXES and which is not self-inverse,
+    so the unit hypothesis in the Galois reading cannot be dropped; and
+    control_semion_fails_the_filter exhibits a catalog member the filter
+    removes. Both by kernel evaluation.
+
   The artifact-prose census guard (audit/c2_views.sh censusguard), new
-    this crate and bitten before it was trusted:
+    the previous crate and bitten before it was trusted:
       "115 theorems depend on propext and nothing else" planted in
       lean/Zi.lean's header -> named the paragraph, exit 1.
       Removed -> PASS, exit 0.

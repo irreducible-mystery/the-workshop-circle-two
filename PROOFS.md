@@ -12,12 +12,12 @@ so. Opened at round 2 with S1.*
 
 ```
 source     lean/Zi.lean
-           ba23f2d739249d00bb507c6f62a4292520dcec889ec208fde1af869876c2db09
+           2d6fdabdf35c387a8fa3866d0f45c791e916dade9f83c19143cc104b78fdc06a
 toolchain  lean/lean-toolchain  -> leanprover/lean4:v4.32.0
            2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 measured   Lean (version 4.32.0, x86_64-unknown-linux-gnu,
            commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
-olean      b0a2ca6b0d48c76d34e79aa3203dc06e9432323b1b268446ef00203e85d1e6a7
+olean      865c0e62bdfe36ba707e412c9792862d11af44ead5e81b76b982fc39393aa96f
            (not committed — a build artifact; audit/c2_tree.sh exits 1 on
             a tracked .olean. Byte-reproducible across builds on this
             machine. Cross-machine reproducibility is now measured FALSE —
@@ -1173,6 +1173,15 @@ names the gauged symbol, carried across by a new lemma
 whose entries are mod-2 sums of labels, so agreement on the labels is all
 it can see. The step the builder measured as "not taken in the file" is
 taken.
+
+*One cost of #6, recorded because the gate charged it immediately: renaming
+a theorem kills every pointer to it in the couriered letters, which are
+primary sources and are never edited. The pointer gate went red on the
+builder's own verification letter the moment it entered the tree, and the
+old name now carries a labeled exemption saying so. A rename is not free
+here; it is paid for in the exemption ledger, once per frozen letter. I
+still took it, because a name that is false off its scope is worse than a
+dead pointer that is labeled.*
 
 **#7 — the S3 entry's dangling licence.** Confirmed: "nothing may upgrade
 the headline until the lemma exists", with no pointer to the entry where
