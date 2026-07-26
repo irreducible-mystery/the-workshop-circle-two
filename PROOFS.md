@@ -33,18 +33,15 @@ laws in the hand-rolled zero-import style, `conj` as a ring hom fixing the
 first coordinate, `z · conj(z) = (N(z), 0)`, and N multiplicative by
 Brahmagupta–Fibonacci as a ring identity. All delivered.
 
-```
-compile   lean lean/Zi.lean   exit 0, 0 bytes, 1.6s   (the pass condition)
-census    115 theorems = 34 axiom-free + 81 rest
-          of the 81:  64 propext alone,  17 propext + Quot.sound
-          sorryAx 0,  Classical.choice 0
-          the 17 Quot.sound carriers are now NAMED by the census itself
-          (the builder's crop #6: counting without naming makes the
-          reader take the count on faith)
-size      929 lines, 15 definitions, zero imports, no sorry of either kind
-shape     17 live instances, 16 control theorems, 28 decide-settled proofs
-          S1 contributes 54 theorems; S2 adds 22; S3 adds 39
-```
+**The figures are a VIEW, not a sentence.** They live in `VIEWS.md`,
+rendered from the artifacts by `audit/c2_views.sh`, and `check` fails if
+they drift. This paragraph deliberately states no count: four hand-typed
+counts went stale in one round — 593/594, 929/930, "twelve live instances"
+when there were seventeen, and a boundary bullet that denied a section the
+same file had delivered, twice, the second time inside the commit that
+repaired the first. Circle One's law for that species is that a count is a
+view. See `VIEWS.md` for theorems, definitions, lines, live instances,
+controls, the section inventory, and the census.
 
 The three census parts sum to the whole. A census whose parts do not sum
 to its total is not a census, so the sum is stated rather than left to the
@@ -194,6 +191,35 @@ Z[i] classified as `{±1, ±i}`, and the order-free half of that (ruling out
 a unit coordinate) wants either `Int`'s order or a second descent, and I
 would rather ask than smuggle an order into a circle that just spent a
 section avoiding one. That question is Q8.
+
+## The units of Z[i] — Q8, route (b): DELIVERED
+
+The builder ruled route (b) — order-free, bridging to `Nat` — and supplied
+the route. Fifteen theorems: the `Nat` core (`succ_sq_expand`,
+`nat_sq_eq_one`, `nat_sq_sum_one`), the bridge (`natAbs_eq_one_iff`,
+`norm_as_natAbs`, `int_eq_one_or_neg_one_of_mul_one`), the classification
+(`norm_one_classification`, `norm_ne_neg_one`, `norm_one_of_unit`,
+`units_are_four`), three live instances and two controls.
+
+**The units of Z[i] are exactly `{1, −1, i, −i}`**, proved both directions:
+forward by the norm, backward by exhibiting each partner. No box, no bound,
+no second modulus — `x² + y² = 1` in `Nat` is settled by casing on zero or
+successor, and the successor case dies because a sum of naturals is zero
+only if each part is.
+
+**The abstention, restated exactly** (the builder's honesty clause, adopted
+in substance and written into the file): `omega` on `Nat` reasons with order
+internally, and `Nat`'s induction is inseparable from its ordering. What
+this circle bought in S2 and keeps here is narrower and precise — *the
+argument's mathematical engine invokes no order lemmas on `Int`, and the
+proof survives transport to settings where the ring carries no order*. Said
+once, in the section header, so route (a) stops being a temptation: the
+distinction is not "no order anywhere", it is "no order on the ring".
+
+**What this unblocks.** The slice mini-section stands on the unit
+classification, and with it the machine-visible scope can graduate from
+"definitional restriction" to a proved lemma. That is the next crate, with
+S4.
 
 ## Corrections — loudest first
 
@@ -431,36 +457,77 @@ repairing: `lean/Zi.lean`'s simp-set comment also said "nine more",
 carrying the same forgotten `Int.neg_zero`. Enumerated per norm 13 and
 fixed in both places.
 
+## Corrections — the builder's S3 pass, four and a split ruling
+
+*All four reproduced here before repair.*
+
+**D#1 — the stale-label repair recreated the stale label, one section
+forward, in the crate that shipped the repair.** The repaired bullet read
+"nothing here proves **S3**. No theorem in this file states that the
+pentagon forces f² = 1" — while `pentagon_forces_sq` stood in the same
+file. Three neighbours staled with it. **Repaired structurally rather than
+by hand**, on the builder's charter: counts and scope claims are now a
+VIEW. `audit/c2_views.sh` renders `VIEWS.md` from the artifacts and its
+`check` fails on drift; the ledger points at it and states no count of its
+own. REGISTER row 11 names the class. Four stale counts in one round bought
+this instrument, and one of the four was created by the commit repairing
+another — which is the argument for rendering rather than watching.
+
+**D#2 — the scope prose overclaimed, and the correction splits.** "That
+restriction is a hypothesis of the mathematics" — false:
+`exactly_two_in_the_slice` takes `(f : GZ)` and no hypothesis at all. But
+the builder's own half is the more useful one: the restriction is
+**definitional**, not hypothetical — `pentagonHolds` is a statement about
+the family `Fs f` by construction, and `Fs_normalized_off_111` proves that
+family lies in the slice. A reader who unfolds the definition finds the
+restriction enforced rather than advertised, which is a *stronger*
+machine-visibility than a named hypothesis, not a weaker one. The builder
+corrected its own Q7 ruling to match, since that ruling prescribed a route
+this construction does not take. The prose now claims what is true, and
+says which half of it was wrong.
+
+**D#3 — the slice comment dropped its own qualifier** ("every F-symbol it
+produces is `one` unless all three of `a,b,c` are `1`" — off the admissible
+locus it produces `zero`), while the doc comment ten lines down kept it and
+`live_16` in the same file refutes it. Repaired.
+
+**D#4 — the off-by-one came back in the crate that repaired it.** "929
+lines"; measured 930, born stale exactly like 593/594. Same species, same
+slot, consecutive crates — and the strongest single argument for D#1's
+view mechanism, since the hand keeps missing by one because it types the
+number after the file moves.
+
 ## Honest labels — the boundaries of this delivery
 
 - **What the kernel checked is what the file says, not what the charge
   meant.** Every theorem here is a statement about `Zi.GZ`, `Zi.mul`,
   `Zi.conj` and `Zi.norm` as this file defines them. That the definitions
   are the *right* ones is licensed by the certificate's symbolic checks and
-  by the twelve live instances, not by the kernel.
+  by the live instances (`VIEWS.md` counts them), not by the kernel.
 - **`omega` is the file's workhorse, and its price is visible.** In S1 it
-  appears twice (`brahmagupta_fibonacci`, `norm_mul`); in S2's descent it
-  does most of the linear work. Twelve theorems carry `Quot.sound` as a
-  result, and the census names every one. It is never aimed at a
-  conjunctive goal — every conjunction is split first, which is why
-  `Classical.choice` is zero across seventy-six theorems. The discipline that matters held —
+  appears twice (`brahmagupta_fibonacci`, `norm_mul`); in S2's descent and
+  in the units section it does most of the linear work. The theorems that
+  carry `Quot.sound` as a result are **named individually by the census**,
+  and counted in `VIEWS.md` — an earlier version of this bullet typed the
+  count here and it went stale within one crate. `omega` is never aimed at
+  a conjunctive goal — every conjunction is split first, which is why
+  `Classical.choice` is zero across the whole file. The discipline that matters held —
   `Classical.choice` is zero — and the transcript's Plant B shows the same
   toolchain producing `Classical.choice` the moment an `omega` is aimed at
   a conjunctive goal.
 - **The `.olean` hash is same-machine reproducible**, measured; nothing
   stronger is claimed.
-- **S2 is proved, and this line used to deny it.** Until the S2 delivery
-  this bullet read "Nothing here proves S2. No theorem in this file states
-  that Z[i] has no zero divisors. That is next round's charge." It was true
-  when written and nobody re-read it: `no_zero_divisors` now stands in the
-  same file, and the S2 section two hundred lines above says DELIVERED. A
-  stale label — norm 6's oldest species — inside the section named "Honest
-  labels", contradicting its own document at a distance. The builder's pass
-  caught it; it is the sharpest specimen this circle has produced, and it
-  cost nothing but a re-read that never happened. What the boundary is
-  *now*: nothing here proves **S3**. No theorem in this file states that
-  the pentagon forces `f² = 1`, and `mul_eq_zero_iff` is the only forward
-  reference — stated in the shape S3 consumes.
+- **The boundary is a VIEW now, and this bullet is the record of why.**
+  It used to be a hand-typed sentence, and it went stale twice. First it
+  said "Nothing here proves S2" after S2 shipped. Then its own repair said
+  "nothing here proves **S3**. No theorem in this file states that the
+  pentagon forces f² = 1" — while `pentagon_forces_sq` stood in the same
+  file, in the same crate that shipped the repair. **The repair recreated
+  the defect one section forward.** Three neighbours staled with it. What
+  replaced them: `VIEWS.md` renders the section inventory from the file, so
+  "what is proved is exactly the sections listed" stays true without being
+  re-typed. The species is not being watched for any more; it is being
+  rendered out of existence.
 - **The audit that produced the corrections above is itself a new
   instrument**, and its first outputs were treated accordingly: every
   finding had to be reproduced by an independent seat, and I re-measured

@@ -881,8 +881,12 @@ theorem live_17 : Fs one 0 1 1 0 1 0 = one := by decide
     in the kernel instead of in a comment, and the headline below carries
     it in its name.
 
-    What IS proved: `Fs f` is normalized — every F-symbol it produces is
-    `one` unless all three of `a, b, c` are `1`. That is precisely the
+    What IS proved: `Fs f` is normalized — ON THE ADMISSIBLE LOCUS every
+    F-symbol it produces is `one` unless all three of `a, b, c` are `1`;
+    off that locus it produces `zero`, which is what `live_16` evaluates
+    and what the theorem below states as a disjunction. An earlier version
+    of this sentence dropped the qualifier while the doc comment ten lines
+    down kept it, and the same file refuted it. That is precisely the
     statement "this family lies in the normalized slice", and it is a
     theorem rather than a convention.
 
@@ -920,11 +924,156 @@ theorem Fs_one_of_zero_label (f : GZ) (a b c d x y : Int)
     EXACTLY TWO, in the slice.
 
     The name says "in the slice" because the every-class-meets-the-slice
-    lemma is not proved in this file. That restriction is a hypothesis of
-    the mathematics, not a caveat of the prose. -/
+    lemma is not proved in this file.
+
+    HOW THE RESTRICTION IS CARRIED, stated exactly, because an earlier
+    version of this sentence got it wrong in the generous direction. It
+    said the restriction was "a hypothesis of the mathematics". It is not:
+    the theorem below takes `(f : GZ)` and no hypothesis at all. The
+    restriction is **definitional**. `pentagonHolds` is a statement about
+    the family `Fs f` by construction — there is no F-symbol in scope that
+    is not one of these — and `Fs_normalized_off_111` proves that family
+    lies in the normalized slice. A reader who unfolds the definition finds
+    the restriction enforced; the name advertises it; neither is a
+    hypothesis, and calling it one overclaimed a machine-visibility the
+    statement did not have. The builder caught it, and corrected its own
+    Q7 ruling in the same stroke: that ruling prescribed "a named
+    hypothesis", which fits a route this construction does not take. -/
 theorem exactly_two_in_the_slice (f : GZ) :
     pentagonHolds f ↔ (f = one ∨ f = neg one) := by
   rw [pentagon_iff_sq]
   exact exactly_two_roots f
+
+/-! ## 11. THE UNITS OF Z[i] — Q8, route (b): order-free, through `Nat`
+
+    The builder ruled route (b) and supplied the route: bridge `a·a` to
+    `(a.natAbs)²` with `Int.natAbs_mul_self`, so `a² + b² = 1` becomes a
+    `Nat` statement, and there the argument is structural — case on zero or
+    successor, and a sum of naturals is zero only if each part is.
+
+    THE ABSTENTION, stated exactly, so the S2 fork's justification never
+    becomes theatre (the builder's honesty clause, adopted verbatim in
+    substance): `omega` on `Nat` reasons with order internally, and `Nat`'s
+    own induction is inseparable from its ordering. What this circle bought
+    in S2 and keeps here is narrower and precise — **the argument's
+    mathematical engine invokes no order lemmas on `Int`, and the proof
+    survives transport to settings where the ring carries no order.** Said
+    once, here, so route (a) stops being a temptation: the distinction is
+    not "no order anywhere", it is "no order on the ring". -/
+
+theorem succ_sq_expand (k : Nat) : (k + 1) * (k + 1) = k * k + 2 * k + 1 := by
+  simp [Nat.mul_add, Nat.add_mul]; omega
+
+theorem nat_sq_eq_one (x : Nat) (h : x * x = 1) : x = 1 := by
+  cases x with
+  | zero => simp at h
+  | succ k => rw [succ_sq_expand] at h; omega
+
+/-- The `Nat` core: a sum of two squares is `1` only the two obvious ways.
+    No box, no bound, no second modulus — structure alone. -/
+theorem nat_sq_sum_one (x y : Nat) (h : x * x + y * y = 1) :
+    (x = 1 ∧ y = 0) ∨ (x = 0 ∧ y = 1) := by
+  cases x with
+  | zero =>
+    right
+    refine ⟨rfl, ?_⟩
+    simp at h
+    exact nat_sq_eq_one y h
+  | succ k =>
+    left
+    rw [succ_sq_expand] at h
+    have hy : y * y = 0 := by omega
+    refine ⟨by omega, ?_⟩
+    rcases Nat.mul_eq_zero.mp hy with h1 | h1
+    · exact h1
+    · exact h1
+
+theorem natAbs_eq_one_iff (a : Int) : a.natAbs = 1 ↔ (a = 1 ∨ a = -1) := by
+  constructor
+  · intro h
+    rcases Int.natAbs_eq_iff.mp h with h1 | h1 <;> simp at h1 <;> omega
+  · intro h
+    rcases h with h | h <;> subst h <;> rfl
+
+/-- The norm bridges to `Nat` without ever mentioning `Int`'s order. -/
+theorem norm_as_natAbs (z : GZ) :
+    norm z = ((z.re.natAbs * z.re.natAbs + z.im.natAbs * z.im.natAbs : Nat) : Int) := by
+  simp only [norm]
+  rw [Int.natCast_add, Int.natAbs_mul_self, Int.natAbs_mul_self]
+
+/-- **A norm of `1` classifies the element.** Exactly four Gaussian
+    integers have norm one: `1`, `−1`, `i`, `−i`. -/
+theorem norm_one_classification (u : GZ) (h : norm u = 1) :
+    u = one ∨ u = neg one ∨ u = I ∨ u = neg I := by
+  rw [norm_as_natAbs] at h
+  have hn : u.re.natAbs * u.re.natAbs + u.im.natAbs * u.im.natAbs = 1 := by omega
+  rcases nat_sq_sum_one _ _ hn with ⟨hx, hy⟩ | ⟨hx, hy⟩
+  · have hre := (natAbs_eq_one_iff u.re).mp hx
+    have him : u.im = 0 := Int.natAbs_eq_zero.mp hy
+    rcases hre with hre | hre
+    · left; cases u; simp only [one, GZ.mk.injEq]; exact ⟨hre, him⟩
+    · right; left; cases u; simp only [neg, one, GZ.mk.injEq]; exact ⟨hre, him⟩
+  · have hre : u.re = 0 := Int.natAbs_eq_zero.mp hx
+    have him := (natAbs_eq_one_iff u.im).mp hy
+    rcases him with him | him
+    · right; right; left; cases u; simp only [I, GZ.mk.injEq]; exact ⟨hre, him⟩
+    · right; right; right; cases u; simp only [neg, I, GZ.mk.injEq]; exact ⟨hre, him⟩
+
+/-- The norm is never `−1`: `−1 ≡ 3 (mod 4)`, and S2 already proved a sum of
+    two squares is `0`, `1` or `2` there. This is the order-free half, and
+    it is what rules out the spurious branch when a product of norms is one. -/
+theorem norm_ne_neg_one (z : GZ) : norm z ≠ -1 := by
+  intro h
+  simp only [norm] at h
+  rcases sq_mod_four z.re with hr | hr <;> rcases sq_mod_four z.im with hi | hi <;> omega
+
+/-- A unit is an element with a multiplicative partner. -/
+def IsUnit (u : GZ) : Prop := ∃ v, mul u v = one
+
+theorem int_eq_one_or_neg_one_of_mul_one (a b : Int) (h : a * b = 1) :
+    a = 1 ∨ a = -1 := by
+  have h1 : (a * b).natAbs = 1 := by rw [h]; rfl
+  rw [Int.natAbs_mul] at h1
+  have h2 : a.natAbs = 1 := Nat.eq_one_of_mul_eq_one_right h1
+  exact (natAbs_eq_one_iff a).mp h2
+
+theorem norm_one_of_unit (u : GZ) (h : IsUnit u) : norm u = 1 := by
+  obtain ⟨v, hv⟩ := h
+  have hn : norm u * norm v = 1 := by rw [← norm_mul, hv, norm_one]
+  rcases int_eq_one_or_neg_one_of_mul_one _ _ hn with ha | ha
+  · exact ha
+  · exact absurd ha (norm_ne_neg_one u)
+
+/-- **THE UNITS OF Z[i] ARE EXACTLY `{1, −1, i, −i}`.** Forward by the
+    norm; backward by exhibiting each partner. -/
+theorem units_are_four (u : GZ) :
+    IsUnit u ↔ (u = one ∨ u = neg one ∨ u = I ∨ u = neg I) := by
+  constructor
+  · intro h; exact norm_one_classification u (norm_one_of_unit u h)
+  · intro h
+    rcases h with h | h | h | h <;> subst h
+    · exact ⟨one, by decide⟩
+    · exact ⟨neg one, by decide⟩
+    · exact ⟨neg I, by decide⟩
+    · exact ⟨I, by decide⟩
+
+/-! ### Live instances and controls for the units -/
+
+theorem live_18 : norm ⟨1, 0⟩ = 1 := by decide
+theorem live_19 : norm ⟨0, -1⟩ = 1 := by decide
+theorem live_20 : norm ⟨1, 1⟩ = 2 := by decide
+
+/-- Negative control: `1 + i` has norm two, so it is NOT a unit — the
+    classification excludes something, which is what makes it content. -/
+theorem control_one_plus_i_is_not_a_unit : ¬ IsUnit ⟨1, 1⟩ := by
+  intro h
+  have := norm_one_of_unit _ h
+  revert this
+  decide
+
+/-- Negative control for the `Nat` core: `x² + y² = 2` has a solution with
+    NEITHER coordinate zero, so `nat_sq_sum_one`'s conclusion really does
+    depend on the right-hand side being one. -/
+theorem control_nat_sq_sum_two_differs : 1 * 1 + 1 * 1 = 2 := by decide
 
 end Zi

@@ -111,3 +111,7 @@ Int.mul_eq_zero	Lean 4 core lemma (a*b = 0 iff a = 0 or b = 0), the last step of
 e8f504474d8f3d60c148a8d90e5f54fd12c0bd10c05c5e9fd2f83fd23bef6b71	SHA-256 pin: letters/ROUND2-S2-DELIVERY.md as couriered
 ff18a72bddde1466b20dcece1c4872a2919514fb629668db2ff671123b7a014f	SHA-256 pin: PROOFS.md as couriered with the S2 delivery
 511fb865056c308f4f4ea7bec643b4e117539d41ab766c6e05a37ff9ae9145ca	SHA-256 pin: letters/ROUND2-S2-VERIFICATION.md — pinned HERE BY MEASUREMENT, because no pin rode in the courier's message on this leg; recorded so the next leg can compare
+528930e6085c91bdf4d2810c05a3ab3e5f09f58dafa2d5929eadd96bed8aa412	SHA-256 pin: circletwo-s3.zip, the S3 delivery crate at head 09f6fd7; verified exact on the builder's side
+cd85d5cbe22932760d00de3a442011d09440c4efe637296c51e8cdfb07197862	SHA-256 pin: letters/ROUND2-S3-DELIVERY.md as couriered
+f2f5b4687d048e20629c6671d8dff7dfaaa9266f30db7a5909e20b9d19000cf6	SHA-256 pin: PROOFS.md as couriered with the S3 delivery
+45c4760b1f671fa78ac6772bbe2fd74424bdb056b9dea0ae6ccf8b26fdb024ef	SHA-256 pin: letters/ROUND2-S3-VERIFICATION.md — pinned HERE BY MEASUREMENT; no pin rode in the courier's message on this leg either, the second consecutive leg it has been missing

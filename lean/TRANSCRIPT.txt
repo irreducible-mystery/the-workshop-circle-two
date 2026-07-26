@@ -1,4 +1,4 @@
-CIRCLE TWO — S1 + S2 + S3 COMPILE TRANSCRIPT
+CIRCLE TWO — COMPILE TRANSCRIPT (S1, S2, S3, and the units)
 ==================================================================
 Everything below was produced by an instrument on this machine this
 session. Wall-times are recorded and never load-bearing.
@@ -78,6 +78,12 @@ THE ARTIFACT
   audit/c2_tree.sh exits 1 on a tracked .olean. Its hash rides here
   instead, which is the whole point of shipping hashes rather than blobs.
 
+NOTE ON FIGURES. Counts that used to be typed here now live in VIEWS.md,
+rendered by audit/c2_views.sh and gated by its `check`. Four hand-typed
+counts went stale in one round; the census block below is kept because it
+is the census's own output, but the authoritative current figures are the
+rendered ones.
+
 THE CENSUS — audit/c2_axioms.sh, this tree, this toolchain
   file                   theorems   axiom-free       rest
   Zi                          115           34         81
@@ -153,6 +159,11 @@ EVERY PLANT FIRED THIS SESSION — norm 16
     re-fired, exit 1 each, PASS on the clean tree between them. An
     instrument that changes gets re-bitten; norm 16 has no grandfather
     clause.
+
+  The view gate (audit/c2_views.sh): one rendered number edited by hand ->
+    `check` printed the drift and exited 1; restored -> PASS. Norm 16 at
+    birth for the instrument that exists because four hand-typed counts
+    went stale.
 
   Plant B is worth one line of record: it confirms on THIS toolchain that
   an `omega` aimed at a conjunctive goal pulls Classical.choice — the trap
