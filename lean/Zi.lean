@@ -951,15 +951,26 @@ theorem exactly_two_in_the_slice (f : GZ) :
     `Nat` statement, and there the argument is structural — case on zero or
     successor, and a sum of naturals is zero only if each part is.
 
-    THE ABSTENTION, stated exactly, so the S2 fork's justification never
-    becomes theatre (the builder's honesty clause, adopted verbatim in
-    substance): `omega` on `Nat` reasons with order internally, and `Nat`'s
-    own induction is inseparable from its ordering. What this circle bought
-    in S2 and keeps here is narrower and precise — **the argument's
-    mathematical engine invokes no order lemmas on `Int`, and the proof
-    survives transport to settings where the ring carries no order.** Said
-    once, here, so route (a) stops being a temptation: the distinction is
-    not "no order anywhere", it is "no order on the ring". -/
+    THE ABSTENTION, stated on ONE standard, because the previous version
+    used two and the builder's own audit convicted the sentence it had
+    written. That version conceded that tactic-internal order reasoning
+    counts — for `Nat` — while exempting it for `Int`, and the file's
+    `omega` calls sit overwhelmingly on `Int`-typed goals (the residue
+    splits, the descent, `norm_ne_neg_one`), where `omega` reasons with
+    order on `Int` exactly as it does on `Nat`. Under the concession's own
+    standard the `Int` clause was false; under the named-lemma standard the
+    `Nat` concession was misdirection. One standard, stated once:
+
+      **No order lemma on any type is cited by name anywhere in this file.
+      `omega`'s internal order reasoning is licensed wherever `omega` is
+      licensed, on `Int` and `Nat` alike. What transports to an unordered
+      ring is the argument's STRUCTURE — the residues, the descent, the
+      norm — not the tactic scripts that discharge its linear steps.**
+
+    That is measured, not asserted: zero `Int` order lemmas and zero `Nat`
+    order lemmas appear by name in any proof body here. It is also weaker
+    than the sentence it replaces, and honestly so — the earlier one
+    claimed an asymmetry the file does not have. -/
 
 theorem succ_sq_expand (k : Nat) : (k + 1) * (k + 1) = k * k + 2 * k + 1 := by
   simp [Nat.mul_add, Nat.add_mul]; omega
@@ -1071,9 +1082,21 @@ theorem control_one_plus_i_is_not_a_unit : ¬ IsUnit ⟨1, 1⟩ := by
   revert this
   decide
 
-/-- Negative control for the `Nat` core: `x² + y² = 2` has a solution with
-    NEITHER coordinate zero, so `nat_sq_sum_one`'s conclusion really does
-    depend on the right-hand side being one. -/
-theorem control_nat_sq_sum_two_differs : 1 * 1 + 1 * 1 = 2 := by decide
+/-- Negative control for the `Nat` core, and it has to RULE SOMETHING OUT
+    to deserve the name. The pair `(1,1)` satisfies the equation at two and
+    fits NEITHER disjunct of `nat_sq_sum_one`'s conclusion — so that
+    theorem's conclusion genuinely depends on the right-hand side being
+    one, and cannot be widened to two.
+
+    An earlier version of this control stated only `1·1 + 1·1 = 2`: a
+    positive identity that cannot fail, which is norm 7's exact species
+    ("a check that cannot fail is not a check") sitting under a docstring
+    claiming it was a control. The builder's audit caught it. The
+    conjunction below is split before each `decide`, per house discipline. -/
+theorem control_nat_sq_sum_two_escapes_the_conclusion :
+    (1 * 1 + 1 * 1 = 2) ∧ ¬ ((1 = 1 ∧ 1 = 0) ∨ (1 = 0 ∧ 1 = 1)) := by
+  constructor
+  · decide
+  · decide
 
 end Zi

@@ -497,6 +497,61 @@ slot, consecutive crates — and the strongest single argument for D#1's
 view mechanism, since the hand keeps missing by one because it types the
 number after the file moves.
 
+## Corrections — the builder's units pass, four, and the loudest is the builder's
+
+*All four reproduced here before repair.*
+
+**E#1 — the abstention sentence was defective at birth, and the builder
+wrote it.** I adopted it verbatim, which is how the conviction reaches this
+ledger. The sentence conceded that tactic-internal order reasoning counts —
+for `Nat` — while exempting it for `Int`, and this file's `omega` calls sit
+overwhelmingly on `Int`-typed goals, where `omega` reasons with order on
+`Int` exactly as it does on `Nat`. Measured here: **zero order lemmas of
+either type are cited by name in any proof body.** So under the concession's
+own standard the `Int` clause was false; under the named-lemma standard the
+`Nat` concession was misdirection. Repaired with one standard, stated once
+in the section header: no order lemma on any type is cited by name;
+`omega`'s internal order reasoning is licensed wherever `omega` is; what
+transports to an unordered ring is the argument's **structure**, not the
+tactic scripts. The replacement is weaker than what it replaces, and
+honestly so — the old sentence claimed an asymmetry the file does not have.
+
+**E#2 — one control was decoration.** `control_nat_sq_sum_two_differs`
+stated `1·1 + 1·1 = 2`: a positive identity that cannot fail, norm 7's exact
+species, under a docstring claiming it showed the `Nat` core's conclusion
+depends on its right-hand side. Replaced by a control that rules something
+out — the pair `(1,1)` satisfies the equation at two **and fits neither
+disjunct** of `nat_sq_sum_one`'s conclusion, so that conclusion cannot be
+widened to two. The rendered control count now counts a theorem that checks
+something.
+
+**E#3 — the boundary sentence claimed to be rendered and was template
+prose.** Only the inventory was read off the artifact; the sentence itself
+was a fixed `echo` in the renderer, and my delivery letter called it
+"rendered". Repaired by derivation: the section count and the last section's
+name are now interpolated, so the words change when the artifact changes,
+and the renderer's own boundary caveat is carried into the view instead of
+living only in the script.
+
+**E#4 — a characterization drift in my units letter**, recorded here per
+norm 13; the letter stays as couriered. The builder wrote that definitional
+scope is "machine-visible *in a way a name is not*". My letter upgraded that
+to "a **stronger** machine-visibility **than a named hypothesis**" and
+placed the ranking under the builder's endorsement. The builder never ranked
+it, and is right not to: a named hypothesis sits in the statement's type,
+visible without unfolding anything. The file's own docstring kept the
+correct neutrality; the letter overshot. Sites: the letter's D#2, this
+entry.
+
+**And the mechanism the builder chartered for my gate-red commit.**
+`audit/c2_gates.sh` chains every instrument into one exit code, and
+`.githooks/pre-commit` runs it, so a red gate blocks the commit instead of
+advising it. Bitten twice at birth: the runner exits 1 on a planted red
+gate, and **the hook refused an actual commit** — I planted a drift, ran
+`git commit`, and HEAD did not move. REGISTER row 12 names the class; row
+5's boundary now records the honest gap, that a hook lives in the working
+copy and not in the commit.
+
 ## Honest labels — the boundaries of this delivery
 
 - **What the kernel checked is what the file says, not what the charge

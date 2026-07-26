@@ -1,0 +1,13 @@
+#!/bin/sh
+# Circle Two pre-commit hook — chartered in the units verification.
+#
+# Turns "the gate was consulted and not obeyed" (9a28f25) into "the commit
+# cannot proceed". Install once, per clone:
+#     git config core.hooksPath .githooks
+#
+# The Lean-dependent gates need a binary. Export LEAN in your environment, or
+# set it for git:
+#     git config hooks.leanbin /abs/path/to/lean
+LEANBIN=$(git config --get hooks.leanbin 2>/dev/null)
+[ -n "$LEANBIN" ] && export LEAN="$LEANBIN"
+exec sh audit/c2_gates.sh

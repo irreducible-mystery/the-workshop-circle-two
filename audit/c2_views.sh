@@ -114,10 +114,23 @@ render_to () {
       ' "$SRC"
       echo '```'
       echo
-      echo "**The boundary, read off the inventory above rather than asserted:**"
-      echo "what this file proves is exactly the sections listed. Anything not"
-      echo "listed is not proved here — that sentence stays true without being"
-      echo "re-typed, which is why it replaced four hand-maintained ones."
+      # The boundary sentence is DERIVED rather than templated: the section
+      # count and the last section name are interpolated, so the words change
+      # when the artifact changes. An earlier version echoed a fixed sentence
+      # and the delivery letter still called it rendered. Template prose living
+      # in a rendered file is not a rendered claim; the builder audit caught the
+      # self-description, and this is the repair.
+      nsec=$(grep -c "^/-! ## " "$SRC")
+      lastsec=$(grep "^/-! ## " "$SRC" | tail -1 | sed -e "s|^/-! ## ||" -e "s|[[:space:]]*-/[[:space:]]*$||")
+      printf "**The boundary, derived from the inventory above:** this file proves\n"
+      printf "the %s sections listed and nothing else. The last of them is\n" "$nsec"
+      printf "\"%s\".\n" "$lastsec"
+      printf "Anything absent from that list is not proved here.\n"
+      echo
+      printf "What the derivation can and cannot do, carried in from the\n"
+      printf "renderer own boundary note: it knows a section EXISTS and how many\n"
+      printf "theorems it holds. It cannot know a section HEADING is honest. It\n"
+      printf "kills staleness, not error.\n"
       echo
       echo "## The census"
       echo

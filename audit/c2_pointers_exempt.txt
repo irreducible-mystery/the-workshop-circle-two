@@ -116,3 +116,10 @@ cd85d5cbe22932760d00de3a442011d09440c4efe637296c51e8cdfb07197862	SHA-256 pin: le
 f2f5b4687d048e20629c6671d8dff7dfaaa9266f30db7a5909e20b9d19000cf6	SHA-256 pin: PROOFS.md as couriered with the S3 delivery
 45c4760b1f671fa78ac6772bbe2fd74424bdb056b9dea0ae6ccf8b26fdb024ef	SHA-256 pin: letters/ROUND2-S3-VERIFICATION.md — pinned HERE BY MEASUREMENT; no pin rode in the courier's message on this leg either, the second consecutive leg it has been missing
 Int.natAbs_mul_self	Lean 4 core lemma (the cast identity bridging a*a to (a.natAbs)^2), the hinge of Q8's order-free route; resolves in the toolchain, not this tree
+8a3b1608833be5b7abf580e69f6aedd42b8e6f2e1e42d6ad6fbfdc6490e6870b	SHA-256 pin: circletwo-units.zip, the units crate at head 500c4fb; verified exact on the builder's side
+d72565f78829b94386b5407b27f058f95870ed8f1ef5e3d7b7dd9a2891ba0792	SHA-256 pin: letters/ROUND2-UNITS-DELIVERY.md as couriered
+162e85d820a56f01fa33b3ae6326703ef421be1b358d433e50fba05604536562	SHA-256 pin: VIEWS.md as couriered with the units delivery
+97bf3d340f1e2b2f5e75296ae15c439fe40637a33c5ab486849ef532ea9502ac	SHA-256 pin: lean/Zi.lean as couriered with the units delivery
+2bfe7bcebd2cb238decacb0a1a33658fc38e3fd124cb2be028ad6dcabdaac66a	SHA-256 pin: letters/ROUND2-UNITS-VERIFICATION.md — pinned HERE BY MEASUREMENT, the third consecutive leg with no pin in the courier's message
+control_nat_sq_sum_two_differs	SUPERSEDED theorem name, quoted in PROOFS.md correction E#2 and the builder's units verification as the decoration it convicted; replaced by control_nat_sq_sum_two_escapes_the_conclusion, which rules something out — it resolves in history, not in the live tree
+echo	POSIX shell builtin, named in PROOFS.md correction E#3 (the boundary sentence was a fixed `echo` in the renderer before it was derived); toolchain vocabulary, not a repo pointer (cf. cd, sha256sum)
