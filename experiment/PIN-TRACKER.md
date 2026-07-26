@@ -35,7 +35,7 @@ reported loudest-first. One claim-to-verify for them: letter says
 | `convergence/mech/their_census_on_their_s2.txt` | their FIXED census, cold-start, on their crate: PASS | `e59bea53d1e8` |
 | `convergence/mech/their_censusfix_on_mine.txt` | their fixed census on my file: PASS (byte-identical to S1 verdict) | `f94cdc2710e7` |
 
-commit: (this ship)
+commit: `84500db`
 
 ## Convergence S1 — cross-lineage comparison
 
