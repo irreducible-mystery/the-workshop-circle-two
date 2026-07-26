@@ -384,6 +384,73 @@ nothing here computes `H³(Z₂, ·)` or any named cohomology group; the two
 theorems do not add up to that without the identification the missing
 proof would supply.
 
+## The mirror — the Galois filter, and the catalog closes at two: DELIVERED
+
+The charter's charge, quoted rather than paraphrased: *"The flatland
+filter is a Galois statement: on units, u⁻¹ = conj(u), so the roomy edict
+R = R⁻¹ is literally conj(R) = R — and its fixed points among the four are
+exactly boson and fermion. 2 classes × 2 particles = 4, filtered to 2.
+Tie every count to its nest."*
+
+**"Literally" is discharged, not quoted.** `selfInverse_iff_mirror_fixed`
+proves that on a unit the roomy edict and the Galois condition are the
+same condition, both directions through `mul_conj_eq_one_of_unit`.
+Section 13's bridge — the one the builder refused to let me shrink the
+prose around — is now load-bearing in a **third** section.
+
+**The cut, stated twice on purpose.** `catalog_filtered_by_mirror` takes
+the hypothesis as `conj R = R`; `catalog_filtered_by_roomy_edict` takes it
+as `R = R⁻¹`. The charge says these are the same cut, so the file proves
+the same two survivors under each rather than asserting the equivalence
+and using one.
+
+**The nest, tied.** `catalog_over_f_one` and `catalog_over_f_neg_one` give
+the four as two over each pentagon class. `mirror_keeps_nothing_over_f_neg_one`
+shows the filter takes **both** from the first class and **none** from the
+second — the cut is 2 + 2 → 2 + 0, not one per class, and that asymmetry
+is the mathematics rather than an accident of bookkeeping.
+
+**The structural difference from Circle One, in the kernel.** Circle One's
+σ moved BETWEEN pentagon classes — golden and Yang–Lee are conjugates over
+different classes. Here `conj` FIXES both classes and swaps within the
+`f = −1` fibre: `mirror_fixes_the_survivors`, `mirror_swaps_the_semions`,
+and `catalog_closed_under_mirror` — the last proved through
+`catalog_of_four_both_hexagons`, so section 13 pays a second time.
+
+| theorem | what it says |
+|---|---|
+| `selfInverse_iff_mirror_fixed` | on a unit, `R = R⁻¹` **is** `conj R = R` |
+| `units_fixed_by_mirror` | the mirror fixes exactly `{1, −1}` among the four |
+| `catalog_filtered_by_mirror` | pentagon + hexagon + mirror ⟺ exactly two pairs |
+| `catalog_filtered_by_roomy_edict` | the same two, with the edict written `R = R⁻¹` |
+| `catalog_over_f_one`, `catalog_over_f_neg_one` | the four as 2 + 2 |
+| `mirror_keeps_nothing_over_f_neg_one` | the cut is 2 + 0, not 1 + 1 |
+| `catalog_closed_under_mirror` | the mirror acts on the catalog and fixes `f` |
+
+**Anti-vacuity, norm 3.** Both halves evaluated: `live_33`/`live_34` are
+survivors, `live_35`/`live_36` are the pair the mirror moves.
+
+**Negative controls, norm 5.** `control_mirror_fixes_a_non_unit`: `⟨2,0⟩`
+is fixed by the mirror and is *not* self-inverse, so the unit hypothesis
+in the Galois reading is load-bearing rather than decorative.
+`control_semion_fails_the_filter` exhibits a catalog member the filter
+removes.
+
+**THE WORD "PARTICLE" IS NOT EARNED AND IS IN NO THEOREM NAME.** What is
+proved is about PAIRS `(f, R)` of Gaussian integers. "Boson", "fermion"
+and "semion" are names the physics attaches; nothing here establishes that
+a pair is a particle, that particles exist, or that the naming is right.
+The charge's "2 classes × 2 particles = 4" is, in this file, a count of
+pairs, and the nest lemmas tie it to that. The builder's standing
+prediction for this crate was aimed at exactly this noun; the section
+header states the boundary before the prediction could land on it, which
+is the only defence the ordering rule allows.
+
+**THE BOUNDARY.** This is a statement about `Z[i]` with this file's
+F-symbol family and hexagon — not about flatland, not about the roomy
+world as such. And no theorem says `conj` generates `Gal(Q(i)/Q)`; it is
+exhibited and used, and nothing below needs more.
+
 ## Corrections — loudest first
 
 *All of the below were found by an adversarial audit of this delivery —

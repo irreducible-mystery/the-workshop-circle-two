@@ -1837,4 +1837,216 @@ theorem control_fakeCocycle_is_not_a_pentagon : ¬ genPentagonHolds fakeCocycle 
     boson's, so `sliceCore` does not quietly collapse the two. -/
 theorem control_slice_cores_differ : sliceCore one 1 1 1 ≠ sliceCore (neg one) 1 1 1 := by decide
 
+/-! ## 15. THE MIRROR — the Galois filter, and the catalog closes at two
+
+    THE CHARGE, quoted from the charter rather than paraphrased, because
+    this section's whole content is in its words: *"The flatland filter is
+    a Galois statement: on units, u⁻¹ = conj(u), so the roomy edict
+    R = R⁻¹ is literally conj(R) = R — and its fixed points among the four
+    are exactly boson and fermion. 2 classes × 2 particles = 4, filtered
+    to 2. Tie every count to its nest."*
+
+    WHAT IS PROVED, exactly:
+      (a) `selfInverse_iff_mirror_fixed` — on a UNIT, the roomy edict and
+          the Galois condition are the same condition. This is the
+          sentence the charge calls "literally", and it is literal: both
+          directions run through section 13's bridge, which is
+          load-bearing in a third section now;
+      (b) `units_fixed_by_mirror` — the mirror's fixed points among the
+          four units are exactly `{1, −1}`;
+      (c) `catalog_filtered_by_mirror` and
+          `catalog_filtered_by_roomy_edict` — the catalog of four, cut to
+          exactly two, stated once in each vocabulary because the charge
+          says they are the same cut and the file should show that rather
+          than assert it;
+      (d) the nest, tied: `catalog_over_f_one` and
+          `catalog_over_f_neg_one` give the four as 2 + 2 over the two
+          pentagon classes, and `mirror_keeps_nothing_over_f_neg_one`
+          says the filter takes BOTH from the first and NEITHER from the
+          second.
+
+    THE STRUCTURAL DIFFERENCE FROM CIRCLE ONE, which the charter asks to
+    be stated honestly rather than smoothed: Circle One's σ moved BETWEEN
+    pentagon classes — the golden braiding and Yang–Lee are Galois
+    conjugates lying over different classes. Here `conj` FIXES both
+    pentagon classes and swaps within the `f = −1` fibre.
+    `mirror_fixes_the_survivors` and `mirror_swaps_the_semions` are that
+    difference in the kernel, and `catalog_closed_under_mirror` is the
+    action itself — proved through `catalog_of_four_both_hexagons`, so
+    section 13 pays for a second time here.
+
+    WHAT IS NOT PROVED, and the first bullet is the one the builder's
+    standing prediction is aimed at:
+
+      - THE WORD "PARTICLE" IS NOT EARNED HERE AND APPEARS IN NO THEOREM.
+        What is proved is a statement about PAIRS `(f, R)` of Gaussian
+        integers satisfying the pentagon, the hexagon and the edict.
+        "Boson", "fermion" and "semion" are NAMES the physics attaches to
+        those pairs; no theorem in this file establishes that a pair is a
+        particle, that particles exist, or that the naming is the right
+        one. The charge's own sentence — "2 classes × 2 particles = 4" —
+        is, in this file, a count of PAIRS, and the nest lemmas tie it to
+        that and to nothing else. Every occurrence of the physics
+        vocabulary in this section is in a comment; none is in a name.
+      - that this is a statement about all of flatland or all of the roomy
+        world. It is a statement about `Z[i]`, one ring, with the F-symbol
+        family and the hexagon this file defines.
+      - that the mirror is the FULL Galois group of anything. `conj` is
+        exhibited and used; no theorem here says it generates
+        `Gal(Q(i)/Q)`, and nothing below needs it to.
+      - anything about braidings that are not units. The unit hypothesis
+        in (a) is load-bearing, and `control_mirror_fixes_a_non_unit` is
+        the witness that it cannot be dropped. -/
+
+/-- The roomy edict: a braiding is its own inverse. -/
+def SelfInverse (R : GZ) : Prop := mul R R = one
+
+/-- **THE FILTER IS A GALOIS STATEMENT, and "literally" is literal.** On a
+    unit the inverse IS the conjugate, so `R = R⁻¹` and `conj R = R` are
+    the same condition. Both directions run through
+    `mul_conj_eq_one_of_unit` — section 13's bridge, load-bearing in a
+    third section now. -/
+theorem selfInverse_iff_mirror_fixed (R : GZ) (hu : IsUnit R) :
+    SelfInverse R ↔ conj R = R := by
+  constructor
+  · intro h
+    have hc : mul R (conj R) = one := mul_conj_eq_one_of_unit R hu
+    have e : mul R (conj R) = mul R R := by rw [hc, h]
+    exact unit_cancel R (conj R) R hu e
+  · intro h
+    have hc : mul R (conj R) = one := mul_conj_eq_one_of_unit R hu
+    rw [h] at hc
+    exact hc
+
+/-- The mirror's fixed points among the four units are exactly `{1, −1}`. -/
+theorem units_fixed_by_mirror (u : GZ) (hu : IsUnit u) :
+    conj u = u ↔ (u = one ∨ u = neg one) := by
+  rcases (units_are_four u).mp hu with h | h | h | h <;> subst h <;>
+    constructor <;> intro hx <;> revert hx <;> decide
+
+/-- **THE CATALOG CLOSES AT TWO.** Pentagon, hexagon, and the mirror
+    condition on the braiding: exactly two pairs survive, and both lie
+    over `f = 1`. -/
+theorem catalog_filtered_by_mirror (f R : GZ) :
+    (mul f f = one ∧ hexagonHolds f R ∧ conj R = R) ↔
+      ((f = one ∧ R = one) ∨ (f = one ∧ R = neg one)) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four f R).mp ⟨h.1, h.2.1⟩ with hc | hc | hc | hc
+    · exact Or.inl hc
+    · exact Or.inr hc
+    · rw [hc.2] at h; exact absurd h.2.2 (by decide)
+    · rw [hc.2] at h; exact absurd h.2.2 (by decide)
+  · intro h
+    rcases h with ⟨hf, hr⟩ | ⟨hf, hr⟩ <;> subst hf <;> subst hr <;>
+      exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide), by decide⟩
+
+/-- **THE SAME CUT IN THE OTHER VOCABULARY.** The charge says the roomy
+    edict and the Galois condition are the same cut; this is that claim
+    discharged rather than asserted — the identical two pairs survive when
+    the hypothesis is written `R = R⁻¹` instead of `conj R = R`. -/
+theorem catalog_filtered_by_roomy_edict (f R : GZ) :
+    (mul f f = one ∧ hexagonHolds f R ∧ SelfInverse R) ↔
+      ((f = one ∧ R = one) ∨ (f = one ∧ R = neg one)) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four f R).mp ⟨h.1, h.2.1⟩ with hc | hc | hc | hc
+    · exact Or.inl hc
+    · exact Or.inr hc
+    · rw [hc.2] at h
+      exact absurd (show mul I I = one from h.2.2) (by decide)
+    · rw [hc.2] at h
+      exact absurd (show mul (neg I) (neg I) = one from h.2.2) (by decide)
+  · intro h
+    rcases h with ⟨hf, hr⟩ | ⟨hf, hr⟩ <;> subst hf <;> subst hr <;>
+      exact ⟨by decide, Rsq_gives_hexagon _ _ (by decide) (by decide),
+             show mul _ _ = one by decide⟩
+
+/-! ### The nest, tied — the four as 2 + 2, and the filter is not one per class -/
+
+/-- Over the `f = 1` class the hexagon leaves exactly two braidings. -/
+theorem catalog_over_f_one (R : GZ) :
+    hexagonHolds one R ↔ (R = one ∨ R = neg one) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four one R).mp ⟨by decide, h⟩ with hc | hc | hc | hc
+    · exact Or.inl hc.2
+    · exact Or.inr hc.2
+    · exact absurd hc.1 (by decide)
+    · exact absurd hc.1 (by decide)
+  · intro h
+    rcases h with h | h <;> subst h <;>
+      exact Rsq_gives_hexagon _ _ (by decide) (by decide)
+
+/-- Over the `f = −1` class the hexagon leaves exactly the other two. -/
+theorem catalog_over_f_neg_one (R : GZ) :
+    hexagonHolds (neg one) R ↔ (R = I ∨ R = neg I) := by
+  constructor
+  · intro h
+    rcases (catalog_of_four (neg one) R).mp ⟨by decide, h⟩ with hc | hc | hc | hc
+    · exact absurd hc.1 (by decide)
+    · exact absurd hc.1 (by decide)
+    · exact Or.inl hc.2
+    · exact Or.inr hc.2
+  · intro h
+    rcases h with h | h <;> subst h <;>
+      exact Rsq_gives_hexagon _ _ (by decide) (by decide)
+
+/-- **The filter is not one per class.** Nothing over `f = −1` survives the
+    mirror, so the surviving two are both drawn from the `f = 1` class and
+    the cut is 2 + 2 → 2 + 0, never 1 + 1. -/
+theorem mirror_keeps_nothing_over_f_neg_one (R : GZ) (h : hexagonHolds (neg one) R) :
+    conj R ≠ R := by
+  rcases (catalog_over_f_neg_one R).mp h with hr | hr <;> subst hr <;> decide
+
+/-! ### The mirror as an action, and the difference from Circle One -/
+
+theorem mirror_fixes_the_survivors : conj one = one ∧ conj (neg one) = neg one := by
+  constructor <;> decide
+
+theorem mirror_swaps_the_semions : conj I = neg I ∧ conj (neg I) = I := by
+  constructor <;> decide
+
+/-- **The catalog is closed under the mirror**, and `f` never moves — the
+    structural difference from Circle One, stated in the kernel rather
+    than in a comment. Proved through `catalog_of_four_both_hexagons`, so
+    section 13 pays again. -/
+theorem catalog_closed_under_mirror (f R : GZ)
+    (h : mul f f = one ∧ hexagonHolds f R) : mul f f = one ∧ hexagonHolds f (conj R) := by
+  have hb := (catalog_of_four_both_hexagons f R).mpr ((catalog_of_four f R).mp h)
+  exact ⟨hb.1, hb.2.2⟩
+
+/-! ### Anti-vacuity for the mirror — norm 3
+
+    A filter is empty talk if nothing is cut or nothing survives. Both
+    halves are evaluated: `live_33` and `live_34` are survivors, `live_35`
+    and `live_36` are the pair the mirror moves, and `live_37` is the
+    non-unit the next control needs. -/
+
+theorem live_33 : SelfInverse one := by unfold SelfInverse; decide
+theorem live_34 : SelfInverse (neg one) := by unfold SelfInverse; decide
+theorem live_35 : ¬ SelfInverse I := by unfold SelfInverse; decide
+theorem live_36 : ¬ SelfInverse (neg I) := by unfold SelfInverse; decide
+theorem live_37 : conj (⟨2, 0⟩ : GZ) = ⟨2, 0⟩ := by decide
+
+/-! ### Negative controls for the mirror — norm 5 -/
+
+/-- **The unit hypothesis in `selfInverse_iff_mirror_fixed` is
+    load-bearing.** `⟨2,0⟩` is fixed by the mirror and is NOT
+    self-inverse, so the backward direction is false without it. The
+    Galois reading of the roomy edict is a statement about units and
+    about nothing else. -/
+theorem control_mirror_fixes_a_non_unit :
+    conj (⟨2, 0⟩ : GZ) = ⟨2, 0⟩ ∧ ¬ SelfInverse (⟨2, 0⟩ : GZ) := by
+  constructor
+  · decide
+  · unfold SelfInverse; decide
+
+/-- And the filter really cuts: a catalog member that does not survive it,
+    evaluated rather than argued. -/
+theorem control_semion_fails_the_filter : hexagonHolds (neg one) I ∧ conj I ≠ I := by
+  constructor
+  · exact Rsq_gives_hexagon _ _ (by decide) (by decide)
+  · decide
+
 end Zi
