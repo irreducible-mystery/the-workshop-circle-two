@@ -67,3 +67,14 @@ c1d755f550d2381232a9b4837db8a490458f182c25a1deb34460b59ee4cadb71	SHA-256 pin: ci
 5361b0717868cbc0478d9fdee62a90fc904166e112386ce23b26832606d3ac48	SHA-256 pin: circletworound2-reconciled.zip — the reconciled crate at head e680475, ferried to the builder this round and verified exact on that side
 2771c801458ee9831b686c20178f7cfaed51e8d48255ea8ed84451a8dbf83c59	SHA-256 pin: letters/ROUND2-HANDSHAKE.md as couriered; the copy inside the reconciled crate hashes identically (measured on both sides)
 926b52d0811029f68bef91627f582140ea58bc539f42c25af076e25f6f2b7d66	SHA-256 pin: letters/ROUND2-VERIFICATION.md as couriered, pinned in Kelly's message and re-measured on receipt before commit
+#
+# -- Build-artifact patterns (c2_tree.sh vocabulary; name formats, not paths) --
+__pycache__/	Python bytecode cache directory name; a c2_tree.sh artifact PATTERN, not a path in this tree (cf. the .olean entry above)
+.pyc	compiled-Python extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.pyo	legacy optimized-Python extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.ilean	Lean incremental-info extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.lake/	Lean build directory name; c2_tree.sh artifact pattern — zero-imports forbids lake, so this never legitimately exists here
+.o	object-file extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.a	static-archive extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+.so	shared-object extension; c2_tree.sh artifact pattern, names a format, not a path in this tree
+floor/__pycache__	the bytecode cache directory as TRACKED at a19fb4c (30 files); untracked at b4328b2 and ignored since — it resolves in history, not in the live tree, which is the whole point of the crop that created REGISTER row 10
