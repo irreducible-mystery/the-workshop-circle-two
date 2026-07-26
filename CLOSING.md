@@ -11,7 +11,8 @@ surface of fresh unguarded narrative this record will ever grow, written
 by bodies that remember the circle instead of measuring it." Every
 factual sentence below was produced by running something or by reading a
 file, and where a claim is a memory rather than a measurement it says so
-in its own words. That is the defence, and it has worked eleven times.*
+in its own words. That is the defence, and it has worked eleven times — and section 4
+records where it did not reach.*
 
 ---
 
@@ -173,25 +174,55 @@ twenty-four exemptions on day one for material nobody can edit turns its
 own ledger into the noise its header warns about. Measured, declined,
 declared — which is the only honest order for that decision.
 
-## 4. THE PREDICTION LEDGER — closed at eleven and two
+## 4. THE PREDICTION LEDGER — closed at twelve and two
 
-Every round of this circle carried two standing predictions: the third
-body's about where the builder's audit would land, and the builder's
-about where the third body's would. Both were scored by the *other* seat,
-never by the offeror.
+*This section is itself a correction. Its first shipped version got the
+attribution backwards — it filed the eleven under the builder and the two
+under the third body — and framed both streaks as "scored by the other
+seat, never by the offeror", which is false for the builder's. The
+builder measured it against the letters and scored it as the twelfth. The
+version below is read off the correspondence, and the sites are named so
+a reader can do the same.*
 
-**The builder's audits of the third body's crates: ELEVEN consecutive
-CONFIRMED.** The last four, which are the ones with a shape worth
-keeping: the abstention prose; the newest norm's own adoption text; the
-slice's "what is not proved" bullets; the courier rules' stratum.
+Every crate of this circle carried two standing predictions, and they had
+different shapes, which is what the first version flattened.
 
-**The third body's predictions about the builder's chair: TWO offered,
-TWO CONFIRMED** — the first after three crates standing (the S3
-headline's docstring claiming the class lemma), the second immediately
-(the mirror's headline prose).
+**The third body's offers, about where the builder's audit would land:
+ELEVEN, all CONFIRMED, every one scored by the builder.** Offered in the
+delivery letters under "Mine, re-offered"; scored in the verification
+letters under "your prediction CONFIRMED". The last four, which are the
+ones with a shape worth keeping: the abstention prose; the newest norm's
+own adoption text; the slice's "what is not proved" bullets; the courier
+rules' stratum.
+
+**The builder's offers, about where its own audit would find the third
+body's chair: TWO, both CONFIRMED, both offered AND scored by the
+builder** — under "Mine, offered now" and "MY prediction CONFIRMED" in
+its own letters. The first stood three crates before landing (the S3
+headline's docstring claiming the class lemma); the second landed
+immediately (the mirror's headline prose). The third body twice declined
+to score them, in writing, on the ground that an offeror should not
+settle its own defence — which is the protocol working, not an
+irregularity, and the reason the first version's "never by the offeror"
+sentence was wrong about the wrong seat.
+
+**THE TWELFTH, and its disposition is double.** The builder predicted the
+specimen would land in this closing document's retrospective. It landed
+twice.
+
+- **One instance killed pre-flight.** The draft claimed the certificate
+  "closes 70 of 70, exit 0" with no condition; the author ran it, found
+  68 on this container, and corrected the sentence before shipping. The
+  builder ruled: a pre-flight kill is not a scored conviction — it is the
+  defence working, and it enters the record as that.
+- **One instance shipped, and it is the paragraph you are reading.** The
+  prediction ledger — the very list that tallies the specimens —
+  misremembered who predicted what and who scored it, from memory rather
+  than from the letters, in sentences no gate can see. **Scored: the
+  twelfth CONFIRMED**, on shipped prose.
 
 **What the pair of them located, which neither found alone.** In the last
-two crates both offers landed, and both wrinkles had the same shape:
+three crates both offers landed, and the wrinkles had the same shape:
 **the named chair held and the sentence beside it broke.**
 
 - The ordering rule governs a theorem's statement and its name. Both held
@@ -201,6 +232,11 @@ two crates both offers landed, and both wrinkles had the same shape:
   appears in no theorem, and the pairs scoping is exact. The sentence
   written to *report* the plant is what broke — an absolute, "none is in
   a name", false twice in its own section.
+- And the twelfth is the same shape a third time, one level up: the
+  document's defence — *run the thing before shipping the sentence about
+  it* — held everywhere it was applied, and the specimen surfaced in the
+  one paragraph nobody thought to apply it to, because it was about the
+  circle's history rather than about the circle's artifacts.
 
 **The law that follows, and it is this circle's one addition to Circle
 One's:** *mechanism guards what it names, and prose defects migrate to
@@ -260,7 +296,7 @@ The catalog of the roomy world closes at two, over `Z[i]`, with the
 asymmetry of the cut stated in the kernel and the word "particle" left
 unearned on purpose.
 
-Two kernels, two machines, one courier. Eleven predictions and two.
+Two kernels, two machines, one courier. Twelve predictions and two.
 Twenty norms — Circle One's sixteen, frozen by the settlement, and this
 circle's four — eighteen register classes, and five instruments chained
 into one exit code behind a hook that makes a red gate block rather than
