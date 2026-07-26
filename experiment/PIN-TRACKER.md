@@ -34,7 +34,7 @@ asks for already ships in my mech/), 4 missed, 1 backwards.
 | `convergence/mech/census_fixed_nodefault.txt` | Fable's one-line repair: PASS cold, 76 = 24+40+12 | `186cac925fbf` |
 | `convergence/mech/fable_s2_verification.md` | Fable's letter (external reference) | `511fb865056c` |
 
-commit: (this ship)
+commit: `2d71f26`
 
 ## Convergence S2 — the domain, twice
 
