@@ -1,0 +1,60 @@
+PASS  add_comm
+PASS  add_assoc
+PASS  add_zero
+PASS  zero_add
+PASS  add_neg
+PASS  neg_add
+PASS  neg_neg
+PASS  sub_self
+PASS  mul_comm
+PASS  mul_assoc  — degree-3, 6 vars, coefficientwise
+PASS  mul_one
+PASS  one_mul
+PASS  mul_zero
+PASS  zero_mul
+PASS  left_distrib
+PASS  right_distrib
+PASS  mul_neg
+PASS  neg_mul
+PASS  I_squared
+PASS  I_squared_add_one
+PASS  conj_add
+PASS  conj_mul  — the mirror respects multiplication — coefficientwise
+PASS  conj_conj
+PASS  conj_one
+PASS  conj_zero
+PASS  conj_re
+PASS  conj_I
+PASS  mul_conj
+PASS  conj_mul_self
+FAIL  brahmagupta_fibonacci  — bare integer identity, 4 vars
+PASS  norm_mul  — route independent of Brahmagupta expansion above
+PASS  norm_conj
+PASS  norm_one
+PASS  norm_zero
+PASS  norm_I
+PASS  norm_re  — N(a,0) = a*a
+PASS  live_1
+PASS  live_2
+PASS  live_3
+PASS  live_4
+PASS  live_5
+PASS  live_6
+PASS  live_7
+PASS  live_8
+PASS  control_one_ne_zero
+PASS  control_conj_ne_id
+PASS  control_fake_mirror_is_additive  — symbolically additive — the near-miss is genuine
+PASS  control_fake_mirror_fails_multiplicative  — fake(i*i)=(-1, 0) != fake(i)*fake(i)=(-4, 0)
+PASS  control_split_has_zero_divisors  — (1+j)(1-j) = 0 under the split multiplication
+PASS  control_split_first_factor_is_nonzero
+PASS  control_split_second_factor_is_nonzero
+PASS  control_mul_of_same_factors_is_nonzero  — same factors under TRUE mul: (2,0) != 0 — the sign is load-bearing
+PASS  cross_conj_fixed_locus  — conj z − z has im = −2·im(z): the fixed locus is the real axis — MY theorem, THEIR definitions
+PASS  cross_sub_add_cancel  — MY S1 repair theorem holds for THEIR sub — the S1 crop convergence point
+====================================================================
+checks run: 54;  passed: 53;  failed: 1
+VERDICT: two-body S1 artifact verified coefficientwise by the
+         dual-seat lineage's instrument — every universal claim
+         complete over Z, every concrete claim exact; plus two
+         cross-lineage checks (their defs, my theorems).

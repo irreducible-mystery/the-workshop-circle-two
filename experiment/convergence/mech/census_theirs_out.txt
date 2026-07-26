@@ -1,0 +1,61 @@
+theorems in source : 54
+census lines       : 54
+axiom-free         : 16
+sorryAx            : 0
+Classical.choice   : 0
+--- per-theorem profile ---
+'Zi.ext' depends on axioms: [propext]
+'Zi.ext_iff' depends on axioms: [propext]
+'Zi.add_comm' depends on axioms: [propext]
+'Zi.add_assoc' depends on axioms: [propext]
+'Zi.add_zero' depends on axioms: [propext]
+'Zi.zero_add' depends on axioms: [propext]
+'Zi.add_neg' depends on axioms: [propext]
+'Zi.neg_add' depends on axioms: [propext]
+'Zi.neg_neg' depends on axioms: [propext]
+'Zi.sub_self' depends on axioms: [propext]
+'Zi.mul_comm' depends on axioms: [propext]
+'Zi.mul_assoc' depends on axioms: [propext]
+'Zi.mul_one' depends on axioms: [propext]
+'Zi.one_mul' depends on axioms: [propext]
+'Zi.mul_zero' depends on axioms: [propext]
+'Zi.zero_mul' depends on axioms: [propext]
+'Zi.left_distrib' depends on axioms: [propext]
+'Zi.right_distrib' depends on axioms: [propext]
+'Zi.mul_neg' depends on axioms: [propext]
+'Zi.neg_mul' depends on axioms: [propext]
+'Zi.I_squared' depends on axioms: [propext]
+'Zi.I_squared_add_one' depends on axioms: [propext]
+'Zi.conj_add' depends on axioms: [propext]
+'Zi.conj_mul' depends on axioms: [propext]
+'Zi.conj_conj' depends on axioms: [propext]
+'Zi.conj_one' depends on axioms: [propext]
+'Zi.conj_zero' depends on axioms: [propext]
+'Zi.conj_re' does not depend on any axioms
+'Zi.conj_I' depends on axioms: [propext]
+'Zi.mul_conj' depends on axioms: [propext]
+'Zi.conj_mul_self' depends on axioms: [propext]
+'Zi.brahmagupta_fibonacci' depends on axioms: [propext, Quot.sound]
+'Zi.norm_mul' depends on axioms: [propext, Quot.sound]
+'Zi.norm_conj' depends on axioms: [propext]
+'Zi.norm_one' depends on axioms: [propext]
+'Zi.norm_zero' depends on axioms: [propext]
+'Zi.norm_I' depends on axioms: [propext]
+'Zi.norm_re' depends on axioms: [propext]
+'Zi.live_1' does not depend on any axioms
+'Zi.live_2' does not depend on any axioms
+'Zi.live_3' does not depend on any axioms
+'Zi.live_4' does not depend on any axioms
+'Zi.live_5' does not depend on any axioms
+'Zi.live_6' does not depend on any axioms
+'Zi.live_7' does not depend on any axioms
+'Zi.live_8' does not depend on any axioms
+'Zi.control_one_ne_zero' does not depend on any axioms
+'Zi.control_conj_ne_id' does not depend on any axioms
+'Zi.control_fake_mirror_is_additive' depends on axioms: [propext]
+'Zi.control_fake_mirror_fails_multiplicative' does not depend on any axioms
+'Zi.control_split_has_zero_divisors' does not depend on any axioms
+'Zi.control_split_first_factor_is_nonzero' does not depend on any axioms
+'Zi.control_split_second_factor_is_nonzero' does not depend on any axioms
+'Zi.control_mul_of_same_factors_is_nonzero' does not depend on any axioms
+RESULT: PASS

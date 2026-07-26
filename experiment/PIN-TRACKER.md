@@ -10,7 +10,30 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Round Three continuity (current)
+## Convergence S1 — cross-lineage comparison (current)
+
+Comparison of my dual-seat S1 (42 theorems) against the independent
+two-body lineage's S1 (Fable 5 builder + Opus/Code third body; 54
+theorems, `structure GZ`). All their claims re-measured CONFIRMED;
+cross-instrumentation green both directions; 32-statement shared core;
+their open Q4 answered negative (.olean not cross-machine reproducible).
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-REPORT-S1.md` | full comparison report, phases A–E + 4/4 predictions confirmed | `bb9db65bfd17` |
+| `convergence/DESIGN-NOTE.md` | protocol + predictions, written BEFORE measurement | `37d0e94bde6d` |
+| `convergence/mech/verify_theirs.py` | my exact-polynomial verifier run on THEIR 54 statements — 54/54, exit 0 | `034cbc2b339c` |
+| `convergence/mech/verify_theirs_output.txt` | clean run transcript (54/54) | `9dfbd1b3802c` |
+| `convergence/mech/plant_out.txt` | plant run (BF identity +1) — bitten, 53/1, exit 1 | `b9313473c2c0` |
+| `convergence/mech/their_statements.txt` | my courier extraction of their file | `a633604f7f56` |
+| `convergence/mech/their_Zi.lean` | their artifact (external reference copy, byte-identical to their branch) | `2e227702a666` |
+| `convergence/mech/census_theirs_out.txt` | my census on their file: 54/54, 16 free, 0/0 PASS | `04ac2a5a87a2` |
+| `convergence/mech/their_census_on_mine.txt` | their census on my file: 161/161, 68 free, 0/0 PASS | `f94cdc2710e7` |
+| `convergence/mech/compile_out.txt` | their file on my pinned toolchain: silent, 0 bytes | (empty file) |
+
+commit: (this ship)
+
+## Round Three continuity
 
 | artifact | what | sha256 (short) |
 |---|---|---|
