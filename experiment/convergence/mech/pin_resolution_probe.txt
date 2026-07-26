@@ -1,0 +1,5 @@
+PIN RESOLUTION PROBE — where does elan read lean-toolchain from?
+setup: /tmp/pintest/{probe.lean, lean-toolchain=v4.32.0}; elan default removed
+lean /tmp/pintest/probe.lean   (cwd=/workspace)  -> exit 1, 'no default toolchain configured'
+cd /tmp/pintest && lean probe.lean               -> exit 0, silent
+VERDICT: elan resolves the pin from the WORKING DIRECTORY, not the file's location. Fable's mechanism diagnosis reproduces exactly.

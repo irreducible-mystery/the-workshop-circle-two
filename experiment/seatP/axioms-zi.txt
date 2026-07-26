@@ -1,6 +1,6 @@
-theorems in source : 42
-census lines       : 42
-axiom-free         : 16
+theorems in source : 161
+census lines       : 161
+axiom-free         : 68
 sorryAx            : 0
 Classical.choice   : 0
 --- per-theorem profile ---
@@ -46,4 +46,123 @@ Classical.choice   : 0
 'Zi.control_coordMul_differs' does not depend on any axioms
 'Zi.control_conj_not_id' does not depend on any axioms
 'Zi.control_normSq_not_additive' does not depend on any axioms
+'Zi.sq_mod4' depends on axioms: [propext, Quot.sound]
+'Zi.mod4_forces_even' depends on axioms: [propext, Quot.sound]
+'Zi.descent_core' depends on axioms: [propext, Quot.sound]
+'Zi.normSq_eq_zero_iff' depends on axioms: [propext, Quot.sound]
+'Zi.normSq_ne_zero' depends on axioms: [propext, Quot.sound]
+'Zi.intScalar_mul' depends on axioms: [propext, Quot.sound]
+'Zi.torsion_free' depends on axioms: [propext, Quot.sound]
+'Zi.no_zero_divisors' depends on axioms: [propext, Quot.sound]
+'Zi.live_descent_witness' does not depend on any axioms
+'Zi.live_normSq_nonzero' does not depend on any axioms
+'Zi.live_zero_mul_witness' does not depend on any axioms
+'Zi.live_sq_mod4_nest' does not depend on any axioms
+'Zi.control_mod2_insufficient' does not depend on any axioms
+'Zi.control_descent_needs_hypothesis' does not depend on any axioms
+'Zi.control_z4_has_zero_divisors' does not depend on any axioms
+'Zi.pentagon_offdiag' depends on axioms: [propext, Quot.sound]
+'Zi.pentagon_forcing_lhs' depends on axioms: [propext, Quot.sound]
+'Zi.pentagon_forcing_rhs' depends on axioms: [propext, Quot.sound]
+'Zi.pentagon_forces_f_sq_one' depends on axioms: [propext, Quot.sound]
+'Zi.f_sq_one_gives_pentagon' depends on axioms: [propext, Quot.sound]
+'Zi.pentagon_iff_f_sq_one' depends on axioms: [propext, Quot.sound]
+'Zi.pent_nest_card' does not depend on any axioms
+'Zi.pent_classification_counted' does not depend on any axioms
+'Zi.pent_f_eq_f_instances' depends on axioms: [propext, Quot.sound]
+'Zi.sub_eq_zero_iff' depends on axioms: [propext, Quot.sound]
+'Zi.factorization_symbolic' depends on axioms: [propext, Quot.sound]
+'Zi.f_sq_one_iff_pm_one' depends on axioms: [propext, Quot.sound]
+'Zi.both_roots_land' does not depend on any axioms
+'Zi.pentagon_exactly_two' depends on axioms: [propext, Quot.sound]
+'Zi.live_pentagon_plus_one' depends on axioms: [propext, Quot.sound]
+'Zi.live_pentagon_minus_one' depends on axioms: [propext, Quot.sound]
+'Zi.live_forcing_separates' does not depend on any axioms
+'Zi.live_gaussian_witness' does not depend on any axioms
+'Zi.control_z8_four_roots' does not depend on any axioms
+'Zi.control_f_eq_i_fails_pentagon' depends on axioms: [propext, Quot.sound]
+'Zi.control_f_eq_two_fails_pentagon' depends on axioms: [propext, Quot.sound]
+'Zi.gauge_slot_motion' does not depend on any axioms
+'Zi.mul_left_cancel' depends on axioms: [propext, Quot.sound]
+'Zi.slice_forces_eta_symmetric' depends on axioms: [propext, Quot.sound]
+'Zi.gauge_slot_invariant' depends on axioms: [propext, Quot.sound]
+'Zi.live_gauge_witness' does not depend on any axioms
+'Zi.control_gauge_moves_slot' does not depend on any axioms
+'Zi.int_sq_nonneg' depends on axioms: [propext, Quot.sound]
+'Zi.int_sq_eq_zero' depends on axioms: [propext, Quot.sound]
+'Zi.int_sq_eq_one' depends on axioms: [propext, Quot.sound]
+'Zi.hex_nest_8_of_16' does not depend on any axioms
+'Zi.hexagon_offdiag' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_forcing_lhs' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_forcing_rhs' depends on axioms: [propext]
+'Zi.square_of_product' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_forces' depends on axioms: [propext, Quot.sound]
+'Zi.hexagon_reduction_identity' depends on axioms: [propext, Quot.sound]
+'Zi.pentagon_hexagon_iff_R_sq_F' depends on axioms: [propext, Quot.sound]
+'Zi.norm_one_units' depends on axioms: [propext, Quot.sound]
+'Zi.units_four_distinct' does not depend on any axioms
+'Zi.R_over_boson_class' depends on axioms: [propext, Quot.sound]
+'Zi.semion_factorization' depends on axioms: [propext, Quot.sound]
+'Zi.R_over_semion_class' depends on axioms: [propext, Quot.sound]
+'Zi.no_integer_semion' depends on axioms: [propext, Quot.sound]
+'Zi.catalog_two_by_two' does not depend on any axioms
+'Zi.unit_inverse_is_conj' does not depend on any axioms
+'Zi.catalog_satisfies_both_hexagons' does not depend on any axioms
+'Zi.flatland_filter' does not depend on any axioms
+'Zi.filter_nest_2_of_4' does not depend on any axioms
+'Zi.mirror_structure' does not depend on any axioms
+'Zi.live_hexagon_boson' depends on axioms: [propext, Quot.sound]
+'Zi.live_hexagon_fermion' depends on axioms: [propext, Quot.sound]
+'Zi.live_hexagon_semion' depends on axioms: [propext, Quot.sound]
+'Zi.live_hexagon_antisemion' depends on axioms: [propext, Quot.sound]
+'Zi.live_hex_forcing_separates' does not depend on any axioms
+'Zi.control_wrong_R_per_class' does not depend on any axioms
+'Zi.control_Zi_mod5_splits' does not depend on any axioms
+'Zi.control_filter_needs_catalog' does not depend on any axioms
+'Zi.twist_catalog' does not depend on any axioms
+'Zi.twist_fermion_minus_one' does not depend on any axioms
+'Zi.ribbon_identity' depends on axioms: [propext, Quot.sound]
+'Zi.ribbon_nest_3_plus_1' depends on axioms: [propext, Quot.sound]
+'Zi.catalog_r_fourth' does not depend on any axioms
+'Zi.nu_survivors_plus_one' does not depend on any axioms
+'Zi.nu_fork_on_semions' does not depend on any axioms
+'Zi.fork_nest_2_plus_2' does not depend on any axioms
+'Zi.fork_locus_is_real_locus' depends on axioms: [propext, Quot.sound]
+'Zi.fork_locus_coordinates' depends on axioms: [propext, Quot.sound]
+'Zi.filter_closes_fork' does not depend on any axioms
+'Zi.nuML_is_normSq' depends on axioms: [propext, Quot.sound]
+'Zi.nuML_blind_on_units' depends on axioms: [propext, Quot.sound]
+'Zi.spin_statistics_seed' does not depend on any axioms
+'Zi.spin_equals_statistics' does not depend on any axioms
+'Zi.fusion_matrix_squares_to_identity' does not depend on any axioms
+'Zi.dimension_charpoly_factors' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_boson' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_fermion' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_semion' depends on axioms: [propext, Quot.sound]
+'Zi.live_ribbon_antisemion' depends on axioms: [propext, Quot.sound]
+'Zi.live_fork_off_catalog' does not depend on any axioms
+'Zi.control_fork_locus_needs_nonzero' does not depend on any axioms
+'Zi.control_wrong_twist_breaks_ledger' does not depend on any axioms
+'Zi.control_ribbon_forcing_bites' does not depend on any axioms
+'Zi.control_nuFS_separates' does not depend on any axioms
+'Zi.roomy_iff_boson_or_fermion' depends on axioms: [propext, Quot.sound]
+'Zi.the_roomy_world_has_exactly_two_particles' depends on axioms: [propext, Quot.sound]
+'Zi.capstone_count_two' depends on axioms: [propext, Quot.sound]
+'Zi.capstone_nu_rider' depends on axioms: [propext, Quot.sound]
+'Zi.control_semion_fails_only_filter' depends on axioms: [propext, Quot.sound]
+'Zi.control_real_but_not_roomy' depends on axioms: [propext, Quot.sound]
+'Zi.tri_values' does not depend on any axioms
+'Zi.tri_recurrence' does not depend on any axioms
+'Zi.tri_double' depends on axioms: [propext, Quot.sound]
+'Zi.pauli_kill_symbolic' depends on axioms: [propext, Quot.sound]
+'Zi.M2_sq_eq_two_M' does not depend on any axioms
+'Zi.M2_trace' does not depend on any axioms
+'Zi.M2_image_on_line' depends on axioms: [propext, Quot.sound]
+'Zi.M2_image_attains_generator' does not depend on any axioms
+'Zi.M2_kill_iff_det_zero' depends on axioms: [propext, Quot.sound]
+'Zi.pauli_double_occupation_dies' depends on axioms: [propext, Quot.sound]
+'Zi.census_nest_m2' does not depend on any axioms
+'Zi.control_boson_no_exclusion' does not depend on any axioms
+'Zi.control_M_times_P_zero' does not depend on any axioms
+'Zi.live_nonparallel_survives' does not depend on any axioms
 RESULT: PASS

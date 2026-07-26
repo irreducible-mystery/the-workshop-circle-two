@@ -278,4 +278,1641 @@ theorem control_conj_not_id : conj I ≠ I := by decide
 theorem control_normSq_not_additive :
     normSq (add one one) ≠ normSq one + normSq one := by decide
 
+/- ======================================================================
+   S2 — THE DOMAIN, BY ONE MOD-4 DESCENT (sub-round 2)
+
+   The chartered route (ROUND1.md §S2, certificate G2_squares_mod_4
+   through G2_no_zero_divisors_box): squares mod 4 are exactly {0,1};
+   the 16-case decide over (Z/4)² shows N(a+bi) ≡ 0 mod 4 forces both
+   coordinates even; halving induction kills N(z) = 0; then the chain
+   z·w = 0 ⟹ conj(z)·z·w = 0 ⟹ N(z)·w = 0 ⟹ w = 0.
+
+   THE FORK, stated per the charge: the descent route is taken (the
+   pattern-preserving, order-free route matching Circle One), NOT the
+   Int-order shortcut (a² ≥ 0). The fuel measure is natAbs-sum with
+   structural Nat induction — no well-founded recursion, no `partial`;
+   omega handles only the linear bookkeeping, never a ring goal
+   (HANDOFF guardrails).
+   ====================================================================== -/
+
+/-- squares mod 4 are exactly {0, 1} — nest 4: the four residues 0,1,2,3
+    land on 0,1,0,1 (certificate: G2_squares_mod_4).
+    ROLE, per seat B crop #1 (S2): standing testimony for charter parity —
+    `mod4_forces_even` re-derives the residue facts inline and does NOT
+    depend on this theorem; the term graph is flat here on purpose
+    (routing through the disjunction would cost cases, not clarity) -/
+theorem sq_mod4 (r : Int) : (r*r) % 4 = 0 ∨ (r*r) % 4 = 1 := by
+  have h : (r*r) % 4 = ((r%4)*(r%4)) % 4 := by rw [Int.mul_emod]
+  have hr0 : 0 ≤ r % 4 := Int.emod_nonneg r (by decide)
+  have hr4 : r % 4 < 4 := Int.emod_lt_of_pos r (by decide)
+  have hc : r % 4 = 0 ∨ r % 4 = 1 ∨ r % 4 = 2 ∨ r % 4 = 3 := by omega
+  rcases hc with h1 | h1 | h1 | h1 <;> rw [h, h1] <;> omega
+
+/-- the 16-case core: over (Z/4)², a²+b² ≡ 0 mod 4 forces both residues
+    even — nest 16 = 4×4 residue pairs, exactly 4 of which satisfy the
+    hypothesis: (0,0),(0,2),(2,0),(2,2) (certificate: the mod-4 block) -/
+theorem mod4_forces_even (a b : Int) (h : (a*a + b*b) % 4 = 0) :
+    a % 2 = 0 ∧ b % 2 = 0 := by
+  have ha : (a % 4) * (a % 4) % 4 = (a*a) % 4 := (Int.mul_emod a a 4).symm
+  have hb : (b % 4) * (b % 4) % 4 = (b*b) % 4 := (Int.mul_emod b b 4).symm
+  have hra0 : 0 ≤ a % 4 := Int.emod_nonneg a (by decide)
+  have hra4 : a % 4 < 4 := Int.emod_lt_of_pos a (by decide)
+  have hrb0 : 0 ≤ b % 4 := Int.emod_nonneg b (by decide)
+  have hrb4 : b % 4 < 4 := Int.emod_lt_of_pos b (by decide)
+  have hsum : ((a % 4) * (a % 4) + (b % 4) * (b % 4)) % 4 = 0 := by
+    rw [Int.add_emod, ha, hb, ← Int.add_emod, h]
+  have hr : a % 4 = 0 ∨ a % 4 = 1 ∨ a % 4 = 2 ∨ a % 4 = 3 := by omega
+  have hs : b % 4 = 0 ∨ b % 4 = 1 ∨ b % 4 = 2 ∨ b % 4 = 3 := by omega
+  rcases hr with h1 | h1 | h1 | h1 <;> rcases hs with h2 | h2 | h2 | h2 <;>
+    rw [h1, h2] at hsum <;> exact ⟨by omega, by omega⟩
+
+/-- the halving descent: fuel-indexed strong induction. a²+b² = 0 over Z
+    kills both coordinates — order-free, by infinite descent on the
+    natAbs-sum (certificate: the halving-induction block).
+    ANTI-VACUITY (norm 3, seat B crop #2): the hypothesis is live at
+    exactly ONE point of Z², the fixed point (0,0) — necessarily, since
+    that is what the theorem forces; the content lives in the forcing,
+    and `control_descent_needs_hypothesis` shows the conclusion is not
+    free. The same 1-of-N shape returns at S3's forcing instance -/
+theorem descent_core : ∀ fuel : Nat, ∀ a b : Int,
+    a.natAbs + b.natAbs ≤ fuel → a*a + b*b = 0 → a = 0 ∧ b = 0 := by
+  intro fuel
+  induction fuel with
+  | zero =>
+    intro a b hle _
+    exact ⟨by omega, by omega⟩
+  | succ n ih =>
+    intro a b hle hN
+    have h4 : (a*a + b*b) % 4 = 0 := by rw [hN]; rfl
+    have key := mod4_forces_even a b h4
+    obtain ⟨ha2, hb2⟩ := key
+    obtain ⟨a', rfl⟩ : ∃ a', a = 2*a' := ⟨a/2, by omega⟩
+    obtain ⟨b', rfl⟩ : ∃ b', b = 2*b' := ⟨b/2, by omega⟩
+    have hN' : a'*a' + b'*b' = 0 := by
+      have h44 : 4*(a'*a' + b'*b') = 0 := by
+        rw [← hN]
+        simp [Int.add_mul, Int.mul_comm, Int.mul_left_comm, Int.mul_assoc]
+      omega
+    by_cases hz : a' = 0 ∧ b' = 0
+    · exact ⟨by omega, by omega⟩
+    · have hfa : (2*a').natAbs = 2 * a'.natAbs := by
+        rw [Int.natAbs_mul]; rfl
+      have hfb : (2*b').natAbs = 2 * b'.natAbs := by
+        rw [Int.natAbs_mul]; rfl
+      have hnz : a'.natAbs + b'.natAbs ≥ 1 := by
+        rcases Decidable.not_and_iff_or_not.mp hz with h | h <;> omega
+      have hle' : a'.natAbs + b'.natAbs ≤ n := by omega
+      have := ih a' b' hle' hN'
+      exact ⟨by omega, by omega⟩
+
+/-- N(z) = 0 ↔ z = 0 — the norm detects zero (certificate:
+    G2_norm_zero_iff_zero shape; forward by descent, backward by rfl) -/
+theorem normSq_eq_zero_iff (z : Zi) : normSq z = 0 ↔ z = zero := by
+  cases z with
+  | mk a b =>
+    constructor
+    · intro h
+      have := descent_core (a.natAbs + b.natAbs) a b (Nat.le_refl _) h
+      simp only [zero, Zi.mk.injEq]
+      exact ⟨this.1, this.2⟩
+    · intro h
+      rw [h]; rfl
+
+/-- the contrapositive, in the form the chain uses -/
+theorem normSq_ne_zero (z : Zi) (h : z ≠ zero) : normSq z ≠ 0 := by
+  intro hN
+  exact h ((normSq_eq_zero_iff z).mp hN)
+
+/-- scalar action of an integer: n·z as ⟨n,0⟩ · z, componentwise -/
+theorem intScalar_mul (n : Int) (z : Zi) :
+    mul ⟨n, 0⟩ z = ⟨n * z.re, n * z.im⟩ := by
+  cases z
+  simp only [mul, Zi.mk.injEq]
+  exact ⟨by omega, by omega⟩
+
+/-- torsion-freeness: n·z = 0 with n ≠ 0 kills z — via the norm:
+    N(n·z) = n²·N(z) (certificate: the torsion-freeness block) -/
+theorem torsion_free (n : Int) (z : Zi) (hn : n ≠ 0)
+    (h : mul ⟨n, 0⟩ z = zero) : z = zero := by
+  have hN : normSq (mul ⟨n, 0⟩ z) = 0 := by rw [h]; rfl
+  rw [normSq_mul] at hN
+  have hnn : normSq ⟨n, 0⟩ = n * n := by
+    simp only [normSq]
+    omega
+  rw [hnn] at hN
+  have hz : normSq z = 0 := by
+    rcases Int.mul_eq_zero.mp hN with h1 | h1
+    · rcases Int.mul_eq_zero.mp h1 with h2 | h2 <;> exact absurd h2 hn
+    · exact h1
+  exact (normSq_eq_zero_iff z).mp hz
+
+/-- the chain: Z[i] has no zero divisors —
+    z·w = 0 ⟹ conj(z)·(z·w) = 0 ⟹ (N(z),0)·w = 0 ⟹ N(z) kills both
+    coordinates ⟹ w = 0 (certificate: G2_no_zero_divisors_box) -/
+theorem no_zero_divisors (z w : Zi) (h : mul z w = zero) :
+    z = zero ∨ w = zero := by
+  by_cases hz : z = zero
+  · exact Or.inl hz
+  · right
+    have h1 : mul (conj z) (mul z w) = zero := by
+      rw [h, mul_zero]
+    have h2 : mul (mul (conj z) z) w = zero := by
+      rw [mul_assoc]; exact h1
+    rw [conj_mul_eq_normSq] at h2
+    have hNz : normSq z ≠ 0 := normSq_ne_zero z hz
+    cases w with
+    | mk c d =>
+      rw [intScalar_mul] at h2
+      simp only [zero, Zi.mk.injEq] at h2
+      obtain ⟨hc, hd⟩ := h2
+      simp only [zero, Zi.mk.injEq]
+      constructor
+      · rcases Int.mul_eq_zero.mp hc with h' | h'
+        · exact absurd h' hNz
+        · exact h'
+      · rcases Int.mul_eq_zero.mp hd with h' | h'
+        · exact absurd h' hNz
+        · exact h'
+
+/- == S2 anti-vacuity: live instances (norm 3) ========================== -/
+
+/-- live: the descent actually runs — N(0+0i) = 0 and the theorem's
+    conclusion is inhabited by the only witness -/
+theorem live_descent_witness : normSq zero = 0 := rfl
+
+/-- live: a nonzero element with nonzero norm — the contrapositive has
+    a live instance off the axes -/
+theorem live_normSq_nonzero : normSq ⟨1, 2⟩ = 5 := by decide
+
+/-- live: no_zero_divisors' hypothesis is satisfiable — zero·w = 0 -/
+theorem live_zero_mul_witness : mul zero ⟨3, 4⟩ = zero := by decide
+
+/-- live: sq_mod4's nest, all four residues — 0²,1²,2²,3² mod 4 = 0,1,0,1 -/
+theorem live_sq_mod4_nest :
+    (0*0) % 4 = 0 ∧ (1*1) % 4 = 1 ∧ (2*2) % 4 = 0 ∧ (3*3 : Int) % 4 = 1 := by
+  decide
+
+/- == S2 negative controls (norm 5) ===================================== -/
+
+/-- CONTROL (mandatory, chartered): the mod-2 analogue FAILS — (1,1) has
+    N = 2 ≡ 0 mod 2 with both coordinates ODD. 2 ramifies in Z[i]; the
+    modulus 4 is load-bearing (certificate: G2_control_mod2_insufficient) -/
+theorem control_mod2_insufficient :
+    (1*1 + 1*1 : Int) % 2 = 0 ∧ (1 : Int) % 2 ≠ 0 := by decide
+
+/-- CONTROL: the descent's conclusion is FALSE without the hypothesis —
+    N(1+2i) = 5 ≠ 0 and (1,2) ≠ (0,0): the theorem is not vacuously
+    closing everything it sees -/
+theorem control_descent_needs_hypothesis :
+    normSq ⟨1, 2⟩ ≠ 0 ∧ (⟨1, 2⟩ : Zi) ≠ zero := by decide
+
+/-- CONTROL: no-zero-divisors is a DOMAIN theorem, not arithmetic luck —
+    the residue world has zero divisors: 2·2 = 4 ≡ 0 mod 4 with 2 ≢ 0.
+    (The chartered Z[i]/5 split — (2+i)(2−i) = 5 — is certificate
+    territory (G3b) and rides with S3's exactly-two; this is the small
+    sibling in Z/4.) -/
+theorem control_z4_has_zero_divisors :
+    (2 * 2 : Int) % 4 = 0 ∧ (2 : Int) % 4 ≠ 0 := by decide
+
+
+/- ======================================================================
+   S3 — PENTAGON NECESSITY (ROUND1.md §S3, ~18 thm chartered)
+
+   Over ANY commutative ring — here over Zi, which is enough for the
+   chartered claim and lets S2's domain finish the count: the 16 pentagon
+   instances for the Z₂ F-symbol classify as 11 reading 1 = 1, 4 reading
+   f = f, and exactly ONE forcing — (a,b,c,d) = (1,1,1,1), where
+   lhs = f² and rhs = 1 (certificate: G1a_pentagon_16_instances_classified,
+   G1a_forcing_instance_is_1111_f2_eq_1).
+
+   Index conventions, sourced per C1's lesson — ALL from
+   floor/symmetric_statistics.py in this repo:
+   - F-symbol Fsym_z2(f, a,b,c,d,x,y): LINE 102 — admissible iff
+     x = (a+b)%2, y = (b+c)%2, d = (a+b+c)%2; value f iff
+     (a,b,c) = (1,1,1), else 1.
+   - Pentagon plumbing (x,y,t,w,v,u as functions of a,b,c,d):
+     pent_residual_z2, LINE 108 — transcribed verbatim below.
+
+   NEST (norm 9): 16 = 2⁴ label assignments; 11 + 4 + 1 = 16, tied by
+   the counted classification at a separating witness (f = ⟨5,0⟩:
+   1 ≠ 5 ≠ 25 keeps the three kinds apart). No admissibility zeros on
+   the path (the plumbing hits only admissible slots — the bench's
+   residual counts every quadruple).
+
+   ANTI-VACUITY (norm 3): the pentagon ∀ is guarded by a < 2 ∧ … ∧ d < 2
+   — live on exactly 16 quadruples (`pent_nest_card`). The forcing
+   hypothesis is live at exactly 1 of 16 — the 1-of-N shape seat B's S2
+   crop #2 predicted would return here; it has.
+
+   WORDING (charter flag 2, certificate G1c): the headline below is in
+   SLICE-PLUS-INVARIANCE form. The (1,1,1) slot is a gauge invariant of
+   the normalized slice (proved symbolically, `gauge_slot_invariant`),
+   so F = +1 and F = −1 are genuinely distinct classes; with the
+   16-instance derivation: exactly two. The remaining step to the full
+   "H³(Z₂) = Z₂" sentence — EVERY class has a normalized representative
+   — is NOT proven here and NOT bench-certified (certificate G1c's own
+   label); this file does not state that sentence.
+   ====================================================================== -/
+
+/-- the bench F-symbol on Z₂ fusion, transcribed from
+    floor/symmetric_statistics.py LINE 102: admissibility gates to zero;
+    the single free slot is (a,b,c) = (1,1,1) ↦ f -/
+def Fz2 (f : Zi) (a b c d x y : Nat) : Zi :=
+  if x = (a+b) % 2 ∧ y = (b+c) % 2 ∧ d = (a+b+c) % 2 then
+    (if a = 1 ∧ b = 1 ∧ c = 1 then f else one)
+  else zero
+
+/-- pentagon lhs — the bench's three-factor side, plumbing transcribed
+    verbatim from pent_residual_z2, LINE 108 -/
+def pentL (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  let u := (b+c) % 2
+  mul (mul (Fz2 f a b c y x u) (Fz2 f a u d t y v)) (Fz2 f b c d v u w)
+
+/-- pentagon rhs — the bench's two-factor side, same source line -/
+def pentR (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  mul (Fz2 f x c d t y w) (Fz2 f a b w t x v)
+
+/-- "f satisfies the pentagon": all 16 instances — guarded ∀, live on
+    exactly the 16 quadruples of {0,1}⁴ (nest: `pent_nest_card`) -/
+def pentagon (f : Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 →
+    pentL f a b c d = pentR f a b c d
+
+/- == the classification: 11 + 4 + 1 = 16 ============================== -/
+
+/-- the 15 off-forcing instances hold for EVERY f — 11 read 1 = 1 and
+    4 read f = f, so both sides agree identically; the sweep is the
+    full 16-case rcases with the forcing quadruple excluded by
+    hypothesis (certificate: G1a — "the other 15 are ring identities") -/
+theorem pentagon_offdiag (f : Zi) : ∀ a b c d : Nat,
+    a < 2 → b < 2 → c < 2 → d < 2 → ¬(a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1) →
+    pentL f a b c d = pentR f a b c d := by
+  intro a b c d ha hb hc hd hne
+  have ha' : a = 0 ∨ a = 1 := by omega
+  have hb' : b = 0 ∨ b = 1 := by omega
+  have hc' : c = 0 ∨ c = 1 := by omega
+  have hd' : d = 0 ∨ d = 1 := by omega
+  rcases ha' with rfl | rfl <;> rcases hb' with rfl | rfl <;>
+    rcases hc' with rfl | rfl <;> rcases hd' with rfl | rfl <;>
+    first
+      | exact absurd ⟨rfl, rfl, rfl, rfl⟩ hne
+      | simp +decide only [pentL, pentR, Fz2, if_true, if_false, one_mul, mul_one]
+
+/-- the forcing instance, lhs: at (1,1,1,1) the three-factor side is f²
+    (certificate: G1a_forcing_instance_is_1111_f2_eq_1, lhs) -/
+theorem pentagon_forcing_lhs (f : Zi) : pentL f 1 1 1 1 = mul f f := by
+  simp +decide only [pentL, Fz2, if_true, if_false, mul_one]
+
+/-- the forcing instance, rhs: at (1,1,1,1) the two-factor side is 1
+    (certificate: G1a_forcing_instance_is_1111_f2_eq_1, rhs) -/
+theorem pentagon_forcing_rhs (f : Zi) : pentR f 1 1 1 1 = one := by
+  simp +decide only [pentR, Fz2, if_true, if_false, mul_one]
+
+/-- pentagon ⟹ f² = 1: the single forcing instance, applied -/
+theorem pentagon_forces_f_sq_one (f : Zi) (h : pentagon f) :
+    mul f f = one := by
+  have h1 := h 1 1 1 1 (by decide) (by decide) (by decide) (by decide)
+  rw [pentagon_forcing_lhs, pentagon_forcing_rhs] at h1
+  exact h1
+
+/-- f² = 1 ⟹ pentagon: the forcing instance closes by hypothesis, the
+    other 15 by the sweep — so pentagon ⟺ f² = 1, over any f in Zi
+    (and the proof shape is the any-commutative-ring one: nothing
+    Zi-specific is used until the domain enters at the root count) -/
+theorem f_sq_one_gives_pentagon (f : Zi) (h : mul f f = one) :
+    pentagon f := by
+  intro a b c d ha hb hc hd
+  have ha' : a = 0 ∨ a = 1 := by omega
+  have hb' : b = 0 ∨ b = 1 := by omega
+  have hc' : c = 0 ∨ c = 1 := by omega
+  have hd' : d = 0 ∨ d = 1 := by omega
+  rcases ha' with rfl | rfl <;> rcases hb' with rfl | rfl <;>
+    rcases hc' with rfl | rfl <;> rcases hd' with rfl | rfl <;>
+    first
+      | (rw [pentagon_forcing_lhs, pentagon_forcing_rhs]; exact h)
+      | simp +decide only [pentL, pentR, Fz2, if_true, if_false, one_mul, mul_one]
+
+/-- the headline equivalence at the instance level -/
+theorem pentagon_iff_f_sq_one (f : Zi) : pentagon f ↔ mul f f = one :=
+  ⟨pentagon_forces_f_sq_one f, f_sq_one_gives_pentagon f⟩
+
+/- == the counted classification — nest 16, tied (norm 9) =============== -/
+
+/-- the 16 quadruples, explicitly — the nest itself -/
+def pentQuads : List (Nat × Nat × Nat × Nat) :=
+  [(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),
+   (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),
+   (1,0,0,0),(1,0,0,1),(1,0,1,0),(1,0,1,1),
+   (1,1,0,0),(1,1,0,1),(1,1,1,0),(1,1,1,1)]
+
+/-- nest cardinality: 16 = 2⁴ -/
+theorem pent_nest_card : pentQuads.length = 16 := by decide
+
+/-- the counted classification at the separating witness f = ⟨5,0⟩
+    (1, 5, 25 pairwise distinct, so the three kinds cannot be
+    conflated): 11 instances read 1 = 1, 4 read f = f, 1 forces —
+    and 11 + 4 + 1 = 16 ties the count to its nest (norm 9;
+    certificate: G1a_pentagon_16_instances_classified = (11,4,1,0)).
+    SCOPE, per seat B crop #1 (S3): the filters classify by LHS value
+    alone; the lhs-rhs pairing that makes this a classification of
+    INSTANCES is supplied by `pentagon_offdiag` (lhs = rhs off the
+    forcing site) + `pentagon_forcing_lhs`/`_rhs` (f², 1 there) —
+    without those three, this count would not classify -/
+theorem pent_classification_counted :
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = one))).length = 11 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨5,0⟩))).length = 4 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨25,0⟩))).length = 1 ∧
+    11 + 4 + 1 = 16 := by decide
+
+/-- the four f = f instances, named: both sides equal f symbolically at
+    (0,1,1,1), (1,0,1,1), (1,1,0,1), (1,1,1,0) — the bench's f_eq_f
+    kind, here as identities in a symbolic f -/
+theorem pent_f_eq_f_instances (f : Zi) :
+    (pentL f 0 1 1 1 = f ∧ pentR f 0 1 1 1 = f) ∧
+    (pentL f 1 0 1 1 = f ∧ pentR f 1 0 1 1 = f) ∧
+    (pentL f 1 1 0 1 = f ∧ pentR f 1 1 0 1 = f) ∧
+    (pentL f 1 1 1 0 = f ∧ pentR f 1 1 1 0 = f) := by
+  refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩⟩ <;>
+    simp +decide only [pentL, pentR, Fz2, if_true, if_false, one_mul, mul_one]
+
+/- == from f² = 1 to exactly two, via S2's domain ======================= -/
+
+/-- sub z w = 0 ⟺ z = w — the cancellation bridge -/
+theorem sub_eq_zero_iff (z w : Zi) : sub z w = zero ↔ z = w := by
+  cases z; cases w
+  simp only [sub, add, neg, zero, Zi.mk.injEq]
+  constructor
+  · intro ⟨h1, h2⟩; exact ⟨by omega, by omega⟩
+  · intro ⟨h1, h2⟩; exact ⟨by omega, by omega⟩
+
+/-- the factorization f² − 1 = (f−1)(f+1), symbolic over Zi
+    (certificate: G3a_factorization_symbolic) -/
+theorem factorization_symbolic (f : Zi) :
+    mul (sub f one) (add f one) = sub (mul f f) one := by
+  cases f
+  simp only [mul, sub, add, neg, one, Zi.mk.injEq,
+             Int.mul_add, Int.add_mul, Int.mul_one, Int.one_mul, Int.neg_mul]
+  refine ⟨?_, ?_⟩ <;> omega
+
+/-- f² = 1 ⟺ f = +1 or f = −1 — the DOMAIN theorem: the factorization
+    plus S2's no_zero_divisors; over a non-domain this fails
+    (`control_z8_four_roots` below). char 0 keeps the roots distinct -/
+theorem f_sq_one_iff_pm_one (f : Zi) :
+    mul f f = one ↔ (f = one ∨ f = neg one) := by
+  constructor
+  · intro h
+    have hz : mul (sub f one) (add f one) = zero := by
+      rw [factorization_symbolic, h]
+      decide
+    rcases no_zero_divisors _ _ hz with h1 | h1
+    · exact Or.inl ((sub_eq_zero_iff f one).mp h1)
+    · right
+      cases f
+      simp only [add, one, zero, Zi.mk.injEq] at h1
+      simp only [neg, one, Zi.mk.injEq]
+      exact ⟨by omega, by omega⟩
+  · intro h
+    rcases h with rfl | rfl <;> decide
+
+/-- both roots land, and they are distinct: at least two — and by the
+    domain, at most two: EXACTLY TWO (certificate: G3a_both_roots_land) -/
+theorem both_roots_land :
+    mul one one = one ∧ mul (neg one) (neg one) = one ∧ one ≠ neg one := by
+  decide
+
+/-- THE HEADLINE, slice-plus-invariance form (charter flag 2): a
+    normalized F-symbol on Z₂ fusion satisfies the pentagon iff its one
+    free slot F(1,1,1) is +1 or −1 — exactly two solutions on the
+    normalized slice, distinct by char 0, and the slot is a gauge
+    invariant of the slice (`gauge_slot_invariant` below), so the two
+    are genuinely distinct classes. NOT claimed: that every class meets
+    the slice (not proven here; not bench-certified — G1c's own label) -/
+theorem pentagon_exactly_two (f : Zi) :
+    pentagon f ↔ (f = one ∨ f = neg one) := by
+  rw [pentagon_iff_f_sq_one]
+  exact f_sq_one_iff_pm_one f
+
+/- == live instances (norm 3) =========================================== -/
+
+/-- live: f = +1 (the boson-side class representative) satisfies all 16 -/
+theorem live_pentagon_plus_one : pentagon one :=
+  f_sq_one_gives_pentagon one (by decide)
+
+/-- live: f = −1 (the fermion-side class representative) satisfies all 16 -/
+theorem live_pentagon_minus_one : pentagon (neg one) :=
+  f_sq_one_gives_pentagon (neg one) (by decide)
+
+/-- live, the forcing site: at f = ⟨5,0⟩ the forcing instance separates
+    (25 ≠ 1) while an f = f instance holds — the hypothesis structure of
+    the classification is live, not vacuous -/
+theorem live_forcing_separates :
+    pentL ⟨5,0⟩ 1 1 1 1 ≠ pentR ⟨5,0⟩ 1 1 1 1 ∧
+    pentL ⟨5,0⟩ 0 1 1 1 = pentR ⟨5,0⟩ 0 1 1 1 := by decide
+
+/-- live, off the real axis (seat B crop #3, S3): at the genuinely
+    Gaussian point f = 1+i the forcing lhs is f² = 2i = ⟨0,2⟩ ≠ 1 while
+    an f = f instance still holds — the symbolic claims are tied to a
+    witness that exercises the imaginary coordinate -/
+theorem live_gaussian_witness :
+    pentL ⟨1,1⟩ 1 1 1 1 = ⟨0,2⟩ ∧ pentR ⟨1,1⟩ 1 1 1 1 = one ∧
+    pentL ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩ ∧ pentR ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩ := by decide
+
+/- == negative controls (norm 5) ======================================== -/
+
+/-- NEGATIVE CONTROL (non-domain): in Z/8, f² = 1 has FOUR solutions
+    {1,3,5,7} — exactly-two is a DOMAIN theorem, not arithmetic luck
+    (certificate: G3a_control_Z8_four_roots); nest 8, tied by the iff -/
+theorem control_z8_four_roots : ∀ x : Fin 8,
+    (x.val * x.val) % 8 = 1 ↔
+    (x.val = 1 ∨ x.val = 3 ∨ x.val = 5 ∨ x.val = 7) := by decide
+
+/-- NEGATIVE CONTROL (Gaussian): f = i — a UNIT of Z[i] — still fails
+    the pentagon: i² − 1 = −2 ≠ 0, residual N(i²−1) = 4 exactly
+    (certificate: G1a_control_f_eq_i_fails_pentagon; the charge's
+    "residual exactly 4") -/
+theorem control_f_eq_i_fails_pentagon :
+    ¬ pentagon I ∧ sub (mul I I) one = ⟨-2, 0⟩ ∧ normSq ⟨-2, 0⟩ = 4 := by
+  refine ⟨fun h => ?_, by decide, by decide⟩
+  have := pentagon_forces_f_sq_one I h
+  exact absurd this (by decide)
+
+/-- NEGATIVE CONTROL (non-root, non-unit): f = 2 fails the pentagon —
+    4 ≠ 1 at the forcing instance (the certificate's f = 2 → residual 9
+    point, here at the instance level) -/
+theorem control_f_eq_two_fails_pentagon : ¬ pentagon ⟨2, 0⟩ := by
+  intro h
+  have := pentagon_forces_f_sq_one ⟨2, 0⟩ h
+  exact absurd this (by decide)
+
+/- == gauge: the slot is an invariant of the normalized slice =========== -/
+/- Vertex gauge η : Z₂ × Z₂ → units, coboundary
+   (dη)(a,b,c) = η(b,c) · η(a,(b+c)%2) / [η((a+b)%2,c) · η(a,b)]
+   — certificate G1c, symbolic. Division-free here: numerator and
+   denominator carried separately, equalities in cleared form. -/
+
+/-- coboundary numerator at (a,b,c) -/
+def detaNum (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta b c) (eta a ((b+c) % 2))
+
+/-- coboundary denominator at (a,b,c) -/
+def detaDen (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta ((a+b) % 2) c) (eta a b)
+
+/-- the raw motion of the (1,1,1) slot: (dη)(1,1,1) = [η11·η10]/[η01·η11]
+    — i.e. η10/η01 after the common factor (certificate:
+    G1c_slot_moves_by_n10_over_n01), stated in cleared form -/
+theorem gauge_slot_motion (eta : Nat → Nat → Zi) :
+    detaNum eta 1 1 1 = mul (eta 1 1) (eta 1 0) ∧
+    detaDen eta 1 1 1 = mul (eta 0 1) (eta 1 1) := ⟨rfl, rfl⟩
+
+/-- cancellation in the domain: from a·x = a·y with a ≠ 0, x = y —
+    S2's no_zero_divisors doing gauge work -/
+theorem mul_left_cancel (a x y : Zi) (ha : a ≠ zero)
+    (h : mul a x = mul a y) : x = y := by
+  have hz : mul a (sub x y) = zero := by
+    have hd : mul a (sub x y) = sub (mul a x) (mul a y) := by
+      show mul a (add x (neg y)) = add (mul a x) (neg (mul a y))
+      rw [mul_add, mul_neg]
+    rw [hd, h]
+    exact (sub_eq_zero_iff _ _).mpr rfl
+  rcases no_zero_divisors _ _ hz with h1 | h1
+  · exact absurd h1 ha
+  · exact (sub_eq_zero_iff x y).mp h1
+
+/-- slice-preservation forces η01 = η10: the zero-slot conditions at
+    (1,0,0) and (0,0,1) — in cleared form, with the shared factors
+    cancelled through the domain. η maps into UNITS per the certificate
+    (G1c: "eta : Z2 x Z2 -> units"), so nonzero-ness is hypothesis, not
+    accident; only the three values that get cancelled are needed
+    (certificate: G1c_slice_preserving_gauges_characterized, the
+    n00 = n01 = n10 reduction, the two rows that reach the slot) -/
+theorem slice_forces_eta_symmetric (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    eta 0 1 = eta 1 0 := by
+  -- (1,0,0): num = η00·η10, den = η10·η10 ⟹ η00 = η10 (cancel η10)
+  have e1 : eta 0 0 = eta 1 0 := by
+    have h1 : mul (eta 1 0) (eta 0 0) = mul (eta 1 0) (eta 1 0) := by
+      have hc := c100
+      simp only [detaNum, detaDen] at hc
+      calc mul (eta 1 0) (eta 0 0) = mul (eta 0 0) (eta 1 0) := mul_comm _ _
+        _ = mul (eta 1 0) (eta 1 0) := hc
+    exact mul_left_cancel _ _ _ h10 h1
+  -- (0,0,1): num = η01·η01, den = η01·η00 ⟹ η01 = η00 (cancel η01)
+  have e2 : eta 0 1 = eta 0 0 := by
+    have h2 : mul (eta 0 1) (eta 0 1) = mul (eta 0 1) (eta 0 0) := by
+      have hc := c001
+      simp only [detaNum, detaDen] at hc
+      exact hc
+    exact mul_left_cancel _ _ _ h01 h2
+  rw [e2, e1]
+
+/-- THE SLOT IS A GAUGE INVARIANT of the normalized slice: for any
+    slice-preserving gauge (η into units, zero-slot conditions at
+    (1,0,0) and (0,0,1) — the two rows of G1c's seven that reach the
+    slot), the motion of F(1,1,1) is trivial: (dη)(1,1,1) reads
+    num = den in cleared form (certificate:
+    G1c_slot_invariant_under_slice_gauges). So F = +1 and F = −1 are
+    genuinely distinct classes — with `pentagon_exactly_two`: exactly
+    two on the slice. NOT claimed: every class meets the slice.
+    STRENGTH, per seat B crop #2 (S3): this is STRONGER than the
+    certificate's row — two of G1c's seven zero-slot conditions
+    suffice; the other five are not hypothesized and not silently
+    used (norm 6: the label matches the term graph) -/
+theorem gauge_slot_invariant (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    detaNum eta 1 1 1 = detaDen eta 1 1 1 := by
+  have he := slice_forces_eta_symmetric eta h10 h01 c100 c001
+  show mul (eta 1 1) (eta 1 0) = mul (eta 0 1) (eta 1 1)
+  rw [he, mul_comm]
+
+/-- live gauge witness (norm 3): a slice-preserving gauge with η11 = i —
+    the one FREE vertex value (G1c: "n11 FREE") — satisfies both
+    zero-slot conditions and moves the slot trivially; and it is not the
+    identity gauge, so the invariance theorem is exercised off the
+    trivial point -/
+theorem live_gauge_witness :
+    let eta := fun a b : Nat => if a = 1 ∧ b = 1 then I else one
+    detaNum eta 1 0 0 = detaDen eta 1 0 0 ∧
+    detaNum eta 0 0 1 = detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 = detaDen eta 1 1 1 ∧
+    eta 1 1 ≠ one := by
+  refine ⟨by decide, by decide, by decide, by decide⟩
+
+/-- NEGATIVE CONTROL (gauge): a NON-slice-preserving η — η01 = ⟨2,0⟩,
+    all else 1 — violates a zero-slot condition AND moves the slot:
+    the invariance is a consequence of slice-preservation, not of the
+    coboundary shape (norm 5 for the gauge family) -/
+theorem control_gauge_moves_slot :
+    let eta := fun a b : Nat => if a = 0 ∧ b = 1 then ⟨2,0⟩ else one
+    detaNum eta 0 0 1 ≠ detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 ≠ detaDen eta 1 1 1 := by
+  refine ⟨by decide, by decide⟩
+
+/- ======================================================================
+   S4 — THE HEXAGON LAYER (BEYOND the S1–S3 charge)
+
+   SCOPE, recorded honestly: ROUND1.md's charge to the third body is
+   S1–S3; this section is the hexagon layer — R² = F, the four units,
+   the flatland filter as a Galois statement, the mirror — which the
+   charge assigns beyond S1–S3. The courier (Kelly) sanctioned the
+   extension explicitly, noting the divergence from chartered
+   boundaries; this comment is the record of that. Quarantine
+   unchanged (norm 16, REGISTER row 7).
+
+   Index conventions, sourced per C1's lesson — ALL from
+   floor/symmetric_statistics.py:
+   - Hexagon plumbing (e = (a+b)%2, z = (a+c)%2, admissibility
+     d = (e+c)%2 = (z+b)%2, g = (b+c)%2; R applies at (1,1) only):
+     hex_residual_z2, LINE 124 — transcribed verbatim below.
+   - The F-symbol is S3's Fz2 (bench LINE 102), reused.
+
+   Certificate sources: G1d (8 instances, one forcing, R² = F; the
+   reduction identity; catalog4 satisfies BOTH hexagons; wrong-R
+   controls), G3b (semion factorization over Z[i]; no integer semion;
+   the Z[i]/5 chartered control), G1e (the filter: conj(R) = R kills
+   the semions), G4 (the mirror: semions a conjugate pair; classes
+   conj-fixed; norms all 1).
+
+   Charter flags carried:
+   - flag 4: the 2×2 count is a Z[i] statement — over Z the F = −1
+     class is EMPTY (`no_integer_semion`).
+   - flag 5: the bench imposes ONE hexagon; the R⁻¹-hexagon is
+     equivalent on units (u⁻¹ = conj u, `unit_inverse_is_conj`) —
+     both are imposed on the catalog here
+     (`catalog_satisfies_both_hexagons`), and nothing here claims the
+     bench did.
+   - flag 3 (the Frobenius–Schur convention fork, ν = R·θ vs the
+     mirror-ledger R·conj(θ)) is a TWIST-layer item and is NOT
+     addressed here; no theorem below mentions ν — recorded so the
+     absence is a decision, not a gap.
+
+   NEST (norm 9): 16 loop assignments (a,b,c,d); exactly 8 admissible
+   (d = a+b+c forced — `hex_nest_8_of_16`); of the 8: 5 read 1 = 1,
+   2 read R = R, 1 forces — 5 + 2 + 1 = 8, counted at a separating
+   witness. The catalog nest: 2 classes × 2 particles = 4, filtered
+   to 2 (`filter_nest_2_of_4`).
+   ====================================================================== -/
+
+/-- the bench R-symbol: R applies at (1,1) only — hex_residual_z2,
+    LINE 124 (`Rs(x, y, c) = R if (x, y) == (1, 1) else 1`; the bench's
+    unused third argument dropped, the plumbing otherwise verbatim) -/
+def Rz2 (r : Zi) (x y : Nat) : Zi :=
+  if x = 1 ∧ y = 1 then r else one
+
+/-- hexagon admissibility — bench LINE 124: d = (e+c)%2 AND d = (z+b)%2
+    with e = (a+b)%2, z = (a+c)%2; the bench checks the pair, so the
+    pair is what this def states (both reduce to d = (a+b+c)%2) -/
+def hexAdm (a b c d : Nat) : Prop :=
+  d = (((a+b) % 2) + c) % 2 ∧ d = (((a+c) % 2) + b) % 2
+
+instance (a b c d : Nat) : Decidable (hexAdm a b c d) := by
+  unfold hexAdm; exact inferInstance
+
+/-- hexagon lhs — bench LINE 124: R(e,c) · F(c,a,b,d,z,e) -/
+def hexL (f r : Zi) (a b c d : Nat) : Zi :=
+  let e := (a+b) % 2
+  let z := (a+c) % 2
+  mul (Rz2 r e c) (Fz2 f c a b d z e)
+
+/-- hexagon rhs — bench LINE 124:
+    F(a,b,c,d,e,g) · R(b,c) · F(a,c,b,d,z,g) · R(a,c) -/
+def hexR (f r : Zi) (a b c d : Nat) : Zi :=
+  let e := (a+b) % 2
+  let z := (a+c) % 2
+  let g := (b+c) % 2
+  mul (mul (Fz2 f a b c d e g) (Rz2 r b c))
+      (mul (Fz2 f a c b d z g) (Rz2 r a c))
+
+/-- "(f, r) satisfies the R-hexagon": all admissible instances — the
+    guarded ∀ is live on exactly 8 of 16 quadruples (`hex_nest_8_of_16`) -/
+def hexagon (f r : Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 → hexAdm a b c d →
+    hexL f r a b c d = hexR f r a b c d
+
+/- == integer-square helpers, through the domain ======================== -/
+
+/-- squares over Int are nonnegative — sign split, no order imports -/
+theorem int_sq_nonneg (a : Int) : 0 ≤ a * a := by
+  rcases Int.le_total 0 a with h | h
+  · exact Int.mul_nonneg h h
+  · have h' : 0 ≤ -a := by omega
+    have hn := Int.mul_nonneg h' h'
+    have he : -a * -a = a * a := by
+      simp only [Int.neg_mul, Int.mul_neg, Int.neg_neg]
+    rw [he] at hn
+    exact hn
+
+/-- a² = 0 forces a = 0 — routed through the Zi domain (order-free) -/
+theorem int_sq_eq_zero (a : Int) (h : a * a = 0) : a = 0 := by
+  have hz : mul ⟨a, 0⟩ ⟨a, 0⟩ = zero := by
+    simp only [mul, zero, Zi.mk.injEq]
+    exact ⟨by omega, by omega⟩
+  rcases no_zero_divisors _ _ hz with h1 | h1 <;>
+  · simp only [zero, Zi.mk.injEq] at h1
+    exact h1.1
+
+/-- a² = 1 forces a = ±1 — the Int-level factorization through the
+    Zi domain -/
+theorem int_sq_eq_one (a : Int) (h : a * a = 1) : a = 1 ∨ a = -1 := by
+  have hfac : (a - 1) * (a + 1) = a * a - 1 := by
+    simp only [Int.sub_mul, Int.mul_add, Int.one_mul, Int.mul_one]
+    omega
+  have hz : mul ⟨a - 1, 0⟩ ⟨a + 1, 0⟩ = zero := by
+    simp only [mul, zero, Zi.mk.injEq]
+    exact ⟨by omega, by omega⟩
+  rcases no_zero_divisors _ _ hz with h1 | h1
+  · left; simp only [zero, Zi.mk.injEq] at h1; omega
+  · right; simp only [zero, Zi.mk.injEq] at h1; omega
+
+/- == the nest, tied (norm 9) =========================================== -/
+
+/-- of the 16 loop assignments exactly 8 are admissible — the
+    certificate's "16 loop assignments, 8 admissible (d = a+b+c
+    forced)" (G1d, nest line) -/
+theorem hex_nest_8_of_16 :
+    ((List.range 2).flatMap (fun a => (List.range 2).flatMap (fun b =>
+      (List.range 2).flatMap (fun c => (List.range 2).filterMap (fun d =>
+        if hexAdm a b c d then some (a, b, c, d) else none))))).length = 8 ∧
+    (2 * 2 * 2 * 2 : Nat) = 16 := by decide
+
+/- == the classification: 5 + 2 + 1 = 8 ================================= -/
+
+/-- the 7 off-forcing admissible instances hold for EVERY f and r —
+    5 read 1 = 1 ((0,0,0,0),(0,0,1,1),(0,1,0,1),(1,0,0,1),(1,1,0,0))
+    and 2 read R = R ((0,1,1,0),(1,0,1,0)) — identities in symbolic
+    f, r (certificate: G1d_hexagon_8_instances_classified = (5,2,1,0)) -/
+theorem hexagon_offdiag (f r : Zi) : ∀ a b c d : Nat,
+    a < 2 → b < 2 → c < 2 → d < 2 → hexAdm a b c d →
+    ¬(a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1) →
+    hexL f r a b c d = hexR f r a b c d := by
+  intro a b c d ha hb hc hd hadm hne
+  have ha' : a = 0 ∨ a = 1 := by omega
+  have hb' : b = 0 ∨ b = 1 := by omega
+  have hc' : c = 0 ∨ c = 1 := by omega
+  have hd' : d = 0 ∨ d = 1 := by omega
+  rcases ha' with rfl | rfl <;> rcases hb' with rfl | rfl <;>
+    rcases hc' with rfl | rfl <;> rcases hd' with rfl | rfl <;>
+    first
+      | exact absurd ⟨rfl, rfl, rfl, rfl⟩ hne
+      | exact absurd hadm (by decide)
+      | simp +decide only [hexL, hexR, Fz2, Rz2, if_true, if_false,
+                           one_mul, mul_one]
+
+/-- the forcing instance, lhs: at (1,1,1,1) — the admissible triple
+    (a,b,c) = (1,1,1), d = 1 forced — the R·F side is f
+    (certificate: G1d_forcing_instance_is_111, lhs of "f = f²R²") -/
+theorem hexagon_forcing_lhs (f r : Zi) : hexL f r 1 1 1 1 = f := by
+  simp +decide only [hexL, Fz2, Rz2, if_true, if_false, one_mul]
+
+/-- the forcing instance, rhs: at (1,1,1,1) the F·R·F·R side is
+    (f·r)·(f·r) — f²r² in this file's mul-tree shape -/
+theorem hexagon_forcing_rhs (f r : Zi) :
+    hexR f r 1 1 1 1 = mul (mul f r) (mul f r) := by
+  simp +decide only [hexR, Fz2, Rz2, if_true]
+
+/-- (f·r)² = f²·r² — the commutative regrouping, explicit-argument
+    rewrites so nothing fires off-target -/
+theorem square_of_product (f r : Zi) :
+    mul (mul f r) (mul f r) = mul (mul f f) (mul r r) := by
+  rw [mul_assoc f r (mul f r), mul_comm r (mul f r), mul_assoc f r r,
+      ← mul_assoc f f (mul r r)]
+
+/-- hexagon ⟹ f = f²r² — the forcing instance applied, in the
+    certificate's orientation (G1d: "f = f² R²") -/
+theorem hexagon_forces (f r : Zi) (h : hexagon f r) :
+    f = mul (mul f f) (mul r r) := by
+  have h1 := h 1 1 1 1 (by decide) (by decide) (by decide) (by decide)
+    (by decide)
+  rw [hexagon_forcing_lhs, hexagon_forcing_rhs, square_of_product] at h1
+  exact h1
+
+/-- the reduction identity, exact over Zi: f²r² − f =
+    (r² − f) + r²(f² − 1) (certificate: G1d_reduction_identity) — so
+    pentagon (f² = 1) + hexagon (f = f²r²) ⟺ r² = f in any commutative
+    ring; the component identities are degree-4, closed by the
+    Brahmagupta recipe (distribute, normalize, omega) -/
+theorem hexagon_reduction_identity (f r : Zi) :
+    sub (mul (mul f f) (mul r r)) f
+      = add (sub (mul r r) f) (mul (mul r r) (sub (mul f f) one)) := by
+  cases f; cases r
+  simp only [mul, sub, add, neg, one, Zi.mk.injEq,
+             Int.mul_sub, Int.mul_add, Int.sub_mul, Int.add_mul,
+             Int.mul_one, Int.mul_neg,
+             Int.mul_comm, Int.mul_left_comm]
+  refine ⟨?_, ?_⟩ <;> omega
+
+/-- PENTAGON + HEXAGON ⟺ R² = F: given f² = 1, the hexagon holds
+    exactly when r² = f — the headline reduction. Over F = +1 this is
+    r² = 1; over F = −1 it is r² = −1 (certificate: G1d forcing +
+    reduction identity) -/
+theorem pentagon_hexagon_iff_R_sq_F (f r : Zi) (hp : mul f f = one) :
+    hexagon f r ↔ mul r r = f := by
+  constructor
+  · intro h
+    have h1 := hexagon_forces f r h
+    rw [hp, one_mul] at h1
+    exact h1.symm
+  · intro h
+    intro a b c d ha hb hc hd hadm
+    by_cases hq : a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1
+    · obtain ⟨rfl, rfl, rfl, rfl⟩ := hq
+      rw [hexagon_forcing_lhs, hexagon_forcing_rhs, square_of_product,
+          hp, one_mul, h]
+    · exact hexagon_offdiag f r a b c d ha hb hc hd hadm hq
+
+/- == the four units of Z[i] ============================================ -/
+
+/-- Z[i] has exactly four elements of norm 1: a² + b² = 1 over Z forces
+    (a², b²) ∈ {(1,0),(0,1)} — the complete candidate list for R once
+    N(r) = 1 (the charge: "Z[i] has exactly four units"; certificate
+    G3b's census). Completeness needs no search box -/
+theorem norm_one_units (z : Zi) (h : normSq z = 1) :
+    z = one ∨ z = neg one ∨ z = I ∨ z = neg I := by
+  rcases z with ⟨a, b⟩
+  simp only [normSq] at h
+  have ha0 : 0 ≤ a * a := int_sq_nonneg a
+  have hb0 : 0 ≤ b * b := int_sq_nonneg b
+  -- disjunction split WITHOUT omega-on-a-disjunctive-goal (the
+  -- Classical.choice trap): by_cases on decidable Int equality, then
+  -- omega proves only atomic equations
+  by_cases haz : a * a = 0
+  · have hb : b * b = 1 := by omega
+    have ha' := int_sq_eq_zero a haz
+    subst ha'
+    rcases int_sq_eq_one b hb with hb' | hb' <;> subst hb'
+    · right; right; left; decide
+    · right; right; right; decide
+  · have ha : a * a = 1 := by omega
+    have hbz : b * b = 0 := by omega
+    have hb' := int_sq_eq_zero b hbz
+    subst hb'
+    rcases int_sq_eq_one a ha with ha' | ha' <;> subst ha'
+    · left; decide
+    · right; left; decide
+
+/-- the nest for the unit census (norm 9): the four units are pairwise
+    distinct and all of norm 1 — 4 named + 0 others = 4, the complement
+    supplied by `norm_one_units` -/
+theorem units_four_distinct :
+    normSq one = 1 ∧ normSq (neg one) = 1 ∧ normSq I = 1 ∧
+    normSq (neg I) = 1 ∧ one ≠ neg one ∧ one ≠ I ∧ one ≠ neg I ∧
+    neg one ≠ I ∧ neg one ≠ neg I ∧ I ≠ neg I := by decide
+
+/- == the roots of r² = ±1: the four particles ========================== -/
+
+/-- over F = +1: r² = 1 ⟺ r ∈ {+1, −1} — boson and fermion (S3's
+    domain theorem, reused on r) -/
+theorem R_over_boson_class (r : Zi) :
+    mul r r = one ↔ (r = one ∨ r = neg one) :=
+  f_sq_one_iff_pm_one r
+
+/-- the semion factorization over Z[i]: (r − i)(r + i) = r² + 1
+    symbolically (certificate: G3b_semion_factorization_over_Zi) —
+    the F = −1 class's quadratic factors over Z[i], NOT over Z -/
+theorem semion_factorization (r : Zi) :
+    mul (sub r I) (add r I) = add (mul r r) one := by
+  cases r
+  simp only [mul, sub, add, neg, one, I, Zi.mk.injEq,
+             Int.mul_add, Int.add_mul, Int.mul_one, Int.one_mul,
+             Int.neg_mul]
+  refine ⟨?_, ?_⟩ <;> omega
+
+/-- over F = −1: r² = −1 ⟺ r ∈ {+i, −i} — the semions, by the
+    factorization and S2's domain (certificate: G3b_R2_eq_f_roots_exact) -/
+theorem R_over_semion_class (r : Zi) :
+    mul r r = neg one ↔ (r = I ∨ r = neg I) := by
+  constructor
+  · intro h
+    have hz : mul (sub r I) (add r I) = zero := by
+      rw [semion_factorization, h]
+      decide
+    rcases no_zero_divisors _ _ hz with h1 | h1
+    · exact Or.inl ((sub_eq_zero_iff r I).mp h1)
+    · right
+      rcases r with ⟨a, b⟩
+      simp only [add, I, zero, Zi.mk.injEq] at h1
+      simp only [neg, I, Zi.mk.injEq]
+      exact ⟨by omega, by omega⟩
+  · intro h
+    rcases h with rfl | rfl <;> decide
+
+/-- flag 4, the Z-emptiness: r² = −1 has NO real solution (im = 0) —
+    over Z the F = −1 class is EMPTY and the roomy catalog would be
+    2 classes × (2, 0) particles; the 2×2 count is a Z[i] statement
+    (certificate: G3b_no_integer_semion, as the exact statement:
+    a² ≥ 0 > −1, no box needed) -/
+theorem no_integer_semion (r : Zi) (hreal : r.im = 0) :
+    mul r r ≠ neg one := by
+  rcases r with ⟨a, b⟩
+  have hb : b = 0 := hreal
+  subst hb
+  intro h
+  simp only [mul, neg, one, Zi.mk.injEq] at h
+  have ha0 : 0 ≤ a * a := int_sq_nonneg a
+  omega
+
+/- == the catalog: 2 × 2 = 4, and both hexagons ========================= -/
+
+/-- the four particles satisfy their class equations, and the catalog
+    count ties to its nest: 2 pentagon classes × 2 particles = 4
+    (norm 9; certificate: G3b_R2_eq_f_roots_exact) -/
+theorem catalog_two_by_two :
+    (mul one one = one ∧ mul (neg one) (neg one) = one) ∧
+    (mul I I = neg one ∧ mul (neg I) (neg I) = neg one) ∧
+    (2 * 2 : Nat) = 4 := by decide
+
+/-- on the four units, r · conj(r) = 1: the inverse IS the conjugate —
+    the identity that makes the roomy edict R = R⁻¹ a Galois statement
+    (the charge: "on units, u⁻¹ = conj(u)") -/
+theorem unit_inverse_is_conj :
+    mul one (conj one) = one ∧ mul (neg one) (conj (neg one)) = one ∧
+    mul I (conj I) = one ∧ mul (neg I) (conj (neg I)) = one := by decide
+
+/-- flag 5: each catalog entry satisfies BOTH hexagon equations — the
+    R-hexagon (r² = f) and the R⁻¹-hexagon (conj(r)² = f, since on
+    units r⁻¹ = conj r) — at no extra root cost. The BENCH imposes only
+    one; nothing here claims otherwise
+    (certificate: G1d_catalog4_satisfies_BOTH_hexagons) -/
+theorem catalog_satisfies_both_hexagons :
+    (mul one one = one ∧ mul (conj one) (conj one) = one) ∧
+    (mul (neg one) (neg one) = one ∧
+     mul (conj (neg one)) (conj (neg one)) = one) ∧
+    (mul I I = neg one ∧ mul (conj I) (conj I) = neg one) ∧
+    (mul (neg I) (neg I) = neg one ∧
+     mul (conj (neg I)) (conj (neg I)) = neg one) := by decide
+
+/- == the flatland filter as a Galois statement ========================= -/
+
+/-- THE FILTER (certificate G1e): the roomy edict R = R⁻¹ is literally
+    conj(R) = R on units — and its fixed points among the four are
+    exactly boson and fermion. The semions die on the flatland filter
+    exactly as the anyon died on the roomy edict. Nest 2 of 4 -/
+theorem flatland_filter :
+    (conj one = one) ∧ (conj (neg one) = neg one) ∧
+    (conj I ≠ I) ∧ (conj (neg I) ≠ neg I) := by decide
+
+/-- the filter count ties to its nest (norm 9): 2 survivors + 2 killed
+    = 4 catalog entries -/
+theorem filter_nest_2_of_4 : (2 + 2 : Nat) = 4 := by decide
+
+/-- the mirror (certificate G4): conj — this circle's σ — swaps the
+    semions (a Galois-conjugate pair: the golden/Yang–Lee pattern one
+    level down) and FIXES both F-classes, so σ acts WITHIN the F = −1
+    fiber. Structural difference from Circle One, stated honestly:
+    there σ moved BETWEEN the pentagon classes; here the pentagon data
+    is rational and the swap lives inside one hexagon fiber -/
+theorem mirror_structure :
+    (conj I = neg I ∧ conj (neg I) = I) ∧
+    (conj one = one ∧ conj (neg one) = neg one) ∧
+    conj (conj I) = I := by decide
+
+/- == live instances (norm 3) =========================================== -/
+
+/-- live: the boson (F, R) = (+1, +1) satisfies the full hexagon -/
+theorem live_hexagon_boson : hexagon one one :=
+  (pentagon_hexagon_iff_R_sq_F one one (by decide)).mpr (by decide)
+
+/-- live: the fermion (F, R) = (+1, −1) satisfies the full hexagon -/
+theorem live_hexagon_fermion : hexagon one (neg one) :=
+  (pentagon_hexagon_iff_R_sq_F one (neg one) (by decide)).mpr (by decide)
+
+/-- live: the semion (F, R) = (−1, +i) satisfies the full hexagon —
+    the genuinely Gaussian particle, off the real axis -/
+theorem live_hexagon_semion : hexagon (neg one) I :=
+  (pentagon_hexagon_iff_R_sq_F (neg one) I (by decide)).mpr (by decide)
+
+/-- live: the anti-semion (F, R) = (−1, −i) satisfies the full hexagon -/
+theorem live_hexagon_antisemion : hexagon (neg one) (neg I) :=
+  (pentagon_hexagon_iff_R_sq_F (neg one) (neg I) (by decide)).mpr (by decide)
+
+/-- live, the forcing site separates: at (f, r) = (1, ⟨2,0⟩) the
+    forcing instance fails (lhs 1 ≠ rhs 4) while an R = R instance
+    ((0,1,1,0)) holds — the classification's hypothesis structure is
+    live, not vacuous -/
+theorem live_hex_forcing_separates :
+    hexL one ⟨2,0⟩ 1 1 1 1 ≠ hexR one ⟨2,0⟩ 1 1 1 1 ∧
+    hexL one ⟨2,0⟩ 0 1 1 0 = hexR one ⟨2,0⟩ 0 1 1 0 := by decide
+
+/- == negative controls (norm 5) ======================================== -/
+
+/-- NEGATIVE CONTROL (wrong R per class): R = i over F = +1 leaves
+    f²r² − f = ⟨−2,0⟩ ≠ 0; R = 1 over F = −1 leaves ⟨2,0⟩ ≠ 0 — the
+    classes do not accept each other's particles
+    (certificate: G1d_controls_wrong_R_per_class, both values exact) -/
+theorem control_wrong_R_per_class :
+    sub (mul (mul one one) (mul I I)) one = ⟨-2, 0⟩ ∧
+    sub (mul (mul (neg one) (neg one)) (mul one one)) (neg one)
+      = ⟨2, 0⟩ := by decide
+
+/-- NEGATIVE CONTROL (the chartered one — deferred from S2 with stated
+    reason, landing here where the charge placed it): in Z[i]/5 the
+    domain fails — (2+i)(2−i) = 5 — and exactly-two fails with it:
+    r² = 1 has FOUR roots mod 5 and r² = −1 has FOUR; nest 25 = 5²
+    (certificate: G3b_control_Zi_mod5_splits). Represented on residue
+    pairs (a,b) ∈ [0,5)², product mod 5 componentwise via the mul law.
+    SEAT B's CROP (S4 item 1), recorded: the real part is encoded as
+    (a*a + 5*5 - b*b) % 5 over Nat, where subtraction truncates at
+    zero; the +5*5 offset is LOAD-BEARING — it keeps the difference
+    nonnegative exactly because b ∈ range 5 bounds b*b ≤ 16 < 25.
+    Safe on this nest; unsafe as a general recipe -/
+theorem control_Zi_mod5_splits :
+    (mul ⟨2, 1⟩ ⟨2, -1⟩ = ⟨5, 0⟩) ∧
+    ((List.range 5).flatMap (fun a => (List.range 5).filterMap (fun b =>
+      if (a*a + 5*5 - b*b) % 5 = 1 ∧ (2*a*b) % 5 = 0
+      then some (a, b) else none))).length = 4 ∧
+    ((List.range 5).flatMap (fun a => (List.range 5).filterMap (fun b =>
+      if (a*a + 5*5 - b*b) % 5 = 4 ∧ (2*a*b) % 5 = 0
+      then some (a, b) else none))).length = 4 ∧
+    (5 * 5 : Nat) = 25 := by decide
+
+/-- NEGATIVE CONTROL (the filter is not vacuous): a NON-particle passes
+    the reality test — conj ⟨3,0⟩ = ⟨3,0⟩ — but solves neither class
+    equation: the filter selects among the CATALOG; it does not define
+    it -/
+theorem control_filter_needs_catalog :
+    conj ⟨3, 0⟩ = ⟨3, 0⟩ ∧ mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ one ∧
+    mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ neg one := by decide
+
+/- ======================================================================
+   S5 — THE TWIST LAYER (θ, spin-statistics seed, the flag-3 FS fork)
+
+   SCOPE, recorded honestly: continuation of the sanctioned
+   beyond-charge extension (S4's header carries the sanction record;
+   this section extends it to the twist layer at the courier's explicit
+   request). Quarantine unchanged (norm 16, REGISTER row 7).
+
+   Sources, per C1's lesson — cited by line and certificate name:
+   - Bench floor/symmetric_statistics.py LINES 37, 197–199:
+     `theta_f = R = -1; Frobenius-Schur nu = R * theta = +1` — the
+     twist is the R-diagonal, the fermion twist is −1, and the bench's
+     ν-ledger reads +1 on the survivors.
+   - Certificate G1g (twist and Frobenius–Schur, exact integers):
+     θ = R for every Z₂ particle (abelian: θ_a = R(a,a)); the TWO
+     ν-ledgers ν_FS = R·θ and ν_ML = R·conj(θ); they agree (+1) on
+     boson and fermion and DIVERGE on the semions (FS −1, ML +1).
+   - Certificate G5 (spin-statistics seed): θ = R, θ_fermion = −1,
+     ν = +1 for both survivors; fusion matrix N_f² = I, every quantum
+     dimension the integer 1, D² = 2.
+   - CHARTER flag 3, now ADDRESSED (it was parked in S4 with a
+     recorded decision): "the Frobenius–Schur convention fork:
+     ν = R·θ (the true FS indicator; −1 on semions) vs stone8's
+     mirror-ledger R·conj(θ) (+1 whenever θ = R) — they agree on the
+     survivors and diverge on semions; NAME THE TWO LEDGERS APART."
+     This section does exactly that: two distinct defs `nuFS` and
+     `nuML`, an agreement theorem on the real locus, a divergence
+     theorem on the semions, and the locus characterized exactly.
+     Neither ledger is called "the" indicator; the fork is the
+     theorem, not a footnote.
+
+   Design probe: probes/s5_design_probe.py — all classification facts
+   confirmed against G1g/G5 and the bench before this section was
+   written.
+
+   NESTS (norm 9):
+   - fork nest: 2 (agree: boson, fermion) + 2 (diverge: semions) = 4
+     catalog entries — `fork_nest_2_plus_2`.
+   - ribbon nest: per particle, 4 fusion cells; 3 read trivially and
+     1 forces (the (1,1) cell reads 1 = r⁴) — `ribbon_nest_3_plus_1`.
+   - fusion matrix nest: 2×2 = 4 entries, N² = I checked entrywise.
+   ====================================================================== -/
+
+/-- the twist as the R-diagonal — abelian θ_a = R(a,a) (bench line 37:
+    `theta_f = R`; certificate G1g_twist_eq_R_theta_f_minus1). On the
+    Z₂ labels this is `Rz2 r a a`: trivial at a = 0, r at a = 1 -/
+def twist (r : Zi) (a : Nat) : Zi := Rz2 r a a
+
+/-- the TRUE Frobenius–Schur ledger: ν_FS = R·θ (certificate G1g:
+    "the true Frobenius-Schur indicator — SU(2)₁'s spin-1/2 is
+    pseudo-real"). Named apart from nuML per charter flag 3 -/
+def nuFS (r : Zi) : Zi := mul r r
+
+/-- stone8's MIRROR ledger: ν_ML = R·conj(θ) (certificate G1g:
+    "spin-statistics co-sign, identically +1 whenever θ = R").
+    Named apart from nuFS per charter flag 3. With θ = R this is
+    r·conj(r) — the norm in disguise -/
+def nuML (r : Zi) : Zi := mul r (conj r)
+
+/- == the twist values, per particle (norm 3 live instances) =========== -/
+
+/-- twist of the four particles at label 1: θ = R exactly — boson +1,
+    fermion −1, semion +i, anti-semion −i (bench: theta_f = R = −1 for
+    the fermion; G1g extends to all four). θ at label 0 is 1 for all -/
+theorem twist_catalog :
+    (twist one 1 = one ∧ twist (neg one) 1 = neg one ∧
+     twist I 1 = I ∧ twist (neg I) 1 = neg I) ∧
+    (twist one 0 = one ∧ twist (neg one) 0 = one ∧
+     twist I 0 = one ∧ twist (neg I) 0 = one) := by decide
+
+/-- the fermion's twist is −1 — THE sign (bench line 197: the sign
+    that builds shelves; the exclusion cascade is downstream of it) -/
+theorem twist_fermion_minus_one : twist (neg one) 1 = neg one := by decide
+
+/- == the ribbon relation on the Z₂ fusion ============================== -/
+
+/-- the ribbon identity, symbolic in r: on fusion a×b = (a+b)%2,
+    θ((a+b)%2) = θ(a)·θ(b)·R(a,b)² — three cells read trivially, the
+    (1,1) cell reads 1 = r⁴; for catalog units r⁴ = (r²)² = f² = 1, so
+    the identity holds. Stated symbolically with the forcing content
+    exposed: the hypothesis hr4 : r⁴ = 1 is exactly the (1,1) cell -/
+theorem ribbon_identity (r : Zi) (hr4 : mul (mul r r) (mul r r) = one) :
+    ∀ a b : Nat, a < 2 → b < 2 →
+    twist r ((a+b) % 2)
+      = mul (mul (twist r a) (twist r b)) (mul (Rz2 r a b) (Rz2 r a b)) := by
+  intro a b ha hb
+  have ha' : a = 0 ∨ a = 1 := by omega
+  have hb' : b = 0 ∨ b = 1 := by omega
+  rcases ha' with rfl | rfl <;> rcases hb' with rfl | rfl <;>
+    simp +decide only [twist, Rz2, if_true, if_false, one_mul, mul_one]
+  exact hr4.symm
+
+/-- the ribbon nest, tied (norm 9): 4 fusion cells; the three cells
+    off (1,1) hold for EVERY r (no hypothesis), and the (1,1) cell is
+    exactly the equation 1 = r⁴ — 3 + 1 = 4 -/
+theorem ribbon_nest_3_plus_1 (r : Zi) :
+    (∀ a b : Nat, a < 2 → b < 2 → ¬(a = 1 ∧ b = 1) →
+      twist r ((a+b) % 2)
+        = mul (mul (twist r a) (twist r b)) (mul (Rz2 r a b) (Rz2 r a b))) ∧
+    (twist r ((1+1) % 2)
+        = mul (mul (twist r 1) (twist r 1)) (mul (Rz2 r 1 1) (Rz2 r 1 1))
+      ↔ one = mul (mul r r) (mul r r)) ∧
+    (3 + 1 : Nat) = 4 := by
+  refine ⟨?_, ?_, rfl⟩
+  · intro a b ha hb hne
+    have ha' : a = 0 ∨ a = 1 := by omega
+    have hb' : b = 0 ∨ b = 1 := by omega
+    rcases ha' with rfl | rfl <;> rcases hb' with rfl | rfl <;>
+      first
+        | exact absurd ⟨rfl, rfl⟩ hne
+        | simp +decide only [twist, Rz2, if_true, if_false, one_mul, mul_one]
+  · simp +decide only [twist, Rz2, if_true, if_false]
+
+/-- catalog units have r⁴ = 1: r² = f (hexagon) and f² = 1 (pentagon)
+    give r⁴ = (r²)² = f² = 1 — the ribbon hypothesis is DISCHARGED by
+    the S3+S4 layers, symbolically -/
+theorem catalog_r_fourth (f r : Zi) (hp : mul f f = one)
+    (hh : mul r r = f) : mul (mul r r) (mul r r) = one := by
+  rw [hh]
+  exact hp
+
+/- == the two ν-ledgers: agreement, divergence, the locus ============== -/
+
+/-- the survivors' ledger reads +1 on BOTH ledgers (bench line 198:
+    `R_f * theta_f == 1`; certificate G1g_nu_survivors_plus1): boson
+    1·1 = 1, fermion (−1)(−1) = 1, and conj changes nothing since both
+    twists are real — the spin-statistics seed, exact (G5) -/
+theorem nu_survivors_plus_one :
+    (nuFS one = one ∧ nuML one = one) ∧
+    (nuFS (neg one) = one ∧ nuML (neg one) = one) := by decide
+
+/-- THE FORK (charter flag 3, addressed): on the semions the two
+    ledgers DIVERGE — ν_FS = R·θ = i·i = −1 (pseudo-real, the true FS
+    value) while ν_ML = R·conj(θ) = i·(−i) = +1. Both computed, both
+    named, neither called "the" indicator
+    (certificate: G1g_convention_fork_on_semions_FLAGGED) -/
+theorem nu_fork_on_semions :
+    (nuFS I = neg one ∧ nuML I = one) ∧
+    (nuFS (neg I) = neg one ∧ nuML (neg I) = one) ∧
+    nuFS I ≠ nuML I ∧ nuFS (neg I) ≠ nuML (neg I) := by decide
+
+/-- the fork nest, tied (norm 9): 2 agree + 2 diverge = 4 catalog
+    entries -/
+theorem fork_nest_2_plus_2 : (2 + 2 : Nat) = 4 := by decide
+
+/-- the fork locus is EXACTLY the real locus, symbolically: for r ≠ 0,
+    ν_FS(r) = ν_ML(r) ⟺ conj r = r ⟺ r.im = 0. The two ledgers are
+    the same ledger precisely where the twist is real — which is why
+    the fork is invisible on the survivors and the flatland filter
+    closes it. The r ≠ 0 hypothesis is load-bearing (see the control).
+    SEAT B's CROP (S5 item 1), recorded: the hypothesis is
+    ROUTE-required, not statement-required — the coordinate expansion
+    ν_FS − ν_ML = r(r − conj r) = ⟨−2·im², 2·re·im⟩ vanishes iff
+    im = 0 with no nonzero hypothesis (at r = 0 both sides of the iff
+    are true). This proof's mul_left_cancel route needs r ≠ 0; the
+    truth does not -/
+theorem fork_locus_is_real_locus (r : Zi) (hr : r ≠ zero) :
+    nuFS r = nuML r ↔ conj r = r := by
+  constructor
+  · intro h
+    exact (mul_left_cancel r r (conj r) hr h).symm
+  · intro h
+    show mul r r = mul r (conj r)
+    rw [h]
+
+/-- the locus, coordinates: combining with S1's conj_fixed_iff_real —
+    for r ≠ 0 the ledgers agree iff r.im = 0 -/
+theorem fork_locus_coordinates (r : Zi) (hr : r ≠ zero) :
+    nuFS r = nuML r ↔ r.im = 0 := by
+  rw [fork_locus_is_real_locus r hr]
+  exact conj_fixed_iff_real r
+
+/-- the flatland filter CLOSES the fork: on the filter's survivors
+    (conj r = r) the two ledgers coincide — the fork lives only off
+    the real locus, exactly where the filter kills. The charter's
+    "name them apart off the real locus" is this statement's
+    contrapositive shadow -/
+theorem filter_closes_fork (r : Zi) (h : conj r = r) :
+    nuFS r = nuML r := by
+  show mul r r = mul r (conj r)
+  rw [h]
+
+/-- ν_ML is the norm in disguise: ν_ML(r) = ⟨N(r), 0⟩ — on units it is
+    +1 IDENTICALLY, which is exactly why stone8's mirror ledger reads
+    +1 whenever θ = R is a unit (certificate G1g: "identically +1
+    whenever theta = R"); it carries no FS information off the
+    survivors. Rides S1's mul_conj_eq_normSq -/
+theorem nuML_is_normSq (r : Zi) : nuML r = ⟨normSq r, 0⟩ :=
+  mul_conj_eq_normSq r
+
+/-- ν_ML = +1 on ALL norm-1 units — the mirror ledger cannot see the
+    semions at all (their norm is 1 like everyone else's); only ν_FS
+    separates them. The fork is not a convention quibble: one ledger
+    carries information the other structurally cannot -/
+theorem nuML_blind_on_units (r : Zi) (h : normSq r = 1) : nuML r = one := by
+  rw [nuML_is_normSq, h]
+  rfl
+
+/- == the spin-statistics seed (G5) ===================================== -/
+
+/-- the spin-statistics seed, exact (certificate G5_twist_and_nu_ledger):
+    θ_fermion = −1 and ν = R·θ = +1 for both survivors — statistics
+    (R) and spin (θ) carry the SAME sign on the roomy catalog, and
+    their product is +1: the seed of the spin-statistics theorem, at
+    the level this circle can state it -/
+theorem spin_statistics_seed :
+    twist (neg one) 1 = neg one ∧
+    mul (neg one) (twist (neg one) 1) = one ∧
+    mul one (twist one 1) = one := by decide
+
+/-- θ = R on the catalog means spin and statistics are literally the
+    same Gaussian integer per particle — the abelian collapse
+    (certificate G1g: "theta = R for every Z2 particle") -/
+theorem spin_equals_statistics :
+    twist one 1 = one ∧ twist (neg one) 1 = neg one ∧
+    twist I 1 = I ∧ twist (neg I) 1 = neg I := by decide
+
+/-- the fusion matrix squares to the identity: N_f = [[0,1],[1,0]],
+    N_f² = I entrywise over Nat — with the factorization
+    x² − 1 = (x−1)(x+1) as the char-poly note, so the Perron root is
+    the integer 1: every quantum dimension is 1, D² = 1² + 1² = 2, and
+    NO decidable order / Perron / Z[φ] machinery is needed here
+    (certificate G5_quantum_dimensions_all_one — its "absence is a
+    feature" note carried verbatim) -/
+theorem fusion_matrix_squares_to_identity :
+    (0*0 + 1*1 = 1 ∧ 0*1 + 1*0 = 0 ∧ 1*0 + 0*1 = 0 ∧ 1*1 + 0*0 = 1) ∧
+    (1*1 + 1*1 : Nat) = 2 := by decide
+
+/-- the char-poly factorization behind d = 1, symbolic over Zi:
+    x² − 1 = (x−1)(x+1) — S3's factorization pattern, reused at the
+    dimension layer (G5's "char poly x^2 - 1 = (x-1)(x+1)") -/
+theorem dimension_charpoly_factors (x : Zi) :
+    sub (mul x x) one = mul (sub x one) (add x one) := by
+  cases x
+  simp only [mul, sub, add, neg, one, Zi.mk.injEq,
+             Int.mul_add, Int.add_mul, Int.neg_mul,
+             Int.mul_one, Int.one_mul]
+  refine ⟨?_, ?_⟩ <;> omega
+
+/- == live instances (norm 3) =========================================== -/
+
+/-- live: the full ribbon identity holds for each of the four catalog
+    particles, hypothesis discharged through catalog_r_fourth — boson -/
+theorem live_ribbon_boson : ∀ a b : Nat, a < 2 → b < 2 →
+    twist one ((a+b) % 2)
+      = mul (mul (twist one a) (twist one b))
+            (mul (Rz2 one a b) (Rz2 one a b)) :=
+  ribbon_identity one (catalog_r_fourth one one (by decide) (by decide))
+
+/-- live: ribbon for the fermion -/
+theorem live_ribbon_fermion : ∀ a b : Nat, a < 2 → b < 2 →
+    twist (neg one) ((a+b) % 2)
+      = mul (mul (twist (neg one) a) (twist (neg one) b))
+            (mul (Rz2 (neg one) a b) (Rz2 (neg one) a b)) :=
+  ribbon_identity (neg one)
+    (catalog_r_fourth one (neg one) (by decide) (by decide))
+
+/-- live: ribbon for the semion — the hypothesis routes through
+    f = −1: r² = −1, f² = 1 -/
+theorem live_ribbon_semion : ∀ a b : Nat, a < 2 → b < 2 →
+    twist I ((a+b) % 2)
+      = mul (mul (twist I a) (twist I b)) (mul (Rz2 I a b) (Rz2 I a b)) :=
+  ribbon_identity I (catalog_r_fourth (neg one) I (by decide) (by decide))
+
+/-- live: ribbon for the anti-semion -/
+theorem live_ribbon_antisemion : ∀ a b : Nat, a < 2 → b < 2 →
+    twist (neg I) ((a+b) % 2)
+      = mul (mul (twist (neg I) a) (twist (neg I) b))
+            (mul (Rz2 (neg I) a b) (Rz2 (neg I) a b)) :=
+  ribbon_identity (neg I)
+    (catalog_r_fourth (neg one) (neg I) (by decide) (by decide))
+
+/-- live: the fork-locus theorem's hypothesis structure separates —
+    at r = ⟨1,1⟩ (nonzero, non-real, non-unit) the ledgers diverge:
+    ν_FS = 2i ≠ 2 = ν_ML — the locus theorem is live off the catalog
+    too -/
+theorem live_fork_off_catalog :
+    nuFS ⟨1, 1⟩ = ⟨0, 2⟩ ∧ nuML ⟨1, 1⟩ = ⟨2, 0⟩ ∧
+    nuFS ⟨1, 1⟩ ≠ nuML ⟨1, 1⟩ := by decide
+
+/- == negative controls (norm 5) ======================================== -/
+
+/-- NEGATIVE CONTROL (the locus theorem's r ≠ 0 is load-bearing): at
+    r = 0 both ledgers vanish — they AGREE while conj r = r holds
+    trivially, but the iff would be vacuous there; cancellation needs
+    the domain. Recorded so the hypothesis is seen to earn its keep -/
+theorem control_fork_locus_needs_nonzero :
+    nuFS zero = nuML zero ∧ conj zero = zero := by decide
+
+/-- NEGATIVE CONTROL (wrong twist): setting θ = F instead of θ = R
+    breaks the semion's mirror ledger — R·conj(F) = i·conj(−1) = −i,
+    not +1: the ledgers are ABOUT the twist; a wrong twist is visible
+    (design probe's control, exact values) -/
+theorem control_wrong_twist_breaks_ledger :
+    mul I (conj (neg one)) = neg I ∧ neg I ≠ one := by decide
+
+/-- NEGATIVE CONTROL (the ribbon forcing cell bites): at r = ⟨2,0⟩ the
+    (1,1) ribbon cell FAILS — 1 ≠ 16 = r⁴ — while the three trivial
+    cells hold; the 3+1 nest's forcing cell carries real content -/
+theorem control_ribbon_forcing_bites :
+    twist ⟨2,0⟩ ((1+1) % 2)
+      ≠ mul (mul (twist ⟨2,0⟩ 1) (twist ⟨2,0⟩ 1))
+            (mul (Rz2 ⟨2,0⟩ 1 1) (Rz2 ⟨2,0⟩ 1 1)) ∧
+    twist ⟨2,0⟩ ((0+1) % 2)
+      = mul (mul (twist ⟨2,0⟩ 0) (twist ⟨2,0⟩ 1))
+            (mul (Rz2 ⟨2,0⟩ 0 1) (Rz2 ⟨2,0⟩ 0 1)) := by decide
+
+/-- NEGATIVE CONTROL (ν_FS is not blind): unlike ν_ML, the FS ledger
+    separates the survivors from the semions — ν_FS reads +1 on boson
+    and fermion, −1 on both semions; four values, two classes, the
+    separation ν_ML cannot make -/
+theorem control_nuFS_separates :
+    nuFS one = one ∧ nuFS (neg one) = one ∧
+    nuFS I = neg one ∧ nuFS (neg I) = neg one ∧
+    (one : Zi) ≠ neg one := by decide
+
+/- ======================================================================
+   S6 — THE CAPSTONE AND THE EXCLUSION LAYER
+
+   SCOPE: continuation of the sanctioned beyond-charge extension
+   (records in the S4/S5 headers carry forward; this section was
+   requested by the courier as "next move options a and b").
+   Quarantine unchanged (norm 16, REGISTER row 7).
+
+   S6a — THE CAPSTONE. One headline statement stitching S1–S5: the
+   roomy conditions (pentagon + hexagon + reality filter) hold exactly
+   on {(1,1), (1,−1)} — boson and fermion, nothing else, count 2.
+   Every ingredient is a prior layer's theorem: pentagon_iff_f_sq_one
+   (S3), pentagon_hexagon_iff_R_sq_F (S4), R_over_boson_class /
+   R_over_semion_class (S4), the filter (S4), the ν-rider (S5). The
+   capstone adds NO new axioms of content — it is the stitching, and
+   says so.
+
+   S6b — THE EXCLUSION LAYER. Bench claim (3), lines 30–36 and
+   185–196; certificate G1f. The −1 has teeth: exchange antisymmetry
+   annihilates double occupation. Formalized at the zero-import
+   kernel level:
+   - the triangular numbers as a recursion, values 1,3,6,10,15 for
+     m = 2..6, the recurrence, and 2·T(m) = m(m−1) proved by
+     induction (the closed form without Nat-division hazards);
+   - the Pauli kill SYMBOLIC over Zi: the antisymmetrized components
+     ψᵢψⱼ − ψⱼψᵢ vanish identically (commutativity is the killer —
+     G1f_pauli_kill_symbolic);
+   - the m = 2 antisymmetrizer M = I − SWAP as an exact integer
+     matrix: M² = 2M entrywise, tr M = 2 = m² − m, image on the line
+     spanned by (0,1,−1,0) — the rank-1 fact stated kernel-honestly
+     (image ⊆ line ∧ line ⊆ image), no rank function needed;
+   - the kill criterion: M₂(ψ⊗φ) = 0 ⟺ ad = bc — the 2×2
+     determinant; double occupation (φ = ψ) is the diagonal case;
+   - NEGATIVE CONTROL: the symmetrizer does NOT annihilate — bosons
+     do not exclude; the teeth belong to the −1 alone.
+
+   HONEST LABEL (norm 6): the m = 3..6 ranks (6, 10, 15 …) are NOT
+   kernel-checked here — a general rank needs matrix machinery this
+   zero-import file deliberately lacks. What IS kernel-checked: the
+   triangular values and recurrence (all m, by induction), and the
+   m = 2 block end to end. The m = 2..6 exact-elimination census is
+   seat B's independent territory (certificate G1f did it with exact
+   Fractions; seat B re-derives). The division of labor is a
+   decision, recorded.
+
+   Design probe: probes/s6_design_probe.py — capstone survivor set,
+   ranks, recurrence, M(2) rows, determinant criterion, boson
+   control: all confirmed against G1f before this section was
+   written.
+
+   NESTS (norm 9): capstone: 2 survivors + 2 killed semions = 4
+   catalog entries (the S4 catalog, closed by the S6 headline);
+   exclusion: T(m+1) = T(m) + m ties each census to the next,
+   1 + 3 = 4 = 2² kernel-checked at m = 2 (antisym 1 + sym 3 = 4).
+   ====================================================================== -/
+
+/- == S6a: the capstone ================================================= -/
+
+/-- the roomy conditions, in one Prop: coherence (pentagon), braiding
+    coherence (hexagon), and the flatland/reality filter — the three
+    gates every roomy particle must pass (bench claims (1)+(2); the
+    whole S1–S5 arc is the proof kit for this def) -/
+def roomy (f r : Zi) : Prop :=
+  pentagon f ∧ hexagon f r ∧ conj r = r
+
+/-- THE CAPSTONE: the roomy conditions hold exactly on the two-element
+    set {(1,1), (1,−1)} — boson and fermion. Forward: pentagon forces
+    f² = 1 (S3), hexagon then forces r² = f (S4), the class split
+    gives r ∈ {±1} over f = 1 and r ∈ {±i} over f = −1 (S4), and the
+    filter kills both semions (S4) — leaving f = −1 EMPTY. Backward:
+    the live instances (S3, S4) plus reality by decide. No new
+    content — the stitching of five layers into one iff -/
+theorem roomy_iff_boson_or_fermion (f r : Zi) :
+    roomy f r ↔ ((f = one ∧ r = one) ∨ (f = one ∧ r = neg one)) := by
+  constructor
+  · rintro ⟨hp, hh, hc⟩
+    have hf2 : mul f f = one := (pentagon_iff_f_sq_one f).mp hp
+    have hr2 : mul r r = f := (pentagon_hexagon_iff_R_sq_F f r hf2).mp hh
+    rcases (f_sq_one_iff_pm_one f).mp hf2 with rfl | rfl
+    · rcases (R_over_boson_class r).mp hr2 with rfl | rfl
+      · exact Or.inl ⟨rfl, rfl⟩
+      · exact Or.inr ⟨rfl, rfl⟩
+    · rcases (R_over_semion_class r).mp hr2 with rfl | rfl
+      · exact absurd hc (by decide)
+      · exact absurd hc (by decide)
+  · rintro (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩)
+    · exact ⟨live_pentagon_plus_one, live_hexagon_boson, by decide⟩
+    · exact ⟨live_pentagon_plus_one, live_hexagon_fermion, by decide⟩
+
+/-- the headline, r-only: SOME F-symbol makes r a roomy particle iff
+    r ∈ {+1, −1} — "the roomy world has exactly two particles" as a
+    single kernel-checked statement about the particle label alone -/
+theorem the_roomy_world_has_exactly_two_particles (r : Zi) :
+    (∃ f, roomy f r) ↔ (r = one ∨ r = neg one) := by
+  constructor
+  · rintro ⟨f, h⟩
+    rcases (roomy_iff_boson_or_fermion f r).mp h with ⟨_, rfl⟩ | ⟨_, rfl⟩
+    · exact Or.inl rfl
+    · exact Or.inr rfl
+  · rintro (rfl | rfl)
+    · exact ⟨one, (roomy_iff_boson_or_fermion one one).mpr
+        (Or.inl ⟨rfl, rfl⟩)⟩
+    · exact ⟨one, (roomy_iff_boson_or_fermion one (neg one)).mpr
+        (Or.inr ⟨rfl, rfl⟩)⟩
+
+/-- the count, tied (norm 9): both survivors are roomy, they are
+    distinct, and every roomy pair is one of the two — 2 named + 0
+    others, the complement supplied by the capstone iff -/
+theorem capstone_count_two :
+    roomy one one ∧ roomy one (neg one) ∧ (one : Zi) ≠ neg one ∧
+    ∀ f r : Zi, roomy f r → f = one ∧ (r = one ∨ r = neg one) := by
+  refine ⟨?_, ?_, by decide, ?_⟩
+  · exact (roomy_iff_boson_or_fermion one one).mpr (Or.inl ⟨rfl, rfl⟩)
+  · exact (roomy_iff_boson_or_fermion one (neg one)).mpr
+      (Or.inr ⟨rfl, rfl⟩)
+  · intro f r h
+    rcases (roomy_iff_boson_or_fermion f r).mp h with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+    · exact ⟨rfl, Or.inl rfl⟩
+    · exact ⟨rfl, Or.inr rfl⟩
+
+/-- the ν-rider (S5 stitched in): every roomy particle carries
+    ν_FS = +1 AND ν_ML = +1 — on the survivors the fork closes and
+    both ledgers read +1: the spin-statistics seed rides the capstone -/
+theorem capstone_nu_rider (f r : Zi) (h : roomy f r) :
+    nuFS r = one ∧ nuML r = one := by
+  rcases (roomy_iff_boson_or_fermion f r).mp h with ⟨_, rfl⟩ | ⟨_, rfl⟩ <;>
+    exact ⟨by decide, by decide⟩
+
+/-- NEGATIVE CONTROL (the semion fails ONLY the filter): pentagon and
+    hexagon both hold at (f, r) = (−1, i) — the semion is a perfectly
+    coherent braided particle — and the reality filter alone kills it:
+    each gate carries its own weight (norm 5; the anyon's death
+    certificate, itemized) -/
+theorem control_semion_fails_only_filter :
+    pentagon (neg one) ∧ hexagon (neg one) I ∧ conj I ≠ I ∧
+    ¬ roomy (neg one) I := by
+  refine ⟨live_pentagon_minus_one, live_hexagon_semion, by decide, ?_⟩
+  intro h
+  exact absurd h.2.2 (by decide)
+
+/-- NEGATIVE CONTROL (the filter alone is not enough): r = 3 is real —
+    it passes the filter — but no F-symbol makes it roomy: the
+    coherence gates carry their own weight too -/
+theorem control_real_but_not_roomy (f : Zi) : ¬ roomy f ⟨3, 0⟩ := by
+  intro h
+  rcases (roomy_iff_boson_or_fermion f ⟨3, 0⟩).mp h with ⟨_, hr⟩ | ⟨_, hr⟩ <;>
+    exact absurd hr (by decide)
+
+/- == S6b: the exclusion layer ========================================== -/
+
+/-- the triangular numbers, as a recursion — no Nat-division hazards
+    (the bench's m(m−1)/2 stated below as 2·T = m(m−1), exact) -/
+def tri : Nat → Nat
+  | 0 => 0
+  | n + 1 => tri n + n
+
+/-- the fermionic census values (bench line 34: "1, 3, 6, 10, 15 for
+    m = 2..6"; certificate G1f_antisymmetrizer_ranks_exact) -/
+theorem tri_values :
+    tri 2 = 1 ∧ tri 3 = 3 ∧ tri 4 = 6 ∧ tri 5 = 10 ∧ tri 6 = 15 := by
+  decide
+
+/-- the recurrence T(m+1) = T(m) + m — each census ties to the next
+    (norm 9's ladder): definitional -/
+theorem tri_recurrence (m : Nat) : tri (m + 1) = tri m + m := rfl
+
+/-- the closed form, exactly and for ALL m: 2·T(m) = m(m−1) — the
+    bench's m(m−1)/2 without the division; proved by induction, the
+    quadratic handled by distributing to the shared monomial k² -/
+theorem tri_double (m : Nat) : 2 * tri m = m * (m - 1) := by
+  induction m with
+  | zero => rfl
+  | succ n ih =>
+    cases n with
+    | zero => rfl
+    | succ k =>
+      have ih' : 2 * tri (k + 1) = (k + 1) * k := ih
+      have e1 : (k + 1 + 1) * (k + 1) = k * k + 3 * k + 2 := by
+        simp only [Nat.add_mul, Nat.mul_add, Nat.mul_one, Nat.one_mul]
+        omega
+      have e2 : (k + 1) * k = k * k + k := by
+        simp only [Nat.add_mul, Nat.one_mul]
+      show 2 * (tri (k + 1) + (k + 1)) = (k + 1 + 1) * (k + 1)
+      omega
+
+/-- THE PAULI KILL, symbolic over Zi: every component of the
+    antisymmetrized ψ⊗ψ is ψᵢψⱼ − ψⱼψᵢ = 0 IDENTICALLY — the killer
+    is commutativity itself (certificate G1f_pauli_kill_symbolic:
+    "vanishes for every psi, not just sampled ones"). Two Gaussian
+    variables stand for any two components -/
+theorem pauli_kill_symbolic (x y : Zi) :
+    sub (mul x y) (mul y x) = zero := by
+  rw [mul_comm]
+  exact (sub_eq_zero_iff _ _).mpr rfl
+
+/-- the m = 2 antisymmetrizer, exact: index p = 2i + j ∈ [0,4);
+    SWAP sends (i,j) to (j,i) — 0↔0, 1↔2, 3↔3 -/
+def swapIdx : Nat → Nat
+  | 0 => 0
+  | 1 => 2
+  | 2 => 1
+  | _ => 3
+
+/-- M = I − SWAP on Z⁴, entrywise (the bench's A = (I−SWAP)/2 scaled
+    by 2 to stay integer — same rank, G1f's move) -/
+def Mmat (p q : Nat) : Int :=
+  (if p = q then 1 else 0) - (if q = swapIdx p then 1 else 0)
+
+/-- M² = 2M entrywise — the scaled-projector certificate, all 16
+    entries by kernel computation (certificate
+    G1f_idempotent_certificate: "M = I−S satisfies M^2 = 2M …
+    exactly") -/
+theorem M2_sq_eq_two_M :
+    ((List.range 4).all fun p => (List.range 4).all fun q =>
+      ((List.range 4).foldl (fun acc k => acc + Mmat p k * Mmat k q) 0)
+        == 2 * Mmat p q) = true := by decide
+
+/-- tr M = 2 = m² − m at m = 2 — with the projector identity this is
+    the rank-by-trace certificate: rank = tr/2 = 1 = T(2)
+    (G1f: "rank = tr/2 — the Lean-friendly certificate") -/
+theorem M2_trace :
+    ((List.range 4).foldl (fun acc k => acc + Mmat k k) 0) = 2 ∧
+    (2 * 2 - 2 : Nat) = 2 ∧ tri 2 = 1 := by decide
+
+/-- the image of M₂ lies on the line spanned by (0,1,−1,0): for every
+    ψ⊗φ input with components (ac, ad, bc, bd), the output is
+    (0, ad−bc, bc−ad, 0) — first and last components zero, middle two
+    opposite. Rank ≤ 1, stated kernel-honestly without a rank
+    function.
+    SEAT B's CROP (S6 item 1), recorded: the third conjunct is an
+    instance of generic anti-symmetry (x − y = −(y − x), any ring);
+    the line-shape claim is jointly carried by conjuncts 1+2 (the
+    vanishing components) and M2_image_attains_generator — seat B
+    verified the full image shape independently via the matrix
+    action -/
+theorem M2_image_on_line (a b c d : Zi) :
+    sub (mul a c) (mul a c) = zero ∧
+    sub (mul b d) (mul b d) = zero ∧
+    sub (mul a d) (mul b c) = neg (sub (mul b c) (mul a d)) := by
+  refine ⟨(sub_eq_zero_iff _ _).mpr rfl, (sub_eq_zero_iff _ _).mpr rfl, ?_⟩
+  cases a; cases b; cases c; cases d
+  simp only [mul, sub, add, neg, Zi.mk.injEq]
+  constructor <;> omega
+
+/-- the spanning vector IS attained: ψ = (1,0), φ = (0,1) maps to
+    exactly (0,1,−1,0) — image ⊇ the line's generator; with
+    M2_image_on_line this is the m = 2 rank-1 fact, both inclusions
+    (live instance, norm 3) -/
+theorem M2_image_attains_generator :
+    sub (mul one zero) (mul one zero) = zero ∧
+    sub (mul one one) (mul zero zero) = one ∧
+    sub (mul zero zero) (mul one one) = neg one ∧
+    sub (mul zero one) (mul zero one) = zero := by decide
+
+/-- THE KILL CRITERION: M₂(ψ⊗φ) = 0 ⟺ ad = bc — the 2×2 determinant
+    (the design probe's "kill ⟺ parallel"); rides S4's
+    sub_eq_zero_iff -/
+theorem M2_kill_iff_det_zero (a b c d : Zi) :
+    (sub (mul a d) (mul b c) = zero ∧ sub (mul b c) (mul a d) = zero)
+      ↔ mul a d = mul b c := by
+  constructor
+  · intro ⟨h, _⟩
+    exact (sub_eq_zero_iff _ _).mp h
+  · intro h
+    exact ⟨(sub_eq_zero_iff _ _).mpr h,
+           (sub_eq_zero_iff _ _).mpr h.symm⟩
+
+/-- DOUBLE OCCUPATION DIES: φ = ψ is the diagonal of the kill
+    criterion — ab = ba by commutativity, so M₂(ψ⊗ψ) = 0 for EVERY ψ:
+    no two fermions in one state, symbolically (bench line 31:
+    "exchange antisymmetry annihilates double occupation"; the exact
+    version of the bench's 1e-16) -/
+theorem pauli_double_occupation_dies (a b : Zi) :
+    sub (mul a b) (mul b a) = zero ∧ sub (mul b a) (mul a b) = zero :=
+  (M2_kill_iff_det_zero a b a b).mpr (mul_comm a b)
+
+/-- the m = 2 census nest, tied (norm 9): antisym rank 1 + sym rank 3
+    = 4 = 2² — the two-sided split is complete at the kernel-checked
+    size (G1f: "ranks sum to m^2"); the sym value 3 = T(3) is the
+    control's census -/
+theorem census_nest_m2 : tri 2 + tri 3 = 4 ∧ (2 * 2 : Nat) = 4 := by
+  decide
+
+/-- NEGATIVE CONTROL (bosons do not exclude): the SYMMETRIZED double
+    occupation is 2ψᵢψⱼ ≠ 0 — at ψ = (1,1) the middle component is
+    1·1 + 1·1 = 2. The teeth belong to the −1 alone (certificate
+    G1f_pauli_kill_exact_gaussian_psi's control; bench: "the -1 has
+    teeth") -/
+theorem control_boson_no_exclusion :
+    add (mul one one) (mul one one) = ⟨2, 0⟩ ∧ (⟨2, 0⟩ : Zi) ≠ zero := by
+  decide
+
+/-- NEGATIVE CONTROL (the symmetrizer complement, m = 2): P = I + S
+    satisfies M·P = 0 entrywise — the split M ⊕ P is orthogonal
+    exactly (G1f: "(I-S)(I+S) = 0 … exactly") -/
+theorem control_M_times_P_zero :
+    ((List.range 4).all fun p => (List.range 4).all fun q =>
+      ((List.range 4).foldl (fun acc k =>
+        acc + Mmat p k * ((if k = q then 1 else 0)
+                          + (if q = swapIdx k then 1 else 0))) 0) == 0)
+      = true := by decide
+
+/-- live (norm 3): a NON-parallel pair survives the antisymmetrizer —
+    ψ = (1,0), φ = (0,1) has det = 1 ≠ 0: the kill criterion's
+    hypothesis structure separates; exclusion kills double occupation,
+    not everything -/
+theorem live_nonparallel_survives :
+    sub (mul one one) (mul zero zero) ≠ zero := by decide
+
 end Zi

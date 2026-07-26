@@ -1,0 +1,136 @@
+STATEMENTS ONLY — convergence (their S1) — mechanically extracted from Zi.lean.
+Proof bodies stripped by courier script; seat B sees definitions and claims only.
+
+namespace Zi
+structure GZ where
+  re : Int
+  im : Int
+deriving DecidableEq
+theorem ext {z w : GZ} (hre : z.re = w.re) (him : z.im = w.im) : z = w
+
+theorem ext_iff {z w : GZ} : z = w ↔ z.re = w.re ∧ z.im = w.im
+
+def zero : GZ := ⟨0, 0⟩
+def one : GZ := ⟨1, 0⟩
+def I : GZ := ⟨0, 1⟩
+def add (z w : GZ) : GZ := ⟨z.re + w.re, z.im + w.im⟩
+def neg (z : GZ) : GZ := ⟨-z.re, -z.im⟩
+def sub (z w : GZ) : GZ := add z (neg w)
+def mul (z w : GZ) : GZ := ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
+def conj (z : GZ) : GZ := ⟨z.re, -z.im⟩
+def norm (z : GZ) : Int := z.re * z.re + z.im * z.im
+theorem add_comm (z w : GZ) : add z w = add w z
+
+theorem add_assoc (x y z : GZ) : add (add x y) z = add x (add y z)
+
+theorem add_zero (z : GZ) : add z zero = z
+
+theorem zero_add (z : GZ) : add zero z = z
+
+theorem add_neg (z : GZ) : add z (neg z) = zero
+
+theorem neg_add (z : GZ) : add (neg z) z = zero
+
+theorem neg_neg (z : GZ) : neg (neg z) = z
+
+theorem sub_self (z : GZ) : sub z z = zero
+
+theorem mul_comm (z w : GZ) : mul z w = mul w z
+
+theorem mul_assoc (x y z : GZ) : mul (mul x y) z = mul x (mul y z)
+
+theorem mul_one (z : GZ) : mul z one = z
+
+theorem one_mul (z : GZ) : mul one z = z
+
+theorem mul_zero (z : GZ) : mul z zero = zero
+
+theorem zero_mul (z : GZ) : mul zero z = zero
+
+theorem left_distrib (x y z : GZ) : mul x (add y z) = add (mul x y) (mul x z)
+
+theorem right_distrib (x y z : GZ) : mul (add x y) z = add (mul x z) (mul y z)
+
+theorem mul_neg (z w : GZ) : mul z (neg w) = neg (mul z w)
+
+theorem neg_mul (z w : GZ) : mul (neg z) w = neg (mul z w)
+
+theorem I_squared : mul I I = neg one
+
+theorem I_squared_add_one : add (mul I I) one = zero
+
+theorem conj_add (z w : GZ) : conj (add z w) = add (conj z) (conj w)
+
+theorem conj_mul (z w : GZ) : conj (mul z w) = mul (conj z) (conj w)
+
+theorem conj_conj (z : GZ) : conj (conj z) = z
+
+theorem conj_one : conj one = one
+
+theorem conj_zero : conj zero = zero
+
+theorem conj_re (z : GZ) : (conj z).re = z.re
+
+theorem conj_I : conj I = neg I
+
+theorem mul_conj (z : GZ) : mul z (conj z) = ⟨norm z, 0⟩
+
+theorem conj_mul_self (z : GZ) : mul (conj z) z = ⟨norm z, 0⟩
+
+theorem brahmagupta_fibonacci (a b c d : Int) :
+    (a * a + b * b) * (c * c + d * d)
+      = (a * c - b * d) * (a * c - b * d) + (a * d + b * c) * (a * d + b * c)
+
+theorem norm_mul (z w : GZ) : norm (mul z w) = norm z * norm w
+
+theorem norm_conj (z : GZ) : norm (conj z) = norm z
+
+theorem norm_one : norm one = 1
+
+theorem norm_zero : norm zero = 0
+
+theorem norm_I : norm I = 1
+
+theorem norm_re (a : Int) : norm ⟨a, 0⟩ = a * a
+
+theorem live_1 : mul I I = ⟨-1, 0⟩
+
+theorem live_2 : mul ⟨1, 1⟩ ⟨1, -1⟩ = ⟨2, 0⟩
+
+theorem live_3 : norm ⟨3, 4⟩ = 25
+
+theorem live_4 : norm ⟨1, 1⟩ * norm ⟨1, -1⟩ = norm (mul ⟨1, 1⟩ ⟨1, -1⟩)
+
+theorem live_5 : conj ⟨5, -7⟩ = ⟨5, 7⟩
+
+theorem live_6 : mul ⟨2, 3⟩ (conj ⟨2, 3⟩) = ⟨13, 0⟩
+
+theorem live_7 : add ⟨2, 3⟩ (neg ⟨2, 3⟩) = zero
+
+theorem live_8 : mul ⟨0, 2⟩ ⟨0, 3⟩ = ⟨-6, 0⟩
+
+theorem control_one_ne_zero : one ≠ zero
+
+theorem control_conj_ne_id : conj I ≠ I
+
+def fakeMirror (z : GZ) : GZ := ⟨z.re, 2 * z.im⟩
+theorem control_fake_mirror_is_additive (z w : GZ) :
+    fakeMirror (add z w) = add (fakeMirror z) (fakeMirror w)
+
+theorem control_fake_mirror_fails_multiplicative :
+    fakeMirror (mul I I) ≠ mul (fakeMirror I) (fakeMirror I)
+
+def splitMul (z w : GZ) : GZ := ⟨z.re * w.re + z.im * w.im, z.re * w.im + z.im * w.re⟩
+theorem control_split_has_zero_divisors :
+    splitMul ⟨1, 1⟩ ⟨1, -1⟩ = zero
+
+theorem control_split_first_factor_is_nonzero :
+    (⟨1, 1⟩ : GZ) ≠ zero
+
+theorem control_split_second_factor_is_nonzero :
+    (⟨1, -1⟩ : GZ) ≠ zero
+
+theorem control_mul_of_same_factors_is_nonzero :
+    mul ⟨1, 1⟩ ⟨1, -1⟩ ≠ zero
+
+end Zi

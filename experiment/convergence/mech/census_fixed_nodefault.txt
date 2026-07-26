@@ -1,0 +1,18 @@
+FABLE'S PROPOSED REPAIR, PRE-VERIFIED — compile the generated copy from WITHIN the temp dir
+patch: out=$(cd "$(dirname "$gen")" && "$LEANBIN" "$(basename "$gen")" 2>&1)
+elan default removed (elan show -> 'no active toolchain'); run on their crate copy:
+exit=0
+---
+ C2 AXIOM CENSUS -- what every proof term actually leaned on
+==============================================================
+ toolchain: 
+--------------------------------------------------------------
+file                   theorems   axiom-free       rest
+Zi                           76           24         52
+--------------------------------------------------------------
+TOTAL                        76           24         52
+sorryAx                       0
+Classical.choice              0
+==============================================================
+RESULT: no sorryAx, no Classical.choice; every theorem's axioms named.  PASS.
+VERDICT: the one-line repair closes the condition — census PASSES with no elan default, 76 = 24+40+12.

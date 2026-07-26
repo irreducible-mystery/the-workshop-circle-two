@@ -1,0 +1,38 @@
+-- capstone (direct exhaustion, independent of the stitching) --
+PASS  candidate_box_complete  — N(f) = N(r) = 1 forced by the coherence equations; norm-1 census = the four units — box complete by a² ≤ 1 ⟹ |a| ≤ 1
+PASS  roomy_iff_boson_or_fermion  — exhaustion over 4×4 unit pairs: roomy = [((1, 0), (-1, 0)), ((1, 0), (1, 0))] — exactly {(1,1), (1,−1)}; every pentagon/hexagon instance run, not cited
+PASS  the_roomy_world_has_exactly_two_particles  — ∃f roomy(f,r) ⟺ r ∈ {+1, −1}; count = 2, tied
+PASS  capstone_nu_rider  — ν_FS = ν_ML = +1 on both survivors — the fork closed on the capstone set
+PASS  control_semion_fails_only_filter  — the semion passes pentagon AND hexagon, dies on the filter alone — each gate weighed separately
+PASS  control_real_but_not_roomy  — r = 3 real but not roomy for any unit f (hexagon forcing fails: 9 ≠ ±1) — the filter alone is not enough
+
+-- exclusion: exact ranks m = 2..6 (the full census, seat B's half) --
+PASS  antisym_ranks_full_census  — exact elimination, m = 2..6: [1, 3, 6, 10, 15] = m(m−1)/2 — the honest label's division of labor honored: this census is seat B's half, and it agrees with tri_values at m = 2 and with the closed form at every m
+PASS  sym_ranks_control  — symmetrizer [3, 6, 10, 15, 21] = m(m+1)/2 (NOT the fermionic census); ranks sum to m² — the split complete at every size
+PASS  projector_and_trace_all_m  — M² = 2M and tr M = m² − m exactly for all m = 2..6 — the rank-by-trace certificate seat P kernel-checks at m = 2 holds at every size
+PASS  MP_orthogonal_all_m  — M(I+S) = 0 exactly for all m — seat P's m = 2 control, extended
+PASS  tri_values_and_recurrence  — values, recurrence, and 2T(m) = m(m−1) — checked to m = 9, beyond the census range
+PASS  ranks_equal_tri  — the exact matrix ranks ARE the triangular numbers — the two routes (elimination vs recursion) meet
+PASS  pauli_kill_symbolic  — x_i x_j − x_j x_i = 0 identically, 16 component polynomials — the kill is commutativity, verified coefficientwise
+PASS  Mmat_matches_I_minus_SWAP  — the statements' Mmat/swapIdx encode exactly I − SWAP at m = 2 — transcription verified against the independent construction
+PASS  M2_sq_eq_two_M_and_trace  — M² = 2M entrywise; tr = 2 ⟹ rank 1 = T(2) by the trace certificate
+PASS  M2_image_on_line  — M(ψ⊗φ) = (0, ad−bc, bc−ad, 0) coefficientwise — components 0 and 3 the zero polynomial, 1 and 2 opposite: image on the line
+PASS  M2_image_attains_generator  — ψ = e₁, φ = e₂ attains (0,1,−1,0) — both inclusions: rank 1
+PASS  M2_kill_iff_det_zero  — kill ⟺ ad = bc, checked over a Gaussian grid — the 2×2 determinant criterion
+PASS  pauli_double_occupation_dies  — φ = ψ diagonal: ab − ba the zero polynomial — no two fermions in one state, symbolic
+PASS  census_nest_m2  — antisym 1 + sym 3 = 4 = m² at the kernel-checked size
+PASS  control_boson_no_exclusion  — symmetrized double occupation = 2 ≠ 0 — bosons do not exclude; the teeth belong to the −1 alone
+PASS  live_nonparallel_survives  — det(e₁, e₂) = 1 ≠ 0: exclusion kills double occupation, not everything
+
+-- plant --
+PASS  plant_mutant_swap_caught  — identity-swap mutant: M = 0, rank 0 ≠ 1, trace 0 ≠ 2 — a wrong swap transcription cannot pass the trace certificate
+
+====================================================================
+checks run: 23;  passed: 23;  failed: 0
+VERDICT: capstone re-derived by direct exhaustion (every
+         pentagon/hexagon instance run on the complete unit
+         box — not by citing the layers); exclusion census
+         completed exactly for m = 2..6 (the honest label's
+         division of labor honored); symbolic kill
+         coefficientwise; nests tied; the plant bitten.
+EXIT: 0

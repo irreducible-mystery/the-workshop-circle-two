@@ -1,0 +1,45 @@
+-- twist values --
+PASS  twist_catalog_label1  — θ = R at label 1: +1, −1, +i, −i
+PASS  twist_catalog_label0  — θ trivial at the vacuum label
+PASS  twist_fermion_minus_one  — THE sign — the fermion's twist is −1
+
+-- ribbon (symbolic in r) --
+PASS  ribbon_nest_3_plus_1  — trivial cells [(0, 0), (0, 1), (1, 0)]; forcing cell [(1, 1)] — 3 + 1 = 4
+PASS  ribbon_forcing_cell_is_r4  — (1,1) cell: lhs = 1, rhs = r⁴ coefficientwise
+PASS  catalog_r_fourth  — r² = f, f² = 1 hold per particle; r⁴ = (r²)² = f² = 1 — the ribbon hypothesis discharged by the S3+S4 layers
+PASS  live_ribbon_all_four  — 4 particles × 4 cells = 16 ribbon instances, all exact
+
+-- the fork (charter flag 3) --
+PASS  nu_survivors_plus_one  — both ledgers +1 on boson and fermion
+PASS  nu_fork_on_semions  — ν_FS = −1 vs ν_ML = +1 on BOTH semions — the fork, exact
+PASS  fork_nest_2_plus_2  — agree ['boson', 'fermion'] + diverge ['anti-semion', 'semion'] = 4
+PASS  fork_locus_coordinate_route  — ν_FS − ν_ML = −2·ri² + 2·rr·ri·i coefficientwise — vanishes iff ri = 0 (both coords zero ⟺ ri² = 0 ∧ rr·ri = 0 ⟺ ri = 0, no nonzero-r needed for THIS direction); independent of seat P's cancellation route
+PASS  fork_locus_is_real_locus_grid  — for r ≠ 0 on [−5,5]²: ledgers agree ⟺ im = 0 — 120 points, secondary to the coordinate route
+PASS  filter_closes_fork  — conj-fixed r (real) ⟹ ledgers coincide — the filter closes the fork
+PASS  nuML_is_normSq  — r·conj(r) = rr² + ri² coefficientwise (= ⟨N(r), 0⟩) — the mirror ledger IS the norm
+PASS  nuML_blind_on_units  — ν_ML = +1 on all four norm-1 units — structurally blind to the semions; only ν_FS separates
+
+-- spin-statistics seed --
+PASS  spin_statistics_seed  — θ_f = −1; R·θ = +1 on both survivors — the seed, exact
+PASS  spin_equals_statistics  — θ = R per particle: spin and statistics are the same Gaussian integer (abelian collapse)
+PASS  fusion_matrix_squares_to_identity  — N_f² = I entrywise; D² = 1² + 1² = 2
+PASS  dimension_charpoly_factors  — x² − 1 = (x−1)(x+1) coefficientwise over Z[i][x]
+
+-- live + controls --
+PASS  live_fork_off_catalog  — r = 1+i: ν_FS = 2i ≠ 2 = ν_ML — the locus theorem live off the catalog (non-unit, non-real)
+PASS  control_fork_locus_needs_nonzero  — r = 0: both ledgers vanish; cancellation needs the domain — the r ≠ 0 hypothesis earns its keep
+PASS  control_wrong_twist_breaks_ledger  — θ = F (wrong) on the semion: R·conj(θ) = −i ≠ +1 — a wrong twist is visible in the ledger
+PASS  control_ribbon_forcing_bites  — r = 2: the (1,1) cell fails (1 ≠ 16) while (0,1) holds — the forcing cell carries content
+PASS  control_nuFS_separates  — ν_FS: {+1, +1, −1, −1} — separates survivors from semions, the separation ν_ML cannot make
+
+-- plant --
+PASS  plant_mutant_twist_caught  — θ = R(a,0) mutant gives semion R·θ = i ≠ −1 — a wrong twist definition cannot reproduce the fork values; the instrument bites
+
+====================================================================
+checks run: 25;  passed: 25;  failed: 0
+VERDICT: every S5 claim re-derived — ribbon and char-poly
+         coefficientwise in Z[i][rr, ri]; the fork locus by an
+         independent coordinate route (ν_FS − ν_ML expanded,
+         not cancelled); both ledgers named apart and computed;
+         nests exhausted and tied; the plant bitten.
+EXIT: 0

@@ -1,0 +1,34 @@
+[step 0] verify_theirs_s2.py on the carried layer: exit 0
+PASS  pent_0000_to_1110 (15 non-forcing instances)  — 11 read 1=1, 4 read f=f — identities for EVERY f, coefficientwise
+PASS  classification_11_4_1  — eleven 1=1, four f=f, one forcing — matches their G1a certificate AND my own S3 layer's count
+PASS  pent_1111_lhs  — the forcing side IS f^2, symbolically
+PASS  pent_1111_rhs  — the other side IS 1
+PASS  pentagon_forces_sq  — pentagonHolds f -> instance (1,1,1,1) -> f^2 = 1; the forcing instance is unique
+PASS  sq_gives_pentagon  — under f^2 = 1 the forcing instance holds; the other 15 hold unconditionally
+PASS  pentagon_iff_sq  — both directions above — the iff
+PASS  factor_sq_sub_one  — f^2 - 1 = (f-1)(f+1) coefficientwise over Z[i]
+PASS  sub_eq_zero_iff  — sub f g has components f.re-g.re, f.im-g.im — zero iff f = g, componentwise
+PASS  add_eq_zero_iff_eq_neg  — add f g = 0 iff f = -g: components f.re+g.re, f.im+g.im; neg involutive
+PASS  exactly_two_roots  — COORDINATE ROUTE: 2 fr fi = 0 => fr = 0 (dies: -fi^2 = 1) or fi = 0 (fr^2 = 1, |fr| >= 2 dies by (2+m)^2 >= 4); both survivors land — no domain theorem used
+PASS  one_ne_neg_one  — char 0: the two roots are distinct
+PASS  pentagon_holds_at_one  — all 16 instances, exact
+PASS  pentagon_holds_at_neg_one  — all 16 instances, exact
+PASS  control_Z8_has_four_roots  — Z/8: four roots — exactly-two is a DOMAIN theorem
+PASS  control_Z8_other_four_are_not_roots  — and the other four are NOT roots — 'four' is exact, matching their sharpened control
+PASS  control_f_eq_I_fails_pentagon  — f=i: forcing instance reads (-1, 0) != (1, 0) — a unit that fails
+PASS  control_I_is_not_a_root  — i^2 = -1 != 1
+PASS  live_13
+PASS  live_14
+PASS  live_15  — (1,1,1,1,0,0): admissible (x=0=(1+1)%2, y=0=(1+1)%2, d=1=(1+1+1)%2), all-ones -> f = one here
+PASS  live_16  — inadmissible (d=1 but (0+0+0)%2=0) -> zero — the admissibility-zero witness
+PASS  live_17  — admissible (x=1=(0+1)%2, y=0=(1+1)%2, d=0=(0+1+1)%2), not all-ones -> one — the tuple that REFUTED their first label; my evaluation agrees with the kernel's refusal
+PASS  Fs_normalized_off_111  — off (1,1,1) the F-symbol is one or zero — 4^6 grid + definitional: the inner branch is the ONLY source of f and requires a=b=c=1
+PASS  Fs_one_of_zero_label  — admissible with a zero label -> one, all such tuples
+PASS  exactly_two_in_the_slice  — pentagon_iff_sq composed with exactly_two_roots — the headline, scope in the name
+====================================================================
+S3-layer checks: 26;  passed: 26;  failed: 0
+(carried 76 verified by step 0, exit 0)
+VERDICT: two-body S3 verified — the pentagon nest re-enumerated
+         symbolically from their index conventions (complete over
+         Z[i]); EXACTLY TWO re-proved by the coordinate route,
+         consuming no domain theorem; controls and lives exact.

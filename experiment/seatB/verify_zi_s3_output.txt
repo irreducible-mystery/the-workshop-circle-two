@@ -1,0 +1,58 @@
+====================================================================
+SEAT B — S3 verification: pentagon necessity
+statements: Zi_statements_v4.txt (83 theorems; S3 = the new 26)
+====================================================================
+
+-- the nest --
+PASS  pent_nest_card_16  — 16 = 2^4 quadruples; the statements' pentQuads list has the same 16
+PASS  pentQuads_is_the_full_nest  — the explicit list is exactly {0,1}^4, no repeats, no gaps
+
+-- the 16-instance classification (symbolic f = fr + fi·i) --
+PASS  classification_11_4_1_0  — 11 read 1=1, 4 read f=f, exactly ONE forces, none other — as POLYNOMIAL identities in the coordinates of f, any f
+PASS  counts_tie_to_nest_11_4_1  — norm 9: count + count + count = nest
+PASS  forcing_is_1111  — the single forcing instance is (a,b,c,d) = (1,1,1,1)
+PASS  forcing_lhs_is_f_squared  — pentagon_forcing_lhs: lhs = f² symbolically
+PASS  forcing_rhs_is_one  — pentagon_forcing_rhs: rhs = 1 symbolically
+PASS  f_eq_f_at_the_four_stated  — pent_f_eq_f_instances: the four sites, both sides f, symbolically
+PASS  offdiag_holds_for_every_f  — pentagon_offdiag: the 15 non-forcing instances are identities in f
+
+-- pentagon ⟺ f² = 1 --
+PASS  pentagon_iff_f_sq_one_structure  — the single obstruction polynomial is exactly f² − 1
+PASS  live_pentagon_plus_one  — f = +1 satisfies all 16 instances
+PASS  live_pentagon_minus_one  — f = −1 satisfies all 16 instances
+PASS  live_forcing_separates  — at f = 5: forcing instance separates (25 ≠ 1), f=f instance holds
+PASS  pent_classification_counted_at_witness  — the Lean's filter counts at f = ⟨5,0⟩: (11, 4, 1); 1, 5, 25 pairwise distinct so the kinds cannot be conflated
+
+-- factorization and the domain --
+PASS  sub_eq_zero_iff  — z − w = 0 ⟺ z = w — exhaustive on the 49×49 grid (secondary evidence; the claim is coordinatewise arithmetic, true by Int)
+PASS  factorization_symbolic  — (f−1)(f+1) = f²−1 as polynomials over Z[i] — exact, symbolic
+PASS  norm_one_units_are_four  — a² + b² = 1 over Z: exactly the four units of Z[i] — nest: the 9-point grid [−1,1]² suffices since a² + b² = 1 forces |a|,|b| ≤ 1
+PASS  f_sq_one_iff_pm_one  — of the four norm-1 elements, exactly ±1 square to 1 — the independent route (norm-multiplicativity + unit census), distinct from the Lean's factorization-through-the-domain route
+PASS  both_roots_land  — +1 and −1 both land and are distinct: EXACTLY TWO
+PASS  pentagon_exactly_two_concrete  — the headline at six points: both roots satisfy the pentagon; i, −i, 2, 5 do not — the roots are exactly {+1, −1}
+
+-- negative controls --
+PASS  control_z8_four_roots  — in Z/8, f² = 1 has FOUR solutions {1,3,5,7} — nest 8 exhausted; exactly-two is a DOMAIN theorem
+PASS  control_z8_count_ties  — norm 9: 4 roots + 4 non-roots = 8
+PASS  control_f_eq_i_fails  — f = i — a UNIT — fails the pentagon; i²−1 = −2, residual N = 4 exactly (the charge's 'residual exactly 4')
+PASS  control_f_eq_two_fails  — f = 2 fails: 4 ≠ 1 at the forcing instance
+
+-- gauge: the slot is an invariant of the normalized slice --
+PASS  gauge_slot_motion  — (dη)(1,1,1): num = η11·η10, den = η01·η11 — the raw motion is η10/η01, symbolically in 4 vertex variables
+PASS  slice_condition_100_reads_n00_eq_n10  — (dη)(1,0,0): num = η00·η10, den = η10·η10 — num = den cancels (η10 a unit) to η00 = η10
+PASS  slice_condition_001_reads_n01_eq_n00  — (dη)(0,0,1): num = η01·η01, den = η01·η00 — num = den cancels (η01 a unit) to η01 = η00
+PASS  gauge_slot_invariant_symbolic  — with η01 = η10 the slot motion is trivial (num = den identically); WITHOUT the substitution they differ — the invariance is earned, not built in
+PASS  live_gauge_witness  — η11 = i (the FREE vertex value), all else 1: slice-preserving, slot unmoved, and not the identity gauge
+PASS  control_gauge_moves_slot  — NEGATIVE CONTROL: η01 = 2 breaks a zero-slot condition AND moves the slot — invariance is a consequence of slice-preservation
+PASS  mul_left_cancel_grid  — a·x = a·y ⟹ x = y for a ≠ 0 — grid evidence on 4 nonzero a × 25×25 pairs (the exact claim rides on no_zero_divisors, certified in S2 by two routes)
+
+-- wording boundary --
+PASS  headline_is_slice_plus_invariance_shaped  — PROSE CHECK, not machine-checkable here: the statements file's pentagon_exactly_two + gauge_slot_invariant together are the slice-plus-invariance form; no statement in v4 says 'H³' or 'every class meets the slice' — seat B read all 26 S3 statements for this; the sentence is a REVIEW claim, honestly labeled
+
+====================================================================
+checks run: 32;  passed: 32;  failed: 0
+VERDICT: every S3 claim re-derived — symbolic (polynomial-exact)
+         where the Lean is symbolic in f or in the gauge, the
+         independent norm-census route for the root count,
+         nests exhausted and tied where finite.
+EXIT: 0

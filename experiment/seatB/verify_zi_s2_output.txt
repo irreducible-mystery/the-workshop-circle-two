@@ -1,0 +1,32 @@
+======================================================================
+SEAT B — S2 domain claims, exact reimplementation (statements only)
+======================================================================
+PASS  emod_bridge_semantics_nest_82
+PASS  sq_mod4_reduction_symbolic
+PASS  sq_mod4_exhaustive_nest4
+PASS  sq_mod4_nest_detail
+PASS  mod4_forces_even_exhaustive_nest16
+PASS  mod4_forces_even_livecount_4_of_16
+PASS  descent_conclusion_grid_nest_10201
+PASS  descent_order_route
+PASS  descent_step_grid_nest_10201
+PASS  normSq_zero_backward
+PASS  normSq_ne_zero_window
+PASS  intScalar_mul_grid_nest_1331
+PASS  torsion_free_grid_nest_2197
+PASS  no_zero_divisors_grid_nest_28561
+PASS  live_descent_witness
+PASS  live_normSq_nonzero
+PASS  live_zero_mul_witness
+PASS  live_sq_mod4_nest
+PASS  control_mod2_insufficient
+PASS  control_descent_needs_hypothesis
+PASS  control_z4_has_zero_divisors
+PASS  negcontrol_mod2_version_fails
+PASS  negcontrol_wrong_livecount_fails
+PASS  negcontrol_mod5_splits
+======================================================================
+checks run: 24;  passed: 24;  failed: 0
+VERDICT: every S2 claim re-derived — exhaustive where finite,
+         independent-route (order + norm) where the file took the
+         descent, grids labeled with their nests where bounded.
