@@ -1111,7 +1111,21 @@ theorem control_nat_sq_sum_two_escapes_the_conclusion :
     requires: `hex_residual_z2` at `floor/symmetric_statistics.py` line 124.
     Its internal labels: e = (a+b) mod 2, z = (a+c) mod 2, g = (b+c) mod 2,
     with admissibility d = (e+c) mod 2 = (z+b) mod 2, and `R` applying at
-    the slot (1,1) only. -/
+    the slot (1,1) only.
+
+    THE SCOPE OF THIS SECTION, stated here in the file and not only in the
+    ledger. This section imposes the **R-hexagon alone**. `hexagonHolds`
+    quantifies over the eight admissible label assignments of that one form;
+    `catalog_of_four` is therefore a theorem about it, and about nothing
+    else. When this section shipped by itself that was a live boundary, and
+    an earlier delivery promised the sentence would be "in the file and in
+    the ledger" while writing it in the ledger only — the builder's audit
+    caught the gap, and this paragraph is where it should have been.
+
+    It is now DISCHARGED rather than merely stated: section 13 imposes the
+    R⁻¹-hexagon and proves the catalog is unchanged. The scope sentence
+    stays because it is still true of THIS section — a boundary that has
+    been retired elsewhere is not a boundary that was never here. -/
 
 /-- The braiding symbol: `R` at the single slot `(1,1)`, `one` elsewhere.
     The bench's `Rs`, in Z[i]. -/
@@ -1283,5 +1297,88 @@ theorem live_21 : hexLhs one one 1 1 1 1 = one := by decide
 theorem live_22 : Rs I 1 1 = I := by decide
 theorem live_23 : Rs I 0 1 = one := by decide
 theorem live_24 : mul I I = neg one := I_squared
+
+/-! ## 13. THE SECOND HEXAGON — the R⁻¹ form, and the boundary retired
+
+    S4 imposed the R-hexagon only, and said so. This section imposes the
+    other one and retires that boundary rather than restating it.
+
+    THE BRIDGE, which is why Q8 had to come first: on a unit, the inverse
+    IS the conjugate. `mul u (conj u) = (N(u), 0)` from S1, and `N(u) = 1`
+    from the unit classification, so `R⁻¹ = conj R` for every braiding that
+    can appear. The R⁻¹-hexagon is therefore the R-hexagon read at
+    `conj R` — no new plumbing, no second set of instances, and no new
+    admissibility.
+
+    `G1d_catalog4_satisfies_BOTH_hexagons` states the target and, in the
+    certificate's own words, that the second is equivalent on units "at no
+    extra root cost". That last clause is the thing to prove rather than
+    quote: imposing both must yield the SAME four, not fewer. -/
+
+/-- On a unit, the conjugate is the inverse. -/
+theorem mul_conj_eq_one_of_unit (u : GZ) (h : IsUnit u) : mul u (conj u) = one := by
+  have hn : norm u = 1 := norm_one_of_unit u h
+  rw [mul_conj, hn]; rfl
+
+/-- The R⁻¹-hexagon: the same plumbing, read at the inverse braiding. -/
+def hexInvHolds (f R : GZ) : Prop := hexagonHolds f (conj R)
+
+/-- The second hexagon forces the conjugate's square, exactly as the first
+    forces `R²`. -/
+theorem hexInv_forces_conj_Rsq (f R : GZ) (hp : mul f f = one) (hh : hexInvHolds f R) :
+    mul (conj R) (conj R) = f :=
+  hexagon_forces_Rsq f (conj R) hp hh
+
+/-- **Both hexagons cost no extra root.** Imposing the R-hexagon AND the
+    R⁻¹-hexagon yields exactly the same catalog of four, and each of the
+    four is a unit whose inverse is its conjugate. This is the theorem the
+    S4 boundary was standing in for; the boundary is now retired. -/
+theorem catalog_of_four_both_hexagons (f R : GZ) :
+    (mul f f = one ∧ hexagonHolds f R ∧ hexInvHolds f R) ↔
+      ((f = one ∧ R = one) ∨ (f = one ∧ R = neg one) ∨
+       (f = neg one ∧ R = I) ∨ (f = neg one ∧ R = neg I)) := by
+  constructor
+  · intro h
+    exact (catalog_of_four f R).mp ⟨h.1, h.2.1⟩
+  · intro h
+    have hfirst := (catalog_of_four f R).mpr h
+    refine ⟨hfirst.1, hfirst.2, ?_⟩
+    rcases h with ⟨hf, hr⟩ | ⟨hf, hr⟩ | ⟨hf, hr⟩ | ⟨hf, hr⟩ <;> subst hf <;> subst hr <;>
+      exact Rsq_gives_hexagon _ _ (by decide) (by decide)
+
+/-- Each of the four braidings is a unit, and its inverse is its conjugate —
+    the fact the equivalence rests on, stated for the catalog itself. -/
+theorem catalog_braidings_are_units :
+    mul one (conj one) = one ∧ mul (neg one) (conj (neg one)) = one ∧
+    mul I (conj I) = one ∧ mul (neg I) (conj (neg I)) = one := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · decide
+  · decide
+  · decide
+  · decide
+
+/-! ### Controls for the second hexagon
+
+    The equivalence is a theorem about UNITS, not about everything, and
+    these say so. -/
+
+/-- A non-unit braiding breaks the bridge: `1 + i` has norm two, so its
+    conjugate is not its inverse, and the R⁻¹-hexagon is not the R-hexagon
+    read at `conj R` for it. The equivalence genuinely needs `units_are_four`. -/
+theorem control_non_unit_breaks_the_bridge : mul ⟨1, 1⟩ (conj ⟨1, 1⟩) ≠ one := by decide
+
+/-- And the wrong-class controls survive the second hexagon: `R = i` over
+    `f = 1` still fails, now through the inverse form as well. -/
+theorem control_hexInv_rejects_I_over_boson : ¬ hexInvHolds one I := by
+  intro h
+  have hc := hexInv_forces_conj_Rsq one I (by decide) h
+  revert hc
+  decide
+
+/-! ### Live instances for the second hexagon -/
+
+theorem live_25 : conj I = neg I := conj_I
+theorem live_26 : mul I (conj I) = one := by decide
+theorem live_27 : mul (conj I) (conj I) = neg one := by decide
 
 end Zi

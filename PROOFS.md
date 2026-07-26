@@ -216,10 +216,17 @@ proof survives transport to settings where the ring carries no order*. Said
 once, in the section header, so route (a) stops being a temptation: the
 distinction is not "no order anywhere", it is "no order on the ring".
 
-**What this unblocks.** The slice mini-section stands on the unit
-classification, and with it the machine-visible scope can graduate from
-"definitional restriction" to a proved lemma. That is the next crate, with
-S4.
+**What this unblocks, stated as a dependency rather than a promise.** The
+slice mini-section *requires* the unit classification; the S3 headline's
+machine-visible scope *can* graduate to a proved lemma once that lemma
+exists. Neither sentence says when.
+
+*An earlier version of this paragraph said the slice was "the next crate,
+with S4". S4 shipped without it, and this ledger — three sections below —
+recorded the delivery without noticing that the promise above had gone
+stale. A forward-looking promise inside a cumulative record is a defect
+with no renderer to catch it: the views mechanism can check a count, not a
+plan. That is norm 18, adopted below.*
 
 ## S4 — hexagon necessity, and the catalog of four: DELIVERED
 
@@ -260,6 +267,28 @@ needs — but the second hexagon is **not** written here, so
 `catalog_of_four` is a theorem about the primary hexagon. Nothing in this
 delivery may say "both hexagons"; the next crate either adds the second or
 the boundary stays.
+
+## The second hexagon — the boundary RETIRED, not restated
+
+Twelve theorems. On a unit the inverse is the conjugate — `mul u (conj u) =
+(N(u), 0)` from S1, `N(u) = 1` from Q8 — so the R⁻¹-hexagon is the
+R-hexagon read at `conj R`. No new plumbing, no second set of instances, no
+new admissibility.
+
+**`catalog_of_four_both_hexagons`**: imposing the R-hexagon **and** the
+R⁻¹-hexagon yields exactly the same four pairs. That is the certificate's
+"no extra root cost" (`G1d_catalog4_satisfies_BOTH_hexagons`) proved rather
+than quoted, and it is what discharges S4's boundary. The theorem `catalog_braidings_are_units` records that each of the four
+braidings is a unit whose inverse is its conjugate.
+
+**Controls**: `control_non_unit_breaks_the_bridge` shows the equivalence is
+about units and not about everything — `1 + i` has norm two, so its
+conjugate is not its inverse; and the wrong-class rejection survives the
+inverse form.
+
+**Section 12's scope sentence stays**, now that the boundary is discharged
+elsewhere: a boundary retired in another section is not a boundary that was
+never there, and the file says which section imposes what.
 
 ## Corrections — loudest first
 
@@ -617,6 +646,34 @@ record still points where it did. `NORMS.md` carries it with the measured
 reason — the stale-label repair recreated its own defect inside the commit
 that shipped it, and the abstention repair was about to ride with the S4
 prose that leans on it.
+
+## Corrections — the builder's S4 pass, two and one low
+
+**G#1 — "the boundary is in the file and in the ledger": it was in the
+ledger only.** Measured — `lean/Zi.lean`'s section 12 carried no boundary
+sentence at all; the only "second" near it was "the second summand". My own
+survival clause had said the claim would stand *only* if the boundary were
+in the file, and it was not. Seventh consecutive scored prediction, in the
+named territory, to the sentence. Repaired twice over: section 12 now
+carries its scope statement where it should have been, **and** the second
+hexagon is proved, so the boundary is discharged rather than merely
+written down.
+
+**G#2 — the ledger promised what its next section failed to deliver.** It
+said the slice was "the next crate, with S4"; S4 shipped without it, and the
+S4 section three sections below recorded the delivery without noticing. The
+views mechanism cannot catch this — a plan is not a count. Repaired to state
+the dependency instead of the schedule, with the stale sentence quoted in
+place, and generalised as **norm 18: the cumulative record states what is,
+never what will be; plans live in letters.**
+
+**G#3, low, recorded as couriered.** My S4 letter said "nothing in this
+delivery says 'both hexagons'". As an absolute the crate falsifies it —
+the builder's own letters ride inside it restating the charge, and a ledger
+row prints the certificate check name with BOTH in it. Nothing claimed both
+were *imposed*, so the intent held; the ledger's normative phrasing
+("nothing **may** say") was right and the letter's factual flattening
+overshot. The letter stays as couriered.
 
 ## Honest labels — the boundaries of this delivery
 

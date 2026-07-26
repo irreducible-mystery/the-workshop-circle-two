@@ -134,3 +134,17 @@ shape threatened again when the abstention repair was due to ride with the
 S4 prose that leans on it. Ship the repair, verify it alone, then build on
 the settled base. The cost is an extra leg; the thing it buys is that a
 repair cannot be undone by its own dependent before anyone has read it.
+
+**18 — the cumulative record states what is, never what will be; plans
+live in letters.** Proposed by the builder in the S4 verification and
+adopted here. A letter is dated correspondence: it goes stale honestly,
+and a reader dates it at a glance. `PROOFS.md`, `REGISTER.md` and the
+rendered views are cumulative, and a promise inside them is a time bomb
+with no instrument watching it — the views mechanism renders counts, and a
+plan is not a count. The specimen that bought this: the ledger said the
+slice section was "the next crate, with S4", S4 shipped without it, and the
+S4 section three sections below recorded the delivery without noticing the
+promise above had gone stale. Dependencies may be stated ("X requires Y");
+schedules may not ("Y lands next crate"). The same insight one level down
+is the ordering rule the third body adopted for graduation sentences: no
+sentence written in anticipation of a theorem.

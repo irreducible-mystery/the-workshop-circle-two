@@ -128,3 +128,7 @@ echo	POSIX shell builtin, named in PROOFS.md correction E#3 (the boundary senten
 3c79f5102bd75ab1168e3ce7e48120f11224fabddee49db34b1c35e0f1d891ac	SHA-256 pin: VIEWS.md as couriered with the repairs delivery
 5dfac6da25ab192b5f9387c2a5f029e57383a0ac2a1152f20afc8c788c48e917	SHA-256 pin: lean/Zi.lean as couriered with the repairs delivery
 1910a0f9dbbbbd3b1b62338687a9bdca1e0de5fc3a91c57a975445e1a36afb36	SHA-256 pin: letters/ROUND2-REPAIRS-VERIFICATION.md — the FIRST leg in four where the pin rode in the courier's message; verified on receipt rather than measured after the fact
+89984cde026483ebdc825a7a55af73066af084cb421eb2feb7a95fff58c44829	SHA-256 pin: circletwo-s4.zip at head ff7ac7c; verified exact on the builder's side
+986020223c31d975ce1f3b07fea623e6f4d91fa3642e97bcb093e2b5aba3bb29	SHA-256 pin: letters/ROUND2-S4-DELIVERY.md as couriered
+75f3b88bed1a77691764631a1d576b0c1e1b59978d3ef33d5f89dd2460b3653e	SHA-256 pin: VIEWS.md as couriered with the S4 delivery
+8d155afaff5fc357a573ec913ed07bf38275e034c131de71a4ff60907da87650	SHA-256 pin: lean/Zi.lean as couriered with the S4 delivery

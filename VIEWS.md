@@ -7,16 +7,16 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            8d155afaff5fc357a573ec913ed07bf38275e034c131de71a4ff60907da87650
+sha256            97c6a6cd18775f71d8824804704f6835ca12a08ba9a0f9b99044a73757556c6c
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
-theorems          153
-definitions       20
-lines             1287
-live instances    24
-control theorems  22
-decide-settled    36
+theorems          162
+definitions       21
+lines             1384
+live instances    27
+control theorems  24
+decide-settled    39
 import lines      0   (zero imports is the charter)
 ```
 
@@ -36,11 +36,12 @@ import lines      0   (zero imports is the charter)
 10. S3 — PENTAGON NECESSITY, AND EXACTLY TWO            39 theorems
 11. THE UNITS OF Z[i] — Q8, route (b): order-free, through `Nat`  15 theorems
 12. S4 — HEXAGON NECESSITY: R² = f, and the catalog of four  23 theorems
+13. THE SECOND HEXAGON — the R⁻¹ form, and the boundary retired   9 theorems
 ```
 
 **The boundary, derived from the inventory above:** this file proves
-the 13 sections listed and nothing else. The last of them is
-"12. S4 — HEXAGON NECESSITY: R² = f, and the catalog of four".
+the 14 sections listed and nothing else. The last of them is
+"13. THE SECOND HEXAGON — the R⁻¹ form, and the boundary retired".
 Anything absent from that list is not proved here.
 
 What the derivation can and cannot do, carried in from the
@@ -52,9 +53,9 @@ It kills staleness, not error.
 
 ```
 file                   theorems   axiom-free       rest
-Zi                          153           44        109
-TOTAL                       153           44        109
+Zi                          162           48        114
+TOTAL                       162           48        114
 sorryAx                       0
 Classical.choice              0
-Quot.sound carriers 32   (each named in the census output)
+Quot.sound carriers 34   (each named in the census output)
 ```
