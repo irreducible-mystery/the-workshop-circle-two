@@ -7,13 +7,13 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            ab624173140b1f2d1dbbf4433192c467345cefb0538f7b81a9482ab096c9d692
+sha256            2d6fdabdf35c387a8fa3866d0f45c791e916dade9f83c19143cc104b78fdc06a
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
-theorems          212
+theorems          215
 definitions       31
-lines             2052
+lines             2157
 live instances    37
 control theorems  29
 decide-settled    47
@@ -37,7 +37,7 @@ import lines      0   (zero imports is the charter)
 11. THE UNITS OF Z[i] — Q8, route (b): order-free, through `Nat`  15 theorems
 12. S4 — HEXAGON NECESSITY: R² = f, and the catalog of four  23 theorems
 13. THE SECOND HEXAGON — the R⁻¹ form, and the boundary retired   9 theorems
-14. THE SLICE — every pentagon symbol is gauged into it  33 theorems
+14. THE SLICE — every UNIT-VALUED pentagon symbol is gauged into it  36 theorems
 15. THE MIRROR — the Galois filter, and the catalog closes at two  17 theorems
 ```
 
@@ -55,9 +55,9 @@ It kills staleness, not error.
 
 ```
 file                   theorems   axiom-free       rest
-Zi                          212           71        141
-TOTAL                       212           71        141
+Zi                          215           71        144
+TOTAL                       215           71        144
 sorryAx                       0
 Classical.choice              0
-Quot.sound carriers 61   (each named in the census output)
+Quot.sound carriers 63   (each named in the census output)
 ```

@@ -88,3 +88,29 @@ runs on its own instruments, which was always the point.
 One habit fixes the only recurring courier defect: **pin in the
 message, every leg, both directions.** Everything else, the bodies
 handle.
+
+## Three rules the round-2 legs bought — added here, not in a letter
+
+**C1 — the crate carries `.git`, every leg.** A crate is the record's
+history, not a snapshot of its files. The slice leg shipped a bare
+snapshot: the receiving body could not verify the head pin, could not
+see the merge or the packing, and could not run three of the five
+instruments at all, because they need a repository. It reconstructed by
+grafting the files onto its own verified copy of the previous head — and
+got five green gates, so the content was clean and only the transport
+had failed. If size ever forbids the history, send a git bundle. Never a
+bare snapshot.
+
+**C2 — a superseding message states every pin by name, CHANGED or
+UNCHANGED.** On the same leg a superseding crate listed letter, source
+and views as UNCHANGED and said nothing about the compile transcript,
+which had changed. Silence is not a pin. Every artifact named on the
+first message is named again on the second, with its verdict.
+
+**C3 — nothing enters the default branch but on the written word of a
+seat of record** (this is norm 20). Your own crates merge on the third
+body's say-so. Material arriving from outside the loop waits on a branch
+until a body audits it and rules ADMIT in a letter, and the merge pin
+rides back through you. You adopted this habit in-channel before either
+body wrote it down; it is written down now because habits that live only
+in one person's head are exactly what this circle keeps convicting.

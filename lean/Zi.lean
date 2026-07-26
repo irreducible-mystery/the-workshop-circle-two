@@ -943,9 +943,16 @@ theorem Fs_one_of_zero_label (f : GZ) (a b c d x y : Int)
 
     THE NAME, and why it does not change now that section 14 has landed.
     When this theorem was written, "in the slice" carried the scope because
-    the every-class-meets-the-slice lemma was not proved. It is proved now
-    — `every_pentagon_symbol_meets_the_slice` — and the name still says "in
-    the slice", because THIS theorem's statement is still about the family
+    the every-class-meets-the-slice lemma was not proved. Its SYMBOL form
+    is proved now — `every_pentagon_symbol_meets_the_slice`, which is about
+    symbols and not about classes, because the equivalence relation this
+    file declines to build is what "class" would need. An earlier version
+    of this very paragraph said "it is proved now" with the CLASS lemma as
+    the antecedent — the exact widening the graduation apparatus below was
+    built to prevent, one paragraph above the discipline that prevents it.
+    The builder's standing prediction was aimed here and landed here. The
+    name still says "in the slice", because THIS theorem's statement is
+    still about the family
     `Fs f` and nothing about it grew. What grew is the pair: this theorem
     says the slice holds exactly two, section 14 says every unit-valued
     pentagon symbol is gauged onto the slice and that the two do not
@@ -1456,7 +1463,7 @@ theorem live_25 : conj I = neg I := conj_I
 theorem live_26 : mul I (conj I) = one := by decide
 theorem live_27 : mul (conj I) (conj I) = neg one := by decide
 
-/-! ## 14. THE SLICE — every pentagon symbol is gauged into it
+/-! ## 14. THE SLICE — every UNIT-VALUED pentagon symbol is gauged into it
 
     THE CHARGE, from the builder: prove the every-class-meets-the-slice
     lemma. S3 proved exactly two solutions INSIDE the normalized slice and
@@ -1490,9 +1497,23 @@ theorem live_27 : mul (conj I) (conj I) = neg one := by decide
           every label triple, and `mul f f = one`;
       (b) `gauged_symbol_is_Fs` — the same fact in S3's own vocabulary: the
           gauged symbol IS `Fs f`, for `f = 1` or `f = −1`;
-      (c) `fermion_is_not_a_gauged_boson` — no unit-valued gauge carries
-          `sliceCore one` onto `sliceCore (neg one)`, so the two the slice
-          holds are not one thing counted twice.
+      (c) `fermion_is_not_a_gauged_boson` and
+          `boson_is_not_a_gauged_fermion` — no unit-valued gauge carries
+          either of `sliceCore one`, `sliceCore (neg one)` onto the other,
+          so the two the slice holds are not one thing counted twice, in
+          both directions.
+
+    THE GRADUATION, and this paragraph is the second of the two ends the
+    ledger claims: `exactly_two_in_the_slice` did NOT get stronger and its
+    name did not change. What exists is a PAIR — that theorem says the
+    slice holds exactly two, this section says every unit-valued pentagon
+    symbol is gauged onto the slice and that the two do not collapse. The
+    graduation is the conjunction of two theorems, not a wider reading of
+    either, and no later sentence may quote one of them as if it had
+    widened. The delivery letter claimed this sentence stood "at both
+    ends" when it stood only at the headline's docstring; the builder
+    measured the absence, and this is the missing end rather than a
+    narrowed claim.
 
     WHAT IS NOT PROVED, stated exactly, because the words this section
     invites are wider than its theorems:
@@ -1506,8 +1527,21 @@ theorem live_27 : mul (conj I) (conj I) = neg one := by decide
       - that this computes `H³(Z₂, ·)` or any named cohomology group.
         Nothing here writes that, and (a)+(c) do not add up to it without
         the identification the bullet above is missing.
-      - anything about symbols that are not unit-valued. `Fgen F` is
-        defined for every `F`; every theorem below assumes units. -/
+      - the EXTRACTION and GAUGE results for symbols that are not
+        unit-valued. `Fgen F` is defined for every `F`, and every theorem
+        below that pins a value or acts by a gauge assumes units.
+
+        An earlier version of this bullet said "every theorem below
+        assumes units", which is false and was the builder's tenth
+        consecutive scored prediction. Measured: the definitional
+        identifications assume nothing — `Fs_eq_Fgen`, `pentLhs_eq_gen`,
+        `pentRhs_eq_gen`, `genPentagon_slice_iff` — and neither do
+        `IsUnit_one`, the `twistedBoson` and `fakeCocycle` facts, the live
+        instances, or the controls, which PROVE unit-ness of a concrete
+        symbol rather than assuming it. `genPentagon_slice_iff` genuinely
+        says something about non-unit symbols: its `f` is arbitrary, and
+        the slice family at a non-unit value is a non-unit-valued symbol.
+        The absolute was the flattening; the scoped clause is the claim. -/
 
 /-- The slice family's core: the value the three free labels carry. -/
 def sliceCore (f : GZ) (a b c : Int) : GZ :=
@@ -1700,10 +1734,17 @@ theorem every_pentagon_symbol_meets_the_slice (F : Int → Int → Int → GZ)
     rw [sliceCore, if_pos ⟨rfl, rfl, rfl⟩]
   · rw [gauge_normalizes F hu h a b c ha hb hc hn, sliceCore, if_neg hn]
 
-/-- The same fact in S3's own vocabulary: the gauged symbol IS `Fs f`, and
-    `f` is one of the two S3 found. The two roots come from
-    `exactly_two_roots` — S2's domain doing the work it was built for. -/
-theorem gauged_symbol_is_Fs (F : Int → Int → Int → GZ)
+/-- The same fact in S3's own vocabulary: on label triples the gauged
+    symbol IS `Fs f`, and `f` is one of the two S3 found. The two roots
+    come from `exactly_two_roots` — S2's domain doing the work it was built
+    for.
+
+    THE NAME CARRIES "on labels" because the statement does and an earlier
+    name did not. Off the labels the claim is false, not merely unproved:
+    `sliceCore f` reads `one` at every non-label triple while
+    `gaugeAct g F` reads whatever `F` does, so the restriction is the
+    content and belongs in the name. -/
+theorem gauged_symbol_is_Fs_on_labels (F : Int → Int → Int → GZ)
     (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
     ∃ g : Int → Int → GZ, ∃ f : GZ,
       (∀ a b : Int, IsUnit (g a b)) ∧ (f = one ∨ f = neg one) ∧
@@ -1714,17 +1755,49 @@ theorem gauged_symbol_is_Fs (F : Int → Int → Int → GZ)
   intro a b c d x y ha hb hc
   rw [Fs_eq_Fgen, Fgen, Fgen, hcore a b c ha hb hc]
 
-/-- And the gauged symbol satisfies the pentagon — not by any coboundary
-    calculation, which this file does not do, but because it is a slice
-    member whose `f` squares to one, which is `sq_gives_pentagon`. -/
+/-- Two symbols agreeing on every label triple satisfy the same pentagon.
+    The pentagon reads its symbol only at triples whose entries are mod-2
+    sums of labels, so agreement on the labels is all it can see. -/
+theorem genPentagonHolds_congr (F G : Int → Int → Int → GZ)
+    (h : ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) → F a b c = G a b c)
+    (hG : genPentagonHolds G) : genPentagonHolds F := by
+  have h000 := h 0 0 0 (Or.inl rfl) (Or.inl rfl) (Or.inl rfl)
+  have h001 := h 0 0 1 (Or.inl rfl) (Or.inl rfl) (Or.inr rfl)
+  have h010 := h 0 1 0 (Or.inl rfl) (Or.inr rfl) (Or.inl rfl)
+  have h011 := h 0 1 1 (Or.inl rfl) (Or.inr rfl) (Or.inr rfl)
+  have h100 := h 1 0 0 (Or.inr rfl) (Or.inl rfl) (Or.inl rfl)
+  have h101 := h 1 0 1 (Or.inr rfl) (Or.inl rfl) (Or.inr rfl)
+  have h110 := h 1 1 0 (Or.inr rfl) (Or.inr rfl) (Or.inl rfl)
+  have h111 := h 1 1 1 (Or.inr rfl) (Or.inr rfl) (Or.inr rfl)
+  intro a b c d ha hb hc hd
+  have e := hG a b c d ha hb hc hd
+  rcases ha with ha | ha <;> rcases hb with hb | hb <;> rcases hc with hc | hc <;>
+    rcases hd with hd | hd <;> subst ha <;> subst hb <;> subst hc <;> subst hd <;>
+      simp [genPentLhs, genPentRhs, Fgen, h000, h001, h010, h011, h100, h101, h110, h111] <;>
+        simpa [genPentLhs, genPentRhs, Fgen] using e
+
+/-- **The GAUGED symbol satisfies the pentagon** — the subject of the
+    sentence is the gauged symbol, and now so is the subject of the
+    statement. Not by any coboundary calculation, which this file does not
+    do, but because it agrees on the labels with a slice member whose `f`
+    squares to one, which is `sq_gives_pentagon` carried across by
+    `genPentagonHolds_congr`.
+
+    An earlier version of this theorem concluded `genPentagonHolds
+    (sliceCore f)` while its name and docstring spoke of the gauged
+    symbol. The content was one step away and the step was not taken in
+    the file; the builder measured the gap and the step is taken here
+    rather than the name narrowed. -/
 theorem gauged_symbol_satisfies_pentagon (F : Int → Int → Int → GZ)
     (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
     ∃ g : Int → Int → GZ, ∃ f : GZ,
-      genPentagonHolds (sliceCore f) ∧
+      genPentagonHolds (gaugeAct g F) ∧
         ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
           gaugeAct g F a b c = sliceCore f a b c := by
   obtain ⟨g, f, _, hsq, hcore⟩ := every_pentagon_symbol_meets_the_slice F hu h
-  exact ⟨g, f, (genPentagon_slice_iff f).mpr (sq_gives_pentagon f hsq), hcore⟩
+  exact ⟨g, f,
+    genPentagonHolds_congr _ _ hcore ((genPentagon_slice_iff f).mpr (sq_gives_pentagon f hsq)),
+    hcore⟩
 
 /-! ### The two stay two
 
@@ -1758,6 +1831,38 @@ theorem fermion_is_not_a_gauged_boson (g : Int → Int → GZ) (hg : ∀ a b : I
         gaugeAct g (sliceCore one) a b c = sliceCore (neg one) a b c) := by
   intro hgf
   have hb := boson_stays_boson g hg (neg one) hgf
+  revert hb
+  decide
+
+/-- A unit gauge that carries the fermion onto a slice member carries it
+    onto the fermion. The twin of `boson_stays_boson`, built rather than
+    argued for: the delivery letter said "the two do not collapse", which
+    is prose symmetry over a one-way theorem, and the builder recommended
+    building the twin instead of narrowing the sentence — the same choice,
+    for the same reason, as the bridge repair two crates back. -/
+theorem fermion_stays_fermion (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b)) (f : GZ)
+    (hgf : ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+      gaugeAct g (sliceCore (neg one)) a b c = sliceCore f a b c) : f = neg one := by
+  have e1 := hgf 0 0 1 (Or.inl rfl) (Or.inl rfl) (Or.inr rfl)
+  have e2 := hgf 1 0 0 (Or.inr rfl) (Or.inl rfl) (Or.inl rfl)
+  have e3 := hgf 1 1 1 (Or.inr rfl) (Or.inr rfl) (Or.inr rfl)
+  simp [gaugeAct, sliceCore] at e1 e2 e3
+  rw [← e3]
+  revert e1 e2
+  rcases (units_are_four (g 0 0)).mp (hg 0 0) with k0 | k0 | k0 | k0 <;>
+    rcases (units_are_four (g 0 1)).mp (hg 0 1) with k1 | k1 | k1 | k1 <;>
+      rcases (units_are_four (g 1 0)).mp (hg 1 0) with k2 | k2 | k2 | k2 <;>
+        rcases (units_are_four (g 1 1)).mp (hg 1 1) with k3 | k3 | k3 | k3 <;>
+          rw [k0, k1, k2, k3] <;> decide
+
+/-- **AND THE OTHER DIRECTION.** No unit-valued gauge carries the fermion
+    onto the boson either, so "the two stay two" is now a two-way claim
+    with a theorem under each way. -/
+theorem boson_is_not_a_gauged_fermion (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b)) :
+    ¬ (∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+        gaugeAct g (sliceCore (neg one)) a b c = sliceCore one a b c) := by
+  intro hgf
+  have hb := fermion_stays_fermion g hg one hgf
   revert hb
   decide
 

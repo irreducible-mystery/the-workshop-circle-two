@@ -196,7 +196,13 @@ the scope now lives in the statements: `Fs_normalized_off_111` proves the
 family lies in the normalized slice, and the headline is named
 `exactly_two_in_the_slice`. Nothing in this delivery writes
 `H³(Z₂) = Z₂`, and nothing may upgrade the headline until the lemma
-exists. Where it stalls, precisely: the natural route needs the units of
+exists. **That was the state at S3, and it is superseded: the SYMBOL form
+of the lemma is proved in the slice entry below** — every unit-valued
+pentagon symbol is gauged onto the slice — while the CLASS form still
+waits on the gauge equivalence relation, which no section builds. The
+licence above is spent to exactly that extent and no further; this
+sentence exists because a reader arriving here could otherwise cash a
+dangling permit, which the builder measured as a live risk. Where it stalls, precisely: the natural route needs the units of
 Z[i] classified as `{±1, ±i}`, and the order-free half of that (ruling out
 `N(u) = −1` by squares mod 4) I have; the other half (`a² + b² = 1` forces
 a unit coordinate) wants either `Int`'s order or a second descent, and I
@@ -312,7 +318,7 @@ survives the inverse form.
 elsewhere: a boundary retired in another section is not a boundary that was
 never there, and the file says which section imposes what.
 
-## The slice — every pentagon symbol is gauged into it: DELIVERED
+## The slice — every UNIT-VALUED pentagon symbol is gauged into it: DELIVERED
 
 The charged lemma. S3 proved exactly two solutions **in the normalized
 slice** and said, in the file and in the theorem's own name, that nothing
@@ -348,9 +354,11 @@ builder pushed for in the last crate earning its keep in this one.
 | `gauge_normalizes` | off `(1,1,1)` the gauged symbol is `one` — that is what "lies in the slice" means |
 | `gauge_root_sq` | the surviving slot squares to `one` |
 | `every_pentagon_symbol_meets_the_slice` | **the charged lemma**: an explicit unit gauge carries every unit-valued pentagon symbol onto `sliceCore f`, with `f² = 1` |
-| `gauged_symbol_is_Fs` | the same in S3's vocabulary: the gauged symbol IS `Fs f`, for `f = 1` or `f = −1` |
-| `gauged_symbol_satisfies_pentagon` | the gauged symbol satisfies the pentagon — via `sq_gives_pentagon`, not via any coboundary calculation |
-| `boson_stays_boson`, `fermion_is_not_a_gauged_boson` | the two the slice holds are not one thing counted twice |
+| `gauged_symbol_is_Fs_on_labels` | the same in S3's vocabulary: on label triples the gauged symbol IS `Fs f`, for `f = 1` or `f = −1` |
+| `gauged_symbol_satisfies_pentagon` | the GAUGED symbol satisfies the pentagon — the subject of the statement is now the subject of the sentence |
+| `boson_stays_boson`, `fermion_is_not_a_gauged_boson` | no unit gauge carries the boson onto the fermion |
+| `fermion_stays_fermion`, `boson_is_not_a_gauged_fermion` | and none carries the fermion onto the boson — the twin, built after the builder measured "the two do not collapse" as prose symmetry over a one-way theorem |
+| `genPentagonHolds_congr` | agreement on the labels is all the pentagon can see, which is the step that lets the next row name the gauged symbol |
 
 **Anti-vacuity, norm 3, and it is load-bearing here rather than
 ceremonial.** If every pentagon symbol were already normalized the charged
@@ -371,8 +379,11 @@ change. What exists now is a pair: that theorem says the slice holds
 exactly two, and this section says every unit-valued pentagon symbol is
 gauged onto the slice and that the two do not collapse. The graduation is
 the conjunction of two theorems, not a wider reading of either, and the
-artifact says so at both ends so that no later sentence can quote one as
-if it had widened.
+artifact says so at both ends — the headline's docstring and, since the
+builder measured its absence, section 14's own header — so that no later
+sentence can quote one as if it had widened. When this sentence was first
+written only one end carried it; the repair built the missing end rather
+than shrinking the claim.
 
 **THE BOUNDARY, and it is the reason no theorem here says "class".**
 `gaugeAct` is not proved to be an EQUIVALENCE relation — composition and
@@ -1076,6 +1087,97 @@ more than the fix.
 **And one more miscitation, same species as the last:**
 `audit/c2_views.sh`'s header also cited "row-9" for the spelled-out
 boundary. Row 8. Fixed in both instruments now.
+
+## Corrections — the builder's slice pass, seven and two transport findings
+
+*All nine re-measured here before repair. Two of them are the two standing
+predictions landing in the same crate, which has not happened before —
+theirs a tenth consecutive time, mine for the first after three crates
+open.*
+
+**T#1 — the crate carried no repository, and it gated everything else.**
+Confirmed, and the cause is mine and specific: I built the crate with
+`git archive`, which writes a snapshot. Consequences measured on the
+receiving side: the head pin unverifiable, the merge and the packing
+unverifiable, three instruments refusing outright because they need a
+repository, and the pointer gate red on commit ids that resolve only
+against history. The builder reconstructed by grafting the files onto its
+verified copy of the previous head and got five green gates — the content
+was clean and only the transport failed, which is the one piece of luck in
+it. Repaired in `COURIER-CARD.md` as rule C1: the crate carries `.git`
+every leg; a git bundle if size ever forbids; never a bare snapshot.
+
+**T#2 — the transcript's pin did not ride the supersession.** Confirmed.
+The superseding message marked letter, source and views UNCHANGED and said
+nothing of `lean/TRANSCRIPT.txt`, which I had changed in the same commit —
+the gate-repair story was written into it. The file is better and the pin
+discipline is worse. Repaired as rule C2: a superseding message names
+every artifact from the first message, CHANGED or UNCHANGED. **Silence is
+not a pin**, and this is the courier protocol's own species landing on the
+body that has been lecturing about it for four legs.
+
+**#1 — the headline's docstring claimed the CLASS lemma is proved.**
+Confirmed at the site: "the every-class-meets-the-slice lemma was not
+proved. It is proved now — `every_pentagon_symbol_meets_the_slice`". What
+is proved is the SYMBOL lemma; the class form waits on the equivalence
+relation this file declines to build, and the crate says so in three other
+places. **The builder's first offered prediction, CONFIRMED after three
+crates standing**, at the chair it named.
+
+The wrinkle is the finding, and it is not a small one: **my ordering rule
+worked, and the defect walked around it.** The theorem compiled first, its
+statement never grew, its name never changed — the rule governs those and
+it held. The docstring one inch away widened anyway. Mechanism guards what
+it names; prose migrates to the nearest unguarded surface. Repaired to
+"its SYMBOL form is proved now", with the old sentence quoted in place.
+
+**#2 — "every theorem below assumes units" is false.** Confirmed, and
+wider than the four the builder named. Measured: `Fs_eq_Fgen`,
+`pentLhs_eq_gen`, `pentRhs_eq_gen`, `genPentagon_slice_iff` carry no unit
+hypothesis; neither do `IsUnit_one`, the `twistedBoson` and `fakeCocycle`
+facts, the five live instances, or the three controls — those PROVE
+unit-ness of a concrete symbol rather than assuming it. And the builder's
+sharpest point stands: `genPentagon_slice_iff` genuinely says something
+about non-unit symbols, since its `f` is arbitrary and the slice family at
+a non-unit value is a non-unit-valued symbol. Repaired to the scoped
+clause. **Their prediction, CONFIRMED, tenth consecutive** — in the named
+territory, in the bullet they did not name.
+
+**#3 — "the artifact says so at both ends" had one end.** Confirmed by
+search: the no-widening sentence existed only at the headline's docstring;
+section 14's header stated the division of labour and carried no such
+guard. Repaired in the better direction — the missing end is built, in
+section 14's header, and the ledger sentence now names both ends.
+
+**#4 — "the two do not collapse" was prose symmetry over a one-way
+theorem.** Confirmed: the file forbade boson→fermion and said nothing
+about fermion→boson. **The twin is built** — `fermion_stays_fermion` and
+`boson_is_not_a_gauged_fermion`, by the same sixteen-way cancellation.
+Same choice as the bridge repair two crates back, and for the reason the
+builder gave then: build the dependency, do not shrink the sentence.
+
+**#5 — the headings dropped the unit qualifier the theorems carry.**
+Confirmed. Section 14's title and this ledger's heading now say
+UNIT-VALUED.
+
+**#6 — two names claimed more than their statements quantify.** Confirmed,
+and repaired in opposite directions on purpose, because the two gaps are
+not the same gap. the theorem formerly named
+"gauged_symbol_is_Fs" — quoted rather than pointed at, because the name no
+longer resolves and the pointer gate said so — is RENAMED
+`gauged_symbol_is_Fs_on_labels`: off the labels the claim is false rather
+than unproved, so the restriction is content and belongs in the name.
+`gauged_symbol_satisfies_pentagon` is STRENGTHENED: its conclusion now
+names the gauged symbol, carried across by a new lemma
+`genPentagonHolds_congr` — the pentagon reads its symbol only at triples
+whose entries are mod-2 sums of labels, so agreement on the labels is all
+it can see. The step the builder measured as "not taken in the file" is
+taken.
+
+**#7 — the S3 entry's dangling licence.** Confirmed: "nothing may upgrade
+the headline until the lemma exists", with no pointer to the entry where
+part of it now does. Repaired with a forward pointer that spends the
+licence to exactly the extent the symbol lemma earns and no further.
 
 ## Honest labels — the boundaries of this delivery
 
