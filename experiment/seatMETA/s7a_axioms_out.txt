@@ -1,0 +1,6 @@
+'Zi.s7a_unit_slice_iff_symmetric' does not depend on any axioms
+'Zi.s7a_units_complete' depends on axioms: [propext, Quot.sound]
+'Zi.s7a_live_slot_count' does not depend on any axioms
+'Zi.s7a_unit_slice_orbit_closed' does not depend on any axioms
+'Zi.s7a_control_asymmetric_unit_moves_slot' does not depend on any axioms
+'Zi.s7a_nonunit_outside_alphabet' depends on axioms: [propext]

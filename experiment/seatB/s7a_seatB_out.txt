@@ -1,0 +1,14 @@
+PASS  s7a_units_have_norm_one  — every listed unit has norm 1
+PASS  s7a_units_complete  — norm-1 locus in complete box = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+PASS  s7a_unit_alphabet_nest  — 4 distinct units
+PASS  s7a_live_slot_count  — 8 live (a,b,c) slots
+PASS  s7a_free_slot_count  — exactly (1,1,1) free
+PASS  s7a_pinned_slot_count  — 7 slots pinned by normalization
+PASS  s7a_unit_slice_iff_symmetric  — 256 gauges swept; slot-fixed⇔symmetric (fixed=64, sym=64)
+PASS  s7a_unit_slice_orbit_closed  — every symmetric unit gauge fixes the (1,1,1) slot
+PASS  s7a_live_unit_gauge  — η11=i is a live non-identity slice-fixing unit gauge
+PASS  s7a_control_asymmetric_unit_moves_slot  — asymmetric unit gauge genuinely moves the slot
+PASS  s7a_nonunit_outside_alphabet  — the impossibility marker: ⟨2,0⟩ (norm 4) is outside the unit locus
+------------------------------------------------------------
+SEAT B (S7a): 11/11 checks pass
+RESULT: PASS — every S7a statement independently reproduced.

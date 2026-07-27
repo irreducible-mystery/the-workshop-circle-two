@@ -49,3 +49,5 @@
 654	worklog: line number of G1f_antisymmetrizer_ranks_exact in c2_gift_certificates.py, a source-line pointer used to verify the ranks exemption
 999	worklog: the fabricated theorem total in the censusguard plant, quoted as the plant content; an error-by-design, not a claim
 424242	worklog: the fabricated bare count in the numeral-gate plant, quoted as the plant content; an error-by-design, not a claim
+# -- S7a: line-count and finite-nest figures in the meta-auditor's S7a prose --
+2080	line count of seatP/Zi.lean AFTER the S7a block, VERIFIED by `wc -l seatP/Zi.lean` = 2080; a file-length measurement of the shipped file, same shape as the 594/615/2169 entries above

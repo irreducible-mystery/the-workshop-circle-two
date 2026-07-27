@@ -1,0 +1,5 @@
+S7a norm-16 CLEAN restore evidence.
+Command: lean seatP/Zi.lean  (after removing every plant)
+Result:  exit 0, 0 stderr bytes.
+Zi.lean pin at clean restore: d1f3617baaefcbb85b049709ffee600dbdc6a20b8748edcb637fea4d8291145d
+(An empty stderr IS the pass; this file records the run that produced it.)

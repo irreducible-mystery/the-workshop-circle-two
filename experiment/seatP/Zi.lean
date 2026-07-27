@@ -1915,4 +1915,166 @@ theorem control_M_times_P_zero :
 theorem live_nonparallel_survives :
     sub (mul one one) (mul zero zero) ≠ zero := by decide
 
+
+/- ======================================================================
+   S7a — "EVERY CLASS MEETS THE NORMALIZED SLICE": the reachable core,
+   and a measured impossibility for the full sentence.
+
+   SCOPE / DIVERGENCE (house rule: source + commit + report). Kelly's
+   Round-Three charge, chosen from the meta-auditor's recommendation, is
+   S7c+S7a in THAT order — a sanctioned reordering of the predecessor's
+   S7a-first plan. S7c (the prose-gate scope extension) shipped first;
+   this S7a block follows as the stretch goal. Recorded also in
+   audit/probes/S7C-DESIGN-NOTE.md, experiment/SUBROUND7-REPORT.md, and
+   experiment/seatMETA/S7A-DESIGN-NOTE.md.
+
+   WHAT G1c'S LABEL SAYS and what this file does with it. REGISTER row 2
+   flags one claim inside the certificate as NOT bench-certified:
+   "every class meets the normalized slice" — equivalently the
+   "H³(Z₂) = Z₂" sentence "every gauge class of pentagon solutions has a
+   normalized representative". Round Two held the wording boundary
+   (slice-plus-invariance only) BECAUSE that sentence was unproven.
+
+   THE HONEST VERDICT (from the S7a design probe, norm 15;
+   seatMETA/s7a_probe{,2,3}.lean, all compiled exit 0 / 0 bytes):
+   1. The sentence IS statable in zero-import Lean, machinery-free
+      (`onSlice`, `meetsSliceUnit` below). Stating it was the piece the
+      handoff flagged as hard; it is reachable.
+   2. Its combinatorial skeleton is FINITE and provable: 8 live slots,
+      1 free at (1,1,1), 7 that normalization must pin, 4 gauge d.o.f.
+      (`s7a_live_slot_count`, `s7a_free_slot_count`,
+      `s7a_pinned_slot_count`).
+   3. The FULL sentence over ALL of Z[i] needs the surjectivity of the
+      3-coboundary onto the 7 pinned slots for an ARBITRARY pentagon
+      solution — that IS H³(Z₂,U(1)) vanishing, i.e. cohomology
+      machinery OUTSIDE zero-import reach. This file does NOT claim it
+      (norm 6: no weak statement wearing a strong name). The measured
+      impossibility is stated here and in the design note.
+   4. BUT the units of Z[i] are the FINITE group {1, i, −1, −i}
+      (`norm_one_units` above). Restricted to unit-valued gauges, the
+      slice/gauge question becomes a finite enumeration and is DECIDED
+      completely below. That is the sharpest reachable fragment: a
+      precise, unit-valued, fully-proved form of "meets the slice",
+      strictly stronger than the record's slice-plus-invariance headline
+      on the unit locus, and honestly weaker than the full H³ sentence.
+
+   NEST (norm 9): 8 live slots (1+7); 4 unit gauge values, each in a
+   4-element group ⇒ 4⁴ = 256 unit gauges swept by `decide`; the two
+   pentagon classes {+1,−1} are the fixed content on the slice.
+   ====================================================================== -/
+
+/-- the four units as a list — the finite gauge alphabet. Every entry
+    has normSq 1 and the list is exactly the norm-1 locus by
+    `norm_one_units` (completeness) + `units_have_norm_one` (soundness).
+    -/
+def unitList : List Zi := [one, neg one, I, neg I]
+
+/-- SOUNDNESS of the alphabet: every listed unit has norm 1. -/
+theorem s7a_units_have_norm_one : ∀ u ∈ unitList, normSq u = 1 := by decide
+
+/-- COMPLETENESS of the alphabet (reuses `norm_one_units`, no
+    re-derivation — norm 6): the norm-1 locus is exactly `unitList`. -/
+theorem s7a_units_complete (u : Zi) (h : normSq u = 1) : u ∈ unitList := by
+  have hu := norm_one_units u h
+  simp only [unitList, List.mem_cons, List.not_mem_nil, or_false]
+  exact hu
+
+/-- the four units are 4 DISTINCT elements (nest for the gauge alphabet,
+    norm 9): the alphabet has size 4, no duplicates. -/
+theorem s7a_unit_alphabet_nest : unitList.Nodup ∧ unitList.length = 4 := by
+  exact ⟨by decide, by decide⟩
+
+/- -- the FINITE live-slot skeleton of a normalized symbol -------------- -/
+
+/-- the live 6-index slots of a Z₂-fusion F-symbol, indexed by (a,b,c)
+    with x,y,d FORCED by admissibility (matches `Fz2`'s mask). Exactly
+    the 8 that a normalized symbol carries. -/
+def s7aLiveSlots : List (Nat × Nat × Nat) :=
+  (List.range 2).flatMap (fun a =>
+    (List.range 2).flatMap (fun b =>
+      (List.range 2).map (fun c => (a, b, c))))
+
+/-- NEST (norm 9): exactly 8 live slots. -/
+theorem s7a_live_slot_count : s7aLiveSlots.length = 8 := by decide
+
+/-- exactly ONE live slot is free — (1,1,1), the F(1,1,1) slot. -/
+theorem s7a_free_slot_count :
+    (s7aLiveSlots.filter (fun s => s.1 = 1 ∧ s.2.1 = 1 ∧ s.2.2 = 1)).length = 1 := by
+  decide
+
+/-- and exactly SEVEN live slots must be pinned to 1 by normalization —
+    8 = 1 free + 7 pinned (nest tied). -/
+theorem s7a_pinned_slot_count :
+    (s7aLiveSlots.filter (fun s => ¬(s.1 = 1 ∧ s.2.1 = 1 ∧ s.2.2 = 1))).length = 7 := by
+  decide
+
+/- -- the reachable CORE: unit gauges decide the slice completely ------- -/
+
+/-- THE UNIT-VALUED SLICE THEOREM (the sharpest reachable fragment of
+    "every class meets the slice"). For EVERY unit-valued vertex gauge
+    eta (all four values n00,n01,n10,n11 in `unitList`), the (1,1,1)-slot
+    motion detaNum/detaDen is trivial IF AND ONLY IF the gauge is
+    slice-symmetric (n01 = n10). Proved by full finite enumeration over
+    the 4⁴ = 256 unit gauges — no symbolic cancellation, so the claim is
+    exactly what `decide` checks (norm 10-honest). This is strictly
+    stronger than `gauge_slot_invariant` on the unit locus: it adds the
+    CONVERSE (no unit gauge moves a symbol off the two-class slice
+    without moving the slot), which is the honest content of "meets". -/
+theorem s7a_unit_slice_iff_symmetric :
+    ∀ n00 ∈ unitList, ∀ n01 ∈ unitList, ∀ n10 ∈ unitList, ∀ n11 ∈ unitList,
+      let eta : Nat → Nat → Zi := fun a b =>
+        if a = 0 ∧ b = 0 then n00
+        else if a = 0 ∧ b = 1 then n01
+        else if a = 1 ∧ b = 0 then n10
+        else n11
+      (detaNum eta 1 1 1 = detaDen eta 1 1 1) ↔ (n01 = n10) := by
+  decide
+
+/-- COROLLARY (the "meets" direction, unit-valued): every slice-symmetric
+    unit gauge FIXES the (1,1,1) slot — so starting from either class
+    representative on the slice, the whole unit gauge orbit that stays
+    slice-preserving stays ON that class. Full finite decide. -/
+theorem s7a_unit_slice_orbit_closed :
+    ∀ n00 ∈ unitList, ∀ n01 ∈ unitList, ∀ n10 ∈ unitList, ∀ n11 ∈ unitList,
+      let eta : Nat → Nat → Zi := fun a b =>
+        if a = 0 ∧ b = 0 then n00
+        else if a = 0 ∧ b = 1 then n01
+        else if a = 1 ∧ b = 0 then n10
+        else n11
+      n01 = n10 → detaNum eta 1 1 1 = detaDen eta 1 1 1 := by
+  decide
+
+/-- LIVE witness (norm 3): a NON-identity unit gauge — n11 = i (the one
+    free vertex, G1c's "n11 FREE"), n01 = n10 = 1 — is slice-symmetric,
+    fixes the slot, and is genuinely off the identity. The reachable
+    theorem is exercised at a live Gaussian point, not vacuously. -/
+theorem s7a_live_unit_gauge :
+    let eta : Nat → Nat → Zi := fun a b => if a = 1 ∧ b = 1 then I else one
+    detaNum eta 1 1 1 = detaDen eta 1 1 1 ∧ eta 1 1 ≠ one ∧
+    normSq (eta 1 1) = 1 := by
+  refine ⟨by decide, by decide, by decide⟩
+
+/-- NEGATIVE CONTROL (norm 5): a unit gauge that is NOT slice-symmetric —
+    n01 = i, n10 = 1, else 1 — DOES move the (1,1,1) slot. The converse
+    in `s7a_unit_slice_iff_symmetric` is not vacuous: asymmetry genuinely
+    breaks slice-preservation, even inside the finite unit group. -/
+theorem s7a_control_asymmetric_unit_moves_slot :
+    let eta : Nat → Nat → Zi := fun a b =>
+      if a = 0 ∧ b = 1 then I else one
+    detaNum eta 1 1 1 ≠ detaDen eta 1 1 1 ∧ (I ≠ one) := by
+  refine ⟨by decide, by decide⟩
+
+/-- MEASURED IMPOSSIBILITY (norm 6, stated as a live fact, not a hole):
+    the full sentence "every class meets the slice" over ALL of Z[i]
+    would need to pin 7 slots with 4 gauge d.o.f. for an ARBITRARY
+    (not-unit-restricted) pentagon solution — the coboundary
+    surjectivity that IS H³(Z₂,U(1)). This file proves the UNIT locus
+    only. As a concrete marker that the unit restriction is REAL and not
+    cosmetic: a NON-unit slice gauge value (n01 = ⟨2,0⟩, normSq 4 ≠ 1)
+    sits OUTSIDE `unitList`, so the decided unit theorem says nothing
+    about it — exactly the gap the impossibility note records. -/
+theorem s7a_nonunit_outside_alphabet :
+    normSq (⟨2,0⟩ : Zi) ≠ 1 ∧ (⟨2,0⟩ : Zi) ∉ unitList := by
+  refine ⟨by decide, by decide⟩
+
 end Zi

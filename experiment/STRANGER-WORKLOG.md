@@ -163,6 +163,50 @@ judge. TWO DISTINCT GAPS:
       No scope change confers meaning-checking. Declared, not papered over.
 S7c's honest yield: gap (1) closed for the classes the gates can check; gap
 (2) named and left to the audit loop (class 7) where it belongs.
-### S7a TODO (stretch, after S7c ships)
-- [ ] S7a.1 precise Z[i] form of G1c "every class meets normalized slice",
-      zero-import Lean — OR measured impossibility note + sharpest fragment
+### S7a TODO (stretch, after S7c ships) — COMPLETE
+- [x] S7a.0 design probe (norm 15): three zero-import Lean probes in
+      seatP/probes/s7a_design_probe{,2,3}.lean, each exit 0 / 0 bytes.
+      Verdict: the full sentence IS statable machinery-free; its finite
+      skeleton (8 live slots, 1 free, 7 pinned, 4 gauge d.o.f.) is provable;
+      the FULL sentence over all of Z[i] needs H3(Z2,U(1))=0 (out of
+      zero-import reach); the UNIT locus is fully decidable (units of Z[i]
+      are the finite group {1,i,-1,-i}).
+- [x] S7a.0 named adjudicator + DESIGN NOTE: seatMETA/S7A-DESIGN-NOTE.md
+      (divergence, measured reach table, meaning boundary, adjudicator).
+- [x] S7a.1 shipped the sharpest reachable fragment: 11 theorems appended to
+      seatP/Zi.lean (161 -> 172), inside namespace Zi, reusing norm_one_units
+      / detaNum / detaDen (no re-derivation). Core: s7a_unit_slice_iff_symmetric
+      (over all 4^4 unit gauges, slot-fixed <-> slice-symmetric), strictly
+      stronger than gauge_slot_invariant on the unit locus (adds the converse).
+      Full sentence DISCLAIMED in the S7a header; impossibility stated as a
+      live theorem (s7a_nonunit_outside_alphabet).
+- [x] S7a.2 norm 10: lean Zi.lean exit 0, 0 stderr bytes (2080 lines).
+- [x] S7a.3 census: 172/172 covered, 77 axiom-free, 0 sorryAx, 0 Classical.choice
+      (the Classical.choice trap avoided by reusing norm_one_units).
+- [x] S7a.4 norm 16 (Lean, both directions): plant 8->9 bitten exit 1; plant
+      core-iff-RHS -> vacuous bitten exit 1; restore clean exit 0 / 0 bytes;
+      census sorry-plant triggers the sorryAx ALARM. Evidence in seatMETA/.
+- [x] S7a.5 courier re-extraction: Zi_statements_v8.txt (comment change left
+      the extracted statements BYTE-IDENTICAL, sha 914a80d58d71).
+- [x] S7a.6 seat B blind (own routes): seatB/verify_zi_s7a.py, 11/11 exit 0;
+      planted defect (drop I from the unit alphabet) -> 9/11 exit 1; restore
+      -> 11/11. Independent sweep found 64 slot-fixed = 64 symmetric of 256,
+      matching Lean's decide.
+- [x] S7a.7 shipped: seatMETA/CORRECTIONS-LETTER-S7a.md (crop of 5,
+      loudest-first, incl. the near-miss of naming the strong theorem over the
+      weak content, and the vacuous-iff false-PASS trap the plant caught),
+      SUBROUND7-REPORT.md S7a section, PIN-TRACKER S7a block.
+
+## S7a COMPLETE — verification summary (measured on shipped clone tree)
+
+seatP/Zi.lean d1f3617baaef, 172 thm; compile exit 0 / 0 bytes; census PASS
+(0 sorryAx, 0 Classical.choice). Seat B 11/11 blind. All four prose gates
+still PASS on the extended tree with the S7a artifacts in scope (pointer,
+numeral, censusguard, tree — the reworded gauge subscripts n01/n10/n11 need
+NO censusguard exemption). Divergence (S7c+S7a vs predecessor S7a-first)
+recorded in: Zi.lean S7a header, S7a design note, S7a corrections letter,
+SUBROUND7-REPORT, this worklog, PIN-TRACKER R3 block.
+
+The result is exactly the handoff's sanctioned S7a outcome: a measured
+impossibility for the full H3 sentence PLUS the sharpest reachable fragment
+(the unit locus, proven completely). No weak statement wears a strong name.

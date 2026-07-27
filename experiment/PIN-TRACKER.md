@@ -36,6 +36,33 @@ Full 64-char (S7c gates, measured on the shipped tree):
 - `c2_views.sh`     `34db10a8cae52366739b7c2d5a4cf49de56235cee14c44792e534e529bdc8387`
 - `verify_stranger.py`  `cf603918357dd97cc902a40f8c8e99b0e82c6e2e6ec87d92751b7f03c8720efe`
 
+### S7a — the slice lemma's reachable core (stretch goal, COMPLETE)
+
+The G1c slice lemma "every class meets the normalized slice" was proven in the
+sharpest zero-import-reachable form (the unit locus) plus a measured
+impossibility for the full H3(Z2)=Z2 sentence. `seatP/Zi.lean` grew from 161 to
+172 theorems; census PASS with zero sorryAx and zero Classical.choice; norm 16
+confirmed both directions on the Lean instrument, the axiom census, and seat B.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `seatP/Zi.lean` (with S7a) | 172 thm, +11 S7a | `d1f3617baaef` |
+| `seatP/axioms-zi.txt` | census, 172/172, 0 sorryAx, 0 choice | `1de8439c2de3` |
+| `courier/Zi_statements_v8.txt` | statements v8, mechanical re-extraction | `914a80d58d71` |
+| `seatB/verify_zi_s7a.py` | seat B blind, 11/11 own routes | `077fb33e25a9` |
+| `seatB/s7a_seatB_out.txt` | seat B evidence (clean run) | `4e741fbbe5c9` |
+| `seatP/probes/s7a_design_probe.lean` | probe 1: statability | `ac16c2e33906` |
+| `seatP/probes/s7a_design_probe2.lean` | probe 2: finite skeleton | `67689c2ed8ff` |
+| `seatP/probes/s7a_design_probe3.lean` | probe 3: unit-locus decidable | `a643cfb4371b` |
+| `seatMETA/S7A-DESIGN-NOTE.md` | design note, named adjudicator | measured at ship |
+| `seatMETA/CORRECTIONS-LETTER-S7a.md` | S7a crop (five, loudest-first) | measured at ship |
+
+Full 64-char (S7a Lean artifacts, measured on the shipped tree):
+- `seatP/Zi.lean`  `d1f3617baaefcbb85b049709ffee600dbdc6a20b8748edcb637fea4d8291145d`
+- `seatP/axioms-zi.txt`  `1de8439c2de3477099aa7315166186671b0885cad0f44925ac693fef5c7c3599`
+- `courier/Zi_statements_v8.txt`  `914a80d58d710de0d3273ca144d5e2e44966bb295e65c5f0791c6b8a02e1d5b5`
+- `seatB/verify_zi_s7a.py`  `077fb33e25a9684c46065837900e16fb8e1eb6be4a33d72febbed61b4ce7dbe0`
+
 The audit-verdict, findings, worklog, and SUBROUND7-REPORT pins are measured
 at commit and recorded in the commit message (they cite each other, so their
 hashes settle only once all are on the branch).

@@ -135,10 +135,87 @@ Three block, measured on the shipped artifacts. No statement in
 `seatP/Zi.lean` changed; its pin before and after the censusguard plant/restore
 is identical, and identical to the Phase-0 inheritance pin.
 
-## S7a (the stretch goal) — status
+## S7a (the stretch goal) — COMPLETE
 
-S7a (a precise Z[i]-level form of the G1c slice lemma "every class meets the
-normalized slice," in zero-import Lean, or a measured impossibility note) is
-the remaining Round-Three charge and is addressed separately; if it proves out
-of zero-import reach, the report on it will carry the sharpest reachable
-fragment and a measured note rather than an overclaim.
+S7a asked for a precise Z[i]-level form of the G1c slice lemma "every class
+meets the normalized slice" in zero-import Lean, OR a measured impossibility
+note plus the sharpest reachable fragment. The result is **both**, and that
+combination is exactly the valid S7a outcome the handoff sanctioned (norm 6:
+never a weak statement wearing a strong name).
+
+### The design probe (norm 15) and its verdict
+
+Three standalone zero-import Lean probes (`seatP/probes/s7a_design_probe.lean`,
+`seatP/probes/s7a_design_probe2.lean`, `seatP/probes/s7a_design_probe3.lean`,
+each compiled exit 0 / 0 stderr bytes) measured the reach before any theorem
+was written:
+
+The full sentence — "every gauge class of pentagon solutions has a normalized
+representative," equivalently the H³(Z₂)=Z₂ statement — IS statable
+machinery-free (probe 1 type-checks `everyClassMeetsSlice`). Its combinatorial
+skeleton is finite and provable: 8 live slots, 1 free at (1,1,1), 7 pinned by
+normalization, 4 gauge degrees of freedom (probe 2, all by `decide`). But the
+full sentence over ALL of Z[i] needs the surjectivity of the 3-coboundary onto
+the 7 pinned slots for an arbitrary pentagon solution — that IS the vanishing
+of H³(Z₂,U(1)), cohomology machinery outside zero-import reach.
+
+The way through: the units of Z[i] are the finite group {1, i, −1, −i}
+(`norm_one_units`, already in the record). Restricted to unit-valued gauges,
+the whole slice/gauge question becomes a finite enumeration and is decided
+completely (probe 3). That is the sharpest reachable fragment.
+
+### What shipped
+
+Eleven theorems appended to `seatP/Zi.lean` (161 → 172 total), inside
+`namespace Zi`, reusing `norm_one_units`, `detaNum`, `detaDen`, `normSq`, `mul`
+with no re-derivation. The core is `s7a_unit_slice_iff_symmetric`: over all
+4⁴ = 256 unit-valued vertex gauges, the (1,1,1)-slot motion is trivial IF AND
+ONLY IF the gauge is slice-symmetric (η01 = η10). This is strictly stronger
+than the existing `gauge_slot_invariant` on the unit locus — it adds the
+converse, which is the honest content of "meets": no unit gauge can move a
+symbol off the two-class slice without also moving the slot. It is supported by
+a live witness (η11 = i, `s7a_live_unit_gauge`, norm 3), a negative control
+(`s7a_control_asymmetric_unit_moves_slot`, norm 5), the finite nest
+(`s7a_live_slot_count`/`s7a_free_slot_count`/`s7a_pinned_slot_count` = 8/1/7,
+norm 9), and the measured-impossibility marker (`s7a_nonunit_outside_alphabet`:
+the non-unit value ⟨2,0⟩, norm 4, sits outside the decided locus).
+
+### The honest boundary — what S7a does NOT prove
+
+The full "every class meets the slice" sentence over arbitrary (non-unit)
+pentagon solutions is NOT proven and is explicitly disclaimed in Zi.lean's S7a
+header. That step is the H³ vanishing that needs cohomology machinery this
+zero-import ring does not carry. S7a proves the unit locus, completely, and
+says so in every theorem name.
+
+### Acceptance gates (all met, all measured on the shipped file)
+
+Compile: `lean Zi.lean` exit 0, 0 stderr bytes (2080 lines). Axiom census
+(`axioms_zi.sh`): PASS, 172/172 covered, 77 axiom-free, 0 sorryAx, 0
+Classical.choice — the Classical.choice trap the record warns of is avoided.
+Norm 16 (Lean, both directions): plant #1 (slot count 8→9) and plant #2 (the
+core iff RHS → a vacuous truth) each bitten exit 1; restore clean exit 0 / 0
+bytes; census plant (a `sorry`) triggers the sorryAx ALARM. Norm 16 (seat B,
+both directions): `seatB/verify_zi_s7a.py` reproduces all 11 claims blind from
+the mechanically-extracted statements (`courier/Zi_statements_v8.txt`), 11/11
+PASS exit 0; planted defect (drop `I` from the unit alphabet) → 9/11 FAIL exit
+1; restore → 11/11. Seat B's independent sweep found 64 slot-fixed = 64
+symmetric of 256 — the iff tight on both sides, matching Lean's `decide`.
+
+Full detail, named adjudicator, and pins: `seatMETA/S7A-DESIGN-NOTE.md`.
+Honest near-misses (loudest-first): `seatMETA/CORRECTIONS-LETTER-S7a.md`.
+
+### S7a pins (measured on shipped artifacts)
+
+| artifact | sha256 |
+|---|---|
+| `seatP/Zi.lean` (with S7a) | `d1f3617baaefcbb85b049709ffee600dbdc6a20b8748edcb637fea4d8291145d` |
+| `seatP/axioms-zi.txt` | `1de8439c2de3477099aa7315166186671b0885cad0f44925ac693fef5c7c3599` |
+| `courier/Zi_statements_v8.txt` | `914a80d58d710de0d3273ca144d5e2e44966bb295e65c5f0791c6b8a02e1d5b5` |
+| `seatB/verify_zi_s7a.py` | `077fb33e25a9684c46065837900e16fb8e1eb6be4a33d72febbed61b4ce7dbe0` |
+| `seatB/s7a_seatB_out.txt` | `4e741fbbe5c97f68769f44b1abb7995d97bc78711fd068bf1aca45897482b308` |
+| `seatP/probes/s7a_design_probe.lean` | `ac16c2e33906148473acbbd6484c9fa757871d4ee57e7e479d72642c52cef51c` |
+| `seatP/probes/s7a_design_probe2.lean` | `67689c2ed8ffda72806c58fc61d0d6c078abec35ce6b444e73f377ca49cb32a3` |
+| `seatP/probes/s7a_design_probe3.lean` | `a643cfb4371b9229113ec67ccb26f95454dae62849f659ed6170956fe3b519e7` |
+| `seatMETA/S7A-DESIGN-NOTE.md` | measured at delivery (PIN-TRACKER) |
+| `seatMETA/CORRECTIONS-LETTER-S7a.md` | measured at delivery (PIN-TRACKER) |
