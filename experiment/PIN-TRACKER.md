@@ -44,7 +44,8 @@ both seats, so it is entered as a claim-to-verify, not a result.
 | `audit/plant_s7_slice.sh` | norm 16 for the slice lemma — 6 plants bitten, restores byte-identical | `3b2ce48bfe79` |
 | `seatP/probes/s7a_cocycle_reach.py` | authoritative reach probe, unchanged as received — 32/16/2 | `4a7f78f943a4` |
 
-commit: (this crate)
+commits: `404920f` (crate 1, the courier repair, kernel unchanged) then
+`2b38bc8` (crate 2, the S7a kernel work) — separated per norm 17
 
 ## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse
 
