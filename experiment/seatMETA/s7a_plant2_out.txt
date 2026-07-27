@@ -1,0 +1,17 @@
+S7a norm-16 PLANT #2 evidence (core iff RHS -> n11=n11, a vacuous truth).
+Command: lean Zi.lean  with s7a_unit_slice_iff_symmetric RHS replaced by (n11 = n11)
+Expected: the instrument BITES the semantic falsehood (exit 1). Actual exit: 1.
+----- lean output -----
+/tmp/zp2.lean:2031:2: error: Tactic `decide` proved that the proposition
+  ∀ (n00 : Zi),
+    n00 ∈ unitList →
+      ∀ (n01 : Zi),
+        n01 ∈ unitList →
+          ∀ (n10 : Zi),
+            n10 ∈ unitList →
+              ∀ (n11 : Zi),
+                n11 ∈ unitList →
+                  let eta := fun a b =>
+                    if a = 0 ∧ b = 0 then n00 else if a = 0 ∧ b = 1 then n01 else if a = 1 ∧ b = 0 then n10 else n11;
+                  detaNum eta 1 1 1 = detaDen eta 1 1 1 ↔ n11 = n11
+is false

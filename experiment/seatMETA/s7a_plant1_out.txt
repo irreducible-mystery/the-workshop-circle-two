@@ -1,0 +1,7 @@
+S7a norm-16 PLANT #1 evidence (finite count 8 -> 9, a false decide).
+Command: lean Zi.lean  with s7a_live_slot_count claiming length = 9
+Expected: the instrument BITES (exit 1). Actual exit: 1.
+----- lean output -----
+/tmp/zp1.lean:1998:60: error: Tactic `decide` proved that the proposition
+  s7aLiveSlots.length = 9
+is false
