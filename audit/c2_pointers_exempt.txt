@@ -43,6 +43,7 @@ sha256sum	POSIX tool named in the courier protocol; not a repo pointer
 #
 # -- Courier-side objects (pinned in the letters; live on Kelly's machine) --
 b8eea58	courier-line commit carrying the byte-original ROUND1-REPLY.md; grafted into the record at the reconciliation merge (now a merge parent; also resolves as a git object)
+ecd63e1	DANGLING commit named in letters/ROUND2-VERIFICATION.md as "your pre-amend merge — harmless". A dangling object is unreachable and garbage-collectable: it survived in the clone where the letter was written and does not exist in a fresh clone, so this pointer resolved by machine-local reflog state — the one thing this gate's own declaration says its verdict must never depend on. Found by the Round-3 third body when the gate came up RED on a fresh clone at an untouched HEAD. The frozen letter is correct as written and is NOT edited; the cost lands here, as with the rename entry below.
 claude/courier-circle-two-dulbsg	courier branch on Kelly's machine (reconciliation item 2); ferries next leg, not in this record yet
 ROUND1-REPLY.md	byte-original ferried at b8eea58 and landed at letters/ROUND1-REPLY.md in the reconciliation merge; the transcription letters/ROUND1-REPLY-handover.md is kept beside it, superseded per its own header
 letters/ROUND1-REPLY.md	the byte-original handover, landed here at the reconciliation merge (reconciliation item 2, now done); resolves as a file path

@@ -11,6 +11,19 @@ boundary; the extension was explicitly sanctioned by the courier
 every commit message, and again here. This is the experiment's closing
 artifact: one document, the whole arc, all pins.*
 
+*DIVERGENCE — Round Three, §10 characterization crop (sanctioned by Kelly).
+The §10 closing originally distinguished fermion from boson by the fermion's
+−1 "annihilating double occupation." That sentence was false: double-
+occupation vanishing (ab − ba = 0) follows from commutativity alone and is
+common to BOTH statistics (`pauli_double_occupation_dies`); it does not
+separate them. The true separator is the symmetrized occupancy — the boson
+admits the doubly-occupied state (`control_boson_no_exclusion`: ⟨2,0⟩ ≠ 0),
+the fermion excludes it. The sentence was cropped and replaced on Kelly's
+explicit sanction (a frozen primary source is not touched otherwise). Finding
+raised by the Round-3 stranger pass; scored REGISTER row 8 CONFIRMED; carried
+in `CORRECTIONS-LETTER-ROUND3.md` item 1. This is the only content change to
+this document since its S6 freeze.*
+
 ---
 
 ## 1. What was asked, and what was answered
@@ -294,9 +307,13 @@ had moved upstream into the writing itself. The mathematics answered
 too: the ring, the domain, the pentagon, the hexagon, the twist, and
 then the two of them together — the roomy world has exactly two
 particles, said once, kernel-checked, and re-derived blind by a route
-that shares nothing with the proof. And the fermion's −1 is not a
-catalog entry but a working part: it annihilates double occupation
-while the boson's +1 demonstrably does not.
+that shares nothing with the proof. And what separates the fermion from
+the boson is not that either one "annihilates double occupation" — that
+vanishing (ab − ba = 0) is commutativity, common to both — but the
+symmetrized occupancy: the boson admits the doubly-occupied state
+(⟨2,0⟩ ≠ 0) and the fermion excludes it. [§10 sentence cropped and
+corrected on Kelly's sanction, Round 3; see header divergence note and
+CORRECTIONS-LETTER-ROUND3.md item 1.]
 
 The middle holds. The catalog is two. The record is pinned.
 
