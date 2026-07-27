@@ -1,0 +1,70 @@
+====================================================================
+SEAT B / S7 — the slice lemma over the units of Z[i]
+route: DIRECT EXHAUSTION of all 65536 cochains and their orbits
+====================================================================
+
+-- the exhaustion (seat B's own route) --
+PASS  exhaustion_box_complete  — 4^8 = 65536 unit-valued cochains enumerated; the box is the whole unit-valued cochain space, so nothing is sampled
+PASS  s7_nest_cocycles_32  — 32 cochains satisfy all 16 pentagon instances — found by running the relation, not by any parametrization
+PASS  gauge_box_complete  — 4^4 = 256 vertex gauges
+PASS  s7_nest_coboundaries_16  — the 256 gauges produce 16 distinct coboundaries
+PASS  coboundaries_are_cocycles  — d(gauges) ⊆ cocycles — d² = 0, the faithfulness check
+PASS  s7_nest_classes_2  — the 32 cocycles fall into 2 gauge orbits
+PASS  orbits_partition_the_cocycles  — orbit sizes [16, 16]; 16 + 16 = 32, and the orbits exhaust the cocycles — the nest ties
+
+-- the slice lemma, read off the orbit partition --
+PASS  slice_lemma_over_zi_units  — 2/2 orbits contain an Fnorm f representative — EVERY class meets the normalized slice
+PASS  exactly_two_over_zi_units  — the labels reached are [(-1, 0), (1, 0)] = {+1, −1} — exactly two classes, and the two are the pentagon's own two (S3)
+PASS  normalized_reps_satisfy_S3_pentagon  — each reached representative satisfies the S3 `pentagon` predicate — the strengthened headline's bridge back to the original object
+PASS  control_labels_are_not_all_units  — i and −i are units but are NOT reached and do NOT satisfy the pentagon — the label set is a result, not the unit set restated
+
+-- seat P's structure, checked against seat B's exhaustion --
+PASS  cocycle_at_000  — slot (0, 0, 0) is forced to 1 on all 32 cocycles
+PASS  cocycle_at_010  — slot (0, 1, 0) is forced to 1 on all 32 cocycles
+PASS  cocycle_at_110  — F(1,0,0)·F(1,1,0) = 1 on every cocycle
+PASS  cocycle_at_011  — F(0,1,1)·F(0,0,1) = 1 on every cocycle
+PASS  cocycle_at_101  — F(1,0,1) = F(0,0,1)·F(1,0,0) on every cocycle
+PASS  cocycle_011_eq_conj  — F(0,1,1) = conj F(0,0,1)
+PASS  cocycle_110_eq_conj  — F(1,1,0) = conj F(1,0,0)
+PASS  cocycle_f_sq_one  — f = F(1,1,1)·F(1,0,0)·F(0,0,1) squares to 1 on every cocycle
+PASS  s7_nest_cocycles_32_triples  — 32 of 4³ = 64 parameter triples satisfy (s·p·q)² = 1
+PASS  cochainOf_is_cocycle  — BACKWARD: every admitted triple really is a cocycle — so 32 is a count, not an upper bound
+PASS  cocycle_is_cochainOf  — FORWARD: every cocycle IS cochainOf of its own three values
+PASS  cochainOf_injective  — distinct triples give distinct cochains — the count cannot overcount
+PASS  parametrization_is_exact  — the parametrized set EQUALS the exhaustively-found cocycle set
+PASS  sliceGauge_normalizes_every_cocycle  — seat P's explicit gauge — read off F, never searched for — normalizes 32/32 cocycles at all 8 slots
+PASS  sliceGauge_is_unit_valued  — the constructed gauge lands in the units, as the lemma claims
+PASS  Fnorm_eq_Fz2  — Fnorm IS the kernel's Fz2 on its admissible slots — the normalized representative is S3's own object, not a look-alike
+PASS  s7_coboundary_reduces_to_normal_form  — every gauge has the coboundary of its normalized form (η00 rescales, η11 cancels) — all 256 checked
+PASS  s7_cobReps_distinct  — the 16 normalized gauges give 16 DISTINCT coboundaries
+PASS  cobReps_are_the_whole_subgroup  — reduction + distinctness give exactly the 16 found by exhaustion
+
+-- negative controls (norm 5), re-run independently --
+PASS  control_A_unit_valued  — the witness is unit-valued — it fails as a COCYCLE, not as a cochain
+PASS  control_A_not_a_cocycle  — i at (1,1,0) is NOT a cocycle — so it was never a class; the two SUPERSEDED probes' 'counterexample' dies here
+PASS  control_A_never_normalized  — 0/1024 (gauge, f) pairs normalize it — the cocycle hypothesis is load-bearing, not decorative
+PASS  control_B_is_a_genuine_cocycle  — cochainOf(i, 1, i) IS a cocycle — so control B isolates the GAUGE
+PASS  control_B_identity_gauge_fails  — the identity gauge does NOT normalize it (it fails already at the (1,0,0) slot)
+PASS  live_slice_gauge_normalizes  — the SAME cochain IS normalized by the gauge the lemma constructs, onto f = −1 — the content is the construction, not the shape
+PASS  live_gaussian_cocycle_off_slice  — the witness sits off the real axis AND off the slice, and its gauge is not the identity — the lemma is exercised where it has work to do
+PASS  live_both_classes_inhabited  — both classes are inhabited by named cocycles — the guarded ∀ is not vacuous
+
+-- label audit (norm 6): the name must not overreach --
+PASS  label_no_U1_in_theorem_names  — none of the 34 S7 theorem names says U(1)
+PASS  label_says_zi_units  — the section says 'over the units of Z[i]' in its own prose
+PASS  label_records_U1_out_of_reach  — the section RECORDS that the continuous U(1) version is out of zero-import reach, rather than quietly omitting it
+
+-- plant --
+PASS  plant_deleted_cocycle_caught  — one cocycle deleted: the orbits still cover 32 keys but the set has 31 — `orbits_partition_the_cocycles` goes RED, as it must
+PASS  plant_mislabelled_Fnorm_caught  — free slot moved to (1,1,0): the slot equation fails on 16/32 cocycles — a mislabelled normal form cannot pass. It bites on EXACTLY the 16 whose label is −1, and is blind on the 16 whose label is +1, because Fnorm(+1) is all-ones at every slot and moving its free slot changes nothing. Recorded rather than rounded off: this plant's reach is half the cocycles by construction, and the half it cannot reach is the half where there is nothing to mislabel
+
+====================================================================
+checks run: 43;  passed: 43;  failed: 0
+VERDICT: the slice lemma re-derived by DIRECT EXHAUSTION of all
+         65536 unit-valued cochains and their 256-gauge orbits —
+         not by seat P's parametrization, witnesses, or `decide`
+         nests. 32 cocycles / 16 coboundaries / 2 classes, all
+         three matching the design probe. Seat P's structure then
+         checked AGAINST that exhaustion and found exact. Both
+         negative controls re-run; label audit clean; plants bitten.
+EXIT: 0

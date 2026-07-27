@@ -29,8 +29,8 @@ SELF_DIR=$(dirname "$0")
 EXP=$(cd "$SELF_DIR/.." && pwd)
 KERNEL="$EXP/seatP/Zi.lean"
 EXTRACT="$EXP/courier/extract_statements.py"
-SF="$EXP/courier/Zi_statements_v7.txt"
-TAG="v7 (S1..S6)"
+SF="$EXP/courier/Zi_statements_v8.txt"
+TAG="v8 (S1..S7)"
 PURITY="$EXP/audit/s7c_statements_purity.sh"
 TRANS="$EXP/audit/s7c_transcription.sh"
 

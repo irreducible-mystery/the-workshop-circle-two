@@ -11,7 +11,7 @@ this workshop — if one ever does, that is the finding.*
 | # | artifact class | born | adjudicator | what it does NOT cover |
 |---|---|---|---|---|
 | 1 | **Bench claims** (the inherited floor) | r1 | each bench's own asserts + `run_all.py` exit 0 (29/29 at birth) | bench *docstrings* — prose about the checks. Crop item #1 was exactly this species, and `c2_gift_certificates.py` G1h now gates that one site; the rest of the docstring prose is class-6 territory |
-| 2 | **Certificate claims** (`audit/c2_gift_certificates.py`) | r1 | the script itself: 70 checks — exact except the two FLOAT-WELD welds its own header quarantines as never load-bearing — exit 1 on any FAIL; instrument changes re-verified by plant + clean run (norm 16 — done for the round-1 revision, both directions) | the G1c slice lemma ("every class has a normalized representative") — flagged inside the instrument as NOT bench-certified; and G6's cost figures, which are calibrated *estimates*, honestly labeled |
+| 2 | **Certificate claims** (`audit/c2_gift_certificates.py`) | r1 | the script itself: 70 checks — exact except the two FLOAT-WELD welds its own header quarantines as never load-bearing — exit 1 on any FAIL; instrument changes re-verified by plant + clean run (norm 16 — done for the round-1 revision, both directions) | **the G1c slice lemma — ADJUDICATED r3 (charge S7a), and the boundary MOVED rather than erased.** What is now certified: the lemma "every class has a normalized representative" holds **over the units of Z[i]**, proven in the quarantined kernel (`slice_lemma_over_zi_units`), with explicit witnesses read off the cochain rather than searched for, nests reproducing the design probe, two negative controls, and seat B re-deriving it by direct exhaustion of the whole unit-valued cochain space. What SURVIVES as the named residue: the **continuous** form, with the unit group U(1). It is out of zero-import reach — U(1) is not representable over `Int` — so no instrument in this record reaches it and none is promised. **RULING (seat B, r3): the exclusion NARROWS, it does not close.** The reason is in the certificate's own wording: the flagged step is the step "to the full H^3(Z2,U(1)) = Z2 sentence", and that sentence names U(1), which the Z[i]-unit lemma does not reach. **A second finding came out of making this ruling, and it points the other way**: the bench sentence the exclusion is anchored to (`floor/symmetric_statistics.py`, "gauge classes F = +1 and F = -1 — H^3(Z_2, U(1)) = Z_2, found numerically") is not what its instrument measures. That search minimises over a **single real parameter** (`rng.uniform(-2, 2, size=1)`), never over U(1) and never over the complex plane — while the hexagon search directly below it does use a genuinely complex parameter, so the restriction was a choice, not a limitation. It also never computes a gauge orbit, so "gauge classes" there is the slice-relative count, which is precisely the step being flagged. The conclusion is not in doubt (G1a proves pentagon <=> f^2 = 1 symbolically over a polynomial ring, generic in the coefficient ring; and sweeping the bench's own residual around the actual unit circle vanishes exactly at +1 and -1) — it is the EVIDENCE that is narrower than the label. A bench-docstring characterization slip, class-1 territory and the crop-item-#1 species, raised here and routed to a bench crop; recorded rather than repaired in the same breath, per norm 17. Residual boundary after all of this: the continuous U(1) statement, unmeasured by any instrument in either circle, and now known to be unmeasured by the bench that claims it; and G6's cost figures, which are calibrated *estimates*, honestly labeled |
 | 3 | **Lean theorem statements** (Circle Two's, when the third body ships) | r1, charge | the kernel: `lean FILE.lean`, exit 0 and zero bytes (norm 10), toolchain pinned `leanprover/lean4:v4.32.0` (re-pin allowed, stated) | whether the theorem is the chartered one; name/docstring match (norm 6, class 6 below) |
 | 4 | **Proof-term hygiene** (Circle Two's) | r1 frontier; **adjudicated r2, with the first Lean delivery** | `audit/c2_axioms.sh`: for every `theorem` in `lean/*.lean` it asks the kernel `#print axioms` and tabulates, failing on either `sorryAx` (a hole reached the record) or `Classical.choice` (the trap, or an unannounced use of choice); ordinary kernel axioms are reported, never judged. It censuses a generated copy carrying the queries, so the shipped file stays silent (norm 10). Bitten at birth on both plants — a `sorry`, and an `omega` aimed at a conjunctive goal, which reproduced the `Classical.choice` trap exactly | `theorem` declarations only — a `def` carries no proof obligation and an `example` has no name to ask about. And it cannot see a theorem whose *statement* is wrong: that is norm 6's territory and class 6's, not this instrument's |
 | 5 | **The courier channel** | r1 | two carriers, pins outside the artifact: **commit IDs** for git legs, **SHA-256 in Kelly's message** for zip legs; each body runs a day-one reachability test for its leg (norm 14) and states which carrier it uses; ferried artifacts get committed by a repo-capable body so the record stays git-canonical | that the right *round* travels — the round is named in the accompanying letter. **Round-2 addition, from the first transition wobble: the seating documents are part of the ferry** — a new body orients to whatever seat its first documents imply, so every kickoff leg carries the body's seat name and its charge file in the same message (the card's Step 2 is the template). **Round-2 addition, the honest gap in the commit hook:** `.githooks/pre-commit` blocks a commit whose gates are red, but a hook lives in the working copy, not the commit — `--no-verify`, a clone that never ran `git config core.hooksPath .githooks`, or a body on another machine is unhooked. The mechanism raises the cost of ignoring a red gate; it does not make it impossible |
@@ -81,6 +81,47 @@ Sites for the thirty-one specimen, per norm 13: `letters/ROUND2-HANDSHAKE.md`
 (the report, which stays as couriered), `letters/ROUND2-VERIFICATION.md`
 (the correction of record), and this note. **The next prediction rides
 with the round-2 close.**
+
+## The norm-15 crate-time question, answered at the S7a crate (r3)
+
+**"What did this round add that nothing checks?"** The **ruling itself**,
+and the seat that made it.
+
+Row 2's boundary above now carries an adjudication — the G1c slice lemma
+narrows rather than closes — and that ruling is prose. Every instrument
+this crate ships checks the *mathematics*: the kernel compiles silent,
+the census is clean, seat B's exhaustion re-derives the counts, the
+plants bite in both directions, the label audit refuses the U(1) name.
+Not one of them checks whether *"the exclusion narrows rather than
+closes"* is the right call. That sentence is a characterization, it sits
+in the register, and by row 8's own declaration the register is where
+this circle's characterization slips have lived.
+
+**The weaker thing, stated plainly rather than left to be discovered.**
+Row 18 prices single-architecture dual-seat deliverables at *"both seats'
+instruments PLUS one true-stranger pass ... before anything is called
+verified."* This crate has both seats' instruments. It does **not** have
+the stranger pass: seat P's proof and seat B's exhaustion were written in
+one session by one body. The instruments' authority is undiminished —
+exit codes do not care who ran them, and seat B's route (direct
+exhaustion of the entire unit-valued cochain space) shares no step with
+seat P's (explicit witnesses plus small `decide` nests), so a shared
+coding error would have to survive two unrelated methods. The *prose*
+adjudication is the part that is weakened, and the ruling is prose. So:
+**the mathematics is verified; the ruling is a claim awaiting a
+stranger.** It is entered here as a claim-to-verify, not a result.
+
+**The prediction offered for the next audit:** the next specimen lands in
+the r3 ruling's own reasoning — most likely in the step that reads the
+certificate's wording ("the remaining step to the full H^3(Z2,U(1)) = Z2
+sentence") as *fixing* the exclusion's scope to U(1), when the same
+certificate defines its gauge group only as "eta : Z2 x Z2 -> units" and
+proves its invariance symbolically over a polynomial ring, i.e. generic
+in the unit group. A reader could hold that the excluded step was always
+the generic one, and that the Z[i]-unit lemma therefore closes it. That
+reading is recorded here because the ruling went the other way, and the
+honest form of a judgement call is one that names the case against
+itself.
 
 | # | artifact class | born | adjudicator | what it does NOT cover |
 |---|---|---|---|---|
