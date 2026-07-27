@@ -10,7 +10,43 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse (current)
+## S7a — the slice lemma over the units of Z[i] (current)
+
+Charge `CHARGE-S7a-SLICE-LEMMA.md` discharged, and corrections-letter
+items 2 and 3 repaired. Shipped as TWO crates (norm 17): the courier
+repair alone against the UNCHANGED S6 kernel `b7ef35425e13`, verified in
+a clean checkout; then the kernel work. `slice_lemma_over_zi_units` —
+every unit-valued cocycle is cohomologous to a normalized `Fnorm f` with
+f = +1 or -1, witnesses explicit and read off the cochain. Nests 32/16/2
+tied to the objects by a two-directional classification, matching the
+design probe. Census 195/195, 0 sorryAx, 0 Classical.choice. Seat B
+re-derived it by direct exhaustion — a route seat P cannot take, since
+4^8 cochains is outside `decide`'s budget. Still no `set_option`
+anywhere in the file. RULING on REGISTER row 2: the exclusion NARROWS
+(certified over Z[i] units), it does not close (U(1) is out of
+zero-import reach) — and the ruling is prose made by a session holding
+both seats, so it is entered as a claim-to-verify, not a result.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `seatP/Zi.lean` | the kernel with S7 — 195 theorems, 43 defs, 2566 lines; exit 0, 0 bytes | `848282f2e3a2` |
+| `seatP/s7_section.lean` | the S7 section alone — 34 theorems, 13 defs | `03d6b71770c1` |
+| `courier/Zi_statements_v8.txt` | statements v8 (S1..S7), 195; re-extraction byte-identical | `36101a90232d` |
+| `courier/Zi_statements_v7.txt` | statements v7 RE-CUT from the unchanged S6 kernel (was `97faef58cd0e`) | `568d8a6d9a59` |
+| `courier/extract_statements.py` | the repaired extractor: comment-aware + binder-aware cut (was `aac64a45c6f4`) | `d3093b7e76f9` |
+| `seatB/verify_zi_s7.py` | seat B, direct exhaustion of all 65536 cochains — 43/43, exit 0 | `9737784cc5a4` |
+| `seatB/verify_zi_s7_output.txt` | clean run transcript | `6808236b13bf` |
+| `SUBROUND7-REPORT.md` | seat P delivery report | `3ca211c44b5c` |
+| `seatB/CORRECTIONS-LETTER-S7.md` | seat B verification, findings, and the row-2 ruling | `7d0be85a69a7` |
+| `audit/s7c_transcription.sh` | courier-fidelity gate — T1/T2 PASS (TAG parameterized, default v8) | `d14fe0fc5419` |
+| `audit/s7c_statements_purity.sh` | statements-purity gate — 0 prose lines; unbounded-recursion repair | `1baa46a44831` |
+| `audit/plant_s7_courier.sh` | norm 16 for the courier repair — 5 plants bitten, 5 restores | `72d1acb28c0c` |
+| `audit/plant_s7_slice.sh` | norm 16 for the slice lemma — 6 plants bitten, restores byte-identical | `3b2ce48bfe79` |
+| `seatP/probes/s7a_cocycle_reach.py` | authoritative reach probe, unchanged as received — 32/16/2 | `4a7f78f943a4` |
+
+commit: (this crate)
+
+## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse
 
 Third protocol round, amendments A1–A4 live. Their S3 (115 theorems =
 carried 76 + 39 new, head `09f6fd7`) vs my S3 layer. All delivery

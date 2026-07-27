@@ -34,7 +34,7 @@ set -u
 LC_ALL=C; export LC_ALL
 SELF_DIR=$(dirname "$0")
 EXP=$(cd "$SELF_DIR/.." && pwd)
-SF=${1:-"$EXP/courier/Zi_statements_v7.txt"}
+SF=${1:-"$EXP/courier/Zi_statements_v8.txt"}
 
 if [ ! -f "$SF" ]; then
     echo "ERROR: statements file '$SF' not found"; echo "RESULT: FAIL"; exit 1

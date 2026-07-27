@@ -29,14 +29,17 @@
 #   NOTE: the shipped file ALREADY carries specimen B, so on the shipped
 #   artifact T2 is EXPECTED RED, and that red is the finding -> courier charge.
 #
-# USAGE:  sh audit/s7c_transcription.sh [STATEMENTS_FILE] [KERNEL_FILE]
+# USAGE:  sh audit/s7c_transcription.sh [STATEMENTS_FILE] [KERNEL_FILE] [TAG]
 # Exit 0 iff RESULT: PASS. POSIX sh + python3 (extractor) + awk.
 set -u
 LC_ALL=C; export LC_ALL
 SELF_DIR=$(dirname "$0")
 EXP=$(cd "$SELF_DIR/.." && pwd)
-SF=${1:-"$EXP/courier/Zi_statements_v7.txt"}
+SF=${1:-"$EXP/courier/Zi_statements_v8.txt"}
 KERNEL=${2:-"$EXP/seatP/Zi.lean"}
+# the extraction TAG is a parameter, not a literal: it moves with the kernel
+# version, and a stale literal here would fail T1 for the wrong reason.
+TAG=${3:-"v8 (S1..S7)"}
 EXTRACT="$EXP/courier/extract_statements.py"
 
 fail=0
@@ -49,7 +52,7 @@ elif [ ! -f "$KERNEL" ]; then
     echo "  T1: ERROR kernel not found: $KERNEL"; fail=1
 else
     FRESH=$(mktemp)
-    python3 "$EXTRACT" "$KERNEL" "$FRESH" "v7 (S1..S6)" >/dev/null 2>&1
+    python3 "$EXTRACT" "$KERNEL" "$FRESH" "$TAG" >/dev/null 2>&1
     if diff -q "$SF" "$FRESH" >/dev/null 2>&1; then
         echo "  T1: fresh extraction BYTE-IDENTICAL to shipped file .... PASS"
     else

@@ -1,0 +1,794 @@
+STATEMENTS ONLY — v8 (S1..S7) — mechanically extracted from Zi.lean.
+Proof bodies stripped by courier script; seat B sees definitions and claims only.
+
+structure Zi where
+  re : Int
+  im : Int
+deriving DecidableEq
+namespace Zi
+def zero : Zi := ⟨0, 0⟩
+def one : Zi := ⟨1, 0⟩
+def I : Zi := ⟨0, 1⟩
+def add (z w : Zi) : Zi := ⟨z.re + w.re, z.im + w.im⟩
+def mul (z w : Zi) : Zi := ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
+def neg (z : Zi) : Zi := ⟨-z.re, -z.im⟩
+def sub (z w : Zi) : Zi := add z (neg w)
+def conj (z : Zi) : Zi := ⟨z.re, -z.im⟩
+def normSq (z : Zi) : Int := z.re * z.re + z.im * z.im
+def fakeMirror (z : Zi) : Zi := ⟨z.re, 2 * z.im⟩
+def coordMul (z w : Zi) : Zi := ⟨z.re * w.re, z.im * w.im⟩
+theorem add_comm (z w : Zi) : add z w = add w z
+
+theorem add_assoc (z w v : Zi) : add (add z w) v = add z (add w v)
+
+theorem zero_add (z : Zi) : add zero z = z
+
+theorem add_zero (z : Zi) : add z zero = z
+
+theorem add_neg (z : Zi) : add z (neg z) = zero
+
+theorem neg_add (z : Zi) : add (neg z) z = zero
+
+theorem sub_add_cancel (z w : Zi) : add (sub z w) w = z
+
+theorem mul_comm (z w : Zi) : mul z w = mul w z
+
+theorem mul_assoc (z w v : Zi) : mul (mul z w) v = mul z (mul w v)
+
+theorem one_mul (z : Zi) : mul one z = z
+
+theorem mul_one (z : Zi) : mul z one = z
+
+theorem zero_mul (z : Zi) : mul zero z = zero
+
+theorem mul_zero (z : Zi) : mul z zero = zero
+
+theorem mul_add (z w v : Zi) : mul z (add w v) = add (mul z w) (mul z v)
+
+theorem add_mul (z w v : Zi) : mul (add z w) v = add (mul z v) (mul w v)
+
+theorem neg_mul (z w : Zi) : mul (neg z) w = neg (mul z w)
+
+theorem mul_neg (z w : Zi) : mul z (neg w) = neg (mul z w)
+
+theorem i_squared_is_minus_one : mul I I = neg one
+
+theorem conj_add (z w : Zi) : conj (add z w) = add (conj z) (conj w)
+
+theorem conj_mul (z w : Zi) : conj (mul z w) = mul (conj z) (conj w)
+
+theorem conj_zero : conj zero = zero
+
+theorem conj_one : conj one = one
+
+theorem conj_conj (z : Zi) : conj (conj z) = z
+
+theorem conj_I : conj I = neg I
+
+theorem conj_fixes_real (a : Int) : conj ⟨a, 0⟩ = ⟨a, 0⟩
+
+theorem conj_fixed_iff_real (z : Zi) : conj z = z ↔ z.im = 0
+
+theorem mul_conj_eq_normSq (z : Zi) : mul z (conj z) = ⟨normSq z, 0⟩
+
+theorem conj_mul_eq_normSq (z : Zi) : mul (conj z) z = ⟨normSq z, 0⟩
+
+theorem brahmagupta_fibonacci_int (a b c d : Int) :
+    (a*c - b*d)*(a*c - b*d) + (a*d + b*c)*(a*d + b*c)
+      = (a*a + b*b)*(c*c + d*d)
+
+theorem normSq_mul (z w : Zi) : normSq (mul z w) = normSq z * normSq w
+
+theorem normSq_zero : normSq zero = 0
+
+theorem normSq_one : normSq one = 1
+
+theorem normSq_I : normSq I = 1
+
+theorem normSq_conj (z : Zi) : normSq (conj z) = normSq z
+
+theorem live_mul_witness : mul ⟨1, 2⟩ ⟨3, 4⟩ = ⟨-5, 10⟩
+
+theorem live_normSq_witness : normSq ⟨3, 4⟩ = 25
+
+theorem live_add_witness : add ⟨1, 2⟩ ⟨3, 4⟩ = ⟨4, 6⟩
+
+theorem live_conj_witness : conj ⟨3, 4⟩ = ⟨3, -4⟩
+
+theorem control_fake_mirror_fails :
+    fakeMirror (mul I I) ≠ mul (fakeMirror I) (fakeMirror I)
+
+theorem control_coordMul_differs : coordMul I I ≠ mul I I
+
+theorem control_conj_not_id : conj I ≠ I
+
+theorem control_normSq_not_additive :
+    normSq (add one one) ≠ normSq one + normSq one
+
+theorem sq_mod4 (r : Int) : (r*r) % 4 = 0 ∨ (r*r) % 4 = 1
+
+theorem mod4_forces_even (a b : Int) (h : (a*a + b*b) % 4 = 0) :
+    a % 2 = 0 ∧ b % 2 = 0
+
+theorem descent_core : ∀ fuel : Nat, ∀ a b : Int,
+    a.natAbs + b.natAbs ≤ fuel → a*a + b*b = 0 → a = 0 ∧ b = 0
+
+theorem normSq_eq_zero_iff (z : Zi) : normSq z = 0 ↔ z = zero
+
+theorem normSq_ne_zero (z : Zi) (h : z ≠ zero) : normSq z ≠ 0
+
+theorem intScalar_mul (n : Int) (z : Zi) :
+    mul ⟨n, 0⟩ z = ⟨n * z.re, n * z.im⟩
+
+theorem torsion_free (n : Int) (z : Zi) (hn : n ≠ 0)
+    (h : mul ⟨n, 0⟩ z = zero) : z = zero
+
+theorem no_zero_divisors (z w : Zi) (h : mul z w = zero) :
+    z = zero ∨ w = zero
+
+theorem live_descent_witness : normSq zero = 0
+
+theorem live_normSq_nonzero : normSq ⟨1, 2⟩ = 5
+
+theorem live_zero_mul_witness : mul zero ⟨3, 4⟩ = zero
+
+theorem live_sq_mod4_nest :
+    (0*0) % 4 = 0 ∧ (1*1) % 4 = 1 ∧ (2*2) % 4 = 0 ∧ (3*3 : Int) % 4 = 1
+
+theorem control_mod2_insufficient :
+    (1*1 + 1*1 : Int) % 2 = 0 ∧ (1 : Int) % 2 ≠ 0
+
+theorem control_descent_needs_hypothesis :
+    normSq ⟨1, 2⟩ ≠ 0 ∧ (⟨1, 2⟩ : Zi) ≠ zero
+
+theorem control_z4_has_zero_divisors :
+    (2 * 2 : Int) % 4 = 0 ∧ (2 : Int) % 4 ≠ 0
+
+def Fz2 (f : Zi) (a b c d x y : Nat) : Zi :=
+  if x = (a+b) % 2 ∧ y = (b+c) % 2 ∧ d = (a+b+c) % 2 then
+    (if a = 1 ∧ b = 1 ∧ c = 1 then f else one)
+  else zero
+def pentL (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  let u := (b+c) % 2
+  mul (mul (Fz2 f a b c y x u) (Fz2 f a u d t y v)) (Fz2 f b c d v u w)
+def pentR (f : Zi) (a b c d : Nat) : Zi :=
+  let x := (a+b) % 2
+  let y := (x+c) % 2
+  let t := (y+d) % 2
+  let w := (c+d) % 2
+  let v := (b+w) % 2
+  mul (Fz2 f x c d t y w) (Fz2 f a b w t x v)
+def pentagon (f : Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 →
+    pentL f a b c d = pentR f a b c d
+theorem pentagon_offdiag (f : Zi) : ∀ a b c d : Nat,
+    a < 2 → b < 2 → c < 2 → d < 2 → ¬(a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1) →
+    pentL f a b c d = pentR f a b c d
+
+theorem pentagon_forcing_lhs (f : Zi) : pentL f 1 1 1 1 = mul f f
+
+theorem pentagon_forcing_rhs (f : Zi) : pentR f 1 1 1 1 = one
+
+theorem pentagon_forces_f_sq_one (f : Zi) (h : pentagon f) :
+    mul f f = one
+
+theorem f_sq_one_gives_pentagon (f : Zi) (h : mul f f = one) :
+    pentagon f
+
+theorem pentagon_iff_f_sq_one (f : Zi) : pentagon f ↔ mul f f = one
+
+def pentQuads : List (Nat × Nat × Nat × Nat) :=
+  [(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),
+   (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),
+   (1,0,0,0),(1,0,0,1),(1,0,1,0),(1,0,1,1),
+   (1,1,0,0),(1,1,0,1),(1,1,1,0),(1,1,1,1)]
+theorem pent_nest_card : pentQuads.length = 16
+
+theorem pent_classification_counted :
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = one))).length = 11 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨5,0⟩))).length = 4 ∧
+    (pentQuads.filter (fun q =>
+      decide (pentL ⟨5,0⟩ q.1 q.2.1 q.2.2.1 q.2.2.2 = ⟨25,0⟩))).length = 1 ∧
+    11 + 4 + 1 = 16
+
+theorem pent_f_eq_f_instances (f : Zi) :
+    (pentL f 0 1 1 1 = f ∧ pentR f 0 1 1 1 = f) ∧
+    (pentL f 1 0 1 1 = f ∧ pentR f 1 0 1 1 = f) ∧
+    (pentL f 1 1 0 1 = f ∧ pentR f 1 1 0 1 = f) ∧
+    (pentL f 1 1 1 0 = f ∧ pentR f 1 1 1 0 = f)
+
+theorem sub_eq_zero_iff (z w : Zi) : sub z w = zero ↔ z = w
+
+theorem factorization_symbolic (f : Zi) :
+    mul (sub f one) (add f one) = sub (mul f f) one
+
+theorem f_sq_one_iff_pm_one (f : Zi) :
+    mul f f = one ↔ (f = one ∨ f = neg one)
+
+theorem both_roots_land :
+    mul one one = one ∧ mul (neg one) (neg one) = one ∧ one ≠ neg one
+
+theorem pentagon_exactly_two (f : Zi) :
+    pentagon f ↔ (f = one ∨ f = neg one)
+
+theorem live_pentagon_plus_one : pentagon one
+
+theorem live_pentagon_minus_one : pentagon (neg one)
+
+theorem live_forcing_separates :
+    pentL ⟨5,0⟩ 1 1 1 1 ≠ pentR ⟨5,0⟩ 1 1 1 1 ∧
+    pentL ⟨5,0⟩ 0 1 1 1 = pentR ⟨5,0⟩ 0 1 1 1
+
+theorem live_gaussian_witness :
+    pentL ⟨1,1⟩ 1 1 1 1 = ⟨0,2⟩ ∧ pentR ⟨1,1⟩ 1 1 1 1 = one ∧
+    pentL ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩ ∧ pentR ⟨1,1⟩ 0 1 1 1 = ⟨1,1⟩
+
+theorem control_z8_four_roots : ∀ x : Fin 8,
+    (x.val * x.val) % 8 = 1 ↔
+    (x.val = 1 ∨ x.val = 3 ∨ x.val = 5 ∨ x.val = 7)
+
+theorem control_f_eq_i_fails_pentagon :
+    ¬ pentagon I ∧ sub (mul I I) one = ⟨-2, 0⟩ ∧ normSq ⟨-2, 0⟩ = 4
+
+theorem control_f_eq_two_fails_pentagon : ¬ pentagon ⟨2, 0⟩
+
+def detaNum (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta b c) (eta a ((b+c) % 2))
+def detaDen (eta : Nat → Nat → Zi) (a b c : Nat) : Zi :=
+  mul (eta ((a+b) % 2) c) (eta a b)
+theorem gauge_slot_motion (eta : Nat → Nat → Zi) :
+    detaNum eta 1 1 1 = mul (eta 1 1) (eta 1 0) ∧
+    detaDen eta 1 1 1 = mul (eta 0 1) (eta 1 1)
+
+theorem mul_left_cancel (a x y : Zi) (ha : a ≠ zero)
+    (h : mul a x = mul a y) : x = y
+
+theorem slice_forces_eta_symmetric (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    eta 0 1 = eta 1 0
+
+theorem gauge_slot_invariant (eta : Nat → Nat → Zi)
+    (h10 : eta 1 0 ≠ zero) (h01 : eta 0 1 ≠ zero)
+    (c100 : detaNum eta 1 0 0 = detaDen eta 1 0 0)
+    (c001 : detaNum eta 0 0 1 = detaDen eta 0 0 1) :
+    detaNum eta 1 1 1 = detaDen eta 1 1 1
+
+theorem live_gauge_witness :
+    let eta := fun a b : Nat => if a = 1 ∧ b = 1 then I else one
+    detaNum eta 1 0 0 = detaDen eta 1 0 0 ∧
+    detaNum eta 0 0 1 = detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 = detaDen eta 1 1 1 ∧
+    eta 1 1 ≠ one
+
+theorem control_gauge_moves_slot :
+    let eta := fun a b : Nat => if a = 0 ∧ b = 1 then ⟨2,0⟩ else one
+    detaNum eta 0 0 1 ≠ detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 ≠ detaDen eta 1 1 1
+
+def Rz2 (r : Zi) (x y : Nat) : Zi :=
+  if x = 1 ∧ y = 1 then r else one
+def hexAdm (a b c d : Nat) : Prop :=
+  d = (((a+b) % 2) + c) % 2 ∧ d = (((a+c) % 2) + b) % 2
+def hexL (f r : Zi) (a b c d : Nat) : Zi :=
+  let e := (a+b) % 2
+  let z := (a+c) % 2
+  mul (Rz2 r e c) (Fz2 f c a b d z e)
+def hexR (f r : Zi) (a b c d : Nat) : Zi :=
+  let e := (a+b) % 2
+  let z := (a+c) % 2
+  let g := (b+c) % 2
+  mul (mul (Fz2 f a b c d e g) (Rz2 r b c))
+      (mul (Fz2 f a c b d z g) (Rz2 r a c))
+def hexagon (f r : Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 → hexAdm a b c d →
+    hexL f r a b c d = hexR f r a b c d
+theorem int_sq_nonneg (a : Int) : 0 ≤ a * a
+
+theorem int_sq_eq_zero (a : Int) (h : a * a = 0) : a = 0
+
+theorem int_sq_eq_one (a : Int) (h : a * a = 1) : a = 1 ∨ a = -1
+
+theorem hex_nest_8_of_16 :
+    ((List.range 2).flatMap (fun a => (List.range 2).flatMap (fun b =>
+      (List.range 2).flatMap (fun c => (List.range 2).filterMap (fun d =>
+        if hexAdm a b c d then some (a, b, c, d) else none))))).length = 8 ∧
+    (2 * 2 * 2 * 2 : Nat) = 16
+
+theorem hexagon_offdiag (f r : Zi) : ∀ a b c d : Nat,
+    a < 2 → b < 2 → c < 2 → d < 2 → hexAdm a b c d →
+    ¬(a = 1 ∧ b = 1 ∧ c = 1 ∧ d = 1) →
+    hexL f r a b c d = hexR f r a b c d
+
+theorem hexagon_forcing_lhs (f r : Zi) : hexL f r 1 1 1 1 = f
+
+theorem hexagon_forcing_rhs (f r : Zi) :
+    hexR f r 1 1 1 1 = mul (mul f r) (mul f r)
+
+theorem square_of_product (f r : Zi) :
+    mul (mul f r) (mul f r) = mul (mul f f) (mul r r)
+
+theorem hexagon_forces (f r : Zi) (h : hexagon f r) :
+    f = mul (mul f f) (mul r r)
+
+theorem hexagon_reduction_identity (f r : Zi) :
+    sub (mul (mul f f) (mul r r)) f
+      = add (sub (mul r r) f) (mul (mul r r) (sub (mul f f) one))
+
+theorem pentagon_hexagon_iff_R_sq_F (f r : Zi) (hp : mul f f = one) :
+    hexagon f r ↔ mul r r = f
+
+theorem norm_one_units (z : Zi) (h : normSq z = 1) :
+    z = one ∨ z = neg one ∨ z = I ∨ z = neg I
+
+theorem units_four_distinct :
+    normSq one = 1 ∧ normSq (neg one) = 1 ∧ normSq I = 1 ∧
+    normSq (neg I) = 1 ∧ one ≠ neg one ∧ one ≠ I ∧ one ≠ neg I ∧
+    neg one ≠ I ∧ neg one ≠ neg I ∧ I ≠ neg I
+
+theorem R_over_boson_class (r : Zi) :
+    mul r r = one ↔ (r = one ∨ r = neg one)
+
+theorem semion_factorization (r : Zi) :
+    mul (sub r I) (add r I) = add (mul r r) one
+
+theorem R_over_semion_class (r : Zi) :
+    mul r r = neg one ↔ (r = I ∨ r = neg I)
+
+theorem no_integer_semion (r : Zi) (hreal : r.im = 0) :
+    mul r r ≠ neg one
+
+theorem catalog_two_by_two :
+    (mul one one = one ∧ mul (neg one) (neg one) = one) ∧
+    (mul I I = neg one ∧ mul (neg I) (neg I) = neg one) ∧
+    (2 * 2 : Nat) = 4
+
+theorem unit_inverse_is_conj :
+    mul one (conj one) = one ∧ mul (neg one) (conj (neg one)) = one ∧
+    mul I (conj I) = one ∧ mul (neg I) (conj (neg I)) = one
+
+theorem catalog_satisfies_both_hexagons :
+    (mul one one = one ∧ mul (conj one) (conj one) = one) ∧
+    (mul (neg one) (neg one) = one ∧
+     mul (conj (neg one)) (conj (neg one)) = one) ∧
+    (mul I I = neg one ∧ mul (conj I) (conj I) = neg one) ∧
+    (mul (neg I) (neg I) = neg one ∧
+     mul (conj (neg I)) (conj (neg I)) = neg one)
+
+theorem flatland_filter :
+    (conj one = one) ∧ (conj (neg one) = neg one) ∧
+    (conj I ≠ I) ∧ (conj (neg I) ≠ neg I)
+
+theorem filter_nest_2_of_4 : (2 + 2 : Nat) = 4
+
+theorem mirror_structure :
+    (conj I = neg I ∧ conj (neg I) = I) ∧
+    (conj one = one ∧ conj (neg one) = neg one) ∧
+    conj (conj I) = I
+
+theorem live_hexagon_boson : hexagon one one
+
+theorem live_hexagon_fermion : hexagon one (neg one)
+
+theorem live_hexagon_semion : hexagon (neg one) I
+
+theorem live_hexagon_antisemion : hexagon (neg one) (neg I)
+
+theorem live_hex_forcing_separates :
+    hexL one ⟨2,0⟩ 1 1 1 1 ≠ hexR one ⟨2,0⟩ 1 1 1 1 ∧
+    hexL one ⟨2,0⟩ 0 1 1 0 = hexR one ⟨2,0⟩ 0 1 1 0
+
+theorem control_wrong_R_per_class :
+    sub (mul (mul one one) (mul I I)) one = ⟨-2, 0⟩ ∧
+    sub (mul (mul (neg one) (neg one)) (mul one one)) (neg one)
+      = ⟨2, 0⟩
+
+theorem control_Zi_mod5_splits :
+    (mul ⟨2, 1⟩ ⟨2, -1⟩ = ⟨5, 0⟩) ∧
+    ((List.range 5).flatMap (fun a => (List.range 5).filterMap (fun b =>
+      if (a*a + 5*5 - b*b) % 5 = 1 ∧ (2*a*b) % 5 = 0
+      then some (a, b) else none))).length = 4 ∧
+    ((List.range 5).flatMap (fun a => (List.range 5).filterMap (fun b =>
+      if (a*a + 5*5 - b*b) % 5 = 4 ∧ (2*a*b) % 5 = 0
+      then some (a, b) else none))).length = 4 ∧
+    (5 * 5 : Nat) = 25
+
+theorem control_filter_needs_catalog :
+    conj ⟨3, 0⟩ = ⟨3, 0⟩ ∧ mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ one ∧
+    mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ neg one
+
+def twist (r : Zi) (a : Nat) : Zi := Rz2 r a a
+def nuFS (r : Zi) : Zi := mul r r
+def nuML (r : Zi) : Zi := mul r (conj r)
+theorem twist_catalog :
+    (twist one 1 = one ∧ twist (neg one) 1 = neg one ∧
+     twist I 1 = I ∧ twist (neg I) 1 = neg I) ∧
+    (twist one 0 = one ∧ twist (neg one) 0 = one ∧
+     twist I 0 = one ∧ twist (neg I) 0 = one)
+
+theorem twist_fermion_minus_one : twist (neg one) 1 = neg one
+
+theorem ribbon_identity (r : Zi) (hr4 : mul (mul r r) (mul r r) = one) :
+    ∀ a b : Nat, a < 2 → b < 2 →
+    twist r ((a+b) % 2)
+      = mul (mul (twist r a) (twist r b)) (mul (Rz2 r a b) (Rz2 r a b))
+
+theorem ribbon_nest_3_plus_1 (r : Zi) :
+    (∀ a b : Nat, a < 2 → b < 2 → ¬(a = 1 ∧ b = 1) →
+      twist r ((a+b) % 2)
+        = mul (mul (twist r a) (twist r b)) (mul (Rz2 r a b) (Rz2 r a b))) ∧
+    (twist r ((1+1) % 2)
+        = mul (mul (twist r 1) (twist r 1)) (mul (Rz2 r 1 1) (Rz2 r 1 1))
+      ↔ one = mul (mul r r) (mul r r)) ∧
+    (3 + 1 : Nat) = 4
+
+theorem catalog_r_fourth (f r : Zi) (hp : mul f f = one)
+    (hh : mul r r = f) : mul (mul r r) (mul r r) = one
+
+theorem nu_survivors_plus_one :
+    (nuFS one = one ∧ nuML one = one) ∧
+    (nuFS (neg one) = one ∧ nuML (neg one) = one)
+
+theorem nu_fork_on_semions :
+    (nuFS I = neg one ∧ nuML I = one) ∧
+    (nuFS (neg I) = neg one ∧ nuML (neg I) = one) ∧
+    nuFS I ≠ nuML I ∧ nuFS (neg I) ≠ nuML (neg I)
+
+theorem fork_nest_2_plus_2 : (2 + 2 : Nat) = 4
+
+theorem fork_locus_is_real_locus (r : Zi) (hr : r ≠ zero) :
+    nuFS r = nuML r ↔ conj r = r
+
+theorem fork_locus_coordinates (r : Zi) (hr : r ≠ zero) :
+    nuFS r = nuML r ↔ r.im = 0
+
+theorem filter_closes_fork (r : Zi) (h : conj r = r) :
+    nuFS r = nuML r
+
+theorem nuML_is_normSq (r : Zi) : nuML r = ⟨normSq r, 0⟩
+
+theorem nuML_blind_on_units (r : Zi) (h : normSq r = 1) : nuML r = one
+
+theorem spin_statistics_seed :
+    twist (neg one) 1 = neg one ∧
+    mul (neg one) (twist (neg one) 1) = one ∧
+    mul one (twist one 1) = one
+
+theorem spin_equals_statistics :
+    twist one 1 = one ∧ twist (neg one) 1 = neg one ∧
+    twist I 1 = I ∧ twist (neg I) 1 = neg I
+
+theorem fusion_matrix_squares_to_identity :
+    (0*0 + 1*1 = 1 ∧ 0*1 + 1*0 = 0 ∧ 1*0 + 0*1 = 0 ∧ 1*1 + 0*0 = 1) ∧
+    (1*1 + 1*1 : Nat) = 2
+
+theorem dimension_charpoly_factors (x : Zi) :
+    sub (mul x x) one = mul (sub x one) (add x one)
+
+theorem live_ribbon_boson : ∀ a b : Nat, a < 2 → b < 2 →
+    twist one ((a+b) % 2)
+      = mul (mul (twist one a) (twist one b))
+            (mul (Rz2 one a b) (Rz2 one a b))
+
+theorem live_ribbon_fermion : ∀ a b : Nat, a < 2 → b < 2 →
+    twist (neg one) ((a+b) % 2)
+      = mul (mul (twist (neg one) a) (twist (neg one) b))
+            (mul (Rz2 (neg one) a b) (Rz2 (neg one) a b))
+
+theorem live_ribbon_semion : ∀ a b : Nat, a < 2 → b < 2 →
+    twist I ((a+b) % 2)
+      = mul (mul (twist I a) (twist I b)) (mul (Rz2 I a b) (Rz2 I a b))
+
+theorem live_ribbon_antisemion : ∀ a b : Nat, a < 2 → b < 2 →
+    twist (neg I) ((a+b) % 2)
+      = mul (mul (twist (neg I) a) (twist (neg I) b))
+            (mul (Rz2 (neg I) a b) (Rz2 (neg I) a b))
+
+theorem live_fork_off_catalog :
+    nuFS ⟨1, 1⟩ = ⟨0, 2⟩ ∧ nuML ⟨1, 1⟩ = ⟨2, 0⟩ ∧
+    nuFS ⟨1, 1⟩ ≠ nuML ⟨1, 1⟩
+
+theorem control_fork_locus_needs_nonzero :
+    nuFS zero = nuML zero ∧ conj zero = zero
+
+theorem control_wrong_twist_breaks_ledger :
+    mul I (conj (neg one)) = neg I ∧ neg I ≠ one
+
+theorem control_ribbon_forcing_bites :
+    twist ⟨2,0⟩ ((1+1) % 2)
+      ≠ mul (mul (twist ⟨2,0⟩ 1) (twist ⟨2,0⟩ 1))
+            (mul (Rz2 ⟨2,0⟩ 1 1) (Rz2 ⟨2,0⟩ 1 1)) ∧
+    twist ⟨2,0⟩ ((0+1) % 2)
+      = mul (mul (twist ⟨2,0⟩ 0) (twist ⟨2,0⟩ 1))
+            (mul (Rz2 ⟨2,0⟩ 0 1) (Rz2 ⟨2,0⟩ 0 1))
+
+theorem control_nuFS_separates :
+    nuFS one = one ∧ nuFS (neg one) = one ∧
+    nuFS I = neg one ∧ nuFS (neg I) = neg one ∧
+    (one : Zi) ≠ neg one
+
+def roomy (f r : Zi) : Prop :=
+  pentagon f ∧ hexagon f r ∧ conj r = r
+theorem roomy_iff_boson_or_fermion (f r : Zi) :
+    roomy f r ↔ ((f = one ∧ r = one) ∨ (f = one ∧ r = neg one))
+
+theorem the_roomy_world_has_exactly_two_particles (r : Zi) :
+    (∃ f, roomy f r) ↔ (r = one ∨ r = neg one)
+
+theorem capstone_count_two :
+    roomy one one ∧ roomy one (neg one) ∧ (one : Zi) ≠ neg one ∧
+    ∀ f r : Zi, roomy f r → f = one ∧ (r = one ∨ r = neg one)
+
+theorem capstone_nu_rider (f r : Zi) (h : roomy f r) :
+    nuFS r = one ∧ nuML r = one
+
+theorem control_semion_fails_only_filter :
+    pentagon (neg one) ∧ hexagon (neg one) I ∧ conj I ≠ I ∧
+    ¬ roomy (neg one) I
+
+theorem control_real_but_not_roomy (f : Zi) : ¬ roomy f ⟨3, 0⟩
+
+def tri : Nat → Nat
+  | 0 => 0
+  | n + 1 => tri n + n
+theorem tri_values :
+    tri 2 = 1 ∧ tri 3 = 3 ∧ tri 4 = 6 ∧ tri 5 = 10 ∧ tri 6 = 15
+
+theorem tri_recurrence (m : Nat) : tri (m + 1) = tri m + m
+
+theorem tri_double (m : Nat) : 2 * tri m = m * (m - 1)
+
+theorem pauli_kill_symbolic (x y : Zi) :
+    sub (mul x y) (mul y x) = zero
+
+def swapIdx : Nat → Nat
+  | 0 => 0
+  | 1 => 2
+  | 2 => 1
+  | _ => 3
+def Mmat (p q : Nat) : Int :=
+  (if p = q then 1 else 0) - (if q = swapIdx p then 1 else 0)
+theorem M2_sq_eq_two_M :
+    ((List.range 4).all fun p => (List.range 4).all fun q =>
+      ((List.range 4).foldl (fun acc k => acc + Mmat p k * Mmat k q) 0)
+        == 2 * Mmat p q) = true
+
+theorem M2_trace :
+    ((List.range 4).foldl (fun acc k => acc + Mmat k k) 0) = 2 ∧
+    (2 * 2 - 2 : Nat) = 2 ∧ tri 2 = 1
+
+theorem M2_image_on_line (a b c d : Zi) :
+    sub (mul a c) (mul a c) = zero ∧
+    sub (mul b d) (mul b d) = zero ∧
+    sub (mul a d) (mul b c) = neg (sub (mul b c) (mul a d))
+
+theorem M2_image_attains_generator :
+    sub (mul one zero) (mul one zero) = zero ∧
+    sub (mul one one) (mul zero zero) = one ∧
+    sub (mul zero zero) (mul one one) = neg one ∧
+    sub (mul zero one) (mul zero one) = zero
+
+theorem M2_kill_iff_det_zero (a b c d : Zi) :
+    (sub (mul a d) (mul b c) = zero ∧ sub (mul b c) (mul a d) = zero)
+      ↔ mul a d = mul b c
+
+theorem pauli_double_occupation_dies (a b : Zi) :
+    sub (mul a b) (mul b a) = zero ∧ sub (mul b a) (mul a b) = zero
+
+theorem census_nest_m2 : tri 2 + tri 3 = 4 ∧ (2 * 2 : Nat) = 4
+
+theorem control_boson_no_exclusion :
+    add (mul one one) (mul one one) = ⟨2, 0⟩ ∧ (⟨2, 0⟩ : Zi) ≠ zero
+
+theorem control_M_times_P_zero :
+    ((List.range 4).all fun p => (List.range 4).all fun q =>
+      ((List.range 4).foldl (fun acc k =>
+        acc + Mmat p k * ((if k = q then 1 else 0)
+                          + (if q = swapIdx k then 1 else 0))) 0) == 0)
+      = true
+
+theorem live_nonparallel_survives :
+    sub (mul one one) (mul zero zero) ≠ zero
+
+def isUnit (z : Zi) : Prop := normSq z = 1
+theorem unit_ne_zero (z : Zi) (h : isUnit z) : z ≠ zero
+
+theorem unit_mul_conj (z : Zi) (h : isUnit z) : mul z (conj z) = one
+
+theorem unit_mul (z w : Zi) (hz : isUnit z) (hw : isUnit w) :
+    isUnit (mul z w)
+
+theorem unit_conj (z : Zi) (h : isUnit z) : isUnit (conj z)
+
+theorem unit_cancel (a x y : Zi) (ha : isUnit a) (h : mul a x = mul a y) :
+    x = y
+
+theorem mul_left_comm (z w v : Zi) : mul z (mul w v) = mul w (mul z v)
+
+def unitCochain (F : Nat → Nat → Nat → Zi) : Prop :=
+  ∀ a b c : Nat, a < 2 → b < 2 → c < 2 → isUnit (F a b c)
+def cocycle3 (F : Nat → Nat → Nat → Zi) : Prop :=
+  ∀ a b c d : Nat, a < 2 → b < 2 → c < 2 → d < 2 →
+    mul (mul (F b c d) (F a ((b+c) % 2) d)) (F a b c)
+      = mul (F ((a+b) % 2) c d) (F a b ((c+d) % 2))
+def Fnorm (f : Zi) (a b c : Nat) : Zi :=
+  if a = 1 ∧ b = 1 ∧ c = 1 then f else one
+theorem Fnorm_eq_Fz2 (f : Zi) (a b c : Nat) :
+    Fnorm f a b c = Fz2 f a b c ((a+b+c) % 2) ((a+b) % 2) ((b+c) % 2)
+
+theorem cocycle_at_000 (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) : F 0 0 0 = one
+
+theorem cocycle_at_010 (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) : F 0 1 0 = one
+
+theorem cocycle_at_110 (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    mul (F 1 0 0) (F 1 1 0) = one
+
+theorem cocycle_at_011 (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    mul (F 0 1 1) (F 0 0 1) = one
+
+theorem cocycle_at_101 (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    F 1 0 1 = mul (F 0 0 1) (F 1 0 0)
+
+theorem cocycle_f_sq_one (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    mul (mul (mul (F 1 1 1) (F 1 0 0)) (F 0 0 1))
+        (mul (mul (F 1 1 1) (F 1 0 0)) (F 0 0 1)) = one
+
+theorem cocycle_011_eq_conj (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    F 0 1 1 = conj (F 0 0 1)
+
+theorem cocycle_110_eq_conj (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    F 1 1 0 = conj (F 1 0 0)
+
+theorem mul_swap_right (z w v : Zi) : mul (mul z w) v = mul (mul z v) w
+
+def sliceGauge (F : Nat → Nat → Nat → Zi) (a b : Nat) : Zi :=
+  if a = 1 ∧ b = 0 then F 1 0 0
+  else if a = 0 ∧ b = 1 then conj (F 0 0 1) else one
+theorem slice_lemma_over_zi_units (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    ∃ eta : Nat → Nat → Zi, ∃ f : Zi,
+      (∀ a b : Nat, a < 2 → b < 2 → isUnit (eta a b)) ∧
+      (f = one ∨ f = neg one) ∧
+      (∀ a b c : Nat, a < 2 → b < 2 → c < 2 →
+        mul (F a b c) (detaNum eta a b c)
+          = mul (Fnorm f a b c) (detaDen eta a b c))
+
+def cochainOf (p q s : Zi) (a b c : Nat) : Zi :=
+  if a = 1 ∧ b = 1 ∧ c = 1 then s
+  else if a = 1 ∧ b = 0 ∧ c = 1 then mul q p
+  else if a = 1 ∧ b = 1 ∧ c = 0 then conj p
+  else if a = 0 ∧ b = 1 ∧ c = 1 then conj q
+  else if a = 1 ∧ b = 0 ∧ c = 0 then p
+  else if a = 0 ∧ b = 0 ∧ c = 1 then q
+  else one
+theorem cocycle_is_cochainOf (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    ∀ a b c : Nat, a < 2 → b < 2 → c < 2 →
+      F a b c = cochainOf (F 1 0 0) (F 0 0 1) (F 1 1 1) a b c
+
+theorem cochainOf_injective (p q s p' q' s' : Zi)
+    (h : ∀ a b c : Nat, a < 2 → b < 2 → c < 2 →
+           cochainOf p q s a b c = cochainOf p' q' s' a b c) :
+    p = p' ∧ q = q' ∧ s = s'
+
+theorem cochainOf_unitCochain (p q s : Zi)
+    (hp : isUnit p) (hq : isUnit q) (hs : isUnit s) :
+    unitCochain (cochainOf p q s)
+
+theorem cochainOf_is_cocycle (p q s : Zi)
+    (hp : isUnit p) (hq : isUnit q) (hs : isUnit s)
+    (hf : mul (mul (mul s p) q) (mul (mul s p) q) = one) :
+    cocycle3 (cochainOf p q s)
+
+def unitsZi : List Zi := [one, I, neg one, neg I]
+def slotList : List (Nat × Nat × Nat) :=
+  [(0,0,0),(0,0,1),(0,1,0),(0,1,1),(1,0,0),(1,0,1),(1,1,0),(1,1,1)]
+def cocycleTriples : List (Zi × Zi × Zi) :=
+  unitsZi.flatMap fun p => unitsZi.flatMap fun q => unitsZi.filterMap fun s =>
+    if mul (mul (mul s p) q) (mul (mul s p) q) = one then some (p, q, s) else none
+theorem s7_nest_cocycles_32 :
+    unitsZi.length = 4 ∧ (4 * 4 * 4 : Nat) = 64 ∧
+    slotList.length = 8 ∧ cocycleTriples.length = 32
+
+theorem cocycle_triple_in_nest (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    (cocycleTriples.any fun t =>
+      decide (t = (F 1 0 0, F 0 0 1, F 1 1 1))) = true
+
+def gaugeFn (g : Zi × Zi × Zi × Zi) (a b : Nat) : Zi :=
+  if a = 0 ∧ b = 0 then g.1 else if a = 0 ∧ b = 1 then g.2.1
+  else if a = 1 ∧ b = 0 then g.2.2.1 else g.2.2.2
+def cobVec (g : Zi × Zi × Zi × Zi) : List Zi :=
+  slotList.map fun t =>
+    mul (detaNum (gaugeFn g) t.1 t.2.1 t.2.2)
+        (conj (detaDen (gaugeFn g) t.1 t.2.1 t.2.2))
+def cobReps : List (List Zi) :=
+  unitsZi.flatMap fun x => unitsZi.map fun y => cobVec (one, x, y, one)
+theorem s7_nest_coboundaries_16 :
+    unitsZi.length = 4 ∧ (4 * 4 * 4 * 4 : Nat) = 256 ∧
+    cobReps.length = 16 ∧ (4 * 4 : Nat) = 16
+
+theorem s7_coboundary_reduces_to_normal_form :
+    (unitsZi.all fun w => unitsZi.all fun x => unitsZi.all fun y =>
+      unitsZi.all fun z =>
+        decide (cobVec (w, x, y, z)
+                  = cobVec (one, mul x (conj w), mul y (conj w), one))) = true
+
+theorem s7_cobReps_distinct :
+    (unitsZi.all fun x => unitsZi.all fun y => unitsZi.all fun x' =>
+      unitsZi.all fun y' =>
+        (decide (cobVec (one, x, y, one) = cobVec (one, x', y', one))
+          == decide (x = x' ∧ y = y'))) = true
+
+theorem s7_nest_classes_2 :
+    (unitsZi.filter fun u =>
+      cocycleTriples.any fun t => decide (mul (mul t.2.2 t.1) t.2.1 = u)).length = 2 ∧
+    (cocycleTriples.filter fun t =>
+      decide (mul (mul t.2.2 t.1) t.2.1 = one)).length = 16 ∧
+    (cocycleTriples.filter fun t =>
+      decide (mul (mul t.2.2 t.1) t.2.1 = neg one)).length = 16 ∧
+    16 + 16 = 32
+
+theorem isUnit_of_normSq_one (z : Zi) (h : normSq z = 1) : isUnit z
+
+theorem exactly_two_over_zi_units (F : Nat → Nat → Nat → Zi)
+    (hu : unitCochain F) (hc : cocycle3 F) :
+    ∃ eta : Nat → Nat → Zi, ∃ f : Zi,
+      (f = one ∨ f = neg one) ∧ pentagon f ∧
+      (∀ a b c : Nat, a < 2 → b < 2 → c < 2 →
+        mul (F a b c) (detaNum eta a b c)
+          = mul (Fnorm f a b c) (detaDen eta a b c))
+
+theorem live_both_classes_inhabited :
+    cocycle3 (cochainOf one one one) ∧ cocycle3 (cochainOf one one (neg one)) ∧
+    cochainOf one one one 1 1 1 = one ∧
+    cochainOf one one (neg one) 1 1 1 = neg one
+
+theorem live_gaussian_cocycle_off_slice :
+    cocycle3 (cochainOf I one I) ∧
+    cochainOf I one I 1 0 0 = I ∧
+    sliceGauge (cochainOf I one I) 1 0 = I ∧
+    sliceGauge (cochainOf I one I) 1 0 ≠ one
+
+theorem live_slice_gauge_normalizes :
+    (slotList.all fun t =>
+      decide (mul (cochainOf I one I t.1 t.2.1 t.2.2)
+                  (detaNum (sliceGauge (cochainOf I one I)) t.1 t.2.1 t.2.2)
+                = mul (Fnorm (neg one) t.1 t.2.1 t.2.2)
+                      (detaDen (sliceGauge (cochainOf I one I))
+                               t.1 t.2.1 t.2.2))) = true
+
+def controlCochainA (a b c : Nat) : Zi :=
+  if a = 1 ∧ b = 1 ∧ c = 0 then I else one
+theorem control_A_not_a_cocycle_and_never_normalized :
+    unitCochain controlCochainA ∧ ¬ cocycle3 controlCochainA ∧
+    (unitsZi.all fun w => unitsZi.all fun x => unitsZi.all fun y =>
+      unitsZi.all fun z => unitsZi.all fun f =>
+        (slotList.all fun t =>
+          decide (mul (controlCochainA t.1 t.2.1 t.2.2)
+                      (detaNum (gaugeFn (w, x, y, z)) t.1 t.2.1 t.2.2)
+                    = mul (Fnorm f t.1 t.2.1 t.2.2)
+                          (detaDen (gaugeFn (w, x, y, z))
+                                   t.1 t.2.1 t.2.2))) == false) = true
+
+theorem control_B_identity_gauge_fails :
+    mul (cochainOf I one I 1 0 0) (detaNum (fun _ _ : Nat => one) 1 0 0)
+      ≠ mul (Fnorm (neg one) 1 0 0) (detaDen (fun _ _ : Nat => one) 1 0 0)
+
+end Zi
