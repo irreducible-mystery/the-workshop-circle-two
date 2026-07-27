@@ -1,0 +1,26 @@
+# s7c_frozen_exempt.txt — FROZEN primary sources, out of the LIVE-prose gate set
+# by canon (REGISTER row 8: frozen primary sources never change, exempt by
+# design). One path per line, relative to experiment/. Blank/#-comment lines
+# ignored. Sanctioned by Kelly in the S7c scope ruling; the alternative (a
+# one-time frozen sweep) was offered and declined as the default.
+#
+# The §10 characterization slip lives in FINAL-EXPERIMENT-REPORT.md, which is
+# frozen: the gate therefore does NOT re-catch specimen C. C is a stranger-pass
+# finding (STRANGER-AUDIT-ROUND3.md §1) routed to a prose-crop charge. This is
+# the deliberate gate/meaning line, not a gate miss.
+EXPERIMENT-REPORT.md
+SUBROUND2-REPORT.md
+SUBROUND3-REPORT.md
+SUBROUND4-REPORT.md
+SUBROUND5-REPORT.md
+SUBROUND6-REPORT.md
+FINAL-EXPERIMENT-REPORT.md
+NORMS-RETROSPECTIVE.md
+NOTE-TO-THIRD-BODY.md
+seatB/CORRECTIONS-LETTER.md
+seatB/CORRECTIONS-LETTER-S2.md
+seatB/CORRECTIONS-LETTER-S3.md
+seatB/CORRECTIONS-LETTER-S4.md
+seatB/CORRECTIONS-LETTER-S5.md
+seatB/CORRECTIONS-LETTER-S6.md
+seatP/CHARGE-ROUND1.md

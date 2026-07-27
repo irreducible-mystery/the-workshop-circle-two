@@ -263,10 +263,16 @@ theorem gauge_slot_invariant (eta : Nat → Nat → Zi)
     detaNum eta 1 1 1 = detaDen eta 1 1 1
 
 theorem live_gauge_witness :
-    let eta
+    let eta := fun a b : Nat => if a = 1 ∧ b = 1 then I else one
+    detaNum eta 1 0 0 = detaDen eta 1 0 0 ∧
+    detaNum eta 0 0 1 = detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 = detaDen eta 1 1 1 ∧
+    eta 1 1 ≠ one
 
 theorem control_gauge_moves_slot :
-    let eta
+    let eta := fun a b : Nat => if a = 0 ∧ b = 1 then ⟨2,0⟩ else one
+    detaNum eta 0 0 1 ≠ detaDen eta 0 0 1 ∧
+    detaNum eta 1 1 1 ≠ detaDen eta 1 1 1
 
 def Rz2 (r : Zi) (x y : Nat) : Zi :=
   if x = 1 ∧ y = 1 then r else one
@@ -399,27 +405,7 @@ theorem control_filter_needs_catalog :
     conj ⟨3, 0⟩ = ⟨3, 0⟩ ∧ mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ one ∧
     mul ⟨3, 0⟩ ⟨3, 0⟩ ≠ neg one
 
-     theorem on the semions, and the locus characterized exactly.
-     Neither ledger is called "the" indicator; the fork is the
-     theorem, not a footnote.
-
-   Design probe: probes/s5_design_probe.py — all classification facts
-   confirmed against G1g/G5 and the bench before this section was
-   written.
-
-   NESTS (norm 9):
-   - fork nest: 2 (agree: boson, fermion) + 2 (diverge: semions) = 4
-     catalog entries — `fork_nest_2_plus_2`.
-   - ribbon nest: per particle, 4 fusion cells; 3 read trivially and
-     1 forces (the (1,1) cell reads 1 = r⁴) — `ribbon_nest_3_plus_1`.
-   - fusion matrix nest: 2×2 = 4 entries, N² = I checked entrywise.
-   ====================================================================== -/
-
-/-- the twist as the R-diagonal — abelian θ_a = R(a,a) (bench line 37:
-    `theta_f = R`; certificate G1g_twist_eq_R_theta_f_minus1). On the
-    Z₂ labels this is `Rz2 r a a`: trivial at a = 0, r at a = 1 -/
-def twist (r : Zi) (a : Nat) : Zi
-
+def twist (r : Zi) (a : Nat) : Zi := Rz2 r a a
 def nuFS (r : Zi) : Zi := mul r r
 def nuML (r : Zi) : Zi := mul r (conj r)
 theorem twist_catalog :
