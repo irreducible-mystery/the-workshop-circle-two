@@ -67,7 +67,13 @@ The audit-verdict, findings, worklog, and SUBROUND7-REPORT pins are measured
 at commit and recorded in the commit message (they cite each other, so their
 hashes settle only once all are on the branch).
 
-commit: _stamped at ship in the branch history_
+commits (branch `superninja/dual-seat-round3`, PR #6):
+- `92e291d` S7c — prose gates extended to `experiment/**`
+- `cb34da4` S7a — the slice lemma's reachable core + measured impossibility
+- `d25c08d` S7a fixup — filled the empty plant-evidence files (lean errors to stdout)
+
+delivery bundle: `dual-seat-round3.zip` — `git archive` of the branch tip
+`d25c08d`, sha256 measured at ship (the zip pins the exact shipped tree).
 
 ---
 

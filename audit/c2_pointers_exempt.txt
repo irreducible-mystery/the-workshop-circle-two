@@ -252,3 +252,5 @@ file.ext:line	a literal format example in the report describing the file:line ci
 every_class_meets_slice	a hypothetical theorem NAME the S7a corrections letter says it nearly used and rejected (norm 6); a discarded name quoted in prose, never a declaration in any tree file
 fin_cases	the Lean tactic named in the S7a crop ("re-proved with a fresh fin_cases/omega"); Lean stdlib tactic vocabulary, not a tree artifact
 List.mem	the Lean stdlib membership predicate named in the S7a crop ("reshapes it into List.mem"); stdlib type/lemma, not a declaration in the tree
+# -- S7a: the Round-3 delivery bundle (transport artifact, not tracked) --
+dual-seat-round3.zip	the Round-3 delivery crate: `git archive` of branch superninja/dual-seat-round3 at tip d25c08d; a transport artifact produced FROM the tree, not tracked IN it; its sha256 is recorded in the PIN-TRACKER R3 block and pins the exact shipped tree
