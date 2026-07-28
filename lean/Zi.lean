@@ -2167,7 +2167,7 @@ theorem control_semion_fails_the_filter : hexagonHolds (neg one) I ∧ conj I �
   · decide
 
 
-/-! ## 17. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m
+/-! ## 16. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m
 
     THE CHARGE, quoted from the sealed Circle Two charter verbatim,
     because charge prose seeds defects and quotation is the defence:
@@ -2212,10 +2212,16 @@ theorem control_semion_fails_the_filter : hexagonHolds (neg one) I ∧ conj I �
           to "arrive as cardinalities", arriving as the length of a list
           the kernel builds, at m = 2 through 6.
 
-    THE WORD THE CHARTER FORBIDS does not appear in this file, in any
-    theorem name, docstring or comment. What is counted here is the
-    cardinality of an exhibited index set, and that is all that is
-    counted.
+    THE WORD THE CHARTER FORBIDS appears in NO THEOREM NAME, no
+    statement and no proof, and nowhere in this file's prose except
+    inside the blockquote above, where it is being quoted in order to be
+    banned. An earlier version of this paragraph claimed it appeared in
+    no comment at all — false in the very comment that made the claim,
+    since the quoted clause sits forty lines above it. Corrected here
+    rather than by deleting the quotation: the charter calls quotation
+    the defence, and the defence is what carried the word in. What is
+    counted in this section is the cardinality of an exhibited index
+    set, and that is all that is counted.
 
     WHAT IS NOT PROVED, stated exactly, because the words this section
     invites are wider than its theorems:
@@ -2414,7 +2420,7 @@ theorem eDiff_swap (a b : Nat) (i j : Nat) : eDiff a b i j = - eDiff b a i j := 
      = -((if i = b ∧ j = a then (1:Int) else 0) - (if j = b ∧ i = a then (1:Int) else 0))
   by_cases hia : i = a <;> by_cases hjb : j = b <;>
     by_cases hib : i = b <;> by_cases hja : j = a <;>
-      simp [hia, hjb, hib, hja, And.comm]
+      simp [hia, hjb, hib, hja, And.comm] <;> omega
 
 /-- The generators are coordinate-independent: `e_ab − e_ba` reads one at
     its own index whenever `a ≠ b`. This is what makes the list below a

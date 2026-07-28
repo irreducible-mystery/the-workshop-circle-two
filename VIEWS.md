@@ -7,13 +7,13 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            314755eb1e1e0f0f4aef4c321f41473fb303ad7a2ddeac84b4879df9e99fadcc
+sha256            a522595fd0f3bd211206b972e00b913a3c653775ae799ffad5889ae3265bda04
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
 theorems          247
 definitions       39
-lines             2536
+lines             2542
 live instances    45
 control theorems  34
 decide-settled    52
@@ -39,12 +39,12 @@ import lines      0   (zero imports is the charter)
 13. THE SECOND HEXAGON — the R⁻¹ form, and the boundary retired   9 theorems
 14. THE SLICE — every UNIT-VALUED pentagon symbol is gauged into it  36 theorems
 15. THE MIRROR — the Galois filter, and the catalog closes at two  17 theorems
-17. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m  32 theorems
+16. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m  32 theorems
 ```
 
 **The boundary, derived from the inventory above:** this file proves
 the 17 sections listed and nothing else. The last of them is
-"17. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m".
+"16. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m".
 Anything absent from that list is not proved here.
 
 What the derivation can and cannot do, carried in from the
