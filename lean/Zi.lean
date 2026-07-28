@@ -2166,4 +2166,371 @@ theorem control_semion_fails_the_filter : hexagonHolds (neg one) I ∧ conj I �
   · exact Rsq_gives_hexagon _ _ (by decide) (by decide)
   · decide
 
+
+/-! ## 17. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m
+
+    THE CHARGE, quoted from the sealed Circle Two charter verbatim,
+    because charge prose seeds defects and quotation is the defence:
+
+    > **Exclusion:** never say "rank." Ship the idempotent certificate —
+    > M = I − swap, M² = 2M, tr M = m² − m, generic in m with no big
+    > decides — plus the explicit image basis {e_ij − e_ji : i < j} and
+    > its cardinality m(m−1)/2, so 1, 3, 6, 10, 15 arrive as
+    > cardinalities. This is the one risky section (S7); a raw 36×36
+    > decide may not kernel-reduce with native_decide banned.
+
+    THE RISK, PRICED BEFORE IT WAS RUN AND THEN NOT SPENT. The charter
+    flagged one risk: that a raw 36×36 `decide` might not kernel-reduce.
+    Both seats measured it before this section was written, and it does
+    reduce — silent, at the named size, with no `set_option` of any kind,
+    which is this file's house style. That measurement is recorded in the
+    round-1 letters. It is not used here. The identities below are proved
+    POINTWISE and GENERICALLY, so no `decide` of any size stands behind
+    `M² = 2M` or `tr M = m² − m`; the fallback was measured so that it
+    would not be needed, and it was not needed.
+
+    THE LANGUAGE. A vector of the tensor square is carried by its
+    coordinates: `v i j` is the coefficient of `e_ij`. The swap is
+    `swapT`, the antisymmetrizer is `antiM`, and `antiM_is_id_sub_swap`
+    proves by `rfl` that the second is the first subtracted from the
+    identity — the charter's `M = I − swap`, with no step in between.
+
+    WHAT IS PROVED, exactly:
+      (a) `antiM_sq_eq_two_antiM` — M² = 2M, from the involution alone,
+          pointwise, with `m` appearing in neither the statement nor the
+          proof, so it holds at every size at once;
+      (b) `traceM_eq` — tr M = m² − m over the index square, summed with
+          a hand-rolled `sumTo` and no decide anywhere;
+      (c) `antiM_antisymmetric` and `antisymmetric_is_in_image` — the
+          image is EXACTLY the antisymmetric vectors, the second by an
+          explicit witness rather than an existence argument;
+      (d) `eDiff` and `upperPairs_card` — the generators e_ij − e_ji
+          exhibited as images of basis vectors, indexed by the pairs with
+          i < j, with 2·#{(i,j) : i < j < m} = m(m−1) proved generically
+          and stated division-free so no truncation can hide in it;
+      (e) `live_38`–`live_42` — the five cardinalities the charter asked
+          to "arrive as cardinalities", arriving as the length of a list
+          the kernel builds, at m = 2 through 6.
+
+    THE WORD THE CHARTER FORBIDS does not appear in this file, in any
+    theorem name, docstring or comment. What is counted here is the
+    cardinality of an exhibited index set, and that is all that is
+    counted.
+
+    WHAT IS NOT PROVED, stated exactly, because the words this section
+    invites are wider than its theorems:
+      - that the generators form a BASIS in any formal sense. There is no
+        module, no linear map and no `Basis` in this file — there is no
+        mathlib to take one from, and none was hand-rolled. "Basis" is
+        the charter's word for the index set and its cardinality, and it
+        is used in this comment and in no theorem name. What IS proved is
+        weaker and exact: each generator is the image of one basis
+        vector, each reads one at its own coordinate when a ≠ b, the
+        reversed pair is its negative, and the index set has the stated
+        cardinality.
+      - that the generators SPAN the image as an explicit sum. The image
+        is characterised — it is exactly the antisymmetric vectors — and
+        the witness of `antisymmetric_is_in_image` is built from the
+        strictly-upper coefficients, which is the spanning fact in the
+        form this section needs. The formal sentence
+        `w = Σ_{i<j} w_ij (e_ij − e_ji)`, as a sum over `upperPairs`, is
+        NOT written. That is one proof, not one word, and it is not
+        closed here.
+      - anything about `Z[i]`. This section is over `Int` and uses no
+        part of the ring the rest of the file builds. It sits in this
+        file because the record is one file, not because the exclusion
+        section needs the Gaussian integers; it does not.
+      - any claim that M is a projection. It is not, and
+        `control_antiM_is_not_idempotent` exhibits the failure rather
+        than leaving the reader to infer it from the two.
+-/
+/-! ### The finite sum, hand-rolled — `sumTo f n = Σ_{k<n} f k` -/
+
+def sumTo (f : Nat → Int) : Nat → Int
+  | 0 => 0
+  | n + 1 => sumTo f n + f n
+
+theorem sumTo_const (c : Int) : ∀ n : Nat, sumTo (fun _ => c) n = (n : Int) * c
+  | 0 => by simp [sumTo]
+  | n + 1 => by
+      show sumTo (fun _ => c) n + c = ((n + 1 : Nat) : Int) * c
+      rw [sumTo_const c n]
+      push_cast
+      rw [Int.add_mul, Int.one_mul]
+
+theorem sumTo_sub (f g : Nat → Int) : ∀ n : Nat,
+    sumTo (fun k => f k - g k) n = sumTo f n - sumTo g n
+  | 0 => rfl
+  | n + 1 => by
+      show sumTo (fun k => f k - g k) n + (f n - g n) = (sumTo f n + f n) - (sumTo g n + g n)
+      rw [sumTo_sub f g n]
+      omega
+
+/-- The indicator of a single index sums to one exactly when that index is
+    inside the range, and to zero otherwise. -/
+theorem sumTo_eq_indicator (a : Nat) : ∀ n : Nat,
+    sumTo (fun b => if a = b then (1 : Int) else 0) n = if a < n then 1 else 0
+  | 0 => by simp [sumTo]
+  | n + 1 => by
+      show sumTo (fun b => if a = b then (1 : Int) else 0) n + (if a = n then (1:Int) else 0)
+             = if a < n + 1 then 1 else 0
+      rw [sumTo_eq_indicator a n]
+      by_cases h : a = n
+      · subst h; simp
+      · by_cases h2 : a < n
+        · simp [h, h2, Nat.lt_succ_of_lt h2]
+        · have h3 : ¬ a < n + 1 := by omega
+          simp [h, h2, h3]
+
+/-- Every index below `m` is below `m` — the sum that counts the range. -/
+theorem sumTo_lt_indicator (m : Nat) : ∀ n : Nat, n ≤ m →
+    sumTo (fun a => if a < m then (1 : Int) else 0) n = (n : Int)
+  | 0, _ => by simp [sumTo]
+  | n + 1, h => by
+      show sumTo (fun a => if a < m then (1 : Int) else 0) n + (if n < m then (1:Int) else 0)
+             = ((n + 1 : Nat) : Int)
+      rw [sumTo_lt_indicator m n (by omega)]
+      have hn : n < m := by omega
+      simp [hn]
+
+/-! ### The tensor square in coordinates, the swap, and `M = I − swap` -/
+
+/-- A vector of the tensor square, in coordinates: `v i j` is the
+    coefficient of the basis vector `e_ij`. -/
+def swapT (v : Nat → Nat → Int) : Nat → Nat → Int := fun i j => v j i
+
+/-- The basis vector `e_ab`. -/
+def eBasis (a b : Nat) : Nat → Nat → Int := fun i j => if i = a ∧ j = b then 1 else 0
+
+/-- **The antisymmetrizer, `M = I − swap`**, written in coordinates. -/
+def antiM (v : Nat → Nat → Int) : Nat → Nat → Int := fun i j => v i j - swapT v i j
+
+/-- `M` really is `I − swap`: the definition unfolds to the difference,
+    with no step in between. -/
+theorem antiM_is_id_sub_swap (v : Nat → Nat → Int) (i j : Nat) :
+    antiM v i j = v i j - swapT v i j := rfl
+
+/-- The swap is an involution — the only fact `M² = 2M` needs. -/
+theorem swapT_involutive (v : Nat → Nat → Int) : swapT (swapT v) = v := rfl
+
+/-! ### The certificate — `M² = 2M`, generic in m, with no decides -/
+
+/-- **`M² = 2M`.** Proved pointwise from the involution alone, so it holds
+    at every size at once: `m` does not appear in the statement or the
+    proof. This is the identity the sealed charter priced as the risky
+    one; it costs one `funext` and one linear step. -/
+theorem antiM_sq_eq_two_antiM (v : Nat → Nat → Int) :
+    antiM (antiM v) = fun i j => 2 * antiM v i j := by
+  funext i j
+  show (v i j - v j i) - (v j i - v i j) = 2 * (v i j - v j i)
+  omega
+
+/-- The same fact entrywise, for use where a function equality is awkward. -/
+theorem antiM_sq_apply (v : Nat → Nat → Int) (i j : Nat) :
+    antiM (antiM v) i j = 2 * antiM v i j := by
+  show (v i j - v j i) - (v j i - v i j) = 2 * (v i j - v j i)
+  omega
+
+/-! ### The trace — `tr M = m² − m`, generic in m -/
+
+/-- The trace of `M` over the index square `[0,m) × [0,m)`: the sum of the
+    diagonal coefficients of `M e_ab`, read off the operator itself rather
+    than off a matrix written down beside it. -/
+def traceM (m : Nat) : Int := sumTo (fun a => sumTo (fun b => antiM (eBasis a b) a b) m) m
+
+/-- The diagonal coefficient of `M e_ab` is one off the diagonal and zero
+    on it — the whole content of the trace. -/
+theorem antiM_eBasis_diag (a b : Nat) :
+    antiM (eBasis a b) a b = 1 - (if a = b then 1 else 0) := by
+  show (if a = a ∧ b = b then (1:Int) else 0) - (if b = a ∧ a = b then (1:Int) else 0)
+         = 1 - (if a = b then 1 else 0)
+  by_cases h : a = b
+  · subst h; simp
+  · simp [h]
+
+/-- **`tr M = m² − m`**, at every size, with no decide anywhere. -/
+theorem traceM_eq (m : Nat) : traceM m = (m : Int) * (m : Int) - (m : Int) := by
+  have inner : ∀ a : Nat, sumTo (fun b => antiM (eBasis a b) a b) m
+      = (m : Int) - (if a < m then 1 else 0) := by
+    intro a
+    have : (fun b => antiM (eBasis a b) a b)
+         = (fun b => (1 : Int) - (if a = b then 1 else 0)) := by
+      funext b; exact antiM_eBasis_diag a b
+    rw [this, sumTo_sub, sumTo_const, sumTo_eq_indicator]
+    simp
+  have : (fun a => sumTo (fun b => antiM (eBasis a b) a b) m)
+       = (fun a => (m : Int) - (if a < m then 1 else 0)) := by
+    funext a; exact inner a
+  show sumTo (fun a => sumTo (fun b => antiM (eBasis a b) a b) m) m = _
+  rw [this, sumTo_sub, sumTo_const, sumTo_lt_indicator m m (Nat.le_refl m)]
+
+/-! ### The image — exactly the antisymmetric vectors -/
+
+/-- `M` kills the diagonal. -/
+theorem antiM_diag_zero (v : Nat → Nat → Int) (a : Nat) : antiM v a a = 0 := by
+  show v a a - v a a = 0
+  omega
+
+/-- Everything in the image is antisymmetric. -/
+theorem antiM_antisymmetric (v : Nat → Nat → Int) (i j : Nat) :
+    antiM v i j = - antiM v j i := by
+  show v i j - v j i = -(v j i - v i j)
+  omega
+
+/-- **And conversely: every antisymmetric vector is in the image**, by an
+    explicit witness — keep the strictly-upper coefficients and drop the
+    rest. So the image is exactly the antisymmetric vectors, which is what
+    the basis below is a basis of. -/
+theorem antisymmetric_is_in_image (w : Nat → Nat → Int)
+    (hw : ∀ i j, w i j = - w j i) :
+    antiM (fun i j => if i < j then w i j else 0) = w := by
+  funext i j
+  show (if i < j then w i j else 0) - (if j < i then w j i else 0) = w i j
+  by_cases h1 : i < j
+  · have h2 : ¬ j < i := by omega
+    simp [h1, h2]
+  · by_cases h2 : j < i
+    · have := hw i j
+      simp [h1, h2]
+      omega
+    · have hij : i = j := by omega
+      subst hij
+      have := hw i i
+      simp [h1]
+      omega
+
+/-! ### The explicit image basis `{e_ij − e_ji : i < j}` and its cardinality -/
+
+/-- The generator `e_ab − e_ba`, as the image of a basis vector. -/
+def eDiff (a b : Nat) : Nat → Nat → Int := antiM (eBasis a b)
+
+/-- Each generator is the image of one basis vector — the basis is
+    exhibited, not asserted to exist. -/
+theorem eDiff_is_image (a b : Nat) : eDiff a b = antiM (eBasis a b) := rfl
+
+/-- The generator is antisymmetric in its own indices. -/
+theorem eDiff_swap (a b : Nat) (i j : Nat) : eDiff a b i j = - eDiff b a i j := by
+  show (if i = a ∧ j = b then (1:Int) else 0) - (if j = a ∧ i = b then (1:Int) else 0)
+     = -((if i = b ∧ j = a then (1:Int) else 0) - (if j = b ∧ i = a then (1:Int) else 0))
+  by_cases hia : i = a <;> by_cases hjb : j = b <;>
+    by_cases hib : i = b <;> by_cases hja : j = a <;>
+      simp [hia, hjb, hib, hja, And.comm]
+
+/-- The generators are coordinate-independent: `e_ab − e_ba` reads one at
+    its own index whenever `a ≠ b`. This is what makes the list below a
+    list of distinct directions rather than a list of repetitions. -/
+theorem eDiff_self_coeff (a b : Nat) (h : a ≠ b) : eDiff a b a b = 1 := by
+  show (if a = a ∧ b = b then (1:Int) else 0) - (if b = a ∧ a = b then (1:Int) else 0) = 1
+  have h' : ¬ (b = a ∧ a = b) := by intro hc; exact h hc.2
+  simp [h']
+
+/-- `[0, 1, …, n−1]`. -/
+def upTo : Nat → List Nat
+  | 0 => []
+  | n + 1 => upTo n ++ [n]
+
+/-- The index set of the image basis: every pair `(i, j)` with `i < j < m`. -/
+def upperPairs : Nat → List (Nat × Nat)
+  | 0 => []
+  | m + 1 => upperPairs m ++ (upTo m).map (fun i => (i, m))
+
+theorem upTo_length : ∀ n : Nat, (upTo n).length = n
+  | 0 => rfl
+  | n + 1 => by
+      show ((upTo n) ++ [n]).length = n + 1
+      rw [List.length_append, upTo_length n]
+      rfl
+
+theorem upperPairs_length_succ (m : Nat) :
+    (upperPairs (m + 1)).length = (upperPairs m).length + m := by
+  show ((upperPairs m) ++ (upTo m).map (fun i => (i, m))).length = _
+  rw [List.length_append, List.length_map, upTo_length]
+
+/-- **The cardinality, division-free: `2 · #{(i,j) : i < j < m} = m(m−1)`.**
+    Stated with the two on the left so no truncation can hide in it; the
+    familiar `m(m−1)/2` is this sentence divided by two. -/
+theorem upperPairs_card : ∀ m : Nat,
+    2 * ((upperPairs m).length : Int) = (m : Int) * ((m : Int) - 1)
+  | 0 => by simp [upperPairs]
+  | m + 1 => by
+      rw [upperPairs_length_succ]
+      have ih := upperPairs_card m
+      push_cast
+      push_cast at ih
+      have e1 : ((m : Int) + 1) * (((m : Int) + 1) - 1) = (m : Int) * (m : Int) + (m : Int) := by
+        have h : ((m : Int) + 1) - 1 = (m : Int) := by omega
+        rw [h, Int.add_mul, Int.one_mul]
+      have e2 : (m : Int) * ((m : Int) - 1) = (m : Int) * (m : Int) - (m : Int) := by
+        rw [Int.mul_sub, Int.mul_one]
+      rw [e1]
+      rw [e2] at ih
+      omega
+
+
+
+/-! ### S7's live instances — the cardinalities, computed (norm 3)
+
+    The five numbers the sealed charter asked to "arrive as
+    cardinalities" arrive here as the LENGTH of a list the kernel builds,
+    at m = 2, 3, 4, 5, 6. None of them is typed as a claim; each is what
+    `upperPairs` evaluates to. -/
+
+theorem live_38 : (upperPairs 2).length = 1 := rfl
+theorem live_39 : (upperPairs 3).length = 3 := rfl
+theorem live_40 : (upperPairs 4).length = 6 := rfl
+theorem live_41 : (upperPairs 5).length = 10 := rfl
+theorem live_42 : (upperPairs 6).length = 15 := rfl
+
+/-- The generic cardinality theorem, instantiated at the size the sealed
+    charter's own risk flag named, and reached without the decide that
+    flag was about. -/
+theorem live_43 : 2 * ((upperPairs 6).length : Int) = 6 * (6 - 1) := by decide
+
+/-- The trace at the charter's named size, through the generic theorem
+    rather than through an evaluation of the sum. -/
+theorem live_44 : traceM 6 = 30 := by rw [traceM_eq]; decide
+
+/-- A generator is not the zero vector. -/
+theorem live_45 : eDiff 0 1 0 1 = 1 := by decide
+
+/-! ### S7's negative controls — norm 5 -/
+
+/-- **The certificate is `M² = 2M`, and the two is not decoration.** `M`
+    is NOT idempotent: at one coordinate of one basis vector the square
+    reads two where the operator reads one. Without this control the
+    headline theorem would be compatible with a projection, which is the
+    object this section is careful never to claim. -/
+theorem control_antiM_is_not_idempotent :
+    antiM (antiM (eBasis 0 1)) 0 1 ≠ antiM (eBasis 0 1) 0 1 := by decide
+
+/-- **The swap is not the identity.** If it were, `M` would be the zero
+    operator and every theorem above would be true and empty. -/
+theorem control_swapT_is_not_the_identity :
+    swapT (eBasis 0 1) 0 1 ≠ eBasis 0 1 0 1 := by decide
+
+/-- **`M` kills something.** The symmetric basis vector on the diagonal
+    goes to zero, so `M` is not injective and the image is a proper part
+    of the square — which is why the image has a basis worth counting. -/
+theorem control_antiM_kills_the_diagonal :
+    antiM (eBasis 0 0) 0 0 = 0 ∧ eBasis 0 0 0 0 ≠ 0 := by
+  constructor
+  · exact antiM_diag_zero _ 0
+  · decide
+
+/-- **The antisymmetry hypothesis in `antisymmetric_is_in_image` is
+    load-bearing.** No vector in the image carries a diagonal coefficient,
+    so a symmetric vector that does is outside it — for every `v` at once,
+    which is what makes this a boundary and not an example. -/
+theorem control_diagonal_vector_is_not_in_the_image (v : Nat → Nat → Int) :
+    antiM v 0 0 ≠ eBasis 0 0 0 0 := by
+  rw [antiM_diag_zero]
+  decide
+
+/-- **Why the index set is `i < j` and not `i ≠ j`.** The reversed pair
+    contributes no new direction — it is the negative of the one already
+    counted — so counting both orders would count the same direction
+    twice and the cardinality would be `m(m−1)` instead of `m(m−1)/2`. -/
+theorem control_reversed_pair_is_dependent :
+    eDiff 1 0 0 1 = - eDiff 0 1 0 1 := by decide
+
 end Zi
