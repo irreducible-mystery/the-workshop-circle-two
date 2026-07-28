@@ -93,8 +93,9 @@ reach measurement certifies): over the index sets `slots = {0,1}³`,
 > `∀ F : slots → U, cocycle F → ∃ eta : gaugeslots → U, ∃ f : U,
 >    ∀ s ∈ slots, mul (F s) ((d eta) s) = (Fz2 f) s`
 
-is a bounded ∀∃ over finite sets and is `decide`-able (see §4 for the
-recommended kernel route and its traps).
+is a bounded ∀∃ over finite sets — finite and mechanically checkable (see §4
+for the hazard map and the route-independent constraints; the route itself is
+the prover's to choose).
 
 **What must NOT be claimed** (norm 6, echoing the kernel's own discipline):
 the full `H³(Z₂, U(1)) = Z₂` sentence with the *continuous* unit group
@@ -152,34 +153,46 @@ Probe pins (short sha256, measured on the shipped files):
 
 ---
 
-## 4. Recommended kernel route and the paid-for traps (for the prover)
+## 4. The hazard map, and the constraints on any route (NOT a route)
 
-*Guidance, not proof. The third body chooses its own route; seat B verifies
-by an independent one (norm 9, norm 5). These notes carry the trap ledger
-(HANDOFF §3) forward so the prover does not pay twice.*
+*The route is the prover's to invent — this charge does not design the proof
+(that would defeat the independence the co-signature rests on: seat B must
+verify by a genuinely different route, norm 9, and a route pre-drawn here
+would propagate any flaw of mine into the very proof meant to catch flaws).
+What follows is (a) a HAZARD MAP — where earlier provers in this workshop got
+bitten, so you don't pay twice — and (b) the CONSTRAINTS every acceptable
+proof must satisfy, whatever route reaches them. No tactics, no code shapes,
+no data representations are prescribed; choose your own.*
 
-- State the finite ∀∃ as a `decide` over an explicit index list, per the
-  ledger's item 5: `decide` cannot synthesize `Decidable` for a bounded ∀
-  with hypotheses, so rewrite as
-  `((List.range …).all fun … => existsGauge … == true) = true := by decide`,
-  with `existsGauge` itself a bounded `List.any` over the 256 gauges.
-- The unit group is finite (4 elements); enumerate units as an explicit
-  `List Zi` `[one, I, neg one, neg I]`, not as a `Subtype` — keep it concrete.
-- Beware the omega/Classical.choice trap (ledger item 1): the existential
-  `∃ eta, ∃ f, …` must NOT be discharged by `omega` on a goal carrying `∃`;
-  use explicit witnesses (`refine ⟨witnessEta, witnessF, ?_⟩`) then `decide`
-  on the residual equalities. Run the axiom census after: **0 `Classical.choice`,
-  0 `sorryAx`** is the acceptance bar (norm 2).
-- The pointwise product equality `mul (F s) ((dη) s) = (Fz2 f) s` at each of
-  8 slots is a degree-≤2 `Zi` identity; the house simp set (ledger item 2)
-  plus `refine ⟨?_,?_⟩ <;> decide` on components is the expected close.
-- A negative control is required (norm 5): exhibit a *non*-cocycle whose
-  orbit contains no `Fz2 f` (the probe's non-cocycle `i@(1,1,0)` is a ready
-  witness), and a cocycle whose *wrong* gauge fails to normalize — so the
-  lemma's force comes from the cocycle hypothesis, not the shape.
-- Nests must tie (norm 9): the counts 32 cocycles / 16 coboundaries / 2
-  classes over ℤ[i] units are the numbers a companion `_card` theorem should
-  reproduce, matching the probe.
+**Hazards carried forward (trap ledger, HANDOFF §3 — warnings, not instructions):**
+
+- The statement is a bounded ∀∃ over finite sets. Provers have been bitten by
+  `Decidable`-synthesis for a bounded ∀ *with hypotheses* — a naive appeal to
+  decidability on the raw quantified goal has stalled before. How you make the
+  claim mechanically checkable is your call; just know the raw shape has bitten.
+- The `Classical.choice` trap (ledger item 1): a bare existential goal
+  discharged by the wrong automation has silently pulled in choice before.
+  This is why the axiom census below is a hard bar, not a courtesy.
+- The pointwise equalities are low-degree `Zi` identities, but the cross-term
+  cancellations have stalled naive simplification in past rounds (ledger item
+  2). That is a known soft spot; the resolution is yours to find.
+
+**Constraints every acceptable proof MUST meet (route-independent):**
+
+- **Axiom bar (norm 2):** the axiom census must read **0 `sorryAx`, 0
+  `Classical.choice`**. No exceptions, by any route.
+- **Silence (norm 10):** compiles to zero bytes, exit 0.
+- **Negative control (norm 5):** the proof must be accompanied by a control
+  showing the lemma's force comes from the *cocycle* hypothesis and not from
+  the normalized shape — e.g. that some non-cocycle is not normalizable, and
+  that a cocycle under a wrong gauge fails to normalize. Choosing the control
+  witnesses is part of the work; do not lift them from the probe.
+- **Nests must tie (norm 9):** whatever you prove must be accompanied by a
+  count that independently reproduces the class structure the reach probe
+  measured (32 cocycles / 16 coboundaries / 2 classes over ℤ[i] units). If
+  your in-kernel count disagrees with the probe, that disagreement is a
+  finding and STOPS the charge (§6 note #2) — do not force the numbers to fit.
+- **Label (norm 6):** "over the units of ℤ[i]", never "over U(1)" (§2).
 
 ---
 
@@ -196,10 +209,10 @@ order, and seat B's letter says so:
    axiom census **0 `sorryAx`, 0 `Classical.choice`** (norm 2).
 2. **Courier** re-extracts statements; re-extraction is **byte-identical**
    (norm 12); seat B reads statements only.
-3. **Seat B** re-derives the slice lemma by an **independent route** (not seat
-   P's `decide`; e.g. an explicit orbit enumeration in Python with exact
-   arithmetic), reproduces the nests (32/16/2 over ℤ[i] units), and runs the
-   negative controls (norm 5, norm 9).
+3. **Seat B** re-derives the slice lemma by a route **genuinely independent
+   of seat P's** — a different substrate or method, not a re-run of the
+   prover's proof (norm 9) — reproduces the nests (32/16/2 over ℤ[i] units),
+   and runs its own negative controls (norm 5).
 4. **Plants, both directions** (norm 16): the verifier fails (exit 1, poisoned
    check named) on a planted defect — a cocycle deleted from a class, or an
    `Fz2 f` mislabeled — and passes on byte-identical restore.
@@ -235,9 +248,15 @@ on `s7a_cocycle_reach.py`'s finite enumeration (slice lemma TRUE, 2 classes,
 probe files. If the third body's kernel enumeration disagrees with the
 probe's counts (32/16/2), that disagreement is a finding and STOPS the charge.
 
-**#3 — I did not write the proof.** Per my charter, I audit math and issue
-charges; I do not prove. §4 is guidance carrying the trap ledger forward, not
-a proof, and I have written no Lean. The kernel remains untouched by me.
+**#3 — I did not write the proof, and this charge does not design it.** Per
+my charter, I audit math and issue charges; I do not prove. §4 carries a
+hazard map (where earlier provers were bitten) and the route-independent
+constraints every acceptable proof must meet — it deliberately prescribes NO
+tactic, code shape, data representation, or route, because a pre-drawn route
+would (a) make the third body's proof a transcription of my design rather
+than independent evidence, and (b) risk propagating a flaw of mine into the
+proof meant to catch flaws. The route is the prover's; seat B verifies by a
+different one (norm 9). I have written no Lean; the kernel is untouched by me.
 
 ---
 
