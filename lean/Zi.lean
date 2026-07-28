@@ -2636,8 +2636,10 @@ theorem control_reversed_pair_is_dependent :
 
             grep -in "quotient" lean/Zi.lean
 
-        and read what it returns. Every occurrence is a denial; nothing
-        is constructed. "Class" in the names below means an
+        and read what it returns. Every occurrence sits inside a denial —
+        the builder's offered tightening, taken, since one of them is the
+        quoted command itself and a command is not a denial. Nothing is
+        constructed. "Class" in the names below means an
         equivalence class of the relation proved above, which the three
         laws license, and it means nothing more.
       - that two classes exhaust the world off the pentagon or off the
