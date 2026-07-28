@@ -2639,7 +2639,27 @@ theorem control_reversed_pair_is_dependent :
         and read what it returns. Every occurrence sits inside a denial —
         the builder's offered tightening, taken, since one of them is the
         quoted command itself and a command is not a denial. Nothing is
-        constructed. "Class" in the names below means an
+        constructed.
+
+        AND THE CATEGORY IS NAMED, on the courier's ruling, because the
+        record kept producing these before it had a word for them. This
+        bullet is SELF-REFERENTIAL: it is a sentence about the text it is
+        part of, so measuring it changes it, and pointing at the command
+        creates another instance of what the command counts. That is not
+        a defect and not a nitpick — it is a third thing. Every
+        instrument in this record's chain measures prose against
+        something OUTSIDE the prose: the pointer gate against the tree,
+        the numeral gate against instrument values, the views gate
+        against the artifact, the census against the kernel. A sentence
+        inside its own referent has no outside for them to reach, so no
+        instrument here can settle one, and the ones that look settled
+        were settled by refusing to make the claim rather than by
+        checking it. **Such places are pointed at and left standing.**
+        Some resolve; this one did, by dropping the count. Some will not,
+        and a record that convicts those instead of pointing at them
+        would be trading its most informative sentences for tidiness.
+
+        "Class" in the names below means an
         equivalence class of the relation proved above, which the three
         laws license, and it means nothing more.
       - that two classes exhaust the world off the pentagon or off the
