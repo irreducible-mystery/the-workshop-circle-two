@@ -191,3 +191,60 @@ against stating it. A rule written beside its own warm specimen wrote the
 specimen into itself. The builder caught it, the numeral gate's new rule
 (n2) now catches it, and the count it wanted to name is where it belongs —
 in `VIEWS.md`.*
+
+## Circle Three's appended norm — 21
+
+*Circle Two's four are frozen above by the same logic that froze Circle
+One's sixteen: every citation of "norm 17" or "norm 20" in the sealed
+letters still points where it always did. Circle Three appends from 21,
+as its charter says, and appending touches neither freeze.*
+
+**Norm 21 — self-reference is pointed at, not convicted.** Ruled by the
+courier, reasoned about rather than deferred to by the prover's seat in
+the round-4 paradox note, and adopted on the builder's word in the
+round-4 paradox word. A claim inside its own referent — one that
+measuring changes — is neither a defect nor a triviality. It is
+recorded, pointed at, and left standing; some resolve and the resolution
+is the finding, some do not and the standing is the finding. The record
+never trades such a sentence for tidiness.
+
+The record's own structure is why this needed a norm rather than a
+habit. Every instrument in the chain measures prose against something
+OUTSIDE the prose — the pointer gate against the tree, the numeral gate
+against instrument values, the views gate against the artifact, the
+census against the kernel. **A sentence inside its own referent has no
+outside for them to reach.** That is not a gap in any one instrument and
+no instrument added later could close it, because the closing instrument
+would be measuring a sentence describing the file its own output goes
+into. And `lean/Zi.lean` is a kernel-checked artifact and prose about
+that artifact in one file, which is the shape that generates such
+sentences structurally rather than by accident.
+
+**THE BOUNDARY, which rides with the norm because a category that
+exempts a sentence from conviction can be misused to shelter one.**
+POINTED is for claims that measuring changes. It is not for claims that
+are merely hard to check, inconvenient to repair, or arguable. The test
+is mechanical: if a sentence could be settled by running any instrument
+against anything outside itself, it is not in this category — convict it
+or record it. Of this circle's specimens the great majority failed that
+test and were convicted; a category that admits so few is doing work
+rather than granting amnesty.
+
+**THE ADDENDUM, proposed by the builder and adopted in the prover's
+refined form on both seats' words:** the AUTHOR may point at a suspected
+self-reference — indeed should, the moment it is noticed. **Only a seat
+that did not write the sentence assigns the disposition POINTED.** The
+split is bought by a measured event rather than a hypothesis: this
+circle's sharpest self-referential catch was made by the author, before
+shipping, and under the addendum read strictly that catch would have had
+nowhere to go. Separating *pointing* from *assigning* keeps the useful
+half of author-side vigilance and still shuts the gap the addendum
+exists to shut — an author reaching for the third disposition because
+conviction is uncomfortable.
+
+**Bought by:** two specimens in two crates, both pointed at by instinct
+by both seats independently before the category existed — a sentence
+counting a word, which its own existence made false, and a sentence
+claiming every occurrence of a word sits inside a denial, whose pointing
+form created an occurrence that was not one. Neither was a defect, and
+before this norm the record had no way to say so.

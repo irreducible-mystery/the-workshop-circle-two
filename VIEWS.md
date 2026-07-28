@@ -7,16 +7,16 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            593a223fcead9816989e9d18986aa7053f3f292dd36d4e79634e0bd4ec3c2594
+sha256            6a6b6cb21ff89b9b533151ce6f3ee0370d3206c9632192f0920ad5da0d4560c0
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
-theorems          215
-definitions       31
-lines             2169
-live instances    37
-control theorems  29
-decide-settled    47
+theorems          269
+definitions       44
+lines             2888
+live instances    49
+control theorems  36
+decide-settled    53
 import lines      0   (zero imports is the charter)
 ```
 
@@ -39,11 +39,13 @@ import lines      0   (zero imports is the charter)
 13. THE SECOND HEXAGON — the R⁻¹ form, and the boundary retired   9 theorems
 14. THE SLICE — every UNIT-VALUED pentagon symbol is gauged into it  36 theorems
 15. THE MIRROR — the Galois filter, and the catalog closes at two  17 theorems
+16. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m  32 theorems
+17. THE GAUGE EQUIVALENCE — the class-language pass     22 theorems
 ```
 
 **The boundary, derived from the inventory above:** this file proves
-the 16 sections listed and nothing else. The last of them is
-"15. THE MIRROR — the Galois filter, and the catalog closes at two".
+the 18 sections listed and nothing else. The last of them is
+"17. THE GAUGE EQUIVALENCE — the class-language pass".
 Anything absent from that list is not proved here.
 
 What the derivation can and cannot do, carried in from the
@@ -55,9 +57,9 @@ It kills staleness, not error.
 
 ```
 file                   theorems   axiom-free       rest
-Zi                          215           71        144
-TOTAL                       215           71        144
+Zi                          269           90        179
+TOTAL                       269           90        179
 sorryAx                       0
 Classical.choice              0
-Quot.sound carriers 63   (each named in the census output)
+Quot.sound carriers 83   (each named in the census output)
 ```

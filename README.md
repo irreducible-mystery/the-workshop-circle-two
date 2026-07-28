@@ -16,7 +16,7 @@ exactly as the anyon died on the roomy edict.
 Three bodies, as before: a **builder** (this side — floor-keeper,
 verifier, letter-writer), a **third body** (a fresh Lean 4 prover on
 Kelly's machine), and **Kelly** (the courier, and the between).
-SuperNinja enters as meta-auditor of closed rounds under quarantine
+A **meta-auditor** enters for closed rounds under quarantine
 (REGISTER row 7). The method is inherited whole: exact instruments,
 corrections loudest first, and nothing trusted that was not measured.
 

@@ -2166,4 +2166,723 @@ theorem control_semion_fails_the_filter : hexagonHolds (neg one) I ∧ conj I �
   · exact Rsq_gives_hexagon _ _ (by decide) (by decide)
   · decide
 
+
+/-! ## 16. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m
+
+    THE CHARGE, quoted from the sealed Circle Two charter verbatim,
+    because charge prose seeds defects and quotation is the defence:
+
+    > **Exclusion:** never say "rank." Ship the idempotent certificate —
+    > M = I − swap, M² = 2M, tr M = m² − m, generic in m with no big
+    > decides — plus the explicit image basis {e_ij − e_ji : i < j} and
+    > its cardinality m(m−1)/2, so 1, 3, 6, 10, 15 arrive as
+    > cardinalities. This is the one risky section (S7); a raw 36×36
+    > decide may not kernel-reduce with native_decide banned.
+
+    THE RISK, PRICED BEFORE IT WAS RUN AND THEN NOT SPENT. The charter
+    flagged one risk: that a raw 36×36 `decide` might not kernel-reduce.
+    Both seats measured it before this section was written, and it does
+    reduce — silent, at the named size, with no `set_option` of any kind,
+    which is this file's house style. That measurement is recorded in the
+    round-1 letters. It is not used here. The identities below are proved
+    POINTWISE and GENERICALLY, so no `decide` of any size stands behind
+    `M² = 2M` or `tr M = m² − m`; the fallback was measured so that it
+    would not be needed, and it was not needed.
+
+    THE LANGUAGE. A vector of the tensor square is carried by its
+    coordinates: `v i j` is the coefficient of `e_ij`. The swap is
+    `swapT`, the antisymmetrizer is `antiM`, and `antiM_is_id_sub_swap`
+    proves by `rfl` that the second is the first subtracted from the
+    identity — the charter's `M = I − swap`, with no step in between.
+
+    WHAT IS PROVED, exactly:
+      (a) `antiM_sq_eq_two_antiM` — M² = 2M, from the involution alone,
+          pointwise, with `m` appearing in neither the statement nor the
+          proof, so it holds at every size at once;
+      (b) `traceM_eq` — tr M = m² − m over the index square, summed with
+          a hand-rolled `sumTo` and no decide anywhere;
+      (c) `antiM_antisymmetric` and `antisymmetric_is_in_image` — the
+          image is EXACTLY the antisymmetric vectors, the second by an
+          explicit witness rather than an existence argument;
+      (d) `eDiff` and `upperPairs_card` — the generators e_ij − e_ji
+          exhibited as images of basis vectors, indexed by the pairs with
+          i < j, with 2·#{(i,j) : i < j < m} = m(m−1) proved generically
+          and stated division-free so no truncation can hide in it;
+      (e) `live_38`–`live_42` — the five cardinalities the charter asked
+          to "arrive as cardinalities", arriving as the length of a list
+          the kernel builds, at m = 2 through 6.
+
+    THE WORD THE CHARTER FORBIDS appears in NO THEOREM NAME, no
+    statement and no proof, and nowhere in this file's prose except
+    inside the blockquote above, where it is being quoted in order to be
+    banned. An earlier version of this paragraph claimed it appeared in
+    no comment at all — false in the very comment that made the claim,
+    since the quoted clause sits forty lines above it. Corrected here
+    rather than by deleting the quotation: the charter calls quotation
+    the defence, and the defence is what carried the word in. What is
+    counted in this section is the cardinality of an exhibited index
+    set, and that is all that is counted.
+
+    WHAT IS NOT PROVED, stated exactly, because the words this section
+    invites are wider than its theorems:
+      - that the generators form a BASIS in any formal sense. There is no
+        module, no linear map and no `Basis` in this file — there is no
+        mathlib to take one from, and none was hand-rolled. "Basis" is
+        the charter's word for the index set and its cardinality, and it
+        is used in this comment and in no theorem name. What IS proved is
+        weaker and exact: each generator is the image of one basis
+        vector, each reads one at its own coordinate when a ≠ b, the
+        reversed pair is its negative, and the index set has the stated
+        cardinality.
+      - that the generators SPAN the image as an explicit sum. The image
+        is characterised — it is exactly the antisymmetric vectors — and
+        the witness of `antisymmetric_is_in_image` is built from the
+        strictly-upper coefficients, which is the spanning fact in the
+        form this section needs. The formal sentence
+        `w = Σ_{i<j} w_ij (e_ij − e_ji)`, as a sum over `upperPairs`, is
+        NOT written. That is one proof, not one word, and it is not
+        closed here.
+      - anything about `Z[i]`. This section is over `Int` and uses no
+        part of the ring the rest of the file builds. It sits in this
+        file because the record is one file, not because the exclusion
+        section needs the Gaussian integers; it does not.
+      - any claim that M is a projection. It is not, and
+        `control_antiM_is_not_idempotent` exhibits the failure rather
+        than leaving the reader to infer it from the two.
+-/
+/-! ### The finite sum, hand-rolled — `sumTo f n = Σ_{k<n} f k` -/
+
+def sumTo (f : Nat → Int) : Nat → Int
+  | 0 => 0
+  | n + 1 => sumTo f n + f n
+
+theorem sumTo_const (c : Int) : ∀ n : Nat, sumTo (fun _ => c) n = (n : Int) * c
+  | 0 => by simp [sumTo]
+  | n + 1 => by
+      show sumTo (fun _ => c) n + c = ((n + 1 : Nat) : Int) * c
+      rw [sumTo_const c n]
+      push_cast
+      rw [Int.add_mul, Int.one_mul]
+
+theorem sumTo_sub (f g : Nat → Int) : ∀ n : Nat,
+    sumTo (fun k => f k - g k) n = sumTo f n - sumTo g n
+  | 0 => rfl
+  | n + 1 => by
+      show sumTo (fun k => f k - g k) n + (f n - g n) = (sumTo f n + f n) - (sumTo g n + g n)
+      rw [sumTo_sub f g n]
+      omega
+
+/-- The indicator of a single index sums to one exactly when that index is
+    inside the range, and to zero otherwise. -/
+theorem sumTo_eq_indicator (a : Nat) : ∀ n : Nat,
+    sumTo (fun b => if a = b then (1 : Int) else 0) n = if a < n then 1 else 0
+  | 0 => by simp [sumTo]
+  | n + 1 => by
+      show sumTo (fun b => if a = b then (1 : Int) else 0) n + (if a = n then (1:Int) else 0)
+             = if a < n + 1 then 1 else 0
+      rw [sumTo_eq_indicator a n]
+      by_cases h : a = n
+      · subst h; simp
+      · by_cases h2 : a < n
+        · simp [h, h2, Nat.lt_succ_of_lt h2]
+        · have h3 : ¬ a < n + 1 := by omega
+          simp [h, h2, h3]
+
+/-- Every index below `m` is below `m` — the sum that counts the range. -/
+theorem sumTo_lt_indicator (m : Nat) : ∀ n : Nat, n ≤ m →
+    sumTo (fun a => if a < m then (1 : Int) else 0) n = (n : Int)
+  | 0, _ => by simp [sumTo]
+  | n + 1, h => by
+      show sumTo (fun a => if a < m then (1 : Int) else 0) n + (if n < m then (1:Int) else 0)
+             = ((n + 1 : Nat) : Int)
+      rw [sumTo_lt_indicator m n (by omega)]
+      have hn : n < m := by omega
+      simp [hn]
+
+/-! ### The tensor square in coordinates, the swap, and `M = I − swap` -/
+
+/-- A vector of the tensor square, in coordinates: `v i j` is the
+    coefficient of the basis vector `e_ij`. -/
+def swapT (v : Nat → Nat → Int) : Nat → Nat → Int := fun i j => v j i
+
+/-- The basis vector `e_ab`. -/
+def eBasis (a b : Nat) : Nat → Nat → Int := fun i j => if i = a ∧ j = b then 1 else 0
+
+/-- **The antisymmetrizer, `M = I − swap`**, written in coordinates. -/
+def antiM (v : Nat → Nat → Int) : Nat → Nat → Int := fun i j => v i j - swapT v i j
+
+/-- `M` really is `I − swap`: the definition unfolds to the difference,
+    with no step in between. -/
+theorem antiM_is_id_sub_swap (v : Nat → Nat → Int) (i j : Nat) :
+    antiM v i j = v i j - swapT v i j := rfl
+
+/-- The swap is an involution — the only fact `M² = 2M` needs. -/
+theorem swapT_involutive (v : Nat → Nat → Int) : swapT (swapT v) = v := rfl
+
+/-! ### The certificate — `M² = 2M`, generic in m, with no decides -/
+
+/-- **`M² = 2M`.** Proved pointwise from the involution alone, so it holds
+    at every size at once: `m` does not appear in the statement or the
+    proof. This is the identity the sealed charter priced as the risky
+    one; it costs one `funext` and one linear step. -/
+theorem antiM_sq_eq_two_antiM (v : Nat → Nat → Int) :
+    antiM (antiM v) = fun i j => 2 * antiM v i j := by
+  funext i j
+  show (v i j - v j i) - (v j i - v i j) = 2 * (v i j - v j i)
+  omega
+
+/-- The same fact entrywise, for use where a function equality is awkward. -/
+theorem antiM_sq_apply (v : Nat → Nat → Int) (i j : Nat) :
+    antiM (antiM v) i j = 2 * antiM v i j := by
+  show (v i j - v j i) - (v j i - v i j) = 2 * (v i j - v j i)
+  omega
+
+/-! ### The trace — `tr M = m² − m`, generic in m -/
+
+/-- The trace of `M` over the index square `[0,m) × [0,m)`: the sum of the
+    diagonal coefficients of `M e_ab`, read off the operator itself rather
+    than off a matrix written down beside it. -/
+def traceM (m : Nat) : Int := sumTo (fun a => sumTo (fun b => antiM (eBasis a b) a b) m) m
+
+/-- The diagonal coefficient of `M e_ab` is one off the diagonal and zero
+    on it — the whole content of the trace. -/
+theorem antiM_eBasis_diag (a b : Nat) :
+    antiM (eBasis a b) a b = 1 - (if a = b then 1 else 0) := by
+  show (if a = a ∧ b = b then (1:Int) else 0) - (if b = a ∧ a = b then (1:Int) else 0)
+         = 1 - (if a = b then 1 else 0)
+  by_cases h : a = b
+  · subst h; simp
+  · simp [h]
+
+/-- **`tr M = m² − m`**, at every size, with no decide anywhere. -/
+theorem traceM_eq (m : Nat) : traceM m = (m : Int) * (m : Int) - (m : Int) := by
+  have inner : ∀ a : Nat, sumTo (fun b => antiM (eBasis a b) a b) m
+      = (m : Int) - (if a < m then 1 else 0) := by
+    intro a
+    have : (fun b => antiM (eBasis a b) a b)
+         = (fun b => (1 : Int) - (if a = b then 1 else 0)) := by
+      funext b; exact antiM_eBasis_diag a b
+    rw [this, sumTo_sub, sumTo_const, sumTo_eq_indicator]
+    simp
+  have : (fun a => sumTo (fun b => antiM (eBasis a b) a b) m)
+       = (fun a => (m : Int) - (if a < m then 1 else 0)) := by
+    funext a; exact inner a
+  show sumTo (fun a => sumTo (fun b => antiM (eBasis a b) a b) m) m = _
+  rw [this, sumTo_sub, sumTo_const, sumTo_lt_indicator m m (Nat.le_refl m)]
+
+/-! ### The image — exactly the antisymmetric vectors -/
+
+/-- `M` kills the diagonal. -/
+theorem antiM_diag_zero (v : Nat → Nat → Int) (a : Nat) : antiM v a a = 0 := by
+  show v a a - v a a = 0
+  omega
+
+/-- Everything in the image is antisymmetric. -/
+theorem antiM_antisymmetric (v : Nat → Nat → Int) (i j : Nat) :
+    antiM v i j = - antiM v j i := by
+  show v i j - v j i = -(v j i - v i j)
+  omega
+
+/-- **And conversely: every antisymmetric vector is in the image**, by an
+    explicit witness — keep the strictly-upper coefficients and drop the
+    rest. So the image is exactly the antisymmetric vectors, which is what
+    the basis below is a basis of. -/
+theorem antisymmetric_is_in_image (w : Nat → Nat → Int)
+    (hw : ∀ i j, w i j = - w j i) :
+    antiM (fun i j => if i < j then w i j else 0) = w := by
+  funext i j
+  show (if i < j then w i j else 0) - (if j < i then w j i else 0) = w i j
+  by_cases h1 : i < j
+  · have h2 : ¬ j < i := by omega
+    simp [h1, h2]
+  · by_cases h2 : j < i
+    · have := hw i j
+      simp [h1, h2]
+      omega
+    · have hij : i = j := by omega
+      subst hij
+      have := hw i i
+      simp [h1]
+      omega
+
+/-! ### The explicit image basis `{e_ij − e_ji : i < j}` and its cardinality -/
+
+/-- The generator `e_ab − e_ba`, as the image of a basis vector. -/
+def eDiff (a b : Nat) : Nat → Nat → Int := antiM (eBasis a b)
+
+/-- Each generator is the image of one basis vector — the basis is
+    exhibited, not asserted to exist. -/
+theorem eDiff_is_image (a b : Nat) : eDiff a b = antiM (eBasis a b) := rfl
+
+/-- The generator is antisymmetric in its own indices. -/
+theorem eDiff_swap (a b : Nat) (i j : Nat) : eDiff a b i j = - eDiff b a i j := by
+  show (if i = a ∧ j = b then (1:Int) else 0) - (if j = a ∧ i = b then (1:Int) else 0)
+     = -((if i = b ∧ j = a then (1:Int) else 0) - (if j = b ∧ i = a then (1:Int) else 0))
+  by_cases hia : i = a <;> by_cases hjb : j = b <;>
+    by_cases hib : i = b <;> by_cases hja : j = a <;>
+      simp [hia, hjb, hib, hja, And.comm] <;> omega
+
+/-- The generators are coordinate-independent: `e_ab − e_ba` reads one at
+    its own index whenever `a ≠ b`. This is what makes the list below a
+    list of distinct directions rather than a list of repetitions. -/
+theorem eDiff_self_coeff (a b : Nat) (h : a ≠ b) : eDiff a b a b = 1 := by
+  show (if a = a ∧ b = b then (1:Int) else 0) - (if b = a ∧ a = b then (1:Int) else 0) = 1
+  have h' : ¬ (b = a ∧ a = b) := by intro hc; exact h hc.2
+  simp [h']
+
+/-- `[0, 1, …, n−1]`. -/
+def upTo : Nat → List Nat
+  | 0 => []
+  | n + 1 => upTo n ++ [n]
+
+/-- The index set of the image basis: every pair `(i, j)` with `i < j < m`. -/
+def upperPairs : Nat → List (Nat × Nat)
+  | 0 => []
+  | m + 1 => upperPairs m ++ (upTo m).map (fun i => (i, m))
+
+theorem upTo_length : ∀ n : Nat, (upTo n).length = n
+  | 0 => rfl
+  | n + 1 => by
+      show ((upTo n) ++ [n]).length = n + 1
+      rw [List.length_append, upTo_length n]
+      rfl
+
+theorem upperPairs_length_succ (m : Nat) :
+    (upperPairs (m + 1)).length = (upperPairs m).length + m := by
+  show ((upperPairs m) ++ (upTo m).map (fun i => (i, m))).length = _
+  rw [List.length_append, List.length_map, upTo_length]
+
+/-- **The cardinality, division-free: `2 · #{(i,j) : i < j < m} = m(m−1)`.**
+    Stated with the two on the left so no truncation can hide in it; the
+    familiar `m(m−1)/2` is this sentence divided by two. -/
+theorem upperPairs_card : ∀ m : Nat,
+    2 * ((upperPairs m).length : Int) = (m : Int) * ((m : Int) - 1)
+  | 0 => by simp [upperPairs]
+  | m + 1 => by
+      rw [upperPairs_length_succ]
+      have ih := upperPairs_card m
+      push_cast
+      push_cast at ih
+      have e1 : ((m : Int) + 1) * (((m : Int) + 1) - 1) = (m : Int) * (m : Int) + (m : Int) := by
+        have h : ((m : Int) + 1) - 1 = (m : Int) := by omega
+        rw [h, Int.add_mul, Int.one_mul]
+      have e2 : (m : Int) * ((m : Int) - 1) = (m : Int) * (m : Int) - (m : Int) := by
+        rw [Int.mul_sub, Int.mul_one]
+      rw [e1]
+      rw [e2] at ih
+      omega
+
+
+
+/-! ### S7's live instances — the cardinalities, computed (norm 3)
+
+    The five numbers the sealed charter asked to "arrive as
+    cardinalities" arrive here as the LENGTH of a list the kernel builds,
+    at m = 2, 3, 4, 5, 6. None of them is typed as a claim; each is what
+    `upperPairs` evaluates to. -/
+
+theorem live_38 : (upperPairs 2).length = 1 := rfl
+theorem live_39 : (upperPairs 3).length = 3 := rfl
+theorem live_40 : (upperPairs 4).length = 6 := rfl
+theorem live_41 : (upperPairs 5).length = 10 := rfl
+theorem live_42 : (upperPairs 6).length = 15 := rfl
+
+/-- The generic cardinality theorem, instantiated at the size the sealed
+    charter's own risk flag named, and reached without the decide that
+    flag was about. -/
+theorem live_43 : 2 * ((upperPairs 6).length : Int) = 6 * (6 - 1) := by decide
+
+/-- The trace at the charter's named size, through the generic theorem
+    rather than through an evaluation of the sum. -/
+theorem live_44 : traceM 6 = 30 := by rw [traceM_eq]; decide
+
+/-- A generator is not the zero vector. -/
+theorem live_45 : eDiff 0 1 0 1 = 1 := by decide
+
+/-! ### S7's negative controls — norm 5 -/
+
+/-- **The certificate is `M² = 2M`, and the two is not decoration.** `M`
+    is NOT idempotent: at one coordinate of one basis vector the square
+    reads two where the operator reads one. Without this control the
+    headline theorem would be compatible with a projection, which is the
+    object this section is careful never to claim. -/
+theorem control_antiM_is_not_idempotent :
+    antiM (antiM (eBasis 0 1)) 0 1 ≠ antiM (eBasis 0 1) 0 1 := by decide
+
+/-- **The swap is not the identity.** If it were, `M` would be the zero
+    operator and every theorem above would be true and empty. -/
+theorem control_swapT_is_not_the_identity :
+    swapT (eBasis 0 1) 0 1 ≠ eBasis 0 1 0 1 := by decide
+
+/-- **`M` kills something.** The symmetric basis vector on the diagonal
+    goes to zero, so `M` is not injective and the image is a proper part
+    of the square — which is why the image has a basis worth counting. -/
+theorem control_antiM_kills_the_diagonal :
+    antiM (eBasis 0 0) 0 0 = 0 ∧ eBasis 0 0 0 0 ≠ 0 := by
+  constructor
+  · exact antiM_diag_zero _ 0
+  · decide
+
+/-- **The antisymmetry hypothesis in `antisymmetric_is_in_image` is
+    load-bearing.** No vector in the image carries a diagonal coefficient,
+    so a symmetric vector that does is outside it — for every `v` at once,
+    which is what makes this a boundary and not an example. -/
+theorem control_diagonal_vector_is_not_in_the_image (v : Nat → Nat → Int) :
+    antiM v 0 0 ≠ eBasis 0 0 0 0 := by
+  rw [antiM_diag_zero]
+  decide
+
+/-- **Why the index set is `i < j` and not `i ≠ j`.** The reversed pair
+    contributes no new direction — it is the negative of the one already
+    counted — so counting both orders would count the same direction
+    twice and the cardinality would be `m(m−1)` instead of `m(m−1)/2`. -/
+theorem control_reversed_pair_is_dependent :
+    eDiff 1 0 0 1 = - eDiff 0 1 0 1 := by decide
+
+
+/-! ## 17. THE GAUGE EQUIVALENCE — the class-language pass
+
+    THE CHARGE, quoted from the Circle Three charter:
+
+    > **THE GAUGE EQUIVALENCE RELATION — the class-language pass.** Scoped
+    > by what section 14 of `lean/Zi.lean` declined to claim, in its own
+    > words: composition and inversion of gauges, the coboundary
+    > calculation, and with them the right to the word "class".
+
+    WHAT SECTION 14 DECLINED, in its own words, and what happens to each
+    of those sentences here:
+
+      - *"that `gaugeAct` is an EQUIVALENCE relation. Composition and
+        inversion of gauges are not built here."* — **built here.**
+        `gaugeComp`, `gaugeInv`, `gaugeTrivial`, and the three laws.
+      - *"the word 'class' appears in no theorem name in this file for
+        that reason: the builder charged 'every class meets the slice',
+        and what compiled is that every pentagon SYMBOL meets it. The gap
+        is one proof, not one word."* — **that proof is here**, and the
+        word now appears in theorem names below because the relation it
+        refers to is proved, not because the sentence was widened.
+      - *"that this computes `H³(Z₂, ·)` or any named cohomology group."*
+        — **still not claimed. See the ruling below.**
+
+    THE COBOUNDARY CALCULATION, which the charge names and section 14
+    declined. A gauge is a 2-cochain and the factor it acts by is its
+    coboundary: `gaugePhi g` is written out explicitly, `gaugeAct_eq_phi`
+    proves by `rfl` that the action is multiplication by it, and the
+    three laws are exactly the statement that **g ↦ gaugePhi g is a
+    homomorphism** — trivial gauge to one, composition to product,
+    inversion to conjugate. That is the calculation section 14 said it
+    did not do. It is done at the level of the factor, in the ring, with
+    no cohomology machinery anywhere near it.
+
+    THE SCOPE IS IN THE NAME, and this is the section's most important
+    piece of naming. Every result in section 14 is stated ON THE LABELS —
+    each quantifies `a, b, c` over `{0,1}`. A relation defined more widely
+    could not be connected to them without claiming something they do not
+    say. So the relation here is `GaugeEquivOnLabels`, and the scope rides
+    in the name, which is the discipline the record already applied when
+    it renamed `gauged_symbol_is_Fs` to `gauged_symbol_is_Fs_on_labels`:
+    off the labels the claim is false, so the scope is content and
+    belongs in the name.
+
+    WHAT IS PROVED, exactly:
+      (a) `gaugeEquivOnLabels_refl`, `_symm`, `_trans` — the relation is
+          an equivalence, by the trivial gauge, by inversion on units, and
+          by composition, in that order;
+      (b) `at_most_two_classes` — every unit-valued symbol satisfying the
+          pentagon is equivalent, on the labels, to one of two named
+          representatives;
+      (c) `the_two_classes_do_not_collapse` — those two are not
+          equivalent to each other;
+      (d) `exactly_two_classes` — (b) and (c) as one statement in the
+          artifact's own vocabulary, with no cohomology in it.
+
+    THE GRADUATION SENTENCE, written after the theorems compiled and not
+    before, as the charge requires. **Section 14 proved that every
+    unit-valued pentagon symbol is gauged onto the slice, and could not
+    say "class" because the relation was not built. The relation is built
+    here and it is an equivalence, so the slice's two members are two
+    classes and every symbol lies in one of them.** That is the
+    graduation: the pair of theorems section 14 named — the slice holds
+    exactly two, every symbol reaches the slice — now compose through a
+    proved equivalence, and neither of them got wider to make it happen.
+
+    THE `H³` RULING, stated in the file because the charge requires it to
+    be stated either way: **NOT CLAIMED, and deliberately.** Nothing here
+    constructs a cochain complex, a coboundary operator between graded
+    groups, a cocycle condition as a kernel, or a quotient of one by the
+    other — and "two classes" is not "H³(Z₂, Z[i]ˣ) = Z₂" until every one
+    of those exists and is shown to match. What is proved is a count of
+    equivalence classes of an explicitly defined relation on an
+    explicitly defined family. The identification with a named cohomology
+    group would be a further theorem about objects this file does not
+    build. The sealed record promised nothing there; this section earns
+    nothing there and says so.
+
+    WHAT IS NOT PROVED, stated exactly:
+      - that the relation is an equivalence OFF the labels. Every law
+        above is proved pointwise and would hold at any triple, but
+        `GaugeEquivOnLabels` quantifies over labels because that is where
+        section 14's results live, and no theorem here says otherwise.
+      - that there is a QUOTIENT. No quotient type, no setoid instance
+        and no type of classes is CONSTRUCTED anywhere in this file.
+        **This sentence states no count**, and the reason is worth more
+        than the claim it replaces. Its first version said the word had
+        one occurrence; a case-SENSITIVE check had missed a lowercase
+        instance, so that was wrong. Its second version said two — and
+        was wrong the moment it was written, because a sentence counting
+        a word contains that word and is therefore its own third
+        instance. A claim of this shape cannot be stabilised by measuring
+        harder. The stable form is to point rather than count, so: run
+
+            grep -in "quotient" lean/Zi.lean
+
+        and read what it returns. Every occurrence sits inside a denial —
+        the builder's offered tightening, taken, since one of them is the
+        quoted command itself and a command is not a denial. Nothing is
+        constructed.
+
+        AND THE CATEGORY IS NAMED, on the courier's ruling, because the
+        record kept producing these before it had a word for them. This
+        bullet is SELF-REFERENTIAL: it is a sentence about the text it is
+        part of, so measuring it changes it, and pointing at the command
+        creates another instance of what the command counts. That is not
+        a defect and not a nitpick — it is a third thing. Every
+        instrument in this record's chain measures prose against
+        something OUTSIDE the prose: the pointer gate against the tree,
+        the numeral gate against instrument values, the views gate
+        against the artifact, the census against the kernel. A sentence
+        inside its own referent has no outside for them to reach, so no
+        instrument here can settle one, and the ones that look settled
+        were settled by refusing to make the claim rather than by
+        checking it. **Such places are pointed at and left standing.**
+        Some resolve; this one did, by dropping the count. Some will not,
+        and a record that convicts those instead of pointing at them
+        would be trading its most informative sentences for tidiness.
+
+        "Class" in the names below means an
+        equivalence class of the relation proved above, which the three
+        laws license, and it means nothing more.
+      - that two classes exhaust the world off the pentagon or off the
+        units. Both hypotheses stand in every statement that needs them,
+        and a control below exhibits the failure of inversion off the
+        units.
+      - THIS SECTION IS NOT STANDALONE-PORTABLE, and unlike section 16
+        that is correct rather than a defect: it is about the ring's
+        gauges and cannot be about anything else. Measured rather than
+        asserted — the section extracted alone does not compile, and the
+        names it inherits are the carrier and its arithmetic, `conj` and
+        its laws, the unit predicate and its bridge, `gaugeAct` and
+        `gaugeOf`, `sliceCore`, `genPentagonHolds`, `exactly_two_roots`,
+        and a list of the slice section's own theorems. That list is
+        not enumerated here: an earlier version of this bullet gave a
+        number, the number was taken before the live instances and the
+        controls were appended, and those pulled in more. The names are
+        what the extraction reports; the reader who wants them should
+        strip the comments and look, since a name quoted in prose is not
+        a dependency and would inflate any count taken by searching.
+
+        The portable section claimed portability and had to be repaired
+        to earn it; this one claims dependence and measured it before
+        saying so — and had its enumeration corrected anyway, in the
+        direction the practice does not yet cover: the practice catches
+        a claim's DIRECTION and does not catch its NUMBERS.
+-/
+
+/-! ### The gauge group's three operations, and the factor they act by -/
+
+/-- AC at the ring level, so the gauge algebra below can be normalised by
+    `simp` instead of by hand-chained rewrites. -/
+theorem mul_left_comm (x y z : GZ) : mul x (mul y z) = mul y (mul x z) := by
+  rw [← mul_assoc, mul_comm x y, mul_assoc]
+
+/-- Units are closed under multiplication — needed because a gauge factor
+    is a product of four gauge values and has to stay invertible. -/
+theorem IsUnit_mul (u v : GZ) (hu : IsUnit u) (hv : IsUnit v) : IsUnit (mul u v) := by
+  obtain ⟨u', hu'⟩ := hu
+  obtain ⟨v', hv'⟩ := hv
+  refine ⟨mul u' v', ?_⟩
+  calc mul (mul u v) (mul u' v')
+      = mul (mul u u') (mul v v') := by simp [mul_comm, mul_left_comm]
+    _ = one := by rw [hu', hv']; exact mul_one one
+
+/-- **The gauge factor.** `gaugeAct` multiplies the symbol by exactly this,
+    and every fact below is a fact about it. -/
+def gaugePhi (g : Int → Int → GZ) (a b c : Int) : GZ :=
+  mul (mul (g a b) (g ((a + b) % 2) c)) (mul (conj (g b c)) (conj (g a ((b + c) % 2))))
+
+/-- The action is multiplication by the factor — by `rfl`, so nothing is
+    claimed about the two that is not already definitional. -/
+theorem gaugeAct_eq_phi (g : Int → Int → GZ) (F : Int → Int → Int → GZ) (a b c : Int) :
+    gaugeAct g F a b c = mul (F a b c) (gaugePhi g a b c) := rfl
+
+/-- The trivial gauge — the identity of the gauge group. -/
+def gaugeTrivial : Int → Int → GZ := fun _ _ => one
+
+/-- Gauge inversion. On units the conjugate IS the inverse (section 13's
+    bridge), which is why this is the inverse and why every theorem using
+    it carries the unit hypothesis. -/
+def gaugeInv (g : Int → Int → GZ) : Int → Int → GZ := fun a b => conj (g a b)
+
+/-- Gauge composition, pointwise. -/
+def gaugeComp (g h : Int → Int → GZ) : Int → Int → GZ := fun a b => mul (g a b) (h a b)
+
+theorem gaugeTrivial_unit (a b : Int) : IsUnit (gaugeTrivial a b) := IsUnit_one
+
+theorem gaugeInv_unit (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b))
+    (a b : Int) : IsUnit (gaugeInv g a b) := IsUnit_conj _ (hg a b)
+
+theorem gaugeComp_unit (g h : Int → Int → GZ)
+    (hg : ∀ a b : Int, IsUnit (g a b)) (hh : ∀ a b : Int, IsUnit (h a b))
+    (a b : Int) : IsUnit (gaugeComp g h a b) := IsUnit_mul _ _ (hg a b) (hh a b)
+
+/-- A gauge factor built from units is a unit. -/
+theorem gaugePhi_unit (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b))
+    (a b c : Int) : IsUnit (gaugePhi g a b c) :=
+  IsUnit_mul _ _
+    (IsUnit_mul _ _ (hg a b) (hg ((a + b) % 2) c))
+    (IsUnit_mul _ _ (IsUnit_conj _ (hg b c)) (IsUnit_conj _ (hg a ((b + c) % 2))))
+
+/-! ### The three group laws, at the level of the factor -/
+
+/-- The trivial gauge acts trivially. -/
+theorem gaugePhi_trivial (a b c : Int) : gaugePhi gaugeTrivial a b c = one := by
+  show mul (mul one one) (mul (conj one) (conj one)) = one
+  simp [conj_one, mul_one]
+
+/-- **Composition of gauges multiplies their factors.** This is the
+    transitivity engine, and it is where `conj`'s multiplicativity earns
+    its place. -/
+theorem gaugePhi_comp (g h : Int → Int → GZ) (a b c : Int) :
+    gaugePhi (gaugeComp g h) a b c = mul (gaugePhi g a b c) (gaugePhi h a b c) := by
+  show mul (mul (mul (g a b) (h a b)) (mul (g ((a + b) % 2) c) (h ((a + b) % 2) c)))
+         (mul (conj (mul (g b c) (h b c)))
+              (conj (mul (g a ((b + c) % 2)) (h a ((b + c) % 2)))))
+     = _
+  rw [conj_mul, conj_mul]
+  show _ = mul (mul (mul (g a b) (g ((a + b) % 2) c))
+                 (mul (conj (g b c)) (conj (g a ((b + c) % 2)))))
+              (mul (mul (h a b) (h ((a + b) % 2) c))
+                 (mul (conj (h b c)) (conj (h a ((b + c) % 2)))))
+  simp [mul_comm, mul_left_comm]
+
+/-- **Inversion of gauges conjugates the factor.** -/
+theorem gaugePhi_inv (g : Int → Int → GZ) (a b c : Int) :
+    gaugePhi (gaugeInv g) a b c = conj (gaugePhi g a b c) := by
+  show mul (mul (conj (g a b)) (conj (g ((a + b) % 2) c)))
+         (mul (conj (conj (g b c))) (conj (conj (g a ((b + c) % 2)))))
+     = conj (mul (mul (g a b) (g ((a + b) % 2) c))
+              (mul (conj (g b c)) (conj (g a ((b + c) % 2)))))
+  rw [conj_mul, conj_mul, conj_mul]
+
+/-! ### The relation, and it is an equivalence
+
+    THE SCOPE IS IN THE NAME. Section 14's results are stated ON THE
+    LABELS — every one of them quantifies `a, b, c` over `{0,1}` — and a
+    relation defined more widely could not be connected to them without
+    claiming something they do not say. So this relation is label-scoped
+    and its name says so, which is the same discipline the record applied
+    when it renamed `gauged_symbol_is_Fs` to `gauged_symbol_is_Fs_on_labels`:
+    off the labels the claim is false, so the scope is content and belongs
+    in the name. -/
+
+/-- **`F` and `F'` are gauge-equivalent on the labels** when some
+    unit-valued gauge carries the one onto the other at every label
+    triple. -/
+def GaugeEquivOnLabels (F F' : Int → Int → Int → GZ) : Prop :=
+  ∃ g : Int → Int → GZ, (∀ a b : Int, IsUnit (g a b)) ∧
+    ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+      gaugeAct g F a b c = F' a b c
+
+/-- **Reflexivity**, via the trivial gauge. -/
+theorem gaugeEquivOnLabels_refl (F : Int → Int → Int → GZ) : GaugeEquivOnLabels F F := by
+  refine ⟨gaugeTrivial, gaugeTrivial_unit, ?_⟩
+  intro a b c _ _ _
+  rw [gaugeAct_eq_phi, gaugePhi_trivial, mul_one]
+
+/-- **Symmetry**, via gauge inversion on units. The unit hypothesis is
+    load-bearing and is why it stands in the statement: off the units
+    `conj` is not an inverse and this direction fails. -/
+theorem gaugeEquivOnLabels_symm (F F' : Int → Int → Int → GZ)
+    (h : GaugeEquivOnLabels F F') : GaugeEquivOnLabels F' F := by
+  obtain ⟨g, hgu, hgf⟩ := h
+  refine ⟨gaugeInv g, gaugeInv_unit g hgu, ?_⟩
+  intro a b c ha hb hc
+  rw [gaugeAct_eq_phi, gaugePhi_inv, ← hgf a b c ha hb hc, gaugeAct_eq_phi, mul_assoc,
+      mul_conj_eq_one_of_unit _ (gaugePhi_unit g hgu a b c), mul_one]
+
+/-- **Transitivity**, via composition. -/
+theorem gaugeEquivOnLabels_trans (F F' F'' : Int → Int → Int → GZ)
+    (h1 : GaugeEquivOnLabels F F') (h2 : GaugeEquivOnLabels F' F'') :
+    GaugeEquivOnLabels F F'' := by
+  obtain ⟨g, hgu, hgf⟩ := h1
+  obtain ⟨h, hhu, hhf⟩ := h2
+  refine ⟨gaugeComp g h, gaugeComp_unit g h hgu hhu, ?_⟩
+  intro a b c ha hb hc
+  rw [gaugeAct_eq_phi, gaugePhi_comp, ← mul_assoc, ← gaugeAct_eq_phi,
+      hgf a b c ha hb hc, ← gaugeAct_eq_phi, hhf a b c ha hb hc]
+
+/-! ### The class form -/
+
+/-- **At most two classes.** Every unit-valued symbol satisfying the
+    pentagon is gauge-equivalent, on the labels, to one of two named
+    representatives. -/
+theorem at_most_two_classes (F : Int → Int → Int → GZ)
+    (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
+    GaugeEquivOnLabels F (sliceCore one) ∨ GaugeEquivOnLabels F (sliceCore (neg one)) := by
+  obtain ⟨g, f, hgu, hsq, hcore⟩ := every_pentagon_symbol_meets_the_slice F hu h
+  rcases (exactly_two_roots f).mp hsq with hf | hf
+  · exact Or.inl ⟨g, hgu, by intro a b c ha hb hc; rw [hcore a b c ha hb hc, hf]⟩
+  · exact Or.inr ⟨g, hgu, by intro a b c ha hb hc; rw [hcore a b c ha hb hc, hf]⟩
+
+/-- **And not fewer than two.** The two representatives are not
+    gauge-equivalent to each other, so the classes do not collapse. -/
+theorem the_two_classes_do_not_collapse :
+    ¬ GaugeEquivOnLabels (sliceCore one) (sliceCore (neg one)) := by
+  intro hE
+  obtain ⟨g, hgu, hgf⟩ := hE
+  exact fermion_is_not_a_gauged_boson g hgu hgf
+
+/-- **Exactly two classes**, as one statement in the artifact's own
+    vocabulary: two representatives that are not equivalent to each
+    other, and every unit-valued pentagon symbol equivalent to one of
+    them. -/
+theorem exactly_two_classes :
+    ¬ GaugeEquivOnLabels (sliceCore one) (sliceCore (neg one)) ∧
+      ∀ F : Int → Int → Int → GZ, (∀ a b c : Int, IsUnit (F a b c)) → genPentagonHolds F →
+        GaugeEquivOnLabels F (sliceCore one) ∨ GaugeEquivOnLabels F (sliceCore (neg one)) := by
+  refine ⟨the_two_classes_do_not_collapse, ?_⟩
+  intro F hu h
+  exact at_most_two_classes F hu h
+
+/-! ### Live instances and controls for the class pass -/
+
+/-- The trivial gauge is a unit gauge — anti-vacuity for reflexivity. -/
+theorem live_46 : IsUnit (gaugeTrivial 0 1) := by unfold gaugeTrivial; exact IsUnit_one
+
+/-- The factor of the trivial gauge really is one, evaluated. -/
+theorem live_47 : gaugePhi gaugeTrivial 1 1 1 = one := gaugePhi_trivial 1 1 1
+
+/-- A non-trivial gauge the record already carries: the one that
+    normalizes the twisted boson. Its factor is not one, so the relation
+    below is not the identity relation wearing a longer name. -/
+theorem live_48 : gaugeOf twistedBoson 0 1 = neg I := live_30
+
+/-- **The relation is not trivial**: the twisted boson is a gauged boson,
+    which is a genuine off-diagonal instance of the relation. -/
+theorem live_49 : GaugeEquivOnLabels twistedBoson (sliceCore one) :=
+  ⟨gaugeOf twistedBoson, gaugeOf_unit twistedBoson twistedBoson_unit,
+   twistedBoson_is_a_gauged_boson⟩
+
+/-- **The unit hypothesis in symmetry is load-bearing.** `⟨2,0⟩` is not a
+    unit, and `conj` is not its inverse — the product is four, not one —
+    so gauge inversion is not available off the units and the symmetry
+    proof genuinely needs what it assumes. -/
+theorem control_inversion_needs_units :
+    mul (⟨2, 0⟩ : GZ) (conj (⟨2, 0⟩ : GZ)) ≠ one := by decide
+
+/-- **The two classes are two, evaluated at one label triple.** The
+    representatives differ where the slice says they differ. -/
+theorem control_representatives_differ :
+    sliceCore one 1 1 1 ≠ sliceCore (neg one) 1 1 1 := control_slice_cores_differ
+
 end Zi
