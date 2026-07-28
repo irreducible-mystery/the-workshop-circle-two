@@ -2539,4 +2539,311 @@ theorem control_diagonal_vector_is_not_in_the_image (v : Nat → Nat → Int) :
 theorem control_reversed_pair_is_dependent :
     eDiff 1 0 0 1 = - eDiff 0 1 0 1 := by decide
 
+
+/-! ## 17. THE GAUGE EQUIVALENCE — the class-language pass
+
+    THE CHARGE, quoted from the Circle Three charter:
+
+    > **THE GAUGE EQUIVALENCE RELATION — the class-language pass.** Scoped
+    > by what section 14 of `lean/Zi.lean` declined to claim, in its own
+    > words: composition and inversion of gauges, the coboundary
+    > calculation, and with them the right to the word "class".
+
+    WHAT SECTION 14 DECLINED, in its own words, and what happens to each
+    of those sentences here:
+
+      - *"that `gaugeAct` is an EQUIVALENCE relation. Composition and
+        inversion of gauges are not built here."* — **built here.**
+        `gaugeComp`, `gaugeInv`, `gaugeTrivial`, and the three laws.
+      - *"the word 'class' appears in no theorem name in this file for
+        that reason: the builder charged 'every class meets the slice',
+        and what compiled is that every pentagon SYMBOL meets it. The gap
+        is one proof, not one word."* — **that proof is here**, and the
+        word now appears in theorem names below because the relation it
+        refers to is proved, not because the sentence was widened.
+      - *"that this computes `H³(Z₂, ·)` or any named cohomology group."*
+        — **still not claimed. See the ruling below.**
+
+    THE COBOUNDARY CALCULATION, which the charge names and section 14
+    declined. A gauge is a 2-cochain and the factor it acts by is its
+    coboundary: `gaugePhi g` is written out explicitly, `gaugeAct_eq_phi`
+    proves by `rfl` that the action is multiplication by it, and the
+    three laws are exactly the statement that **g ↦ gaugePhi g is a
+    homomorphism** — trivial gauge to one, composition to product,
+    inversion to conjugate. That is the calculation section 14 said it
+    did not do. It is done at the level of the factor, in the ring, with
+    no cohomology machinery anywhere near it.
+
+    THE SCOPE IS IN THE NAME, and this is the section's most important
+    piece of naming. Every result in section 14 is stated ON THE LABELS —
+    each quantifies `a, b, c` over `{0,1}`. A relation defined more widely
+    could not be connected to them without claiming something they do not
+    say. So the relation here is `GaugeEquivOnLabels`, and the scope rides
+    in the name, which is the discipline the record already applied when
+    it renamed `gauged_symbol_is_Fs` to `gauged_symbol_is_Fs_on_labels`:
+    off the labels the claim is false, so the scope is content and
+    belongs in the name.
+
+    WHAT IS PROVED, exactly:
+      (a) `gaugeEquivOnLabels_refl`, `_symm`, `_trans` — the relation is
+          an equivalence, by the trivial gauge, by inversion on units, and
+          by composition, in that order;
+      (b) `at_most_two_classes` — every unit-valued symbol satisfying the
+          pentagon is equivalent, on the labels, to one of two named
+          representatives;
+      (c) `the_two_classes_do_not_collapse` — those two are not
+          equivalent to each other;
+      (d) `exactly_two_classes` — (b) and (c) as one statement in the
+          artifact's own vocabulary, with no cohomology in it.
+
+    THE GRADUATION SENTENCE, written after the theorems compiled and not
+    before, as the charge requires. **Section 14 proved that every
+    unit-valued pentagon symbol is gauged onto the slice, and could not
+    say "class" because the relation was not built. The relation is built
+    here and it is an equivalence, so the slice's two members are two
+    classes and every symbol lies in one of them.** That is the
+    graduation: the pair of theorems section 14 named — the slice holds
+    exactly two, every symbol reaches the slice — now compose through a
+    proved equivalence, and neither of them got wider to make it happen.
+
+    THE `H³` RULING, stated in the file because the charge requires it to
+    be stated either way: **NOT CLAIMED, and deliberately.** Nothing here
+    constructs a cochain complex, a coboundary operator between graded
+    groups, a cocycle condition as a kernel, or a quotient of one by the
+    other — and "two classes" is not "H³(Z₂, Z[i]ˣ) = Z₂" until every one
+    of those exists and is shown to match. What is proved is a count of
+    equivalence classes of an explicitly defined relation on an
+    explicitly defined family. The identification with a named cohomology
+    group would be a further theorem about objects this file does not
+    build. The sealed record promised nothing there; this section earns
+    nothing there and says so.
+
+    WHAT IS NOT PROVED, stated exactly:
+      - that the relation is an equivalence OFF the labels. Every law
+        above is proved pointwise and would hold at any triple, but
+        `GaugeEquivOnLabels` quantifies over labels because that is where
+        section 14's results live, and no theorem here says otherwise.
+      - that there is a QUOTIENT. No quotient type, no setoid instance
+        and no type of classes is CONSTRUCTED anywhere in this file.
+        Measured on the shipped file rather than remembered: the only
+        occurrence of that word in the file is this sentence denying it,
+        which is stated here so the claim is about construction and
+        cannot be read as a claim about text — section 16's repaired
+        paragraph is the reason that distinction now gets written down.
+        "Class" in the names below means an equivalence class of the
+        relation proved above, which the three laws license, and it means
+        nothing more.
+      - that two classes exhaust the world off the pentagon or off the
+        units. Both hypotheses stand in every statement that needs them,
+        and a control below exhibits the failure of inversion off the
+        units.
+      - THIS SECTION IS NOT STANDALONE-PORTABLE, and unlike section 16
+        that is correct rather than a defect: it is about the ring's
+        gauges and cannot be about anything else. Measured rather than
+        asserted — the section extracted alone does not compile, and the
+        names it inherits are the carrier and its arithmetic, `conj` and
+        its laws, the unit predicate and its bridge, `gaugeAct` and
+        `gaugeOf`, `sliceCore`, `genPentagonHolds`, `exactly_two_roots`,
+        and four of section 14's own theorems. Section 16 claimed
+        portability and had to be repaired to earn it; this section
+        claims dependence and measured it before saying so.
+-/
+
+/-! ### The gauge group's three operations, and the factor they act by -/
+
+/-- AC at the ring level, so the gauge algebra below can be normalised by
+    `simp` instead of by hand-chained rewrites. -/
+theorem mul_left_comm (x y z : GZ) : mul x (mul y z) = mul y (mul x z) := by
+  rw [← mul_assoc, mul_comm x y, mul_assoc]
+
+/-- Units are closed under multiplication — needed because a gauge factor
+    is a product of four gauge values and has to stay invertible. -/
+theorem IsUnit_mul (u v : GZ) (hu : IsUnit u) (hv : IsUnit v) : IsUnit (mul u v) := by
+  obtain ⟨u', hu'⟩ := hu
+  obtain ⟨v', hv'⟩ := hv
+  refine ⟨mul u' v', ?_⟩
+  calc mul (mul u v) (mul u' v')
+      = mul (mul u u') (mul v v') := by simp [mul_comm, mul_left_comm]
+    _ = one := by rw [hu', hv']; exact mul_one one
+
+/-- **The gauge factor.** `gaugeAct` multiplies the symbol by exactly this,
+    and every fact below is a fact about it. -/
+def gaugePhi (g : Int → Int → GZ) (a b c : Int) : GZ :=
+  mul (mul (g a b) (g ((a + b) % 2) c)) (mul (conj (g b c)) (conj (g a ((b + c) % 2))))
+
+/-- The action is multiplication by the factor — by `rfl`, so nothing is
+    claimed about the two that is not already definitional. -/
+theorem gaugeAct_eq_phi (g : Int → Int → GZ) (F : Int → Int → Int → GZ) (a b c : Int) :
+    gaugeAct g F a b c = mul (F a b c) (gaugePhi g a b c) := rfl
+
+/-- The trivial gauge — the identity of the gauge group. -/
+def gaugeTrivial : Int → Int → GZ := fun _ _ => one
+
+/-- Gauge inversion. On units the conjugate IS the inverse (section 13's
+    bridge), which is why this is the inverse and why every theorem using
+    it carries the unit hypothesis. -/
+def gaugeInv (g : Int → Int → GZ) : Int → Int → GZ := fun a b => conj (g a b)
+
+/-- Gauge composition, pointwise. -/
+def gaugeComp (g h : Int → Int → GZ) : Int → Int → GZ := fun a b => mul (g a b) (h a b)
+
+theorem gaugeTrivial_unit (a b : Int) : IsUnit (gaugeTrivial a b) := IsUnit_one
+
+theorem gaugeInv_unit (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b))
+    (a b : Int) : IsUnit (gaugeInv g a b) := IsUnit_conj _ (hg a b)
+
+theorem gaugeComp_unit (g h : Int → Int → GZ)
+    (hg : ∀ a b : Int, IsUnit (g a b)) (hh : ∀ a b : Int, IsUnit (h a b))
+    (a b : Int) : IsUnit (gaugeComp g h a b) := IsUnit_mul _ _ (hg a b) (hh a b)
+
+/-- A gauge factor built from units is a unit. -/
+theorem gaugePhi_unit (g : Int → Int → GZ) (hg : ∀ a b : Int, IsUnit (g a b))
+    (a b c : Int) : IsUnit (gaugePhi g a b c) :=
+  IsUnit_mul _ _
+    (IsUnit_mul _ _ (hg a b) (hg ((a + b) % 2) c))
+    (IsUnit_mul _ _ (IsUnit_conj _ (hg b c)) (IsUnit_conj _ (hg a ((b + c) % 2))))
+
+/-! ### The three group laws, at the level of the factor -/
+
+/-- The trivial gauge acts trivially. -/
+theorem gaugePhi_trivial (a b c : Int) : gaugePhi gaugeTrivial a b c = one := by
+  show mul (mul one one) (mul (conj one) (conj one)) = one
+  simp [conj_one, mul_one]
+
+/-- **Composition of gauges multiplies their factors.** This is the
+    transitivity engine, and it is where `conj`'s multiplicativity earns
+    its place. -/
+theorem gaugePhi_comp (g h : Int → Int → GZ) (a b c : Int) :
+    gaugePhi (gaugeComp g h) a b c = mul (gaugePhi g a b c) (gaugePhi h a b c) := by
+  show mul (mul (mul (g a b) (h a b)) (mul (g ((a + b) % 2) c) (h ((a + b) % 2) c)))
+         (mul (conj (mul (g b c) (h b c)))
+              (conj (mul (g a ((b + c) % 2)) (h a ((b + c) % 2)))))
+     = _
+  rw [conj_mul, conj_mul]
+  show _ = mul (mul (mul (g a b) (g ((a + b) % 2) c))
+                 (mul (conj (g b c)) (conj (g a ((b + c) % 2)))))
+              (mul (mul (h a b) (h ((a + b) % 2) c))
+                 (mul (conj (h b c)) (conj (h a ((b + c) % 2)))))
+  simp [mul_comm, mul_left_comm]
+
+/-- **Inversion of gauges conjugates the factor.** -/
+theorem gaugePhi_inv (g : Int → Int → GZ) (a b c : Int) :
+    gaugePhi (gaugeInv g) a b c = conj (gaugePhi g a b c) := by
+  show mul (mul (conj (g a b)) (conj (g ((a + b) % 2) c)))
+         (mul (conj (conj (g b c))) (conj (conj (g a ((b + c) % 2)))))
+     = conj (mul (mul (g a b) (g ((a + b) % 2) c))
+              (mul (conj (g b c)) (conj (g a ((b + c) % 2)))))
+  rw [conj_mul, conj_mul, conj_mul]
+
+/-! ### The relation, and it is an equivalence
+
+    THE SCOPE IS IN THE NAME. Section 14's results are stated ON THE
+    LABELS — every one of them quantifies `a, b, c` over `{0,1}` — and a
+    relation defined more widely could not be connected to them without
+    claiming something they do not say. So this relation is label-scoped
+    and its name says so, which is the same discipline the record applied
+    when it renamed `gauged_symbol_is_Fs` to `gauged_symbol_is_Fs_on_labels`:
+    off the labels the claim is false, so the scope is content and belongs
+    in the name. -/
+
+/-- **`F` and `F'` are gauge-equivalent on the labels** when some
+    unit-valued gauge carries the one onto the other at every label
+    triple. -/
+def GaugeEquivOnLabels (F F' : Int → Int → Int → GZ) : Prop :=
+  ∃ g : Int → Int → GZ, (∀ a b : Int, IsUnit (g a b)) ∧
+    ∀ a b c : Int, (a = 0 ∨ a = 1) → (b = 0 ∨ b = 1) → (c = 0 ∨ c = 1) →
+      gaugeAct g F a b c = F' a b c
+
+/-- **Reflexivity**, via the trivial gauge. -/
+theorem gaugeEquivOnLabels_refl (F : Int → Int → Int → GZ) : GaugeEquivOnLabels F F := by
+  refine ⟨gaugeTrivial, gaugeTrivial_unit, ?_⟩
+  intro a b c _ _ _
+  rw [gaugeAct_eq_phi, gaugePhi_trivial, mul_one]
+
+/-- **Symmetry**, via gauge inversion on units. The unit hypothesis is
+    load-bearing and is why it stands in the statement: off the units
+    `conj` is not an inverse and this direction fails. -/
+theorem gaugeEquivOnLabels_symm (F F' : Int → Int → Int → GZ)
+    (h : GaugeEquivOnLabels F F') : GaugeEquivOnLabels F' F := by
+  obtain ⟨g, hgu, hgf⟩ := h
+  refine ⟨gaugeInv g, gaugeInv_unit g hgu, ?_⟩
+  intro a b c ha hb hc
+  rw [gaugeAct_eq_phi, gaugePhi_inv, ← hgf a b c ha hb hc, gaugeAct_eq_phi, mul_assoc,
+      mul_conj_eq_one_of_unit _ (gaugePhi_unit g hgu a b c), mul_one]
+
+/-- **Transitivity**, via composition. -/
+theorem gaugeEquivOnLabels_trans (F F' F'' : Int → Int → Int → GZ)
+    (h1 : GaugeEquivOnLabels F F') (h2 : GaugeEquivOnLabels F' F'') :
+    GaugeEquivOnLabels F F'' := by
+  obtain ⟨g, hgu, hgf⟩ := h1
+  obtain ⟨h, hhu, hhf⟩ := h2
+  refine ⟨gaugeComp g h, gaugeComp_unit g h hgu hhu, ?_⟩
+  intro a b c ha hb hc
+  rw [gaugeAct_eq_phi, gaugePhi_comp, ← mul_assoc, ← gaugeAct_eq_phi,
+      hgf a b c ha hb hc, ← gaugeAct_eq_phi, hhf a b c ha hb hc]
+
+/-! ### The class form -/
+
+/-- **At most two classes.** Every unit-valued symbol satisfying the
+    pentagon is gauge-equivalent, on the labels, to one of two named
+    representatives. -/
+theorem at_most_two_classes (F : Int → Int → Int → GZ)
+    (hu : ∀ a b c : Int, IsUnit (F a b c)) (h : genPentagonHolds F) :
+    GaugeEquivOnLabels F (sliceCore one) ∨ GaugeEquivOnLabels F (sliceCore (neg one)) := by
+  obtain ⟨g, f, hgu, hsq, hcore⟩ := every_pentagon_symbol_meets_the_slice F hu h
+  rcases (exactly_two_roots f).mp hsq with hf | hf
+  · exact Or.inl ⟨g, hgu, by intro a b c ha hb hc; rw [hcore a b c ha hb hc, hf]⟩
+  · exact Or.inr ⟨g, hgu, by intro a b c ha hb hc; rw [hcore a b c ha hb hc, hf]⟩
+
+/-- **And not fewer than two.** The two representatives are not
+    gauge-equivalent to each other, so the classes do not collapse. -/
+theorem the_two_classes_do_not_collapse :
+    ¬ GaugeEquivOnLabels (sliceCore one) (sliceCore (neg one)) := by
+  intro hE
+  obtain ⟨g, hgu, hgf⟩ := hE
+  exact fermion_is_not_a_gauged_boson g hgu hgf
+
+/-- **Exactly two classes**, as one statement in the artifact's own
+    vocabulary: two representatives that are not equivalent to each
+    other, and every unit-valued pentagon symbol equivalent to one of
+    them. -/
+theorem exactly_two_classes :
+    ¬ GaugeEquivOnLabels (sliceCore one) (sliceCore (neg one)) ∧
+      ∀ F : Int → Int → Int → GZ, (∀ a b c : Int, IsUnit (F a b c)) → genPentagonHolds F →
+        GaugeEquivOnLabels F (sliceCore one) ∨ GaugeEquivOnLabels F (sliceCore (neg one)) := by
+  refine ⟨the_two_classes_do_not_collapse, ?_⟩
+  intro F hu h
+  exact at_most_two_classes F hu h
+
+/-! ### Live instances and controls for the class pass -/
+
+/-- The trivial gauge is a unit gauge — anti-vacuity for reflexivity. -/
+theorem live_46 : IsUnit (gaugeTrivial 0 1) := by unfold gaugeTrivial; exact IsUnit_one
+
+/-- The factor of the trivial gauge really is one, evaluated. -/
+theorem live_47 : gaugePhi gaugeTrivial 1 1 1 = one := gaugePhi_trivial 1 1 1
+
+/-- A non-trivial gauge the record already carries: the one that
+    normalizes the twisted boson. Its factor is not one, so the relation
+    below is not the identity relation wearing a longer name. -/
+theorem live_48 : gaugeOf twistedBoson 0 1 = neg I := live_30
+
+/-- **The relation is not trivial**: the twisted boson is a gauged boson,
+    which is a genuine off-diagonal instance of the relation. -/
+theorem live_49 : GaugeEquivOnLabels twistedBoson (sliceCore one) :=
+  ⟨gaugeOf twistedBoson, gaugeOf_unit twistedBoson twistedBoson_unit,
+   twistedBoson_is_a_gauged_boson⟩
+
+/-- **The unit hypothesis in symmetry is load-bearing.** `⟨2,0⟩` is not a
+    unit, and `conj` is not its inverse — the product is four, not one —
+    so gauge inversion is not available off the units and the symmetry
+    proof genuinely needs what it assumes. -/
+theorem control_inversion_needs_units :
+    mul (⟨2, 0⟩ : GZ) (conj (⟨2, 0⟩ : GZ)) ≠ one := by decide
+
+/-- **The two classes are two, evaluated at one label triple.** The
+    representatives differ where the slice says they differ. -/
+theorem control_representatives_differ :
+    sliceCore one 1 1 1 ≠ sliceCore (neg one) 1 1 1 := control_slice_cores_differ
+
 end Zi

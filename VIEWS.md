@@ -7,16 +7,16 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            a522595fd0f3bd211206b972e00b913a3c653775ae799ffad5889ae3265bda04
+sha256            67ad43b68d16973afbd003476898ae0d608956f24e68d29ac53ae2fdfb508fbd
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
-theorems          247
-definitions       39
-lines             2542
-live instances    45
-control theorems  34
-decide-settled    52
+theorems          269
+definitions       44
+lines             2849
+live instances    49
+control theorems  36
+decide-settled    53
 import lines      0   (zero imports is the charter)
 ```
 
@@ -40,11 +40,12 @@ import lines      0   (zero imports is the charter)
 14. THE SLICE — every UNIT-VALUED pentagon symbol is gauged into it  36 theorems
 15. THE MIRROR — the Galois filter, and the catalog closes at two  17 theorems
 16. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m  32 theorems
+17. THE GAUGE EQUIVALENCE — the class-language pass     22 theorems
 ```
 
 **The boundary, derived from the inventory above:** this file proves
-the 17 sections listed and nothing else. The last of them is
-"16. S7 — THE EXCLUSION SECTION: the antisymmetrizer, generic in m".
+the 18 sections listed and nothing else. The last of them is
+"17. THE GAUGE EQUIVALENCE — the class-language pass".
 Anything absent from that list is not proved here.
 
 What the derivation can and cannot do, carried in from the
@@ -56,9 +57,9 @@ It kills staleness, not error.
 
 ```
 file                   theorems   axiom-free       rest
-Zi                          247           84        163
-TOTAL                       247           84        163
+Zi                          269           90        179
+TOTAL                       269           90        179
 sorryAx                       0
 Classical.choice              0
-Quot.sound carriers 76   (each named in the census output)
+Quot.sound carriers 83   (each named in the census output)
 ```
