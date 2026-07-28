@@ -75,7 +75,10 @@ pinboard's rule wins): closing head `4c890c5`; amended closing head
 `3a83ca75de0992b4cc0764b2f25a48d5270fc3be`; the seal's merge commit
 `9f052452b195677d66f8fe62d19fcfad9332e255`; sealed crate
 `427c88d537bfb2e764913db278afaedc6a6626411f2143baebae1ae46913cbb6`,
-built from a clone of the remote per proposed rule C5.
+built from a clone of the remote per rule C5, adopted on both seats'
+words in the round-3 adoption letter — an earlier revision of this line
+called C5 "proposed", which finding F4 flagged as a one-word residue and
+which Circle Three's round-1 housekeeping corrects here.
 
 ## Circle Three — CHARTERED (canon on both outgoing seats' words)
 

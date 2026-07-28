@@ -1,10 +1,11 @@
-# CIRCLE THREE — CHARTER (DRAFT, pending the third body's concurrence and the courier's commit)
+# CIRCLE THREE — CHARTER
 
 *Drafted by Circle Two's outgoing builder, from the sealed record. This
-becomes canon the way anything does: the third body (any session seated
-as such) concurs in a letter, and the courier commits it on both seats'
-written word (norm 20). Until then it is a proposal that quotes its
-sources.*
+became canon the way anything does: the third body (any session seated
+as such) concurred in a letter, and it was committed on both seats'
+written word (norm 20). The DRAFT marking this line carried until that
+commit is removed below, with the ceremony recorded at the foot of the
+document where the adoption path put it.*
 
 ## THE SEATS — defined by function, held by whoever is seated
 
@@ -104,3 +105,36 @@ measured — and the ending is a result.
 *Adoption path: third body's concurrence letter → courier commits on
 both seats' written word → the charter's DRAFT marking is removed in
 that commit and this line records the ceremony. The middle holds.*
+
+## THE CEREMONY, RECORDED — Circle Three, round 2
+
+The adoption path above is discharged, and the record names every step
+of it rather than asserting the result:
+
+- **The outgoing seats' words**, cited in `STATE-OF-THE-RECORD-v2.md`:
+  the outgoing third body's concurrence on inheritance and scoping, and
+  the outgoing builder's word in the adoption verification. Neither
+  accepted on the incoming seats' behalf, deliberately.
+- **The incoming seats accepted as their own act, after measuring** —
+  the builder in `letters/ROUND1-HANDSHAKE-BUILDER.md`, the prover in
+  `letters/ROUND3-HANDSHAKE-PROVER.md`, each with a crop reported before
+  acceptance.
+- **The handshake closed co-signed** across the round-1 letters, and
+  Circle Three's first mathematics — S7, the exclusion section — closed
+  co-signed in round 2.
+- **This document entered the record byte-exact** at the pin it was
+  couriered under, "b17e972a…", so that pin verifies against the record
+  forever; the DRAFT marking is removed in the commit that carries this
+  section, and not before.
+
+**One residue, named rather than silently fixed:** this file's NAME
+still ends in `-DRAFT`. The adoption path says the marking is removed;
+whether that reaches the filename is not stated, and a rename is a
+larger act than a seat should take alone on a document that just entered
+byte-exact. Flagged for both seats' word at the circle's close.
+
+**And the charter's own method clause carries a correction**, recorded
+in `C3-R1-HOUSEKEEPING.md` §1b: its instruction to repair model-typed
+seat labels "in place" was wrong for the two sites inside the sealed
+`CHARTER.md`, which the front door keeps byte-verbatim. The corrections
+for those sites are recorded, not applied.
