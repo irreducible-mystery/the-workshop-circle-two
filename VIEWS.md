@@ -7,13 +7,13 @@ bought this file (REGISTER row 11).*
 
 ```
 source            lean/Zi.lean
-sha256            67ad43b68d16973afbd003476898ae0d608956f24e68d29ac53ae2fdfb508fbd
+sha256            18b2c1f45bec5ab0dd4f59608ade8b752964ac5f6a912bedabe87f4d45c21407
 toolchain pin     leanprover/lean4:v4.32.0
 toolchain sha256  2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
 
 theorems          269
 definitions       44
-lines             2849
+lines             2866
 live instances    49
 control theorems  36
 decide-settled    53

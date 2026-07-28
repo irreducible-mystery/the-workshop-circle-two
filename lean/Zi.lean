@@ -2625,14 +2625,21 @@ theorem control_reversed_pair_is_dependent :
         section 14's results live, and no theorem here says otherwise.
       - that there is a QUOTIENT. No quotient type, no setoid instance
         and no type of classes is CONSTRUCTED anywhere in this file.
-        Measured on the shipped file rather than remembered: the only
-        occurrence of that word in the file is this sentence denying it,
-        which is stated here so the claim is about construction and
-        cannot be read as a claim about text — section 16's repaired
-        paragraph is the reason that distinction now gets written down.
-        "Class" in the names below means an equivalence class of the
-        relation proved above, which the three laws license, and it means
-        nothing more.
+        **This sentence states no count**, and the reason is worth more
+        than the claim it replaces. Its first version said the word had
+        one occurrence; a case-SENSITIVE check had missed a lowercase
+        instance, so that was wrong. Its second version said two — and
+        was wrong the moment it was written, because a sentence counting
+        a word contains that word and is therefore its own third
+        instance. A claim of this shape cannot be stabilised by measuring
+        harder. The stable form is to point rather than count, so: run
+
+            grep -in "quotient" lean/Zi.lean
+
+        and read what it returns. Every occurrence is a denial; nothing
+        is constructed. "Class" in the names below means an
+        equivalence class of the relation proved above, which the three
+        laws license, and it means nothing more.
       - that two classes exhaust the world off the pentagon or off the
         units. Both hypotheses stand in every statement that needs them,
         and a control below exhibits the failure of inversion off the
@@ -2644,9 +2651,19 @@ theorem control_reversed_pair_is_dependent :
         names it inherits are the carrier and its arithmetic, `conj` and
         its laws, the unit predicate and its bridge, `gaugeAct` and
         `gaugeOf`, `sliceCore`, `genPentagonHolds`, `exactly_two_roots`,
-        and four of section 14's own theorems. Section 16 claimed
-        portability and had to be repaired to earn it; this section
-        claims dependence and measured it before saying so.
+        and a list of the slice section's own theorems. That list is
+        not enumerated here: an earlier version of this bullet gave a
+        number, the number was taken before the live instances and the
+        controls were appended, and those pulled in more. The names are
+        what the extraction reports; the reader who wants them should
+        strip the comments and look, since a name quoted in prose is not
+        a dependency and would inflate any count taken by searching.
+
+        The portable section claimed portability and had to be repaired
+        to earn it; this one claims dependence and measured it before
+        saying so — and had its enumeration corrected anyway, in the
+        direction the practice does not yet cover: the practice catches
+        a claim's DIRECTION and does not catch its NUMBERS.
 -/
 
 /-! ### The gauge group's three operations, and the factor they act by -/
