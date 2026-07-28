@@ -96,6 +96,57 @@ with the round-2 close.**
 | 16 | **Foreign material arriving from outside the loop** (documents merged in from another body, exercising instruments on inputs no seat wrote) | r2, born the day PR #3 merged and `STATE-OF-THE-RECORD.md` landed on the default branch | ADJUDICATED at the close, per norm 20, by the third body: every checkable claim in `experiment/` re-measured on an independent container — both artifact pins exact, both courier pins exact, the theorem and line counts exact, seat P's file compiling exit 0 with zero bytes, seat B's reimplementation running 47/47 exit 0, and the census reproducing 42/42 covered, 16 axiom-free, 0 sorryAx, 0 Classical.choice. **RULING: ADMIT**, as a quarantined annex — the record acknowledges the material and has checked it once; the record's instruments do not watch it. Norm 20 is the standing rule for the next arrival. Before that: no adjudicator, and that was the finding rather than an omission. The merge went green on every gate except the numeral gate, which fired on a document I did not write and was WRONG to fire — a real class-c8 defect, latent since the port, that also ran silently the other way inside `harvest()`. See the correction in `PROOFS.md` | everything. Nothing schedules foreign material, nothing plants against it, and no seat in this circle is charged with reading it. It found an instrument defect that the plant record, the audit loop and two bodies' verification passes had all missed, which means the register should treat it as a discovery channel and not as an accident. **The annex is UNGATED and that is a declared decision, not an oversight**: putting `experiment/*.md` into the DOCS set was measured to cost five unsourced numerals and nineteen unresolved pointers — twenty-four exemptions on frozen third-party prose that will never change, which would turn the exemption ledger into the noise its own gate header warns about. Measured, then declined, then declared. And one defect was found in the annex's own census instrument and is recorded in `CLOSING.md`: its toolchain pin does not travel with its query file — the identical species this circle was convicted of two crates earlier |
 | 15 | **Repair–repair interaction** (two repairs in one commit staling each other) | r2, named by the builder in the second-repairs verification after H#3's singular-channel sentence was made false by H#4 in the same commit | a PRACTICE, deliberately not a norm: when two repairs touch the same prose, they are written together in one edit and the delivery letter says they were checked against each other. First deliberate application: H#3a and H#3b of the second-hexagon correction block | practice is not mechanism, and this row should not pretend otherwise. Norm 17 separates a repair from its dependents by SCHEDULING them into different crates, and a schedule cannot separate two edits that belong in one commit — which is exactly why this is not norm 20. Nothing detects the species; a body that forgets the habit gets no warning, and the only adjudicator is the next audit seat |
 
+## Circle Three's classes — rows 19 onward
+
+*Circle Two's eighteen stand above, unrenumbered. What follows is
+Circle Three's, appended under norm 15 and bought the same way every
+row above it was: by a specimen, not by reasoning. Each row names the
+leg that produced it so a reader can go read the specimen rather than
+this description of it.*
+
+*One difference of FORM in the table below, and it is a finding rather
+than a preference. This table's enumeration column is written as
+`row N`, not as a bare cell. The numerals gate flagged two of the new
+rows the moment they were written, and probing the column — planting
+each candidate value in turn and confirming the plant landed before
+reading a verdict — showed that every existing row number and most of
+the new ones pass that gate by COINCIDENCE: the gate reads the cell,
+finds the digit run matching some instrument-derived value elsewhere in
+the tree, and clears it. The two that failed were the two with no
+coincidence available. The gate's own header declares this boundary —
+matching is value-level, not meaning-level — and its class-c6 rule
+already knows a row number is a pointer rather than a count; it simply
+does not reach a table cell. Writing the column in the form c6
+recognises makes the gate right about it on purpose instead of by luck.
+The rows above are left exactly as they are: they are a sealed circle's,
+and no specimen asks for them to be touched.*
+
+| # | artifact class | born | adjudicator | what it does NOT cover |
+|---|---|---|---|---|
+| row 19 | **Count words in seat prose about the record's own measurements** (a number in a letter or a document summarising a measurement taken elsewhere in the same text) | c3, born from a family of specimens landing in every crate of this circle | the fenced-transcript rule, adopted after the numerals gate forced it on the adjudication letter and it then failed in the one paragraph that had escaped it: **a count appears with the command that produced it, inside a fence, or it does not appear.** Backing it mechanically for multi-digit bare assertions: `audit/c2_numerals.sh` over the DOCS set, and rule (n2) for spelled counts of rendered categories | the fence rule is a PRACTICE and this row should not pretend otherwise — nothing detects a number typed to look transcribed, and a fabricated transcript passes every gate in this tree. The numerals gate remains value-level and blind to single digits and to spelled counts outside (n2)'s territory. And the species' distinguishing feature is that the count sits in the same document as the transcript contradicting it: **an instrument that read only the fenced blocks would have found every specimen and flagged none of them** |
+| row 20 | **Self-referential prose** (a claim inside its own referent, where measuring changes what is measured) | c3, born in the artifact's own "what is not proved" bullets and named on the courier's ruling | norm 21 and its addendum: recorded, POINTED, left standing; the disposition assigned by a seat that did not write the sentence, the author free to point at it. The boundary test is mechanical — settleable against anything outside the sentence means convict or record, never POINT | **no instrument, structurally.** Every instrument in the chain reaches outside the prose for its truth condition and there is no outside here; this is the one row in the file whose adjudicator is a norm with no mechanism behind it and never will have one. It also cannot tell a true self-referential sentence from a false one — POINTED is a disposition about reachability, not about truth |
+| row 21 | **The ferry's completeness** (whether a letter that was sent, gated, committed and pushed actually reached the other seat) | c3, born twice — a cosignature letter that took two legs and an explicit note before it travelled, and a scoring letter that never arrived at all and was found missing only when the builder refused an unsourced conviction | a leg's pin block reconciled against the record by the seat that can read the record, and any letter a seat reports never receiving re-ferried before its contents are relied on. Both losses were caught by the receiving seat's refusal to accept a claim with nothing behind it | nothing mechanical; no instrument in this tree inspects what leaves it, which it shares with row 17 and for the same reason. And the sharp gap, stated because it is about the protocol and not about anyone's care: **a receiving seat cannot distinguish an unsourced claim from a claim whose source did not travel** — both present as a citation with nothing behind it, and the correct response to each is identical. For a seat with a clone the record is the archive; for a seat without one the ferry IS the record |
+| row 22 | **Portability claims about a section of the single-file artifact** ("this section compiles standalone") | c3, born when a section's proofs compiled inside the file by silently spending local proof state established sections earlier | compile the claimed-portable section alone, on the pinned toolchain, and require norm 10's silence. Applied at the crate that produced the specimen; the repair was a tactic change, and the census was re-run because a proof term had changed | it fires only where the claim is made. A section that claims nothing is unchecked, and the file-level census cannot see the dependency at all — `audit/c2_axioms.sh` asks the kernel for axioms, and spending an earlier section's local state uses no axiom. The whole file compiling silent is not evidence about any part of it |
+| row 23 | **Plant and falsifier APPLICATION** (whether the defect a norm-16 bite claims to have planted was actually planted) | c3, born from a falsifier whose edit matched nothing, changed no bytes, and exited 0 — indistinguishable from a falsifier the instrument survived | **a plant is shown to have been planted**: the tree is diffed after the edit and before the instrument runs, and a plant that changes no bytes is not a plant. The specimen was caught by diffing before reporting and re-targeted by line number | it shows the edit landed, never that the edit was the RIGHT one — a plant that changes bytes an instrument was never going to read is still a plant that proves nothing. Norm 16 asks for a bite in both directions and assumes the plant is adversarial; nothing in this tree measures how adversarial it was, and row 13's boundary already says every plant is a case someone thought of |
+| row 24 | **Repository-archaeology measurements** (claims about branches, diffs, and what unmerged material would do to the record) | c3, born in the F2/C9 adjudication, where the same lineage measured three ways gave three answers | **name the question, then choose the instrument**: what a branch DID is a diff from its own merge-base; what would LAND is a three-way merge against the record as it stands; a tip-to-tip diff answers neither and silently attributes the default branch's own advance to the branch. Both seats convicted a sentence in this class this circle, one in each direction | path-level only. Line counts across a conflicted merge are inflated by the markers and measure nothing; the file list is the measurement. And every number in this class is a snapshot that goes stale the moment either side moves, so a claim here carries its revisions or it carries nothing |
+
+## The norm-15 crate-time question, answered at Circle Three's close
+
+**"What did this round add that nothing checks?"** The count-word row,
+the ferry row, the plant-application row and the archaeology row —
+every one of them a practice with a receipt rather than a mechanism,
+which makes this circle's additions weaker as a group than Circle
+Two's, and the register should say so rather than let new rows read as
+new instruments. The self-reference row is weaker still and
+deliberately so: it is the first row in this file whose adjudicator is
+declared unmechanisable.
+
+**The prediction offered for whoever audits this circle's close:** the
+specimen lands in a sentence one of these six rows writes about its own
+coverage — the class row 8's boundary paragraph named for the register
+as a whole, now with six fresh untested claims in it, and the standing
+prediction says it will be the newest one.
+
 ## Boundaries on this file itself
 
 Nothing checks that a row above is true about its own coverage — a
