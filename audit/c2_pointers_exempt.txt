@@ -144,6 +144,14 @@ Iff.rfl	core Lean: reflexivity for iff, named where genPentagon_slice_iff holds 
 sed	POSIX tool name, named where the repair changes a sed rule order; resolves in the shell, not in this tree (cf. the decide/omega entries)
 gauged_symbol_is_Fs	RETIRED NAME: renamed to gauged_symbol_is_Fs_on_labels in the mirror crate (builder finding #6 — off the labels the claim is false, so the scope is content and belongs in the name). It survives in letters/ROUND2-SLICE-VERIFICATION.md and letters/ROUND2-SLICE-DELIVERY.md, which are couriered primary sources and are never edited. THE PRICE OF A RENAME, recorded rather than hidden: every frozen letter naming a theorem becomes a dead pointer the day it is renamed, and the exemption ledger is where that cost lands
 
+# -- Circle Three: the transport documents' entry, on both seats' written word --
+# Worded by the builder in letters/C3-R2-BUILDER-CRATE1-CLOSE.md (e06b71a6…),
+# measured and characterized by the prover in letters/C3-R1-PROVER-COSIGN-2.md
+# (ddaa241e…) section 3. Applied BEFORE the entry commit, per that letter's
+# stated sequence: the entry is what turns the gate red, so the words come first.
+STATE-OF-THE-RECORD	EXTENSIONLESS DOCUMENT NAME in CIRCLE-THREE-CHARTER-DRAFT.md, which enters the record byte-exact at its couriered pin and therefore cannot be edited. The file STATE-OF-THE-RECORD.md exists in this tree and STATE-OF-THE-RECORD-v2.md enters beside it; the token as written matches neither, being the bare stem. A near-miss on a real file, frozen by the byte-exact entry method — the same shape as a frozen letter's dead pointer, and it retires the day the charter is ever re-couriered with the extension.
+427c88d537bfb2e764913db278afaedc6a6626411f2143baebae1ae46913cbb6	SHA-256, full because the state document states it in full: the sealed Circle Two crate zip. A crate is transport and lives in no tree by construction — this is the species the "Artifact SHA-256 pins" section above exists for, and the entry is placed here rather than there only so the Circle Three entry stays auditable as one block.
+
 # -- Circle Three round 1: the F1 exemption, on both seats' written word (norm 20) --
 # Authorized by letters/ROUND1-BUILDER-CONCURRENCE.md (7f8a032e…) and concurred in by
 # letters/ROUND3-HANDSHAKE-PROVER.md (c48f8b70…). Applied by the prover's seat.
