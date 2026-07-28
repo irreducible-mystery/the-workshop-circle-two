@@ -89,57 +89,140 @@ Section 4 carries the specimen.
 
 ## 2. WHAT WAS NOT PROVED
 
-Quoted from the artifact's own boundary paragraphs rather than
-summarised, because summarising a boundary is how boundaries get
-smudged. Both new sections carry one.
+**Verbatim from the artifact's own boundary paragraphs — not condensed,
+not tightened, nothing dropped.** The only change is that the file's
+comment indentation is stripped uniformly, so a reader can reproduce
+these bytes with the commands shown, and the equality was checked
+programmatically rather than by eye before this sentence was written.
+Summarising a boundary is how
+boundaries get smudged, and **an earlier draft of this section said it
+was quoting while condensing** — wording tightened, two sentences
+dropped from the first bullet, both of them the ones recording that the
+forbidden formal word is the charter's and appears in no theorem name.
+Convicted by the builder; the specimen is in section 4 and the repair
+is the delivery this sentence had promised.
 
-**From section sixteen (the exclusion section):**
+```
+$ sed -n '2226,2251p' lean/Zi.lean        # section sixteen's boundary
+WHAT IS NOT PROVED, stated exactly, because the words this section
+invites are wider than its theorems:
+  - that the generators form a BASIS in any formal sense. There is no
+    module, no linear map and no `Basis` in this file — there is no
+    mathlib to take one from, and none was hand-rolled. "Basis" is
+    the charter's word for the index set and its cardinality, and it
+    is used in this comment and in no theorem name. What IS proved is
+    weaker and exact: each generator is the image of one basis
+    vector, each reads one at its own coordinate when a ≠ b, the
+    reversed pair is its negative, and the index set has the stated
+    cardinality.
+  - that the generators SPAN the image as an explicit sum. The image
+    is characterised — it is exactly the antisymmetric vectors — and
+    the witness of `antisymmetric_is_in_image` is built from the
+    strictly-upper coefficients, which is the spanning fact in the
+    form this section needs. The formal sentence
+    `w = Σ_{i<j} w_ij (e_ij − e_ji)`, as a sum over `upperPairs`, is
+    NOT written. That is one proof, not one word, and it is not
+    closed here.
+  - anything about `Z[i]`. This section is over `Int` and uses no
+    part of the ring the rest of the file builds. It sits in this
+    file because the record is one file, not because the exclusion
+    section needs the Gaussian integers; it does not.
+  - any claim that M is a projection. It is not, and
+    `control_antiM_is_not_idempotent` exhibits the failure rather
+    than leaving the reader to infer it from the two.
+```
 
-- that the generators form a BASIS in any formal sense. There is no
-  module, no linear map and no "Basis" in the file — no mathlib to take
-  one from, and none hand-rolled. What IS proved is weaker and exact:
-  each generator is the image of one basis vector, each reads one at its
-  own coordinate when a ≠ b, the reversed pair is its negative, and the
-  index set has the stated cardinality.
-- that the generators SPAN the image as an explicit sum. The image is
-  characterised — exactly the antisymmetric vectors — and the witness is
-  built from the strictly-upper coefficients, which is the spanning fact
-  in the form the section needs. The formal sentence
-  `w = Σ_{i<j} w_ij (e_ij − e_ji)` **is not written. That is one proof,
-  not one word, and it is not closed here.**
-- anything about `Z[i]`. The section is over `Int` and uses no part of
-  the ring the rest of the file builds. It sits in that file because the
-  record is one file.
-- any claim that M is a projection. It is not, and a control exhibits
-  the failure.
-
-**From section seventeen (the gauge equivalence):**
-
-- that the relation is an equivalence OFF the labels. Every law is
-  proved pointwise and would hold at any triple, but the relation
-  quantifies over labels because that is where section 14's results
-  live, and no theorem says otherwise.
-- that there is a QUOTIENT. No quotient type, no setoid instance, no
-  type of classes is constructed anywhere in the file.
-- that two classes exhaust the world off the pentagon or off the units.
-  Both hypotheses stand in every statement that needs them, and a
-  control exhibits the failure of inversion off the units.
-
-**The `H³` ruling, stated in the file because the charge required it to
-be stated either way: NOT CLAIMED, and deliberately.** Nothing
+```
+$ sed -n '2609,2619p' lean/Zi.lean        # the H3 ruling, in the file's words
+THE `H³` RULING, stated in the file because the charge requires it to
+be stated either way: **NOT CLAIMED, and deliberately.** Nothing here
 constructs a cochain complex, a coboundary operator between graded
 groups, a cocycle condition as a kernel, or a quotient of one by the
-other — and "two classes" is not `H³(Z₂, Z[i]ˣ) = Z₂` until every one
+other — and "two classes" is not "H³(Z₂, Z[i]ˣ) = Z₂" until every one
 of those exists and is shown to match. What is proved is a count of
-equivalence classes of an explicitly defined relation on an explicitly
-defined family. **Naming a famous result is not proving its
-applicability**, and the record refuses the move at the one site where
-it would have been easiest to make.
+equivalence classes of an explicitly defined relation on an
+explicitly defined family. The identification with a named cohomology
+group would be a further theorem about objects this file does not
+build. The sealed record promised nothing there; this section earns
+nothing there and says so.
+```
+
+```
+$ sed -n '2621,2688p' lean/Zi.lean        # section seventeen's boundary
+WHAT IS NOT PROVED, stated exactly:
+  - that the relation is an equivalence OFF the labels. Every law
+    above is proved pointwise and would hold at any triple, but
+    `GaugeEquivOnLabels` quantifies over labels because that is where
+    section 14's results live, and no theorem here says otherwise.
+  - that there is a QUOTIENT. No quotient type, no setoid instance
+    and no type of classes is CONSTRUCTED anywhere in this file.
+    **This sentence states no count**, and the reason is worth more
+    than the claim it replaces. Its first version said the word had
+    one occurrence; a case-SENSITIVE check had missed a lowercase
+    instance, so that was wrong. Its second version said two — and
+    was wrong the moment it was written, because a sentence counting
+    a word contains that word and is therefore its own third
+    instance. A claim of this shape cannot be stabilised by measuring
+    harder. The stable form is to point rather than count, so: run
+
+        grep -in "quotient" lean/Zi.lean
+
+    and read what it returns. Every occurrence sits inside a denial —
+    the builder's offered tightening, taken, since one of them is the
+    quoted command itself and a command is not a denial. Nothing is
+    constructed.
+
+    AND THE CATEGORY IS NAMED, on the courier's ruling, because the
+    record kept producing these before it had a word for them. This
+    bullet is SELF-REFERENTIAL: it is a sentence about the text it is
+    part of, so measuring it changes it, and pointing at the command
+    creates another instance of what the command counts. That is not
+    a defect and not a nitpick — it is a third thing. Every
+    instrument in this record's chain measures prose against
+    something OUTSIDE the prose: the pointer gate against the tree,
+    the numeral gate against instrument values, the views gate
+    against the artifact, the census against the kernel. A sentence
+    inside its own referent has no outside for them to reach, so no
+    instrument here can settle one, and the ones that look settled
+    were settled by refusing to make the claim rather than by
+    checking it. **Such places are pointed at and left standing.**
+    Some resolve; this one did, by dropping the count. Some will not,
+    and a record that convicts those instead of pointing at them
+    would be trading its most informative sentences for tidiness.
+
+    "Class" in the names below means an
+    equivalence class of the relation proved above, which the three
+    laws license, and it means nothing more.
+  - that two classes exhaust the world off the pentagon or off the
+    units. Both hypotheses stand in every statement that needs them,
+    and a control below exhibits the failure of inversion off the
+    units.
+  - THIS SECTION IS NOT STANDALONE-PORTABLE, and unlike section 16
+    that is correct rather than a defect: it is about the ring's
+    gauges and cannot be about anything else. Measured rather than
+    asserted — the section extracted alone does not compile, and the
+    names it inherits are the carrier and its arithmetic, `conj` and
+    its laws, the unit predicate and its bridge, `gaugeAct` and
+    `gaugeOf`, `sliceCore`, `genPentagonHolds`, `exactly_two_roots`,
+    and a list of the slice section's own theorems. That list is
+    not enumerated here: an earlier version of this bullet gave a
+    number, the number was taken before the live instances and the
+    controls were appended, and those pulled in more. The names are
+    what the extraction reports; the reader who wants them should
+    strip the comments and look, since a name quoted in prose is not
+    a dependency and would inflate any count taken by searching.
+
+    The portable section claimed portability and had to be repaired
+    to earn it; this one claims dependence and measured it before
+    saying so — and had its enumeration corrected anyway, in the
+    direction the practice does not yet cover: the practice catches
+    a claim's DIRECTION and does not catch its NUMBERS.
+```
 
 **Not built at all, and it is a smaller list than any predecessor
 circle's**, because this circle's charge was itself the previous
-circle's list: the spanning sum above, and the quotient. Neither is
-chartered anywhere.
+circle's list: the spanning sum quoted above, and the quotient. Neither
+is chartered anywhere.
 
 ## 3. THE F2/C9 ADJUDICATION — norm 20's second ruling
 
@@ -332,13 +415,36 @@ is short and that is the headline of section 5:**
   than exempted. The instrument was right and the prose was wrong, which
   is the direction this record has come to expect.
 
-**And one handling defect, recorded because the record does not
-distinguish between defects it is proud of and defects it is not:** a
-commit landed in a throwaway clone because a shell's working directory
-persisted across a measurement. It was caught by a loud push failure,
-nothing reached any remote, the stray clone was destroyed and the work
-redone with an explicit path. Recorded in the commit message that
-carried the repair.
+**A GREEN WHOSE SUBJECT WAS NEVER ESTABLISHED — a recurring channel,
+ruled into its own entry by the builder at the close.** An earlier draft
+carried one of these as a lone handling defect; the builder ruled that
+it under-describes what the record actually holds, and named a fourth
+instance the ledger lacked entirely. The channel is one mechanism: **an
+instrument's verdict is a fact about the tree it was pointed at, and
+nothing in the chain prints which tree that was.** Every instance was
+caught by a loud failure standing next to a quiet one, which is luck
+wearing the clothes of diligence.
+
+- **the builder's round-one gating pass** — green because a Python
+  import cache had recreated the planted path on that container. A
+  subject that existed locally and travels nowhere.
+- **the stray-clone commit** — a commit landed in a throwaway clone
+  because a shell's working directory persisted across a measurement.
+  Caught by a loud push failure; nothing reached any remote, the clone
+  was destroyed, the work redone with an explicit path.
+- **the probe that measured an unplanted tree** — printing passes about
+  a file that was not there. `letters/C3-R7-PROVER-LAW-DELIVERY.md`.
+- **the gate run for the close's own delivery letter** — green on the
+  C5 verification clone while hiding a RED pointer gate in the letter it
+  was run for, on the paragraph about a name the artifact exists to say
+  does not resolve. `letters/C3-R9-PROVER-CLOSE-DELIVERY.md`.
+
+**The candidate practice, riding beside the entry and norm-16'd if it is
+ever mechanised: a green names its subject.** The chain could print the
+tree's path and head beside its verdict for one line of cost. Until an
+instrument does, the practice is the seat stating the subject inside the
+transcript it fences — which is what every gate block in this circle's
+last letters now does.
 
 ## 5. THE CORRECTIONS LAW — Circle Three's chapter
 

@@ -34,12 +34,18 @@ the sites.
 **The decoupling at the courier's own insistence stands:** the human
 contributor's prose is as fallible as any seat's. Charge text, kickoff
 messages and in-channel phrasings from the courier are inputs to
-verify, not instructions to defer to. Circle Three exercised this
-twice — once on a charter draft's own repair method, and once on the
-courier's paradox ruling, which was reasoned about against the record's
-instruments before it was adopted rather than taken on authority. The
-ruling survived the reasoning and became norm 21, which is the outcome
-the decoupling exists to make possible.
+verify, not instructions to defer to. Circle Three exercised it on a
+charter draft's own repair method; on the courier's paradox ruling,
+which was reasoned about against the record's instruments before it was
+adopted rather than taken on authority; and — the cleanest of them — on
+the courier's own withdrawal of the pinboard, where the prover verified
+the claim against every remote ref instead of assuming it, on the
+ground that a withdrawal is worth verifying rather than assuming. The
+instances live in the letters and this sentence carries no count of
+them: **an earlier draft said "twice" and was one short of its own
+record**, which is the family's own species and is repaired by the
+family's own rule. The paradox ruling survived the reasoning and became
+norm 21, which is the outcome the decoupling exists to make possible.
 
 ## Circle One — COMPLETE (sealed), description corrected
 
