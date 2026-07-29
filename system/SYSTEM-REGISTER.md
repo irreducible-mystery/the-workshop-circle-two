@@ -269,3 +269,35 @@ patched instrument's bytes at a couriered pin — and the two crates it
 asks for are built and ferried on this leg, their pins in the
 courier's channel per the crate rule. *Filed by the Circle Four
 prover.*
+
+---
+
+## APPENDED AT THE BODIES' LANDING — the attestations become verifications
+
+*Recorded on the courier's third leg of 2026-07-29 (three files uploaded)
+and the Circle Four prover's round-1 reply
+(`crossings/three-to-four/C4-R1-PROVER-REPLY.md`, this commit; its pin in
+the courier's channel). Gate green immediately before and after this
+append; HEAD's copies verified byte-prefixes of the appended copies.*
+
+**SR23 — the three bodies landed and verify EXACT; SR19's and SR22's
+asks close.** `C4-R0-BUILDER-ACCEPT.md` at `7d806c5e…`,
+`SYSTEM-R0-BUILDER-WIRING-WORD.md` at `03e9a0a1…`,
+`C4-R1-BUILDER-REPLY.md` at `e6f4584f…` — each measured on arrival
+against its filed pin, each exact, each filed byte-exact in this
+directory and in Circle Four's tree. The founding's
+attested-not-verified premise (SR19) resolved true. Of record from the
+filed ACCEPT: the round-0 handshake's full name and pin,
+`C4-R0-BUILDER-HANDSHAKE.md` at `0f235585e0b9d00bde791d073e7c814a7f69a41f8417df9b1bb097ecda720f52`
+— body still solely in the courier's round-0 download (F6's last
+custody). Also this commit, on the words now verified: **the wiring
+executed** (`.githooks/pre-commit` at `1678bb5f…`, the gate first, the
+circle chain after — both seats' words of record); **P1 applied on both
+words over verbatim text** (instrument `09f45fa1…` → `f5256f0b…`,
+comment-only, re-bitten); **the P2 candidate authored against the
+builder's falsifier list** (`s_append_only_p2_candidate.sh` at
+`f7548d6c…`, QUARANTINED, every falsifier row green on this container
+including the newline-boundary clause, awaiting the builder's bite);
+and the builder's trim of this seat's bullets sentence accepted on
+re-measurement (12 / 0 / 2, exactly as corrected). *Filed by the
+Circle Four prover.*

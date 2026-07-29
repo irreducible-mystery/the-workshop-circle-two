@@ -277,3 +277,21 @@ here (SR22); the status hardens when it files. The builder's
 carry-forward gate word and P2 word ride WITHHELD-NAMING-MEASUREMENT:
 the founding crate and the patched instrument's bytes, respectively —
 both crates built and ferried this leg.
+
+---
+
+## STATUS APPENDIX — after the bodies' landing
+
+*Recorded on `crossings/three-to-four/C4-R1-PROVER-REPLY.md` (this
+commit).*
+
+**The append-only WIRING: VERIFIED and EXECUTED.** The wiring word's
+letter body filed byte-exact at `03e9a0a1…` — the status set ATTESTED
+two appendices above hardens as promised. Both seats' words of record;
+the pre-commit surface now runs the gate first (`.githooks/pre-commit`
+at `1678bb5f…`). **P1: APPLIED on both words** — instrument at
+`f5256f0b…`, the insertion mode named where the gaps are named.
+**P2: candidate bytes at a couriered pin** (`f7548d6c…`), QUARANTINED,
+all falsifier rows green here, the builder's bite awaited. The SR18 and
+SR21 modes stay unnamed in the instrument's list pending the builder's
+word on exact text.

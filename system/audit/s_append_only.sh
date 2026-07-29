@@ -21,6 +21,10 @@
 #       byte-exact ferried material guarded by their pins, not by this;
 #     - history rewrites (rebase, force-push) — a hook lives in the
 #       working copy; the honest gap of REGISTER row 5 applies here whole.
+#     - INSERTION between committed lines — a line added mid-file
+#       touches no committed line and passes; growth "by appending"
+#       is enforced only at the two modes above, not as a prefix
+#       property.  (Found by the builder's plant 3, wiring leg.)
 #   STATUS AT FOUNDING: QUARANTINED under norm 16 — written at the
 #     founding, bitten on a planted modification and passed on a clean
 #     tree (both transcripts in the founding letter), with each plant's

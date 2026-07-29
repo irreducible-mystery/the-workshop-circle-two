@@ -10,4 +10,11 @@
 #     git config hooks.leanbin /abs/path/to/lean
 LEANBIN=$(git config --get hooks.leanbin 2>/dev/null)
 [ -n "$LEANBIN" ] && export LEAN="$LEANBIN"
+
+# The system record's append-only gate — WIRED on both seats' words:
+# proposed in the founding letter (SYSTEM-R0-PROVER-REPLY.md, 1a3c12b8…),
+# wiring word given in SYSTEM-R0-BUILDER-WIRING-WORD.md (03e9a0a1…, filed
+# byte-exact), executed at the filing. Runs first; the circle chain follows.
+sh system/audit/s_append_only.sh || exit 1
+
 exec sh audit/c2_gates.sh
