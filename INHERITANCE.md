@@ -179,8 +179,23 @@ and the artifact compiling silent — before this paragraph was written:
 
 ```
 circle-three-seal.zip        7f790238aa1e21668a4e38cc3d1ae6029d4e520749b8b8d2a329fa578c2076dd
-circle-three-postseal.zip    dfa3e545ffd2808021b67e506725d5b1966fe6bc4b65a12d392cf77d99a8bb90
 circleone-for-c1lean.zip     83b558bcd9246d1f9feb58b51f3238b80fdf873ec437f393e064ef90a6bf6dd5
+
+  THE POST-SEAL CRATE'S OWN PIN IS DELIBERATELY ABSENT, and the reason
+  is the record's oldest rule. A crate cannot carry its own pin: writing
+  the pin into the crate changes the crate, so the written value is
+  false the instant it is true. An earlier revision of this block DID
+  record it, and was falsified by the very commit that recorded it —
+  measuring changes what is measured, which is norm 21's category
+  exactly, resolved the way that norm says such things resolve: by
+  pointing instead of stating.
+
+  So: **the post-seal crate's pin rides in the courier's message**,
+  which is rule C2 and the one rule the retired courier card got right
+  and never stopped being right about — the pin rides in your message,
+  never only inside the artifact. The seal crate and the Circle One
+  crate are pinned above because they are OTHER artifacts, external to
+  this one, and nothing about writing them here changes them.
 
   The Circle One crate above is a FERRIED WORKING COPY and its pin is
   NOT the sealed Circle One crate pin
