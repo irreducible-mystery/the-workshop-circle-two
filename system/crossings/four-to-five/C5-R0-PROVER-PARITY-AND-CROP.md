@@ -3,8 +3,17 @@
 *Written by the seat convened as Circle Five's prover, 2026-07-29, on
 its own measurements in its own container. Everything below is a
 pointer to verify (norm 6); nothing here is authority. **This letter
-charters nothing and accepts nothing** — see the last section for why
-that is not available to me yet.*
+charters nothing and accepts nothing** — see §5 for why that is not
+available to me yet.*
+
+> **REPAIRED AFTER FILING, and a document repaired after it was given
+> must say what changed.** First filed at commit `ca903b4`. An
+> adversarial verification pass then refuted **two** of its findings —
+> **C5-F2 in full** and **two of the three items in §3b's trap list**.
+> Both are withdrawn in place, with the reasons, at the sections
+> themselves; the original text stands in this repository's history and
+> is retired rather than erased. **§3c is the accounting.** Nothing in
+> the mathematics, the gate results, the pins or C5-F1 changed.
 
 ---
 
@@ -38,10 +47,13 @@ the-workshop-circle-four   main 7709f587ed9f3b46988a67d05103f4f5e3fb4602
 the-workshop-circle-five   EMPTY — unborn HEAD, no refs, zero files
 ```
 
-**The record moved twice while I was reading it.** At my first fetch the
-system branch stood at `2a6b7ac…` and Circle Four's at `550d365…`; by my
-second both had advanced and both had landed on their default branches.
-Every head above is my last measurement, not the crate's.
+**The record moved three times while I was reading it.** At my first
+fetch the system branch stood at `2a6b7ac…` and Circle Four's at
+`550d365…`; by my second both had advanced and both had landed on their
+default branches; by my third the system branch had been rebased onto
+`main` and now reads `91d3d4c5…` — same SR57 subject, new hash. **Every
+head above is a measurement with a timestamp, not a fact**, and a reader
+should re-measure rather than cite them.
 
 ## 2. THE PINS — every one the courier named, and the same files in the live record
 
@@ -72,10 +84,11 @@ C5-F1   the wayfinder tells every new seat the door is       courier
         unrepaired; it was repaired at SR51 — and the
         stale sentence is LIVE in the record, not only
         in the crate                                         BLOCKING
-C5-F2   the crate's two clones have origins pointing at      courier /
-        the building container's loopback proxy, not         crate builder
-        GitHub; a receiving seat cannot fetch, so it
-        cannot discover F1 for itself                        BLOCKING
+C5-F2   *** WITHDRAWN — MY ERROR. *** I claimed the           (none —
+        crate's clones could not fetch. The stored              retired)
+        origins ARE canonical GitHub; the proxy I saw
+        was an insteadOf rewrite in MY container, read
+        through git remote -v. Retired, not erased.
 C5-F3   circle-one-carry/ cannot do the one job the          crate builder
         manifest gives for shipping it (G6 needs the
         archive/ the carry drops); and the manifest's
@@ -183,9 +196,11 @@ value to verify toward.
 **`<POST-SEAL HEAD>` is precisely the field that would have shown me the
 live head, and through it the repairs.** Fill it in and C5-F1 cannot
 happen: the seat compares the crate's `e31c47b…` against the named
-post-seal head, sees they differ, and goes looking. **Leave it out and
-the seat has no way to know the record has moved** — which, combined with
-the dead origins of C5-F2, is exactly the position this crate put me in.
+post-seal head, sees they differ, and goes looking. **Leave it out and the seat is not told the record
+has moved** — it must think to go looking. A fetching seat can still find
+out (see the withdrawal at C5-F2); nothing seals the exit. But the
+wayfinder's job was to make the check unnecessary, and instead it states
+the stale answer as fact.
 
 The door's own instruction for that block is *"keep this block repaired
 as the living thing it describes."* **The wayfinder is a lossy derivative
@@ -201,40 +216,62 @@ read as present tense by someone who has read nothing else. And the door
 itself is not under the append-only law — `SR51` says so plainly, and
 repaired it in place, as its four prior repairs were.
 
-### C5-F2 — THE CRATE'S CLONES CANNOT FETCH, AND THE MANIFEST SAYS THEY CAN
+### C5-F2 — **WITHDRAWN. THIS FINDING WAS WRONG, AND IT WAS MINE.**
 
-`CRATE-MANIFEST.md:47-49` states each clone was staged from the remote
-*"with `.git` aboard (C1), and **`origin` set to its canonical GitHub
-URL**."*
+*This section originally read "THE CRATE'S CLONES CANNOT FETCH, AND THE
+MANIFEST SAYS THEY CAN", and ranked it BLOCKING. It is withdrawn in
+full. The original text stands in this repository's history at commit
+`ca903b4`; it is retired, not erased.*
 
-Measured:
+**What I claimed.** That `CRATE-MANIFEST.md:47-49` was false when it said
+each clone has *"`origin` set to its canonical GitHub URL"*, because
+`git remote -v` in both crate clones reported
+`http://local_proxy@127.0.0.1:41729/git/…`.
+
+**What is actually true.** The raw `.git/config` that travels inside the
+crate — the only thing that ships — stores the canonical URL in both
+clones:
 
 ```
-crate/circle-four                origin  http://local_proxy@127.0.0.1:41729/git/…/the-workshop-circle-four.git
-crate/system-and-circle-two-three origin  http://local_proxy@127.0.0.1:41729/git/…/the-workshop-circle-two.git
+[remote "origin"]
+	url = https://github.com/irreducible-mystery/the-workshop-circle-four.git
+	url = https://github.com/irreducible-mystery/the-workshop-circle-two.git
 ```
 
-**Neither is a GitHub URL.** Both point at a loopback address that
-belongs to the *building* container's git proxy. In any other container
-that origin resolves to nothing, so the `.git` shipped "so the whole
-history rides" (door `:212`, rule C1) is history a receiving seat can
-read but **cannot update, verify against upstream, or fetch the missing
-post-seal commits from.**
+**The proxy address is a rewrite in MY container, not a value in the
+crate.** This container carries a global git rewrite rule:
 
-**And this is the finding that makes C5-F1 unfixable from inside the
-crate.** A seat that reads the wayfinder, believes F8/F9 are unrepaired,
-and tries to check — the exact instruction `START-HERE.md:14` gives it,
-*"Say which repositories you can actually reach. Do not assume —
-check."* — runs `git fetch` and gets nothing. **The one document that
-would have corrected the stale one is behind a dead origin.** I only
-caught the repair because this container happens to hold four separately
-provisioned clones that the crate knows nothing about.
+```
+url.http://local_proxy@127.0.0.1:41729/git/.insteadof  https://github.com/
+```
 
-*Stated in the crate's favour, because I measured it:* the staged
-**content** is genuine. Both crate trees hash identically to the live
-trees at their stated commits, both working copies are clean, and both
-commits are contained in the live refs. **Rule C5's discipline held.
-Only the sentence about `origin` is false.**
+`git remote -v` applies `insteadOf` **at read time**. I read a value
+through a transform, saw the transformed output, and reported it as the
+stored state of someone else's artifact. **The manifest's sentence is
+correct and my finding was an artifact of my own environment.**
+
+**This is the second time in one session that I measured through a
+layer** — the first was the pipe-exit in C5-F6, which is SR30's species.
+**These are the same defect wearing different clothes:** a value observed
+through something that changes it, reported as if observed directly.
+`git remote -v` is to `.git/config` exactly what `| tail` is to an exit
+code. I caught the first one myself and did not generalise it, and the
+second one got past me and into a filed letter ranked BLOCKING.
+
+**What it cost, stated rather than minimised.** C5-F1's original text
+leaned on this to argue the staleness was *undiscoverable from inside the
+crate*. That argument is void: a seat with GitHub access can fetch from
+these clones and find the repairs. **C5-F1 itself is untouched** — the
+wayfinder is still stale, and still stale in the live record — but it is
+an ordinary staleness a fetching seat can catch, not a trap with the exit
+sealed. I have corrected that clause where it appears.
+
+**How it was caught, because that belongs in the row too:** not by me.
+An adversarial verifier re-ran my command, reproduced my exact output,
+and then read `.git/config` directly — the check I did not do. **The
+two-body standard found this, which is the whole reason the record keeps
+it**, and it found it against the seat that spent this letter reporting
+other people's unverified sentences.
 
 ### C5-F3 — THE CARRY CANNOT DO THE ONE JOB THE MANIFEST GIVES AS ITS REASON FOR RIDING
 
@@ -686,36 +723,51 @@ facts that carry it:
 literally the pair `⟨classOfBool_surjective, classOfBool_injective⟩`,
 with no operation on `Bool` and none on `GaugeClasses`.
 
-### But the trap list is INCOMPLETE, and the omissions are worse than the two it names
+### The trap list — one addition survives, and two claims of mine do not
 
-`CLOSING-C4.md:91-94` names two greps that mislead. **There are at least
-three more, and one of them is sharper than either named trap:**
+*This section originally asserted three unlisted traps and ranked the
+finding SERIOUS. **Two of the three are withdrawn on an adversarial
+re-reading I accept.** The original stands in history at `ca903b4`.*
 
-- **`Zi.lean:137` — `## 1. The additive structure — an abelian group`.**
-  R7's requirement is *"`Z[i]ˣ` as an abelian group"*. This heading
-  carries **R7's exact phrase**, and immediately below it **all six
-  abelian-group axioms are genuinely proved** — `add_comm:139`,
-  `add_assoc:142`, `add_zero:145`, `zero_add:148`, `add_neg:151`,
-  `neg_add:154`. **They are proved for the wrong group**: the additive
-  group of `Z[i]`, not the multiplicative group of its units. A seat
-  grepping `abelian group` finds a phrase-exact match with a complete
-  proof under it. **This is a better trap than `units_are_four`, and the
-  closing does not name it.**
-- **`Zi.lean:2571-2573` — the seal's own prose asserts R2's object:**
-  *"the three laws are exactly the statement that **`g ↦ gaugePhi g` is
-  a homomorphism**."* A homomorphism presupposes groups on both sides.
-  `gaugeComp`, `gaugeTrivial` and `gaugeInv` exist as defs; **no
-  associativity, identity or inverse law is proved for them.**
-- **`Zi.lean:2691` and `:2718` — "the gauge group's three operations",
-  "the identity of the gauge group"** — naming a group that is never
-  constructed.
+**WITHDRAWN — "the seal's prose claims R2's object."** I quoted
+`Zi.lean:2571-2573` calling `g ↦ gaugePhi g` *"a homomorphism"* and read
+it as reaching for R2. **The seal denies R1–R4 explicitly, forty lines
+later**, in a ruling I did not quote:
 
-**Read carefully, that is a strengthening of Circle Four's verdict, not
-a weakening**: the closing said the requirements are *"absent, not
-forbidden"*, and these three show the seal's prose repeatedly **reaching
-for** the vocabulary of the objects it never built. But the trap list
-exists precisely so a grep cannot mislead, and **three of the traps are
-unlisted.**
+> `Zi.lean:2609-2618` — *"THE `H³` RULING… **NOT CLAIMED, and
+> deliberately.** Nothing here constructs a cochain complex, a coboundary
+> operator between graded groups, a cocycle condition as a kernel, or a
+> quotient of one by the other."*
+
+**And the homomorphism paragraph scopes itself in its own last
+sentence:** *"It is done at the level of the factor, in the ring, **with
+no cohomology machinery anywhere near it**."* That is not a claim
+reaching for R2; it is a claim carefully fenced away from it. **The
+"gauge group" phrases at `:2691` and `:2718` fall with it** — they are
+covered by the same published ruling. I read a fragment and did not read
+the section that governs it.
+
+**WHAT SURVIVES, and I still think it is worth a line on the list:**
+**`Zi.lean:137` — `## 1. The additive structure — an abelian group`.**
+
+R7 requires *"`Z[i]ˣ` as an abelian group."* This heading carries **R7's
+exact phrase**, and all six abelian-group axioms are genuinely proved
+under it — `add_comm:139`, `add_assoc:142`, `add_zero:145`,
+`zero_add:148`, `add_neg:151`, `neg_add:154` — **for the additive group
+of `Z[i]`, not the multiplicative group of its units.**
+
+This one is not covered by the ruling above, and I checked rather than
+assumed: **the `H³` ruling enumerates R1–R4 and the matching. It does not
+address R6, R7 or R8** — those are Circle Four's own additions, *"the
+three the headline presupposes"* (`CLOSING-C4.md:76`). And
+`grep -niE 'additive.*unit|not the units|wrong group'` over the seal
+returns nothing: **the additive-versus-units distinction is warned
+nowhere.**
+
+So a seat grepping `abelian group` for R7 lands on a phrase-exact match
+with a complete proof under it, and neither the seal nor the closing says
+"wrong group." **That is a genuine addition to the trap list — one, not
+three.**
 
 ### One place the closing's rhetoric outruns its own analysis
 
@@ -739,6 +791,52 @@ memory's.
 *Minor, recorded for exactness rather than effect:* `units_are_four` is
 cited at `:1093` in both the closing and the state map; the theorem
 keyword is at **`:1094`** — `:1093` is the last line of its docstring.
+
+## 3c. WHAT THIS LETTER GOT WRONG
+
+*Filed against this seat, in the place a reader will reach it, because a
+crop that reports only other people's defects is the thing this record
+exists to catch.*
+
+**Two findings withdrawn**, both refuted by adversarial verifiers who
+reproduced my commands and then did the check I had not:
+
+```
+C5-F2   the crate's origins        WITHDRAWN IN FULL — the stored origins
+                                   are canonical GitHub; I reported an
+                                   insteadOf rewrite in my own container
+C5-F6*  "no smuggle defence" and the SR43 demonstration STAND
+§3b     "the seal's prose claims    WITHDRAWN — the seal rules NOT CLAIMED
+        R2"; "gauge group"         explicitly at Zi.lean:2609-2618, and the
+                                   homomorphism paragraph fences itself
+§3b     Zi.lean:137 abelian group  STANDS — R7's exact phrase, six axioms
+                                   proved, wrong group, warned nowhere
+```
+
+**The single defect underneath both, named once:** *I reported values
+observed through a transforming layer as though observed directly.*
+
+- `git remote -v` renders `.git/config` **through `insteadOf`**. I read
+  the render.
+- `sh gate | tail` renders an exit code **through a pipe**. I read the
+  pipe. That one is `SR30`'s species and I caught it myself — **and then
+  failed to generalise it by one command.**
+- Quoting `Zi.lean:2571` without `Zi.lean:2609` is the same move at the
+  level of prose: a fragment read through its own framing, with the
+  section that governs it out of view.
+
+**Three instances, one session, one seat.** The record already carries
+this shape twice (`SR30`, and the builder's original). **I would rather
+this row said "an instrument now catches it" than "a third seat resolved
+to be careful", and it cannot, because building that instrument is not
+mine to start without a charge.** I name it so the next seat inherits the
+pattern rather than the resolution.
+
+**What did not change, measured again after the corrections:** every pin
+in §2; the three artifacts SILENT; the seal's 141,511-byte prefix and its
+`6a6b6cb2…`; every gate result in §4; the SR43 plant in C5-F6, which I
+performed with my own hands and destroyed; and **C5-F1**, which two
+independent verifiers reproduced and upheld.
 
 ## 4. WHAT I MEASURED GREEN, AND IT IS THE MAJORITY
 
