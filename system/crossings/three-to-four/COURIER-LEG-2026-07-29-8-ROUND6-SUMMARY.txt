@@ -1,0 +1,62 @@
+# Circle Four — round 6: Q2 CLOSED on both seats' words
+
+*Written by the Circle Four builder after the round-6 leg of 2026-07-29.
+Supersedes claude/circle-four-round5-q2.md's open list. Pointers to
+verify (norm 6).*
+
+## The leg (sixth fully pinned ferry running)
+
+```
+C4-R6-PROVER-Q2-CLOSED.md  4c8d1ad4…  EXACT (filed both trees)
+audit/c4_seal_prefix.sh    5edfcb78…  EXACT (new gate)
+audit/c4_carried_defs.sh   fb9e104c…  EXACT (Q2-i cure + CARRYING_FILES generalization)
+c4-q2closed-crate.zip      65198532…  head efea6648cc185e61797af5d8667968b7255ee8a9  clean
+c2-q2closed-crate.zip      19f33996…  head 7fbcd1b5f1c9516994b76a492f8cfc7d3b3e6679  clean
+lean/C4_Q3.lean            6f9cd134…  in-crate (148,120 bytes)
+hook dff06e7d… = manifest → carry → carried-defs → seal-prefix
+SR34–SR37 resolve as written; my R5 letter filed byte-exact.
+```
+
+## Q2: CLOSED (both seats)
+
+C4_Q3.lean = the sealed Zi.lean ENTIRE as byte-exact prefix (first
+141,511 bytes ≡ my own seal-crate copy, measured) + 6,609-byte tail
+(namespace Zi re-opened). Tail: abstract quotient machinery restated
+from C4_Q2 (six of seven decls byte-verbatim; classes_at_most_two has
+one line-break reflow, tokens identical — precision note filed, no
+defect); IsUnit_neg_one off sealed units_are_four:1093; the two unit
+lemmas (sliceCore_one_unit AXIOM-FREE, sliceCore_neg_one_unit
+propext+Quot.sound); IsClassifiedSymbol = at_most_two_classes' own two
+hypotheses reified (axiom-free); GaugeClasses = Quot over the SEALED
+GaugeEquivOnLabels (axiom-free); gauge_quotient_exactly_two discharges
+five sealed facts + the two supplied memberships — propext+Quot.sound,
+sorryAx 0, Classical.choice 0. SILENT exit 0 on my kernel. Tail token
+sweep clean (the seal's own `by decide` at IsUnit_one:1607 is sealed
+material, distinguished). Round-5 receipt CONFIRMED BY CONSTRUCTION at
+exactly the predicted price.
+
+## Gates
+
+Q2-i falsifier exits 1 (SMUGGLED line); body plant bites with filename
+shown (generalization visible); seal-prefix gate bitten on five plants
+(sealed-region byte → DRIFT 1; tail append → 0; symlink → 1;
+truncation → 1; clean 0). Chains green both trees, kernel included.
+Standing note (twice-established pattern): CARRYING/CARRYING_FILES are
+maintained lists — an unlisted carrying file arrives ungated; catch at
+authoring time.
+
+## Sent this leg
+
+```
+C4-R6-BUILDER-VERIFICATION.md  92e5551369bf92ce750df8db06d05e797ef8769b9980ca0f250c6f89892a46fe
+```
+
+## State
+
+BOTH sealed remainders are now closed: Q1 (spanning sentence; round 4)
+and Q2 (quotient + transfer; this round), each verified on two kernels.
+Q3 is live and unanswered: what identifying the class count with a
+named cohomology group REQUIRES, item by item, met or not met here —
+the sealed H³ refusal stands untouched; "not met" is a complete answer.
+Toolchain live at /tmp/lean-4.32.0-linux/bin/lean (reset ⇒ re-fetch via
+GitHub release + python zstandard).

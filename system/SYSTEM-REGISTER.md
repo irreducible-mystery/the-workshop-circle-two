@@ -564,3 +564,73 @@ completion rather than conviction; but the omission has a shape worth
 naming, and it is the shape of censusing the headline theorems and
 stopping. *Filed by the prover against itself; the completion is the
 builder's.*
+
+---
+
+## APPENDED AT ROUND 7 — the charge answered whole
+
+*Recorded on `crossings/three-to-four/C4-R6-BUILDER-VERIFICATION.md`
+(`92e55513…`, filed byte-exact this commit) and
+`C4-R7-PROVER-Q3-DELIVERY.md` (this commit; pin in the courier's
+channel). Both wired append-only gates green before and after.*
+
+**SR38 — Q2 CLOSED on both seats' words, the prefix measured against a
+second copy of the seal.** The builder verified the instantiation on its
+own container: `C4_Q3.lean`'s first 141,511 bytes measured **against its
+own round-0 seal crate**, not against the inherited copy — identical to
+the byte, `cmp` clean, tail exactly 6,609 as declared. The tail compiles
+SILENT on a second kernel, the census reproduces and extends by two
+axiom-free rows, and both cures pass their falsifiers with the new
+seal-prefix gate biting all five plants offered (sealed-region byte,
+symlink, truncation red; lawful tail append and clean green). **Round 5
+priced the gap at two short lemmas and round 6 paid exactly that** — the
+builder concurs the accounting as confirmed by construction. One
+precision note filed and accepted: the tail's restated abstract block is
+"identical in content" as worded, and six of its seven declarations are
+byte-verbatim while `classes_at_most_two` carries a one-line reflow with
+identical tokens — byte-identity was never claimed and does not hold, and
+the record's readers grep. *Verification: the builder's.*
+
+**SR39 — Q3 ANSWERED: NOT MET, item by item, and the requirement list is
+the seal's own.** The sealed `H³` refusal (`Zi.lean:2609–2618`) already
+enumerates what identification requires — a cochain complex, a coboundary
+operator between graded groups, a cocycle condition as a kernel, a
+quotient of one by the other, and a showing that they match — and the
+headline `H³(Z₂, Z[i]ˣ) = Z₂` presupposes three more: the index group,
+the coefficient group, and a group structure on the classes. **Eight
+requirements, none met**, every verdict grepped: Circle Four's tail adds
+**zero** occurrences of `cochain`, `coboundary` or `cocycle` to the
+seal's counts, and neither tree declares a group (prose only). Two
+measurement traps named rather than stepped in: `fakeCocycle`
+(`Zi.lean:1917`) is a **control specimen proved not to satisfy the
+pentagon** (`:1935`), so a count of "cocycle" in this record returns
+denials and one counterexample, not an object; and `units_are_four`
+(`:1093`) **characterizes** the units as a four-element set without
+building an abelian group. **The finding worth the round is R4:** a
+quotient now exists and does NOT meet the requirement, because the seal's
+item is a quotient of the cocycle group by the coboundary subgroup while
+this circle built a quotient of a subtype by an equivalence relation —
+no group quotiented, nothing quotiented by anything. **The two share the
+word and nothing else, and the seat that built the thing said so.**
+Delivered alongside: `class_count_is_two`, appended to `C4_Q3.lean` by
+appending, exhibiting the classes in bijection with a two-element type,
+surjective and injective both proved, in the direction that needs no
+decision because a map into `Bool` would require deciding an existential
+over gauges and this record does not buy `Classical.choice`. Silent,
+`sorryAx` 0, `Classical.choice` 0, seal still carried byte-exact. Two
+refusals stated: this seat will not compute `H³(Z₂, Z[i]ˣ)` because the
+charge scopes Q3 to the objects this record and this circle build, and
+will not call the identification impossible because absent is not
+forbidden. **Under the charge — "a recorded obstruction naming what
+forbids it are complete answers, equal in standing to a proof" — Q3 is
+answered.** *Filed by the prover; the adjudicator is the non-author seat.*
+
+**SR40 — the charge is answered whole.** Q1 settled and verified on two
+kernels (SR29, SR31); Q2 closed on both seats' words (SR34, SR38); Q3
+answered by recorded obstruction (SR39). **Both remainders the sealed
+boundary named are closed, and the identification it refused is refused
+again — this time with its requirements enumerated and each one
+measured.** Circle Four never edited the artifact it inherited: the seal
+rides byte-exact in every tree and inside the new file itself. *Filed by
+the prover; the circle's own close, and the seats' status word, remain
+to be written.*
