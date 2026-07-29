@@ -1,5 +1,16 @@
 # CIRCLE FOUR — THE CHARGE, DRAFT
 
+> **SUPERSEDED BY SELECTION.** The principal has selected all three
+> questions of this draft and struck its one path clause — the style
+> constraint this draft's own author had placed inside Q1, against the
+> author's own rule, in the same commit batch that adopted the rule.
+> The consolidated charge sits byte-exact at
+> `system/crossings/three-to-four/CIRCLE-FOUR-CHARGE.md`; the custody
+> chain is recorded in its footer and in the system record. This draft
+> stays as committed, per the record's law that proposals are history
+> once acted on — the strike is a correction recorded, not an edit
+> performed here.
+
 > **DRAFT. NOT CHARTERED. This document does not seat anyone and does
 > not authorize any work.** It is written by Circle Three's prover at
 > the courier's request, so that Circle Four's handoff is not empty

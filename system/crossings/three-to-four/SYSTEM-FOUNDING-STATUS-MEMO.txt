@@ -1,0 +1,22 @@
+# SYSTEM-LEVEL FOUNDING — proposal in flight (2026-07-29)
+
+Status: PROPOSAL, outgoing from the system's builder (this session, formerly Circle Three builder — role expanded by the courier's word) to Circle Three's prover, for measurement and recording in GitHub. Nothing below is chartered.
+
+## The problem (courier's diagnosis, adopted)
+Handoff friction worsens each crossing (one→two smooth, two→three ok, three→four stalled). Cause: prose defects migrate to the nearest unguarded surface; three circles hardened every interior; the inter-circle boundary is the last unguarded surface and grows with every seal. A specimen caught between circles has no ledger and no adjudicator — sealed register closed behind it, next register not chartered ahead of it. Circle Four is additionally stalled in a deference loop: the new charge rule (question+scope only) converted the incoming seats' founding act from measurement to selection, and selection is an authority the record never assigned to anyone. The ceremony's verbs — propose, measure, accept, carry, confirm — never included "choose."
+
+## Proposed repairs (in SYSTEM-R0-BUILDER-PROPOSAL.md, pin dde7e343ffadc2630792a25e91774ca21dc9a007e94bdb728f40e329a29b9886)
+1. S-NORM (selection): selection among admissible charges belongs to the principal (the human's second office, distinct from courier); admissibility and acceptance-by-measurement belong to the seats; refusal requires a measurement; norm 20 untouched. Deference law untouched for all claims of fact.
+2. System record in GitHub (prover's custody; recommended fresh repo): protocol layer only — doors, charters, crossing transcripts, blind-prediction commitments, SYSTEM-REGISTER (S-rows bought by crossing specimens, own numbering space) and SYSTEM-NORMS (charge rule + blind predictions ratified from door rulings; selection norm new). Constraint refined by one word: nobody who builds *inside a chartered circle* may need it.
+3. Contribution follows receipts: any seat files specimens from its own crossing; law about a side is proposed by seats who have stood on that side, adjudicated by non-author. Sealing ends a circle seat and vests a system seat. Circle Four's seats are founding catchers now; sending-side standing vests at their seal.
+4. Founding rows (named, not totalled): chargeless handoff; stale loose door ("a sender shipping a copy it had superseded itself"); pinless courier message; recipe omitting numpy/scipy; denominator crossing without re-derivation; charge draft's path clause; circle-four repo expected and not established; unadjudicated "safety-critical-audit" ref; the deference loop; this seat's offer-to-decide. Prover to file sending-side rows.
+5. Capture now, mechanize later: ledger + norms founded now; handoff gate chain is the next crossing's work.
+
+## The charge (CIRCLE-FOUR-CHARGE.md, pin 932a6395ba1d6020d73c08027bd972ece7087db6ece1a215bb4f81a5059988ad)
+Q1 spanning sentence ("w = Σ_{i<j} w_ij (e_ij − e_ji)") + relation to sealed image characterization; Q2 quotient construction + transfer of sealed results; Q3 cohomology-identification requirements enumerated met/not-met. Scope: image over Int at sealed generality; gauge relation as sealed on its labels; strictly objects this record builds. "No"/"not here"/recorded obstruction are complete answers. Custody: questions from prover's draft (pin 9c1c26a53d88fe417637094e1d89ae454094e06fae36c0e4c2805afadb499921), principal selected all three and struck the path clause, system builder consolidated.
+
+## Ceremony to unstick (one round, bounded)
+Prover records selection + pins + charge → courier puts one bounded question to each Circle Four seat (accept or refuse on your measurement, one letter; deferral letters filed as specimens) → DRAFT off in founding commit recording selection + both letters' pins.
+
+## Next expected
+Circle Three prover's reply: attack selection norm's edges; choose system repo location/name; file sending-side rows; confirm/amend ceremony wording; count the new things. Then courier runs the bounded question to Circle Four's seats.
