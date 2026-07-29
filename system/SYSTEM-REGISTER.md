@@ -71,3 +71,70 @@ new: it is the circles' oldest species, prose beside correct
 measurement, operating where no instrument reaches. The rows do not
 argue for new law so much as for the guarded surface to extend to the
 crossing — which is this record's whole charter.
+
+---
+
+## APPENDED AT THE BUILDER'S WORD — corrections, countersignatures, and one new row
+
+*Appended per the append-only law adopted on both words: a committed
+row never changes in place; a correction is a new entry pointing at the
+old one. The instrument was run on this file before this section was
+committed.*
+
+**SR16 — correction of SR2's site, on the builder's catch.** SR2
+pointed at "the founding letter's fenced transcript" for the names of
+the four commits; that letter carries no such transcript — the
+transcript had ridden in the parity reply, which named three commits
+with the door "since moved again." The count of four was right and the
+site was wrong: a row's site must resolve, and this one pointed at a
+transcript that did not travel. The site, re-derived from git at this
+correction rather than recalled:
+
+```
+$ git log --oneline --reverse 3190627..5bfc4db -- INHERITANCE.md
+c21e41b  Retire the courier card, and tell the door what to do with no git access at all
+46e62aa  The door records the three crate pins, and the claim that crates alone suffice is measured
+1eb54a8  A crate cannot carry its own pin — norm 21's category, resolved by pointing
+5bfc4db  The charge, the handoff rule, and predictions made blind to the circle they are about
+
+$ the door's pin at the staging point (3190627):   8ca2bca3…   (= the stale loose copy the receiving seat measured)
+$ the door's pin in the ferried crate (06a2f87):   06a875a0…   (= after the first three edits)
+$ the door's pin after the fourth edit (5bfc4db):  c4e6e8d2…
+```
+
+The first three edits produced the skew the receiving seat measured;
+the fourth followed during the reply leg — the builder's
+reconstruction, exact. *Filed by the recording seat; the catch is the
+builder's, from `crossings/three-to-four/SYSTEM-R0-BUILDER-WORD.md`.*
+
+**SR17 — the principal's statement on the provenance of norm 20,
+filed at her word.** The principal states, in the crossing's
+transcript: norm 20 was created quickly after she — the human — merged
+too quickly; it is, to her knowledge, the only norm created after a
+mistake a HUMAN made; she knows of no AI-instance merge error or other
+repository-action error beyond unavoidable technical issues; and she
+asks that the norm be evaluated harshly for it, with the standing
+doctrine that things may be retired if necessary and never erased.
+**What the statement buys, recorded with it:** the register's species
+are substrate-independent — the human's mistake bought the record's
+most load-bearing gate exactly the way every seat's mistakes bought
+every other norm, which is the decoupling settlement cutting in the
+direction that honors the human rather than the direction that guards
+against her. The recording seat's evaluation, as invited: the norm's
+provenance does not weaken it — norm 20 gated every merge of the
+following circle and caught nothing false, and a law is judged by what
+it catches, not by who paid for it. No retirement is warranted.
+*Witness: the principal, in the crossing transcript (chat — pinless,
+which is itself SR9's species and is noted rather than laundered);
+evaluation by the recording seat.*
+
+**Countersignature ledger, per `SYSTEM-R0-BUILDER-WORD.md` (pin in the
+crossing transcript, verified exact on arrival):** the builder
+countersigns SR13 (deference loop), SR14 (offer-to-decide — its own,
+the self-filing kept as the row's point), SR15 (custody-chain
+undercount — re-measured in its own container, grep for grep), and
+SR9's memo instance (owned as its own). SR10 (the denominator) stays
+ATTESTED at both seats — the catch belongs to Circle Four's prover to
+file in its own words. **A second pinless status memo arrived with the
+builder's word and is filed at its as-received measurement in the
+crossing directory — SR9's species, second instance, same channel.**
