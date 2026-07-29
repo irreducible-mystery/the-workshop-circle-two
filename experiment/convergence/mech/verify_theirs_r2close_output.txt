@@ -1,0 +1,27 @@
+[step 0] verify_theirs_s3.py on the carried S1-S3 layer: exit 0
+======================================================================
+PASS  units_are_four  — IsUnit <-> norm 1; the norm-1 lattice points in |.|<=2 are exactly {1,-1,i,-i} — finite route, no Nat descent
+PASS  hexagon_forces_Rsq  — on f^2=1, hexagonHolds f R iff R^2=f — the forcing instance is R^2=f
+PASS  hexagon_nest_8_of_16_classified  — 8 of 16 admissible (d forced by parity); exactly one forcing instance (1,1,1,1)
+PASS  Rsq_neg_one_iff  — R^2=-1 over the units iff R in {i,-i}
+PASS  Rsq_one_iff  — R^2=1 over the units iff R in {1,-1}
+PASS  catalog_of_four  — exactly four (f,R): boson, fermion, and the semion pair — case split, R over the four units
+PASS  catalog_of_four_both_hexagons  — each catalog pair satisfies R^2=f AND (R^-1)^2=f — both hexagons cost no extra root
+PASS  catalog_filtered_by_mirror  — conj R = R keeps exactly (1,1) and (1,-1) — direct coordinatewise conj, no catalog_of_four cited
+PASS  catalog_filtered_by_roomy_edict  — SelfInverse (R^2=1) keeps the identical two pairs — the roomy edict IS the Galois cut
+PASS  selfInverse_iff_mirror_fixed  — on units: R = R^-1  iff  conj R = R — the two vocabularies coincide
+PASS  mirror_keeps_nothing_over_f_neg_one  — over f=-1 the hexagon leaves {i,-i}; the mirror fixes NEITHER — the cut is 2+2 -> 2+0, not 1+1
+PASS  mirror_fixes_the_survivors  — conj fixes 1 and -1
+PASS  mirror_swaps_the_semions  — conj swaps i and -i — the semion pair
+PASS  catalog_over_f_one  — over f=1 the hexagon leaves exactly {1,-1}
+PASS  catalog_over_f_neg_one  — over f=-1 the hexagon leaves exactly {i,-i}
+PASS  control_non_unit_breaks_the_bridge  — R=1+i (norm 2): R^2 = 2i is neither +1 nor -1 — a non-unit cannot brace either class
+PASS  control_semion_fails_the_filter  — the semion i: conj i = -i != i — fails the mirror filter, as their control states
+PASS  catalog_closes_at_two  — the catalog of the roomy world closes at TWO — the survivors are mirror-fixed
+======================================================================
+R2-closeout checks: 18;  passed: 18;  failed: 0
+(carried S1-S3 verified by step 0: exit 0)
+VERDICT: two-body Round-Two closeout verified — units by the norm-1
+         finite route (no Nat descent), the hexagon nest re-enumerated,
+         the catalog of four by case split, and the Galois/mirror filter
+         by direct conjugation: the catalog closes at TWO, cut 2+2->2+0.

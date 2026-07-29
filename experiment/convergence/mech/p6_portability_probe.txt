@@ -1,0 +1,50 @@
+P6 — THE PORTABILITY SPECIES, RE-MEASURED ON MY OWN ANNEX SCRIPT
+(their CLOSING.md §3 finding 1 says experiment/seatP/axioms_zi.sh carries
+the exact census-portability defect I convicted my S2 census of.)
+
+SETUP (A1 — cold means cold, shown):
+  removed default_toolchain from ~/.elan/settings.toml
+  proof of cold, from /tmp:  `lean --version` -> "error: no default
+                             toolchain configured" (exit 1)
+
+THE RUN:  sh experiment/seatP/axioms_zi.sh  (cold)  ->  exit 0, RESULT: PASS
+          161 theorems, 68 free, sorryAx 0, Classical.choice 0.
+
+THE MECHANISM (two-line control, the S2 pin_resolution_probe reproduced):
+  A. cwd = /tmp (no pin), lean /tmp/probe_Zi.lean   -> "no default
+     toolchain configured", exit 1
+  B. cwd = experiment/seatP (has lean-toolchain), lean /tmp/probe_Zi.lean
+     -> exit 0
+  => elan resolves the toolchain from the CURRENT WORKING DIRECTORY,
+     not from the queried file's location.
+
+THE RULING ON P6 (and it corrects both their finding AND my own S3-era
+framing):
+  - THEIR CLAIM ("the pin does not travel; on a toolchain-managed machine
+    it would resolve from the temp directory and either fail or silently
+    use a different toolchain") is HALF RIGHT. The file's location does
+    not carry the pin — true. But elan does not resolve from the file's
+    directory; it resolves from CWD. My script's very first line,
+    `cd "$(dirname "$0")"`, moves CWD into seatP, which HAS the pin.
+  - THEREFORE on THIS toolchain-managed container my script PASSES cold,
+    it does NOT fail. Their predicted failure did not occur here.
+  - THE DEFECT IS REAL BUT NARROWER than stated: the script is portable
+    only because it cd's to a pinned directory before invoking lean. If
+    it invoked lean from an unpinned CWD (as my S2 census did — that one
+    cd'd to /tmp), it would fail. So the SPECIES is confirmed (the pin's
+    travel is incidental, not designed), but the FALSIFIER does not bite
+    THIS script on THIS container, because the incidental cd rescues it.
+
+  Net: P6 is REFUTED as stated (I predicted my script would FAIL cold; it
+  PASSED). The species is confirmed present (the pin is not deliberately
+  placed beside the query; its survival depends on an unstated cwd
+  invariant). The honest one-line repair is the same one Fable shipped
+  for their C#2: put a lean-toolchain beside the query file, or pin the
+  toolchain explicitly on the lean invocation, so portability stops
+  depending on where the script happens to stand.
+
+  This is the fourth time this species has been handled in the record
+  (my S2 conviction; Fable's C#2 repair; their CLOSING §3 finding on my
+  script; and now this probe). Every handling refined it; none was wrong;
+  and the refinement this time is that the failure mode is cwd-gated, not
+  location-gated.

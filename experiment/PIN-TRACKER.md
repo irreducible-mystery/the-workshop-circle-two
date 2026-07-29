@@ -10,7 +10,98 @@ to grep; full hash lives in the sub-round report). To verify any pin:
 
 ---
 
-## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse (current)
+## Convergence dashboard — the whole series on one page, GENERATED not typed (current)
+
+Change #2 of the retrospective, built. A generator (`mech/make_dashboard.py`)
+reads the mech receipts and emits `CONVERGENCE-DASHBOARD.md` — the four-round
+series (verifier count, plant falsifier, census split, axiom fork) rendered
+from files, never retyped. This is the two-body lineage's NORM 19 (rendered
+counts are never retyped) adopted for my own record — and it goes one step
+further on two points their norm didn't have to:
+(1) **reproducible by hash** — the header stamps a deterministic inputs
+digest (`09059a91f953`), not a wall-clock time, so the same receipts always
+render byte-identical bytes; two runs and a cross-location run all produced
+dashboard sha `9f206376960e`;
+(2) **missing looks missing** — a receipt that vanishes renders `n/a (file
+absent)`, never a stale value; proved by a falsifiability probe (hide the S3
+receipt → the cell goes n/a; restore → the number returns).
+Quarantine (norm 16): ratifies nothing in `lean/Zi.lean`.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-DASHBOARD.md` | the rendered four-round series, one page | `9f206376960e` |
+| `convergence/mech/make_dashboard.py` | the generator (parses receipts → dashboard) | `e27a6e339c23` |
+| `convergence/mech/dashboard_falsifiability_probe.txt` | proof that a missing receipt renders n/a, not stale | `249a8e01b3ef` |
+
+commit: `e2b3bae`
+
+## Convergence retrospective — the meta-auditor's CLOSING mirror; the time-value answer
+
+The closing artifact of the convergence experiment, written from the
+row-7 chair to mirror their `CLOSING.md`. Measured, not remembered: §2
+the epistemic yield (176 blind checks over 4 rounds; the corrections law
+worded the same in both houses without contact; .olean non-reproducibility
+measured in both; the census-portability species handled 4× from one seed
+across 3 bodies), §3 the three self-convictions (S2 warm-container, S3
+verdict-banner, R2 the withdrawn "architectural tax" + P6), §4 the
+TIME-VALUE analysis Kelly asked for — the ~12h-vs-minutes framing
+corrected (different passes, not like-for-like), then the slow loop's
+measured yield: 4 norms + 3 register rows each specimen-bought, a real
+checker bug found (class-c8, REGISTER row 16), and REGISTER row 18's
+priced-out limit of the fast dual-seat method; §5 five changes I'd make.
+Verdict: the hours aren't worth it for the theorem (cheap in both houses);
+they buy the institutional immunity that outlives it.
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-RETROSPECTIVE.md` | the meta-auditor's closing retrospective + time-value analysis | `e858120c89e3` |
+
+commit: `a4e9723`
+
+## Convergence R2-closeout — the whole finish, twice; two corrections of my own record
+
+Protocol run 4. **Context changed:** my branch merged into `main` early
+(PR #2, `3cc52e7`) — quarantine now editorial, not topological; AND
+their closeout already adjudicated my annex (`CLOSING.md` §3, norm 20's
+first ruling): re-measured every claim I shipped, RULED ADMIT as a
+quarantined annex, adopted REGISTER row 18, co-signed. The quarantine is
+now theirs, mutual and formal. They also closed Round Two WHOLE (no
+sub-round segmentation), so this compares my S4–S6 layers vs their final
+merged crate (215 thm, pin `593a223f`, head `4c890c5`+closing diff).
+
+All claims reproduce: silence transports (exit 0, 0 bytes, 12.1s);
+census **215 = 71/81/63 digit-for-digit** (VIEWS + their verification
+letter both); .olean fifth mismatch (`9a95f4c7`) — and their OWN ledger
+records the same Q4 non-reproducibility (`9ae2dbd6` vs `85f7a957`).
+Cross-verifier 18/18 + carried S1–S3: **units by the norm-1 finite route
+(no Nat descent), catalog by case split, mirror filter by direct conj —
+the catalog closes at TWO, cut 2+2→2+0**; plant (keeps 3) bitten.
+Predictions 4/7 clean; the 3 misses correct me: **P5 — the S3
+"architectural omega tax" was an S3-layer artifact; the fork gap
+collapses to 9 points here (mine 51%, theirs 42%)**; **P6 — my own
+portability script PASSED cold** (elan resolves from cwd; my script cd's
+into a pinned dir — the species is cwd-gated, not location-gated; fourth
+handling of one seed). The twelfth conviction (their §4) is my own
+species one level up: "defects migrate to the nearest unguarded surface."
+
+| artifact | what | sha256 (short) |
+|---|---|---|
+| `convergence/CONVERGENCE-REPORT-R2CLOSE.md` | full closeout comparison, §0–§E + predictions 4/7 | `857f6b4114c3` |
+| `convergence/DESIGN-NOTE-R2CLOSE.md` | honesty line + 7 predictions + the merge-quarantine note, BEFORE measurement | `cee04f55fdea` |
+| `convergence/mech/verify_theirs_r2close.py` | independent-route verifier; 18/18 + carried, exit 0 | `c4fe49c38b58` |
+| `convergence/mech/verify_theirs_r2close_output.txt` | clean run transcript | `8cc4158d9e4b` |
+| `convergence/mech/plant_r2close_out.txt` | plant (mirror keeps 3 / 2+2→2+1) bitten — exit 1 | `64c315623597` |
+| `convergence/mech/census_r2close_out.txt` | my census on their final crate: 215/71/81/63, 0/0 | `809f75aaf249` |
+| `convergence/mech/fork_r2close_out.txt` | the axiom-fork series, per-lineage; S3 tax refuted | `e62d8d9dd682` |
+| `convergence/mech/p6_portability_probe.txt` | P6 refuted; the cwd-vs-location mechanism; species confirmed narrower | `7213528bdf3f` |
+| `convergence/mech/my_annex_census_cold.txt` | my own annex census, run COLD (A1): PASS, 161/68 | `6b1352210fde` |
+| `convergence/mech/their_r2close_Zi.lean` | their final crate (external ref; = `main` `lean/Zi.lean`) | `593a223fcead` |
+| `convergence/mech/their_r2close_VIEWS.md` | their rendered census (external ref) | `1e4904a95f4c` |
+| `convergence/mech/their_r2close_CLOSING.md` | their closeout retrospective (external ref) | `c04a3d0e80de` |
+
+commit: `7e7d2f1`
+
+## Convergence S3 — the pentagon layer, twice; the fork re-opens in reverse
 
 Third protocol round, amendments A1–A4 live. Their S3 (115 theorems =
 carried 76 + 39 new, head `09f6fd7`) vs my S3 layer. All delivery

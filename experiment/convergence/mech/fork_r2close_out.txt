@@ -1,0 +1,29 @@
+AXIOM FORK, PER-LINEAGE, ACROSS THE ROUND-TWO CLOSING LAYERS (S4→mirror)
+(P5 measurement — the S3 lesson turned into method: measured per lineage, not joint)
+
+THEIRS — new layers (units_are_four → the mirror), 91 theorems:
+  omega in body:            3
+  decide in body:          61
+  Quot.sound carriers:     38  (of which omega-in-body: 2)
+  Quot.sound fraction:     38/91 = 42%
+
+MINE — S4-S6 layers (hexagon_offdiag → exclusion), 73 covered of 74:
+  free:                    35
+  Quot.sound carriers:     37
+  Quot.sound fraction:     37/73 = 51%
+
+THE SERIES (Quot.sound fraction of the new/layer theorems):
+        S1        S2         S3           R2-close (S4→mirror)
+theirs  2/54  4%  10/22 45%  5/39  13%    38/91 42%
+mine    22/42 52% 8/15  53%  15/21 71%    37/73 51%
+gap                                 58pt          9pt
+
+FINDING: P5 direction HOLDS (mine still the higher fraction), MAGNITUDES
+REFUTED. I predicted theirs <40% (measured 42%, essentially at the line)
+and mine >60% (measured 51% — REFUTED). The S3 gap of 58 points was NOT
+an architectural constant; it was an S3-LAYER artifact of where my omega
+happened to sit. Across three more layers (hexagon/catalog/twist/mirror)
+my style is far more decide-settled and the gap collapses to 9 points.
+The honest revision of the S3 conclusion: the fork tracks *which layer's
+arithmetic needs omega*, and only the pentagon-to-roots layer put mine
+in load-bearing position. Style matters, but it is not a constant tax.
