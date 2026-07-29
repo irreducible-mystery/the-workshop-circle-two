@@ -45,7 +45,7 @@ break every URL and every pin block that cites them.
 ```
 
 A circle after these should get its **own** repository, sealed the same
-way. Section 6 states the pattern and its costs.
+way. Section 7 states the pattern and its costs.
 
 ## 2. THE THING THAT BITES EVERY NEW SEAT
 
@@ -248,10 +248,143 @@ romanticise a weakness because it survived it.** If a read path can be
 arranged, take it; cheap symmetry beats heroic verification.
 
 **And the count of artifacts above is the argument for the topology in
-section 6.** Three crates across a kickoff is the interim shape, not
+section 7.** Three crates across a kickoff is the interim shape, not
 the good one. Under the carry-forward pattern a seat needs *one*.
 
-## 5. THE KICKOFF, PASTEABLE
+## 5. THE CHARGE — WHAT A HANDOFF MUST CARRY, AND WHAT A CHARGE MAY SAY
+
+*Added on the courier's ruling after Circle Four's builder, at its very
+first handshake, found that the ferried crates carried no charge. It
+was right, and the omission is this workshop's own species one more
+time: **a handoff that carries everything except the thing that defines
+the work.** The crates carried the record, the instruments, the law and
+the door, and nothing that said what the next circle is for.*
+
+**THE RULE: a handoff is not complete without a charge.** A crate
+without one hands a new seat a verifiable past and no present. The
+charge rides in the ferry, named in the kickoff message, at a stated
+pin, like everything else.
+
+**AND THE CONSTRAINT, which is the courier's ruling and a deliberate
+break with how this workshop chartered its first three circles:**
+
+> **A charge carries the QUESTION and the SCOPE. It is careful not to
+> suggest the PATH or the OUTCOME.**
+
+**Read that as a constraint on the charge, not on the handoff.** A
+handoff carries the norms, the register, the instruments, the door and
+everything else a seat needs — a charge is not a substitute for tools
+and never was. What the constraint governs is the charge document
+itself: the sentences that tell a circle what it is for.
+
+**Why this is a change, stated plainly so nobody mistakes it for
+description.** Circle Three's own charge named its theorems and its
+answers: it prescribed `M = I − swap`, `M² = 2M`, `tr M = m² − m`, the
+explicit generators, and the cardinalities that should arrive. Every one
+of those turned out true, and the circle delivered them. **That is
+precisely why the risk is invisible from inside a success.** A charge
+that names the answer sets the proving seat looking for it; when the
+named answer is right, nothing is lost and nothing is learned; when it
+is wrong, the seat is straining toward a false target with every
+instrument in the record pointed at the wrong question. This workshop's
+whole value is that its results are earned rather than asserted, and a
+charter that asserts spends that value before the work starts.
+
+**The distinction that keeps a charge checkable**, because "question and
+scope only" must not be read as "vague":
+
+- **A charge MAY say what would count as an answer.** *"Determine
+  whether the generators span the image as an explicit sum, and state
+  the result either way, in the artifact's own boundary language."*
+  That is scope. It is falsifiable, it is checkable at delivery, and it
+  pre-commits nobody to a result.
+- **A charge MAY price a known risk.** *"This is the section a prior
+  circle declined; a naive approach may not kernel-reduce."* Pricing a
+  risk is naming a cost, not prescribing a route, and Circle Three's
+  charge did this correctly — the flagged risk was measured FALSE and
+  the circle said so.
+- **A charge MAY forbid.** *"Never say rank."* A prohibition constrains
+  language, not method, and the record's cleanest results came from
+  words it refused to earn.
+- **A charge MAY NOT name the theorems to prove, the values they should
+  take, or the shape of the finished artifact.** Those are the proving
+  seat's to find, and finding them is the work.
+
+**The test, mechanical:** if a charge sentence would still be in the
+record as a *claim* after the circle failed to prove it, the sentence
+is an outcome and does not belong in a charge. A question survives
+failure. An asserted answer becomes a false sentence in the founding
+document.
+
+## 5b. PREDICTIONS ARE BLIND TO THE CIRCLE THEY ARE ABOUT
+
+**The courier's ruling, and it repairs a hole this workshop has been
+living in.** A circle may — and should — record where it expects the
+next circle's defects to land. **The circle being predicted about must
+not be able to read that prediction**, because a seat that knows where
+it is expected to fail is no longer an independent test of the
+prediction. Scoring a prediction the subject could read measures
+suggestibility, not the record.
+
+This has been half-broken all along, and honestly: the standing
+prediction rides in the closing documents and the state document, where
+every incoming circle reads it. It has scored three circles running
+anyway, which is evidence it is a *structural* claim rather than a
+guessable one — but that is luck about this particular prediction, not
+a reason to keep publishing the specific ones.
+
+**The mechanism, and it needs no new instrument because this record
+already hashes everything:**
+
+```
+at a circle's close    the predicting seats write the prediction
+                       and measure its sha256
+
+                       THE PIN goes in the closing document — public,
+                       immutable, and it spoils nothing
+
+                       THE TEXT goes to the courier, or to a meta
+                       archive the working seats never read
+
+at the next close      the text is revealed and checked against the
+                       published pin, then scored
+```
+
+**What each half buys.** The published pin makes the prediction
+unfalsifiable-after-the-fact: nobody can retrofit a prediction to match
+what happened, because the pin was in a sealed document before the
+circle began. The withheld text makes the subject blind. Together they
+are an ordinary hash commitment, built out of the one instrument this
+record has used in every message since Circle One.
+
+**The generic standing prediction may stay published.** *The specimen
+will be in whatever sentence the newest instrument writes about itself*
+is a statement about how records fail, not about where a particular
+circle will slip, and a seat that reads it is helped rather than
+primed. Specific predictions ride under the commitment above.
+
+**What a complete handoff carries**, and a kickoff names every one at a
+pin:
+
+```
+the charge                   the question and its scope, and nothing
+                             about path or outcome. For Circle Four a
+                             DRAFT sits at `CIRCLE-FOUR-CHARGE-DRAFT.md`
+                             — proposed, NOT chartered, awaiting both
+                             seats' words and the courier's. A seat
+                             receiving it should treat it as a proposal
+                             to measure and accept or refuse, never as
+                             an instruction.
+the record                   the post-seal crate: law, instruments,
+                             letters, artifact, and this door
+the seal                     what the record is verified AGAINST
+prior-circle material        whatever the instruments actually read —
+                             for this workshop, Circle One for C1_LEAN
+the seat name                which chair the receiving body holds,
+                             in the same message as the charge (row 5)
+```
+
+## 6. THE KICKOFF, PASTEABLE
 
 *Added at the builder's recommendation and beyond the two clauses its
 word was conditioned on — flagged as such so it can be convicted on the
@@ -264,7 +397,9 @@ describes.*
 
 ```
 You are seated as <THE SEAT: the builder / the prover> of the workshop's
-circle <N>. Your charge is in <CHARGE FILE>, which rides with this message.
+circle <N>. Your charge is in <CHARGE FILE>, pin <CHARGE PIN>, which rides with
+this message. A handoff without a charge is incomplete — say so and
+stop rather than inferring one (see section 5).
 
 Repositories:
   "the-workshop"              Circle One, SEALED at <SEAL PIN>
@@ -286,7 +421,7 @@ A delivery whose pin does not match may be a DIFFERENT letter — measure
 what arrived against the record before asking again.
 ```
 
-## 6. THE PATTERN FOR A CIRCLE AFTER THIS ONE
+## 7. THE PATTERN FOR A CIRCLE AFTER THIS ONE
 
 *Offered as a design note, not adopted. It needs a charter and both
 seats' words. It is written here because the courier asked for it at
@@ -348,7 +483,7 @@ stays overridable for a seat that has the real tree and wants to check
 the carry-forward against it — which is the check the boundary above
 asks for.
 
-## 7. WHAT THIS DOCUMENT DOES NOT DO
+## 8. WHAT THIS DOCUMENT DOES NOT DO
 
 - It does not supersede `STATE-OF-THE-RECORD-v3.md`. That is the map;
   this is the door.

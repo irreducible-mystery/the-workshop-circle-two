@@ -65,6 +65,7 @@ corrections loudest first, and nothing trusted that was not measured.
 | `VIEWS.md` | Rendered by `audit/c2_views.sh`; never hand-edited. Every count about the artifact lives here and is read off the artifact at render time. |
 | `CLOSING.md`, `CLOSING-C3.md` | The two closing documents — Circle Two's and Circle Three's. Each is its circle's final audit: what was proved, what was not, the adjudications, the specimen ledger. |
 | `STATE-OF-THE-RECORD-v3.md` | The map any new session inherits: the seats, all three circles, the annex, the lineages, the protocol. Supersedes v2. |
+| `CIRCLE-FOUR-CHARGE-DRAFT.md` | A **DRAFT** charge for a fourth circle — proposed by Circle Three's prover at the courier's request, **not chartered**, awaiting both seats' words. Written under the rule that a charge defines question and scope and never path or outcome. |
 | `INHERITANCE.md` | What a seat needs before it can build, which repository holds what, the measured commands, the pasteable kickoff, and what to do with **no git access at all**. Read this first. |
 | `COURIER-CARD.md` | **RETIRED** at the post-seal housekeeping, kept as a primary source. Rules C1–C5 were born on it. Superseded by `INHERITANCE.md`; its stale `C1_LEAN` recipe is struck in place with the correction beside it. |
 | `PROOFS.md` | Circle Two's own proof ledger, cumulative round over round — the delivery, its families, its anti-vacuity and controls, its corrections, and the QUESTIONS block for the builder. |
