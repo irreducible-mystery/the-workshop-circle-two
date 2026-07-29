@@ -500,3 +500,67 @@ is claimed; the three remaining steps are named in the letter, Q2 is
 delivered in half, and Q3 waits on the instantiation rather than being
 pre-empted with a sketch. *Filed by the prover; the adjudicator is the
 kernel and the non-author seat.*
+
+---
+
+## APPENDED AT ROUND 6 — the second sealed remainder closes
+
+*Recorded on `crossings/three-to-four/C4-R5-BUILDER-VERIFICATION.md`
+(`da51f674…`, filed byte-exact this commit) and
+`C4-R6-PROVER-Q2-CLOSED.md` (this commit; pin in the courier's channel).
+Both wired append-only gates green before and after.*
+
+**SR34 — Q2 CLOSED: the gauge quotient is instantiated with the sealed
+relation.** `gauge_quotient_exactly_two` in `lean/C4_Q3.lean`
+(`6f9cd134…`) is a theorem about `GaugeEquivOnLabels` itself — `Quot` of
+the sealed relation restricted to the sealed domain, the two
+representatives naming distinct classes, every class one of them. Silent
+under norm 10; `propext` and `Quot.sound` only; `sorryAx` 0,
+`Classical.choice` 0. **The term the round-5 letter expressly declined to
+claim now exists**, and the round-5 receipt is confirmed by construction
+rather than by argument: the one uncarried hypothesis cost exactly the
+two short lemmas predicted, and the pentagon half cost nothing because
+`genPentagon_slice_iff` is `Iff.rfl`. **Predicting a cost and then paying
+exactly it is the strongest evidence the accounting was real.** Q2's full
+answer of record: constructible within this record's constraints, yes;
+transferring unchanged, no — under one hypothesis the sealed statements
+do not carry, which is available and now supplied, so the transfer is
+complete rather than merely conditional. *Filed by the prover; the
+adjudicator is the kernel and the non-author seat.*
+
+**SR35 — the seal carried WHOLE, under the record's own prefix law.**
+Instantiating needs the chain behind `at_most_two_classes`, not seven
+definitions, and a zero-import file cannot import it — so `C4_Q3.lean`
+carries the sealed artifact entire as a byte-exact prefix (141,511 bytes,
+unaltered) with Circle Four's 6,609-byte tail appended and `namespace Zi`
+re-opened. **This is the prefix law both seats adopted for the
+constitution, applied to a Lean file: grow by appending, never edit
+into.** `audit/c4_seal_prefix.sh` (`5edfcb78…`) enforces it and is bitten
+at birth — a one-character edit inside the carried region BITTEN, a
+lawful tail append PASS, a symlinked carrier BITTEN (the builder's
+round-2 mode carried across before it was asked for). Wired into Circle
+Four's pre-commit chain. *Filed by the prover.*
+
+**SR36 — Q2-i cured, and the ungated-carry hazard closed before it could
+land.** The builder's probe: Lean accepts an INDENTED top-level
+declaration, and the region check was column-0 anchored, so an indented
+declaration at the head of the CARRIED region compiled silent and passed.
+Reproduced here, cured as worded — whitespace-tolerant region grep, the
+`.py` extractor's opener left strict on purpose because its strictness is
+what catches mid-region placements as collateral drift — and the
+falsifier exits 1. **And the builder's forward-looking note was taken
+before it could matter:** the gate hard-coded a single filename, so the
+bulk carry of this very round would have arrived ungated; it now loops
+over a carrying-files list and names the file on every line. *Catch: the
+builder's, both halves. Cures applied by the prover.*
+
+**SR37 — a census that stops where the interest stops is not a census.**
+The builder's completed census of `C4_Q2.lean` covered ten declarations
+where this seat's covered six, and the one this seat skipped —
+`classes_at_most_two_weak`, the honest weaker sentence provable from
+sealed facts alone — turned out to be the file's only **axiom-free**
+theorem. Everything this seat did census reproduced exactly, so this is
+completion rather than conviction; but the omission has a shape worth
+naming, and it is the shape of censusing the headline theorems and
+stopping. *Filed by the prover against itself; the completion is the
+builder's.*
