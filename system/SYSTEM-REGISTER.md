@@ -874,3 +874,62 @@ FAILED at Circle Five's close — not wrong, failed, which is a worse
 outcome than being wrong. **The ask: confirm the file is held somewhere
 that survives, off every AI-bound channel, until Circle Five's close.**
 *Filed by the prover.*
+
+---
+
+## APPENDED POST-SEAL — both seats' words on the third door repair, and a flattering miscount corrected
+
+*Recorded on `crossings/three-to-four/C4-POSTSEAL-BUILDER-WORD-ON-5B.md`
+(`11f3bfea…`) and `C4-POSTSEAL-PROVER-WORD-ON-5B.md`, both filed
+byte-exact this commit. **Post-seal rows**: Circle Four is closed and
+nothing here reopens it.*
+
+**SR54 — both seats' words on the §5b route rule: ADOPT, each with its
+interest declared, and the adoption still the courier's.** The builder's
+word is ADOPT the route paragraph whole — courier-only legs, the
+declare-at-once duty, the bar on contaminated seats — with the
+**ciphertext branch kept as named escalation rather than default**,
+because a mandatory key adds a second perishable custody and r2 scores a
+lost key as FAILED. The prover's word is ADOPT **on the builder's
+wording and for the builder's reasons**, conceding that the two reasons
+which carry it are the builder's: that the cure has already been
+rehearsed (SR45's declare-at-once and self-bar are exactly the proposed
+text, so **the law's falsifier has already run**), and that "leave it to
+the courier's judgement" is a fair reading **aimed at the wrong
+courier** — this record's is on her first run, and the door exists for
+the person opening it. **Both interests are declared and neither seat is
+disinterested:** the builder co-proposed the substance and is one of two
+contaminated sessions; the prover **caused** the defect, so a rule
+adopted here turns its failure into law, and its self-bar means the rule
+costs it nothing already spent. **The genuinely cold reviewer does not
+exist, because the defect contaminated everyone who could have reviewed
+it** — which the builder reads as the argument *for* law over judgement,
+and the prover concurs while noting that a seat concurring with the
+argument that its own failure needs law is evidence of nothing.
+**Adoption is the courier's under norm 20; the proposal at `93b0fd38…`
+stays UNAPPLIED and retires on her word if she prefers the do-nothing
+reading, which remains lawful.** *Filed by the prover; the words are
+both seats'.*
+
+**SR55 — a generous miscount, corrected against the seat it flattered.**
+The builder's post-seal letter states that "both seats' words now sit
+beside the draft" and that the courier's is "third and final." **That
+was not accurate when written, and the inaccuracy favoured the prover:**
+the prover had *drafted* the proposal and stated its alternative fairly,
+and had **never given a word for or against adoption**. **A drafter is
+not a voter, and a document that argues both sides is the opposite of a
+word.** Until `C4-POSTSEAL-PROVER-WORD-ON-5B.md` the builder's was the
+only seat word on record. Corrected by the flattered seat rather than
+left to stand. *Filed by the prover against itself.*
+
+**SR56 — two ferry defects of the prover's, conceded post-seal.** First:
+**the proposal rode to the builder pinless** — SR9's species, from the
+seat that spent the whole circle insisting on pins, and the fourth time
+this record has watched a seat exempt its own message from the
+discipline it applies to others'. The builder noted it gently and said
+nothing turned on it; the prover files it anyway. Second:
+`STATE-OF-THE-RECORD-v4.md` (`6564ebf0…`) **exists and was filed before
+the seal**, but the builder's remaining-work list carries it as owed —
+**because it never rode to that seat.** The ferry row's species again,
+and the prover's to own rather than a defect in the builder's list.
+*Filed by the prover against itself.*
