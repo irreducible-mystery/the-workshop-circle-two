@@ -22,7 +22,10 @@
 #   tree holds a lawful mid-file insertion in an unguarded file (the
 #   SUPERSEDED banner added to CIRCLE-FOUR-CHARGE-DRAFT.md at "f236c7e…").
 # WHAT IT DOES NOT CHECK: the TRUTH of any row (the non-author seat does);
-#   files other than the two named; history rewrites (row 5's honest gap).
+#   files other than the two named; history rewrites (row 5's honest gap);
+#   a symlinked guarded file (closed by the -L test above; measured by
+#   plant, builder's bite, 2026-07-29); a mode-bit-only change (pointed,
+#   uncured — the guarded files' law does not live in their execute bit).
 #
 # USAGE:  sh system/audit/s_append_only_p2_candidate.sh   (from the repo root)
 # EXIT:   0 = prefix law holds;  1 = violation;  2 = cannot run
@@ -44,6 +47,11 @@ for f in system/SYSTEM-REGISTER.md system/SYSTEM-NORMS.md; do
     fi
     if [ ! -f "$f" ]; then
         printf '  %-32s VIOLATION: guarded file missing from working copy\n' "$f"
+        fail=1
+        continue
+    fi
+    if [ -L "$f" ]; then
+        printf '  %-32s VIOLATION: guarded file is a symlink\n' "$f"
         fail=1
         continue
     fi

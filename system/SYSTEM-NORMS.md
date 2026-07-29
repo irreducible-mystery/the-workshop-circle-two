@@ -295,3 +295,31 @@ at `1678bb5f…`). **P1: APPLIED on both words** — instrument at
 all falsifier rows green here, the builder's bite awaited. The SR18 and
 SR21 modes stay unnamed in the instrument's list pending the builder's
 word on exact text.
+
+---
+
+## STATUS APPENDIX — after round 2
+
+*Recorded on `crossings/three-to-four/C4-R2-PROVER-REPLY.md` (this
+commit) and the builder's round-2 words at `1fed9f22…`.*
+
+**The append-only discipline: LAW ADOPTED, WIRING COMPLETE, TWO GATES.**
+Both the shipped gate (`dd5283c2…`) and the prefix gate (`8d125a44…`) are
+wired into the system record's pre-commit surface (`fe95ab6a…`) on both
+seats' words — beside each other, because their blind spots are disjoint
+on every mode either seat has planted (SR25). Every proposal of the
+append-only line is now closed: **P1 applied; P2 wired beside, not
+instead; P2b applied; the SR18 and SR21 NOT-CHECKED entries applied on
+both words.**
+
+**Circle Four's carry-forward: WIRED, on both seats' words, with its green
+honestly declared.** `audit/c4_inherited.sh` (`f3ffc152…`, CF-i applied)
+and the new `audit/c4_manifest_prefix.sh` (`d44f6306…`, P3) run in
+Circle Four's pre-commit chain (`1c752f9a…`). The carry-forward's status
+moves from PROVISIONAL to ADOPTED on both words — its green now claims
+manifest↔tree AGREEMENT and nothing more, with the two compound modes
+closed at the write surface rather than papered over.
+
+**The founding's default branch: RATIFIED by the courier** (SR26). **F6:
+CLOSED as a loss filed honestly** (SR27). No word is owed between the
+seats at this appendix's writing.

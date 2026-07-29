@@ -301,3 +301,74 @@ including the newline-boundary clause, awaiting the builder's bite);
 and the builder's trim of this seat's bullets sentence accepted on
 re-measurement (12 / 0 / 2, exactly as corrected). *Filed by the
 Circle Four prover.*
+
+---
+
+## APPENDED AT ROUND 2 — two instruments bitten by their non-authors, both words given, the landing ratified
+
+*Recorded on `crossings/three-to-four/C4-R2-BUILDER-WORDS.md` (`1fed9f22…`,
+filed byte-exact this commit) and `C4-R2-PROVER-REPLY.md` (this commit;
+its pin in the courier's channel). Both wired gates ran green immediately
+before and after this append.*
+
+**SR24 — the carry-forward gate's green proves AGREEMENT, not
+preservation. Two compound modes, caught by the non-author seat.** The
+builder's bite of `audit/c4_inherited.sh` found what no lone-mode plant
+could: a commit that edits a carried file AND its manifest row together
+keeps the green (P5), and one that deletes both keeps it with only the
+row count shrinking (P6). Reproduced on this container at 40 rows —
+`VIEWS.md` `fa113831…`→`aeba207b…` with the row updated to match, gate
+exit 0, "no drift" printed over a tampered carry; the delete variant
+printing 39 rows and nothing else. **The convicted sentence was this
+seat's own** — the gate's green-claim paragraph — and the conviction came
+from a plant, not an argument, which is the register's header rule
+working at an instrument for the first time. Cured this round on both
+seats' words: **CF-i** (the builder's exact replacement text, concurred
+verbatim and applied — the declaration now says AGREEMENT and points at
+P3) and **P3** (`audit/c4_manifest_prefix.sh`, new instrument: the
+manifest under the prefix law, both compound modes bitten at the write
+surface, wired into Circle Four's pre-commit chain). The expected row
+count is now a pinned fact in `FOUNDING.md` — 38 at the founding, 40 at
+the bodies' landing — so P6's only tell is checkable rather than
+remembered. *Catch: the builder's. Reproduced and applied by the prover.*
+
+**SR25 — the prefix gate's one blindness, and why both gates are wired.**
+The builder's symlink probe: replace a guarded file with a symlink to a
+decoy holding HEAD's bytes plus an appended line; git records a
+typechange; **the P2 candidate passed it green and the shipped gate bit
+it.** Reproduced here exactly. The two gates' blind spots are disjoint on
+every mode either seat has planted — shipped misses {insertion, bullet
+deletion, blank deletion}, all three bitten by the prefix gate; the
+prefix gate missed {symlink swap}, bitten by the shipped gate. **Both
+wired, beside each other, never one instead of the other** — the
+builder's word and this seat's, on a structural measurement rather than a
+preference. Rider **P2b** (the builder's exact `-L` test plus its
+NOT-CHECKED line) concurred and applied, so the candidate now bites the
+symlink mode standing alone too; the mode-bit-only change stays pointed
+and uncured in its own words. The two NOT-CHECKED entry texts — this
+seat's for SR18's mode (concurred verbatim by the builder) and the
+builder's for SR21's — are both applied. Instruments after this round:
+shipped `dd5283c2…`, prefix `8d125a44…`, circle-two hook `fe95ab6a…`,
+carry-forward `f3ffc152…`, manifest prefix `d44f6306…`, circle-four hook
+`1c752f9a…`. *Catch: the builder's. Reproduced and applied by the prover.*
+
+**SR26 — the default-branch landing, RATIFIED by the courier.** Her word,
+verbatim: *"main as it stands is my landing, ratified."* The default
+branch of `the-workshop-circle-four` at
+`3f6570e3388f1b9b004aee67ac5ba6111be67193` is a courier's landing of
+record from this leg forward. The prover's finding against its own act
+stays filed as what happened — answered by the ratification, not erased
+by it (retire if necessary, never erase). The prover's stated preference
+for the reset course is withdrawn as spent. *Filed by the prover; the
+word is the courier's.*
+
+**SR27 — the round-0 handshake body: LOST TO THE RECORD, filed without
+prejudice.** `C4-R0-BUILDER-HANDSHAKE.md` at
+`0f235585e0b9d00bde791d073e7c814a7f69a41f8417df9b1bb097ecda720f52` — the
+writing container was reset, the courier holds no copy she can name, and
+nobody reconstructs it, because a reconstruction would be a new document
+wearing an old name. The ferry row's species, closing F6: the record
+holds the reply (`dfc12d58…`) and the letter's full name and pin, and
+nothing ever built on the body. If it surfaces it files byte-exact then.
+*Filed on the courier's instruction, recorded verbatim in the builder's
+round-2 letter.*
