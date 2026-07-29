@@ -172,6 +172,26 @@ the crates, and the crates are enough.
 
 **Three artifacts, and each answers a different question:**
 
+**The pins, and the test that these are enough.** All three were run
+end to end from unpacked crates with no clone involved at all — the
+certificate closing seventy of seventy, the floor, the full gate chain,
+and the artifact compiling silent — before this paragraph was written:
+
+```
+circle-three-seal.zip        7f790238aa1e21668a4e38cc3d1ae6029d4e520749b8b8d2a329fa578c2076dd
+circle-three-postseal.zip    dfa3e545ffd2808021b67e506725d5b1966fe6bc4b65a12d392cf77d99a8bb90
+circleone-for-c1lean.zip     83b558bcd9246d1f9feb58b51f3238b80fdf873ec437f393e064ef90a6bf6dd5
+
+  The Circle One crate above is a FERRIED WORKING COPY and its pin is
+  NOT the sealed Circle One crate pin
+  (c269c755037e40f5a26692e7d519eff0209674f991a02676d218e05584116ea2,
+  recorded in this repository's README and exemption ledger). They
+  differ because Circle One's live branch grew additively past its
+  seal — measured, adjudicated and closed as finding C9. Verify a
+  ferried copy against the pin it was ferried under, and the sealed
+  crate against the sealed pin; do not expect one to match the other.
+```
+
 ```
 circle-three-seal.zip        THE SEAL. The circle as sealed, carrying
                              .git per rule C1, so the whole history
