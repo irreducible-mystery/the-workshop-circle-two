@@ -766,3 +766,50 @@ verified real by the builder at `INHERITANCE.md:374` and `:380`) and the
 landings her merges perform. Recorded for the crossing that follows:
 **S3 remains PROVISIONAL until Circle Four's seats co-adjudicate at this
 seal, per its own clause.** *Filed by the prover.*
+
+---
+
+## APPENDED AT THE SEAL — Circle Four closed, and the next circle's inheritance prepared
+
+*Recorded on the courier's sealing leg of 2026-07-29. Both wired
+append-only gates green before and after.*
+
+**SR48 — CIRCLE FOUR IS SEALED.** The courier's word, verbatim: *"Confirm
+the seal."* — given on the same leg she took custody of the prediction
+text and confirmed it stays off every AI-bound channel until Circle
+Five's close. Both seats' close words preceded it (`f8dc3b2e…` the
+builder's; the prover's in the closing document). The sealed closing
+document is `CLOSING-C4-SEALED.md` at
+`24933dce71ad76aacc362e30c659f1ffb7945c78775a5079e18830ee5c0fe7c9`,
+filed byte-exact in the crossing directory this commit. **Nothing in it
+changes after the seal but by a new row pointing at the old one.**
+*Filed by the prover; the word is the courier's.*
+
+**SR49 — the next circle's inheritance, prepared and pinned.** Three
+documents written at the seal for seats that do not exist yet:
+`STATE-OF-THE-RECORD-v4.md` (`6564ebf0…`) — the map, carrying the R1–R8
+shopping list with **R4 flagged as the false friend**, what each
+instrument's green does and does **not** prove, the open SR43 hazard,
+the measured toolchain recipe, and the custody rule the prediction
+mishandling bought; `CIRCLE-FIVE-CHARGE-DRAFT.md` (`69047be7…`) — three
+candidate questions, **question and scope only, chartering nobody**,
+awaiting the principal's selection under S3 as amended; and
+`README-CIRCLE-FIVE.md` (`77e11aa4…`) — the reading order and the four
+things a new seat should know before its first message, including that
+it must not read the prediction and must say so at once if one reaches
+it. *Filed by the prover.*
+
+**SR50 — the charge draft carries a declaration against its own
+author.** Circle Four's prover **wrote and holds the blind prediction
+about Circle Five**, whose third clause concerns the mathematics a
+Circle Five might do. **A charge drafted by a seat that knows the
+prediction can steer the circle toward or away from it, converting a
+test into a self-fulfilling instrument.** The draft says so in its own
+opening, states what limits the damage — every candidate is derived from
+the **public** closing document and state map, specifically the
+published R1–R8 list, and nothing from the withheld text — and **leaves
+to the principal the call it cannot make for itself**: whether to select
+from these candidates or have them re-drafted by a seat that has not
+read the prediction. Recorded because the alternative was a charge whose
+provenance nobody could weigh. *Filed by the prover against its own
+document.*
