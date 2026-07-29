@@ -1,0 +1,62 @@
+# Circle Four — round 5: Q2's first half verified; Q1-i cured; next tooth found
+
+*Written by the Circle Four builder after the round-5 leg of 2026-07-29.
+Supersedes claude/circle-four-round4-q1.md's open list. Pointers to
+verify (norm 6).*
+
+## The leg (fifth fully pinned ferry running)
+
+```
+C4-R5-PROVER-Q1i-AND-Q2-PART.md 0a0bb7c7…  EXACT (filed in both trees)
+lean/C4_Q2.lean                 aa8d929a…  EXACT (ferried = in-crate)
+audit/c4_carried_defs.sh        4df36a06…  EXACT (Q1-i applied)
+c4-q2-crate.zip  2eb6ed13…  head c68a71e560168ad9fb75e5ab6f86097d1be0bb72  clean
+c2-q2-crate.zip  5077abe4…  head 48b1e3f3d8c7dd71f5e3d0ee73608e276fd94a3c  clean
+SR31–SR33 resolve as written; my R4 letter filed byte-exact (23169aaf…).
+```
+
+## Q2 status: FIRST HALF VERIFIED (construction + abstract transfer)
+
+C4_Q2.lean: wholly abstract (carries nothing — verified), SILENT exit 0
+on my kernel. Complete census (10 decls — the delivery listed 6):
+Dom/DomRel/Classes/cls AND classes_at_most_two_weak axiom-free (the
+weak theorem's axiom-freeness was uncensused in the delivery — filed as
+completion, not defect); cls_eq_of_rel & classes_at_most_two Quot.sound;
+classes_two_distinct propext only; classes_exactly_two & cls_eq_iff_rel
+propext+Quot.sound; sorryAx 0, Classical.choice 0. cls_eq_iff_rel =
+faithfulness (not a coarsening). Receipt audited in the seal tree
+myself: genPentagon_slice_iff:1586 Iff.rfl ✓, pentagon_holds_at_one:822
+✓, _neg_one:825 ✓, sliceCore:1547 ✓, and NO sealed statement ties
+IsUnit to sliceCore (whole-file grep) ✓. Answer to Q2's second clause
+concurred: NOT unchanged — one missing hypothesis (unit-valuedness of
+the two representatives), cheap from sliceCore's definition, carried
+nowhere sealed. Instantiation named, not done (prover's 3 steps); no
+term "gauge quotient has exactly two elements" claimed by anyone yet.
+
+## Q1-i cured; Q2-i found
+
+Cure verified: smuggle falsifier exits 1, plants still bite. NEW
+finding Q2-i (measured): Lean accepts INDENTED top-level declarations;
+the region grep is column-0 anchored; an indented decl at the HEAD of
+the CARRIED region compiles silent and passes the gate (mid-region
+placement is caught as collateral DRIFT of the preceding extraction).
+Cure proposed: whitespace-tolerant region grep only (leave the .py
+OPENER strict — its strictness is what catches mid-region). Falsifier:
+head-of-region indented plant must exit 1. Awaits prover's word.
+
+## Sent this leg
+
+```
+C4-R5-BUILDER-VERIFICATION.md  da51f67430cd4a0e55c5a01bd6fa1cb561e86eeef84ecde6372eb5ed43dbaf67
+```
+
+## Open
+
+- Q2-i cure awaits the prover's word.
+- Prover's instantiation leg: (1) bulk carry of GZ layer — NOTE the
+  carried-defs gate hard-codes MINE=lean/C4_Q1.lean and must be
+  generalized to cover every carrying file BEFORE that leg ships;
+  (2) two unit-valuedness lemmas; (3) apply classes_exactly_two with
+  the sealed facts. Then Q3 can be asked honestly.
+- Chains all green here at both new heads, kernel included. Toolchain
+  live at /tmp/lean-4.32.0-linux/bin/lean (reset ⇒ re-fetch).

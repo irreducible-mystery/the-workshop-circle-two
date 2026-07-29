@@ -1,0 +1,62 @@
+# Circle Four — round 3: the wired floor verified whole, kernel included
+
+*Written by the Circle Four builder after the post-landing leg of
+2026-07-29. Supersedes the open-items list in claude/circle-four-round2.md.
+Pointers to verify (norm 6).*
+
+## The leg (third fully pinned ferry running)
+
+```
+C4-R2-PROVER-REPLY.md     085c1dac…  EXACT
+c2-postlanding-crate.zip  e581eebd…  EXACT  head e53d40057dd2ee53238f77e31d274b88cdb65228, clean
+c4-postlanding-crate.zip  2b14bc55…  EXACT  head 15617e760f948c9425d876a0356176f764de00ee, clean
+                                     ratified main 3f6570e3388f1b9b004aee67ac5ba6111be67193 an ancestor
+```
+
+## Verified this leg (previously pointers)
+
+Every letter of the circle, both directions, filed in git at a
+verified pin: my 7d806c5e…, 03e9a0a1…, e6f4584f…, 1fed9f22…; prover's
+19001a66…, 085c1dac…; courier summary d12da4e5…. Riders applied
+verbatim + comment-only/added-block-only (CF-i, P2b, SR18/SR21
+entries, NOTE); FOUNDING.md pins row counts (38@e9da1473, 40@3f6570e3);
+hooks fe95ab6a… (C2: shipped→prefix→chain) and 1c752f9a… (C4:
+P3→carry). Instruments: dd5283c2… (shipped+entries), 8d125a44…
+(candidate+P2b), f3ffc152… (carry+CF-i), d44f6306… (P3 new). SR23–SR27
+resolve as written; SR26 = Kelly's ratification verbatim; SR27 = F6
+handshake body LOST TO THE RECORD without prejudice (0f235585…).
+
+## My bites (all reproduce the prover's matrix)
+
+P3: clean 0; P5 compound edit → P3 1/carry 0; P6 compound delete →
+P3 1; lawful append 0; symlinked manifest 1; final clean 40 rows.
+Pair in C2: symlink bites BOTH gates now; mid-insert p2 only; modify
+both; end-append passes both; clean/final green.
+
+## Kernel — run on this container
+
+Toolchain v4.32.0 fetched by the recorded route (GitHub release;
+zstd extraction needed python-zstandard on this container — pip install
+zstandard --break-system-packages, then stream-extract). Version commit
+8c9756b28d64dab099da31a4c09229a9e6a2ef35 = the pinned reference.
+lean/Zi.lean (6a6b6cb2…, unchanged since the seal): SILENT exit 0.
+Full chain with LEAN + C1_LEAN=<circle-one crate root>: pointers,
+numerals, tree, axioms, views — ALL PASS, exit 0. Both seats have now
+kernel-checked the same artifact at the same head. Live toolchain at
+/tmp/lean-4.32.0-linux/bin/lean this session; a container reset needs
+the fetch again.
+
+## Sent this leg
+
+```
+C4-R3-BUILDER-VERIFICATION.md  b3e63feac7a97caa8aae39aced1299b0a5e4a3776c0f89838bf46d58860ee070
+```
+
+## State: NOTHING OUTSTANDING between the seats
+
+No cures owed, no words withheld, no decisions pending on Kelly. The
+circle's next letters are the charge itself — Q1 (spanning sentence,
+direction of implication), Q2 (quotient construction + transfer), Q3
+(cohomology identification requirements). "No"/"not here"/recorded
+obstruction are complete answers. The builder verifies what the ferry
+brings; kernel gates are runnable here today.

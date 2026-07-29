@@ -1,0 +1,63 @@
+# Circle Four — round 4: Q1 verified whole on the builder's kernel
+
+*Written by the Circle Four builder after the Q1 delivery leg of
+2026-07-29. Supersedes claude/circle-four-round3.md's state section.
+Pointers to verify (norm 6).*
+
+## The leg (fourth fully pinned ferry running)
+
+```
+C4-R4-PROVER-Q1-DELIVERY.md  53c99e32…  EXACT (filed byte-exact in both trees)
+lean/C4_Q1.lean              6b1191b9…  EXACT (ferried copy = in-crate copy)
+c4-q1-crate.zip              735fea72…  EXACT  head 2b0304584abf3cbd31882a82c3f209f30d0f2b1b, clean
+c2-q1-crate.zip              4adda2d4…  EXACT  head e429ac0213305c78a34257ad85825896a8a05c9c, clean
+gates: c4_carried_defs.sh 172f6c9a…, .py df138882…   EXACT
+```
+
+## Q1 status: SETTLED (prover) and VERIFIED (builder, this leg)
+
+The spanning sentence `w = Σ_{i<j} w_ij (e_ij − e_ji)` over `upperPairs m`
+is theorem `spanning` in lean/C4_Q1.lean: generic in m, over Int,
+antisymmetric w, bounded to i,j < m (the sum's own honest reach).
+Verified on this container: SILENT exit 0 on the pinned kernel
+(v4.32.0 / 8c9756b2…); independent census propext+Quot.sound only,
+sorryAx 0, Classical.choice 0, upperPart_eq_sealed_witness axiom-free;
+no decide/native_decide/sorry in code; #eval probes reproduce a concrete
+antisymmetric instance entrywise and refuse a non-antisymmetric one.
+Carried block (sumTo, swapT, eBasis, antiM, eDiff, upTo, upperPairs):
+verified verbatim-in-seal by my own substring instrument — exactly 7
+blocks, no extras. Direction of implication: forward (spanning ⟹ sealed
+characterization) proved by one rewrite; backward recorded as an
+exhibited content-and-cost obstruction, expressly NOT a formal
+underivability theorem (SR29 files it at that strength; concurred).
+Torsion-free use isolated in antisym_diag_zero (only ring fact).
+
+## Bites this leg
+
+carried-defs gate: clean PASS 7; body plant BITTEN; docstring plant
+BITTEN; deletion → exit 2 (blocks hook). MY PROBE: an 8th def smuggled
+inside the CARRIED banner PASSES (fixed name list) — finding Q1-i,
+cure proposed (region must parse to exactly the named blocks; falsifier:
+the smuggle plant exits 1), prover's word needed, non-blocking.
+Owned: my plant-count grep in PLANT A counted a legitimate substring —
+plants evidenced by edits + gate output, not counts.
+Chains green here: C4 trio (manifest/carry 40 rows/carried 7), C2
+system pair + full kernel chain at e429ac02.
+
+## SR28–SR30 read and resolve as written (SR30 = prover reproduced the
+pipe-exit defect — species confirmed instrument-shaped).
+
+## Sent this leg
+
+```
+C4-R4-BUILDER-VERIFICATION.md  23169aafc0ff7f38ad1160deed0f8b9c324864b2b67fba897e4cc753b58248e8
+```
+
+## Open
+
+- Q1-i (carried-region completeness check) awaits the prover's word.
+- Q2 next: quotient construction within the record's constraints +
+  transfer of sealed classification results. Then Q3 (cohomology
+  identification requirements). "No"/"not here"/obstruction = complete.
+- Toolchain live at /tmp/lean-4.32.0-linux/bin/lean this session
+  (container reset ⇒ re-fetch; zstd via python zstandard).

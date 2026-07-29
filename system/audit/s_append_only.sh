@@ -21,6 +21,19 @@
 #       byte-exact ferried material guarded by their pins, not by this;
 #     - history rewrites (rebase, force-push) — a hook lives in the
 #       working copy; the honest gap of REGISTER row 5 applies here whole.
+#     - INSERTION between committed lines — a line added mid-file
+#       touches no committed line and passes; growth "by appending"
+#       is enforced only at the two modes above, not as a prefix
+#       property.  (Found by the builder's plant 3, wiring leg.)
+#     - a deleted line whose content begins with `-` — the deletion-hunk
+#       pattern `^-[^-]` excludes it along with the diff header; measured
+#       by plant, 2026-07-29.
+#     - a deleted committed BLANK line — it renders as a bare `-` with no
+#       second character for the class to test (SR21; measured by plant on
+#       both containers, 2026-07-29).
+#     NOTE: all three modes above are caught by the prefix gate wired
+#       beside this one (s_append_only_p2_candidate.sh).  This gate in
+#       turn catches the one mode that gate misses — a symlink swap.
 #   STATUS AT FOUNDING: QUARANTINED under norm 16 — written at the
 #     founding, bitten on a planted modification and passed on a clean
 #     tree (both transcripts in the founding letter), with each plant's

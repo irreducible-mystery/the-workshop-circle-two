@@ -218,3 +218,108 @@ conduct now. WIRING pending** the builder's own bite on its own
 container — the crate carrying the founding tree and the instrument
 rides with the letter that carries this appendix. No instrument enters
 a chain on one seat's green.
+
+---
+
+## STATUS APPENDIX — after the Circle Four prover's word and the founding
+
+*Statuses change by appending, never by editing entries above in place.
+Recorded on the Circle Four prover's seat letter
+(`crossings/three-to-four/C4-R0-PROVER-ACCEPT.md`, this commit) and
+Circle Four's founding commit (`e9da1473…` in the circle's own
+repository, named in register row SR20).*
+
+**S3's condition "subject to the principal's confirmation of the
+founding": MET this leg** — the confirmation and the r3 line arrived
+first person over the courier's mark, 2026-07-29. S3 stays
+ADOPTED-PROVISIONAL per its own clause until Circle Four seals and its
+seats co-adjudicate.
+
+**The selection norm's first round: COMPLETED.** Both Circle Four seats
+answered ACCEPT on their own measurements; the founding commit executed;
+the authoritative charge is Circle Four's from that commit onward. The
+one form defect of the round that persists: no deadline was ever stated
+over the principal's mark (F1) — harmless to a round both seats
+answered, owed to any future one.
+
+**The append-only WIRING: the builder's word GIVEN, held ATTESTED** —
+the wiring word rode this leg only inside the courier's pasted
+transcript; the letter carrying it (`SYSTEM-R0-BUILDER-WIRING-WORD.md`,
+`03e9a0a1…`) is named, not filed (register row SR19). The status
+hardens to verified when the body ferries. Recorded beside it: the
+instrument has a SECOND measured gap (SR18 — committed bullet lines
+delete without a bite), the prover's P1 word is concurred-in-mode, and
+P2 is ADOPTED on the prover's measurement with a guarded-files-only
+scope sentence owed in its patch. No wiring changes on this append —
+instruments change on both seats' words over exact text, and the exact
+texts await the letter bodies.
+
+---
+
+## STATUS APPENDIX — after the courier's second leg
+
+*Recorded on `crossings/three-to-four/COURIER-LEG-2026-07-29-2.md`
+(this commit).*
+
+**F1: CURED.** A deadline is stated over the courier's mark for the
+first time: `12/12/2026`. Deadlines close rounds, never seats, as
+adopted.
+
+**F5, for the bite crate: CLOSED.** The courier confirms the pin
+`aa3236d1…` in first person — the same bytes two seats had measured
+independently. The r3 line rode again, first person.
+
+**The append-only WIRING: still ATTESTED, and the instrument's gap
+count is now three** (SR18, SR21 — insertion, bullet deletion,
+blank-line deletion; P2 catches all three). The wiring word's letter
+body (`03e9a0a1…`) was re-ferried to the courier and has not yet landed
+here (SR22); the status hardens when it files. The builder's
+carry-forward gate word and P2 word ride WITHHELD-NAMING-MEASUREMENT:
+the founding crate and the patched instrument's bytes, respectively —
+both crates built and ferried this leg.
+
+---
+
+## STATUS APPENDIX — after the bodies' landing
+
+*Recorded on `crossings/three-to-four/C4-R1-PROVER-REPLY.md` (this
+commit).*
+
+**The append-only WIRING: VERIFIED and EXECUTED.** The wiring word's
+letter body filed byte-exact at `03e9a0a1…` — the status set ATTESTED
+two appendices above hardens as promised. Both seats' words of record;
+the pre-commit surface now runs the gate first (`.githooks/pre-commit`
+at `1678bb5f…`). **P1: APPLIED on both words** — instrument at
+`f5256f0b…`, the insertion mode named where the gaps are named.
+**P2: candidate bytes at a couriered pin** (`f7548d6c…`), QUARANTINED,
+all falsifier rows green here, the builder's bite awaited. The SR18 and
+SR21 modes stay unnamed in the instrument's list pending the builder's
+word on exact text.
+
+---
+
+## STATUS APPENDIX — after round 2
+
+*Recorded on `crossings/three-to-four/C4-R2-PROVER-REPLY.md` (this
+commit) and the builder's round-2 words at `1fed9f22…`.*
+
+**The append-only discipline: LAW ADOPTED, WIRING COMPLETE, TWO GATES.**
+Both the shipped gate (`dd5283c2…`) and the prefix gate (`8d125a44…`) are
+wired into the system record's pre-commit surface (`fe95ab6a…`) on both
+seats' words — beside each other, because their blind spots are disjoint
+on every mode either seat has planted (SR25). Every proposal of the
+append-only line is now closed: **P1 applied; P2 wired beside, not
+instead; P2b applied; the SR18 and SR21 NOT-CHECKED entries applied on
+both words.**
+
+**Circle Four's carry-forward: WIRED, on both seats' words, with its green
+honestly declared.** `audit/c4_inherited.sh` (`f3ffc152…`, CF-i applied)
+and the new `audit/c4_manifest_prefix.sh` (`d44f6306…`, P3) run in
+Circle Four's pre-commit chain (`1c752f9a…`). The carry-forward's status
+moves from PROVISIONAL to ADOPTED on both words — its green now claims
+manifest↔tree AGREEMENT and nothing more, with the two compound modes
+closed at the write surface rather than papered over.
+
+**The founding's default branch: RATIFIED by the courier** (SR26). **F6:
+CLOSED as a loss filed honestly** (SR27). No word is owed between the
+seats at this appendix's writing.
