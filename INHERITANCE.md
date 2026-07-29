@@ -369,16 +369,30 @@ pin:
 ```
 the charge                   the question and its scope, and nothing
                              about path or outcome. For Circle Four the
-                             charge has been SELECTED by the principal —
-                             all three questions of the draft, with the
-                             draft's one path clause struck at selection
-                             — and consolidated to question and scope.
+                             charge was SELECTED by the principal — all
+                             three questions of the draft, carrying
+                             THREE edits and not one: the principal's
+                             strike of Q1's path clause, a second style
+                             prescription removed in consolidation, and
+                             three words added to Q3's scope. The
+                             custody note said one; register row SR15
+                             convicted the undercount and the receiving
+                             seat's word-by-word diff is what caught it.
                              It sits byte-exact at
                              `system/crossings/three-to-four/CIRCLE-FOUR-CHARGE.md`
                              and its pin rides in the courier's
-                             messages. STATUS: awaiting both Circle
-                             Four seats' words; the DRAFT marking comes
-                             off in the founding commit and not before.
+                             messages. STATUS: CHARTERED at Circle
+                             Four's founding commit; the circle is
+                             SEALED. What came off at the founding was
+                             not a DRAFT marking in the charge's title —
+                             the consolidator had already removed that
+                             word — but the CONDITION in the charge's own
+                             custody sentence, "this document enters the
+                             record by the founding ceremony and not
+                             before." A future charge should say which
+                             of the two it means, because these are not
+                             the same act and Circle Four's record shows
+                             they can be confused.
                              A receiving seat's act is acceptance or
                              refusal on its own measurement — the
                              selection is made, and is not the seats'

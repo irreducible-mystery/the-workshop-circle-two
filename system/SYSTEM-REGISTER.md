@@ -813,3 +813,64 @@ from these candidates or have them re-drafted by a seat that has not
 read the prediction. Recorded because the alternative was a charge whose
 provenance nobody could weigh. *Filed by the prover against its own
 document.*
+
+---
+
+## APPENDED AFTER THE SEAL — the two door repairs performed, a third proposed, and the prediction's custody measured
+
+*Recorded on the courier's leg following the seal, 2026-07-29. Both
+wired append-only gates green before and after. **These rows are
+post-seal**: Circle Four is closed and nothing here reopens it — they
+record acts the courier asked for after her seal and the state of a
+commitment that outlives it.*
+
+**SR51 — F8 and F9 REPAIRED in the door, at the courier's word.** The
+two sites both seats verified real are repaired in
+`INHERITANCE.md` §5b's handoff table. **F8:** the table said the charge
+carried "the draft's one path clause struck at selection"; it now says
+**three edits and not one**, names each (the principal's strike, the
+second style prescription removed in consolidation, three words added to
+Q3's scope), and records that SR15 convicted the undercount and that a
+receiving seat's word-by-word diff is what caught it. **F9:** the table
+promised "the DRAFT marking comes off in the founding commit and not
+before"; it now records what actually came off — **not a DRAFT word in
+the charge's title, which the consolidator had already removed, but the
+CONDITION in the charge's own custody sentence** — and asks a future
+charge to say which of the two it means, because Circle Four's record
+shows they can be confused. The charge's STATUS line is updated from
+"awaiting both seats' words" to CHARTERED and SEALED. Prose gates green
+after the edit (pointers, numerals) and the door is unguarded by the
+append-only law, so the repair is an in-place edit as the door's four
+prior repairs were. *Repairs performed by the prover at the courier's
+instruction; the sites were caught by both seats.*
+
+**SR52 — a THIRD door repair proposed and expressly NOT applied.** The
+courier asked for two. The prediction-custody gap in §5b — the mechanism
+names a destination for the text and says nothing about its route — is
+drafted at
+`crossings/three-to-four/PROPOSED-DOOR-REPAIR-5b-PREDICTION-CUSTODY.md`
+and **left unapplied**, because **adding law nobody asked for, inside a
+repair errand, is the species this record exists to catch.** The
+proposal states its own costs to the courier, states that it cannot
+repair Circle Four's instance, states that a seat proposing a repair
+about its own failure is a reason for suspicion rather than credit, and
+states the alternative fairly: **do nothing, and §5b's silence stands as
+leaving custody to the courier's judgement.** It retires on her word if
+she prefers that reading. *Filed by the prover; the word is the
+courier's.*
+
+**SR53 — the prediction's custody, measured rather than assumed.** The
+text exists and hashes to
+`d043d71e4e709cc5a02c20880b2e2da2758f71ac13c6177970e88d19c4a61d11`,
+exactly the pin `CLOSING-C4-SEALED.md` publishes. **It is in no git tree
+in any repository of this record**, which is correct under §5b and was
+verified by searching every commit of both trees for its opening line.
+**Its durable custody is the courier's copy alone.** The only other copy
+sits in the prover's session container, which is ephemeral and dies with
+the session. **The consequence, stated because a commitment nobody can
+open scores as failed under S2's rider r2:** if the courier's copy is
+lost, the pin stands with no text behind it and the prediction scores
+FAILED at Circle Five's close — not wrong, failed, which is a worse
+outcome than being wrong. **The ask: confirm the file is held somewhere
+that survives, off every AI-bound channel, until Circle Five's close.**
+*Filed by the prover.*
