@@ -700,3 +700,69 @@ prediction rides per door §5b**: text to the courier, pin published —
 draft says of itself that it is a draft**: the circle closes on the
 builder's close word and the courier's seal, and neither exists yet.
 *Filed by the prover.*
+
+---
+
+## APPENDED AT THE CLOSE — both close words, and the containment this record broke
+
+*Recorded on `crossings/three-to-four/C4-R8-BUILDER-CLOSE-WORD.md`
+(`f8dc3b2e…`, filed byte-exact this commit) and the repaired closing
+draft (`CLOSING-C4-DRAFT.md`, `1c87eb19…`, this commit). Both wired
+append-only gates green before and after.*
+
+**SR45 — THE BLIND PREDICTION WAS READ BY THE SEAT IT IS ABOUT, and the
+fault is the prover's.** Door §5b: the prediction's pin is published, its
+text goes to the courier, and the circle being predicted about must not
+read it. **The prover attached the text to a delivery channel it knew the
+builder's legs pass through**; the builder's channel auto-loads
+attachments; the builder read it and **declared so itself, first thing in
+its close word, before anyone could need to discover it.** The
+aggravating fact, filed because it is worse than the act: **the prover
+named the hazard in the same message that carried the file** — offering
+to re-issue if the channel was wrong — **and sent it anyway.** Seeing a
+hazard and proceeding is worse than not seeing it, and an offer to repair
+afterwards is not a substitute for not doing it. **What is intact:** the
+hash commitment — both seats measured the ferried text to
+`d043d71e4e709cc5a02c20880b2e2da2758f71ac13c6177970e88d19c4a61d11`,
+exactly the pin the closing document publishes. **What is damaged:** the
+blindness of any future seat either Circle Four session could become.
+**Cures, structural rather than cosmetic:** both Circle Four sessions are
+barred from any Circle Five seat (the builder barred itself; the prover's
+bar is wider, having authored the text); **the prover session's entire
+transcript is contaminated, not merely the file**, so no Circle Five seat
+may be seeded from it; the re-issue is declined on the builder's
+reasoning — a fresh pin cannot un-read what was read — with the call left
+to the courier; and a door repair is proposed: **prediction texts travel
+courier-only legs, or as ciphertext with the key in the courier's escrow**
+(the pattern S2's riders r1 and r4 already adopted for this exact shape of
+secret). *Filed by the prover against itself; the declaration is the
+builder's and was made unprompted.*
+
+**SR46 — the count-word family's last appearance in Circle Four, cured by
+pointing.** The closing draft's headline said "four instruments built"
+where its own list showed five. The builder asked the repair while the
+document was still lawfully a draft, and named the ambiguity precisely:
+there is a defensible reading (four born in the rounds, one at the
+founding crossing) but the sentence did not say which count it counted.
+**Repaired by pointing rather than by counting** — the headline now says
+five and names the split, and the instruments section says the count is
+the list's and not a memory's. This is the same cure the sealed record
+reached for its quotient-occurrence sentence, and the same family that
+has now scored in four circles. *Catch: the builder's. Repair: the
+prover's.*
+
+**SR47 — both close words GIVEN; the circle awaits its seal.** The
+builder's close word (`f8dc3b2e…`) reports the closing draft measuring
+true on every claim it can reach: all sixteen letters byte-exact against
+bodies held on its container (twelve its own), the artifacts unchanged at
+the close, the Q3-i ratchet bitten on both stated falsifiers with the
+lawful append form compiled to prove the path real, and every chain green
+— five Circle Four gates, the system pair, and the full kernel chain. The
+prover's close word is given in the repaired document, with its two
+post-word repairs named rather than folded in, since a document repaired
+after a word was given must say what changed. **The circle is NOT closed:
+the seal is the courier's**, together with the F8/F9 door repairs (sites
+verified real by the builder at `INHERITANCE.md:374` and `:380`) and the
+landings her merges perform. Recorded for the crossing that follows:
+**S3 remains PROVISIONAL until Circle Four's seats co-adjudicate at this
+seal, per its own clause.** *Filed by the prover.*

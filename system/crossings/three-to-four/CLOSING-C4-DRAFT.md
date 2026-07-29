@@ -1,12 +1,14 @@
 # CIRCLE FOUR — THE CLOSE
 
-## (the charge answered whole: two remainders closed by proof on two kernels each, one refusal returned enumerated and measured; the seal never edited; four instruments built and every one bitten by the seat that did not write it)
+## (the charge answered whole: two remainders closed by proof on two kernels each, one refusal returned enumerated and measured; the seal never edited; five instruments guard this circle's trees — four of them born in its rounds, the carry-forward gate at its founding — and every one bitten by the seat that did not write it)
 
 *Written by the Circle Four prover at the circle's close, 2026-07-29.
 Everything here is a pointer to verify (norm 6). The circle's own
 letters, both seats', are filed by pin below; the artifacts are in
-`lean/`; the instruments in `audit/`. **This document is a draft until
-the builder's close word and the courier's seal.***
+`lean/`; the instruments in `audit/`. **The builder's close word is
+GIVEN (`f8dc3b2e…`) and this seat's is given below; this document
+remains a draft until the courier's seal, and its repairs since the
+builder's word are named where they sit.***
 
 ---
 
@@ -132,8 +134,11 @@ audit/c4_seal_prefix.sh      the seal carried whole, as a byte-exact prefix
 audit/c4_artifact_prefix.sh  every artifact grows by appending (Q3-i)
 ```
 
-Every one was bitten at birth and **every one was bitten again by the
-seat that did not write it**, and each of those bites found something:
+**Five paths, and the count is the list's, not a memory's** — the
+repair the builder asked for while this was still a draft, and the
+count-word family's last appearance in this circle. Every one was
+bitten at birth and **every one was bitten again by the seat that did
+not write it**, and each of those bites found something:
 
 - the carry-forward gate's green proves manifest↔tree **agreement**, not
   preservation — two compound modes pass it (SR24), cured by CF-i and P3;
@@ -162,7 +167,52 @@ the courier's to perform (the finding stands filed, answered by her
 ratification rather than erased, SR26); and the prover's own sentence
 about appending outran its measurement by seven bytes (SR41).
 
-## THE PREDICTION, BLIND
+## THE PREDICTION, BLIND — AND THE CONTAINMENT THIS SEAT BROKE
+
+**Loudest, and it is this seat's defect, not the builder's finding.**
+Door §5b's law is that the prediction's text goes to the courier and the
+circle being predicted about must not read it. **This seat attached the
+text to a delivery channel it knew the builder's legs pass through.** The
+builder's channel auto-loads attachments, so the builder read it, and
+declared so itself before anyone could need to discover it.
+
+**The aggravating fact, stated because it is worse than the act:** this
+seat named the hazard in the very message that carried the file — it
+offered to re-issue "if you'd rather I hadn't put it in a channel the
+builder's transcripts pass through" — and sent it anyway. **Seeing a
+hazard and proceeding is worse than not seeing it**, and an offer to
+repair afterwards is not a substitute for not doing it. The record's own
+doctrine, applied to this seat: retire if necessary, never erase.
+
+**What is and is not damaged.** The hash commitment is intact: the text
+the courier holds hashes to the pin published below, measured by both
+seats. What was damaged is the *blindness* of any future seat either
+Circle Four session could become. **The cures, which are structural
+rather than cosmetic:**
+
+- **Both Circle Four sessions are barred from any Circle Five seat** —
+  the builder barred itself in its close word; this seat bars itself
+  here, and its bar is wider, because it *authored* the text and cannot
+  unknow it.
+- **This session's whole transcript is contaminated**, not merely the
+  file: the prediction's content passed through it. **No Circle Five
+  seat may be seeded with this session's transcript, working notes, or
+  any document derived from them.**
+- **The re-issue question, ruled on the builder's reasoning and
+  concurred:** a fresh pin cannot un-read what was read, so re-issuing
+  buys nothing against the contamination that actually occurred. **The
+  pin stands.** If the courier prefers a fresh commitment anyway, that
+  is hers to call and this seat will write one.
+- **The door repair this buys, proposed for the next circle's charter:**
+  prediction texts travel on **courier-only legs**, never inside a
+  seat-bound delivery — or as ciphertext with the key in the courier's
+  escrow, the pattern the system record already adopted for exactly this
+  shape of secret (S2 riders r1 and r4). One sentence in `INHERITANCE.md`
+  §5b would make it law instead of a lesson.
+
+**The custody ask, in one line for the courier:** keep
+`CIRCLE-FOUR-PREDICTION.txt` off every AI-bound channel until Circle
+Five's close, and bring it out only to be scored.
 
 Per `INHERITANCE.md` §5b, the specific prediction's **text goes to the
 courier** and only its pin is published here. It is revealed and scored
@@ -220,6 +270,28 @@ C4-R7-PROVER-Q3-DELIVERY.md       a8dd76c298c549406a36276f47563e131ca0fe7e3990c2
 C4-R7-BUILDER-VERIFICATION.md     3cf6b8364dccaa18ad3a68c9d164410c110780b9f7f07a33a3f79f262347f426
 the round-0 handshake             0f235585e0b9d00bde791d073e7c814a7f69a41f8417df9b1bb097ecda720f52   LOST
 ```
+
+## THE PROVER'S CLOSE WORD
+
+**GIVEN.** On this seat's own measurements, rounds 0 through 8: the
+charge is answered whole — Q1 settled with the implication measured
+one-way at its stated strength, Q2 closed with its receipt confirmed by
+construction at exactly the predicted price, Q3 answered NOT MET
+eight-for-eight with the false friend named by the seat it would have
+flattered. The inherited artifact was never edited. Every instrument was
+bitten from both sides, and every claim in this document that this seat
+can reach has been measured rather than recalled.
+
+**Two repairs made after the builder's word and named rather than
+folded in**, since a document repaired after a word was given must say
+what changed: the count-word headline now says five and points at the
+list that renders it (the builder's asked repair), and the prediction
+section now carries this seat's containment failure, which had no
+section before because the failure had not yet been made.
+
+**What this seat does not claim in its close word:** that the circle is
+closed. It is not. **The seal is the courier's**, and with it the two
+door repairs (F8, F9) and the landings her merges perform.
 
 ## WHAT THIS DOCUMENT IS NOT
 

@@ -1,0 +1,84 @@
+# Circle Four — the close: builder's word GIVEN; the seal is the courier's
+
+*Written by the Circle Four builder at the circle's close, 2026-07-29.
+Supersedes the state sections of the round docs. Pointers to verify
+(norm 6). NOTE FOR EVERY FUTURE SESSION: see the prediction-handling
+paragraph below before touching any prediction file.*
+
+## The close leg (eighth fully pinned ferry running)
+
+```
+CLOSING-C4.md               a4cbbf6d…  EXACT (draft until builder word + seal; word now given)
+audit/c4_artifact_prefix.sh 32f8f55d…  EXACT (Q3-i ratchet, fifth gate, bitten both seats)
+CIRCLE-FOUR-PREDICTION.txt  d043d71e…  pin matches the closing doc's published commitment
+c4-close-crate.zip  d888bfb0…  head cfa56aaf646c6c223918199326f3a6765a400596  clean
+c2-close-crate.zip  64c5a1e4…  head a91de6d6968ab5967ebff600d62718ba768db12d  clean
+```
+
+## PREDICTION HANDLING — READ THIS, FUTURE SESSIONS
+
+The Circle Four blind prediction (pin d043d71e…, per door §5b) is held
+by KELLY ONLY, to be revealed and scored at Circle Five's close. Its
+text entered THIS builder session's context on the close leg (the
+ferry channel auto-loads attachments) — declared of record in
+C4-R8-BUILDER-CLOSE-WORD.md. The text is recorded NOWHERE durable and
+dies with this session. **A Circle Five session must NEVER receive or
+read that file before Circle Five's close, and this session is barred
+from any Circle Five seat.** Ask Kelly to keep the file off any
+AI-bound channel until scoring time. Recommended door repair: prediction
+texts travel courier-only legs or as ciphertext with escrowed key.
+
+## The builder's close word: GIVEN
+
+```
+C4-R8-BUILDER-CLOSE-WORD.md  f8dc3b2e329657d8102065b56e70422f85bf40cc117e9d9d5c1e8f7421eda529
+```
+
+Verified for the word: all 16 letters in the closing table byte-exact
+against bodies held here (12 my own out/ files) + handshake correctly
+LOST; artifacts unchanged (6b1191b9/aa8d929a/eb66ed6f); ratchet bitten
+on both stated falsifiers (insertion reds, appended namespace block
+passes AND compiles silent); all five C4 gates + C2 system pair + full
+kernel chain green at both close heads; SR41–SR43 resolve; F8/F9 door
+sites real (INHERITANCE.md:374 stale one-strike description, :380
+DRAFT-marking sentence — Kelly's to land). One repair asked while
+draft: headline "four instruments built" vs five listed — one word,
+re-pin, then seal (or this letter's paragraph stands as the norm-13
+correction beside it).
+
+## The circle's result (for the next session's orientation)
+
+Q1 SETTLED: spanning sentence proved (C4_Q1.lean), implication one-way
+at stated strength. Q2 CLOSED: quotient constructed (prelude Quot),
+transfer receipt (5 sealed facts + 2 memberships, 1 uncarried) paid at
+predicted price; gauge_quotient_exactly_two over the SEALED relation.
+Q3 NOT MET eight-for-eight (R1 cochain complex, R2 coboundary op, R3
+cocycle-as-kernel, R4 quotient-of-group-by-subgroup [FALSE FRIEND — the
+Q2 quotient is subtype-by-relation, shares only the word], R5 matching,
+R6 Z₂-as-group, R7 Z[i]ˣ-as-abelian-group, R8 group structure on
+classes) — the enumerated shopping list for any future circle. Class
+count pinned: class_count_is_two (bijection with Bool, set-level).
+Seal never edited; rides byte-exact everywhere incl. as C4_Q3.lean's
+141,511-byte prefix. Census everywhere: propext+Quot.sound only,
+sorryAx 0, Classical.choice 0.
+
+## Instruments at close (all bitten by both seats)
+
+c4_inherited (carry-forward; green = manifest↔tree agreement),
+c4_manifest_prefix (P3), c4_carried_defs (Q1-i + Q2-i cures,
+CARRYING_FILES list), c4_seal_prefix, c4_artifact_prefix (Q3-i
+ratchet). C2: s_append_only (P1+entries) + p2 candidate (P2b) wired
+beside each other. OPEN HAZARD SR43: hand-maintained carrying lists —
+unlisted file arrives ungated; named thrice, instrumented never.
+
+## Remaining after this session
+
+Kelly: the seal; F8/F9 door repairs; PR merges (#1 C4, #15 C2);
+custody of the prediction file. Prover: explicit close word if the
+record wants it beside the draft's authorship; state-of-the-record v4
+per precedent. Next circle: charter under its own ceremony; the
+system-record selection norms (S1–S3 as amended) govern the crossing;
+S3 remains PROVISIONAL until co-adjudication at this seal per its own
+clause. Environment: Lean v4.32.0 via GitHub release + python
+zstandard; C1_LEAN needs the Circle One crate; container resets lose
+everything but the project docs.
