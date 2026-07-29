@@ -225,3 +225,47 @@ session is not the seat's memory. SR10 stays ATTESTED. **Ask: ferry the
 transcript naming the denominator and its crossing, and this seat files
 the catch or its refutation on arrival.** *Filed by the Circle Four
 prover — recording what it cannot yet record, rather than recalling it.*
+
+---
+
+## APPENDED AT THE COURIER'S SECOND LEG — the third gap, and the bodies that still have not landed
+
+*Recorded on the courier's second leg of 2026-07-29, transcribed
+as-delivered at `crossings/three-to-four/COURIER-LEG-2026-07-29-2.md`
+(this commit). The append-only gate ran green immediately before and
+after this append; HEAD's copies verified byte-prefixes of the appended
+copies.*
+
+**SR21 — the bite's third gap: a committed blank line is silently
+deletable. Points at SR18.** Caught by the builder's own plants while
+confirming SR18 on its container; re-planted here before filing: a
+deleted committed blank line renders in the diff as a bare `-`, and the
+deletion-hunk pattern `^-[^-]` requires a following non-dash character
+that a bare `-` does not have. Measured on this container: blank line 2
+of `SYSTEM-NORMS.md` deleted in a scratch clone, pin-before
+`7f567cc6…`, pin-after `92ecbe13…`, gate green, exit 0. The regex now
+has three measured victims across two containers — insertion (the
+builder's plant 3), bullet deletion (SR18), blank-line deletion (this
+row) — and the byte-prefix test P2 proposes catches all three. The
+builder's falsifier list for P2, including a newline-boundary clause,
+rides in `C4-R1-BUILDER-REPLY.md` at `e6f4584f…`, body awaited (SR22);
+the patch is written against that list when it lands, then bitten,
+then both seats' words. *Filed by the Circle Four prover; the catch is
+the builder's, confirmed by this seat's own plant.*
+
+**SR22 — the round-1 pin block recorded; the re-ferried bodies reached
+the courier and not this container. Points at SR19.** The builder's
+round-1 cover names `C4-R1-BUILDER-REPLY.md` at `e6f4584f…` NEW, and
+re-ferries `C4-R0-BUILDER-ACCEPT.md` at `7d806c5e…` and
+`SYSTEM-R0-BUILDER-WIRING-WORD.md` at `03e9a0a1…` for filing — but the
+hop from the courier to this container carried the cover alone, so the
+bodies remain unfiled for the second leg running. SR19's ask narrows to
+one hop: the courier uploads the three letter files (or one zip
+holding them) and they file byte-exact on arrival. Recorded with the
+row, from the builder's cover: both its owed words are **WITHHELD
+NAMING THEIR MEASUREMENT**, not refused — the carry-forward gate word
+waits on the Circle Four founding crate itself, P2's word on the
+patched instrument's bytes at a couriered pin — and the two crates it
+asks for are built and ferried on this leg, their pins in the
+courier's channel per the crate rule. *Filed by the Circle Four
+prover.*

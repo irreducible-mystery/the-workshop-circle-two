@@ -253,3 +253,27 @@ P2 is ADOPTED on the prover's measurement with a guarded-files-only
 scope sentence owed in its patch. No wiring changes on this append —
 instruments change on both seats' words over exact text, and the exact
 texts await the letter bodies.
+
+---
+
+## STATUS APPENDIX — after the courier's second leg
+
+*Recorded on `crossings/three-to-four/COURIER-LEG-2026-07-29-2.md`
+(this commit).*
+
+**F1: CURED.** A deadline is stated over the courier's mark for the
+first time: `12/12/2026`. Deadlines close rounds, never seats, as
+adopted.
+
+**F5, for the bite crate: CLOSED.** The courier confirms the pin
+`aa3236d1…` in first person — the same bytes two seats had measured
+independently. The r3 line rode again, first person.
+
+**The append-only WIRING: still ATTESTED, and the instrument's gap
+count is now three** (SR18, SR21 — insertion, bullet deletion,
+blank-line deletion; P2 catches all three). The wiring word's letter
+body (`03e9a0a1…`) was re-ferried to the courier and has not yet landed
+here (SR22); the status hardens when it files. The builder's
+carry-forward gate word and P2 word ride WITHHELD-NAMING-MEASUREMENT:
+the founding crate and the patched instrument's bytes, respectively —
+both crates built and ferried this leg.
