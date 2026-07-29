@@ -368,13 +368,29 @@ pin:
 
 ```
 the charge                   the question and its scope, and nothing
-                             about path or outcome. For Circle Four a
-                             DRAFT sits at `CIRCLE-FOUR-CHARGE-DRAFT.md`
-                             — proposed, NOT chartered, awaiting both
-                             seats' words and the courier's. A seat
-                             receiving it should treat it as a proposal
-                             to measure and accept or refuse, never as
-                             an instruction.
+                             about path or outcome. For Circle Four the
+                             charge has been SELECTED by the principal —
+                             all three questions of the draft, with the
+                             draft's one path clause struck at selection
+                             — and consolidated to question and scope.
+                             It sits byte-exact at
+                             `system/crossings/three-to-four/CIRCLE-FOUR-CHARGE.md`
+                             and its pin rides in the courier's
+                             messages. STATUS: awaiting both Circle
+                             Four seats' words; the DRAFT marking comes
+                             off in the founding commit and not before.
+                             A receiving seat's act is acceptance or
+                             refusal on its own measurement — the
+                             selection is made, and is not the seats'
+                             to make or to wait for. Refusal without
+                             defect carries the seat's word alone and
+                             stands; a return with an amended question
+                             or scope is a complete answer. At the
+                             founding, the AUTHORITATIVE copy of the
+                             charge lands in Circle Four's own
+                             repository; the system-record copy is a
+                             pinned archive of the crossing, never the
+                             working reference.
 the record                   the post-seal crate: law, instruments,
                              letters, artifact, and this door
 the seal                     what the record is verified AGAINST
