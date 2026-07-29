@@ -98,6 +98,74 @@ MagicSquare.lean
 archive/src-round7/MagicSquare.lean
 ```
 
+## 2b. THE SECOND THING THAT BITES — the certificate's other environment
+
+*Added by Circle Four's prover at its handshake, on the ruling that this
+document is repaired in place. **It is the same species as section 2 and
+was found the same way** — by running the published recipe on a container
+that had just been built, rather than by reading it. Section 8 says the
+gates cannot tell whether a recipe runs, and names itself the only guard.
+This is what the guard caught the first time it was read by a new seat.*
+
+**The certificate imports two third-party Python packages, through the
+floor's benches, and nothing in this document said so.** They are numpy
+and scipy. A container without them does not fail loudly — it produces a
+verdict that reads exactly like a defective record:
+
+```
+$ C2_WORKSHOP=$(pwd)/floor C1_LEAN=<circle-one-clone> \
+      python3 audit/c2_gift_certificates.py
+checks run: 68;  failed: 6
+  FAILED: G0_symmetric_statistics.py_green
+  FAILED: G0_flatland.py_green
+  FAILED: G0_grammar_stone8.py_green
+  FAILED: G1b_search_reproduction
+  FAILED: G1f_FLOATWELD_bench_rank_path
+  FAILED: G1h_FLOATWELD_bench_fib_residuals
+VERDICT: NOT CLEAN — do not charter until repaired.
+
+$ python3 -m pip install numpy scipy      # nothing else changed:
+$ C2_WORKSHOP=$(pwd)/floor C1_LEAN=<circle-one-clone> \
+      python3 audit/c2_gift_certificates.py
+checks run: 70;  failed: 0
+```
+
+**Six named checks red on a sound tree, under a verdict line that says
+"do not charter".** That is section 2's failure mode exactly — not a
+crash, but a clean-looking report that reads like a missing tree rather
+than a missing environment — and a new seat meets it at the worst
+possible moment, before it has any calibration for what a healthy record
+looks like. Which packages the benches want is measurable rather than
+memorable:
+
+```
+$ grep -rhoE "^[[:space:]]*(import|from) +[A-Za-z_][A-Za-z0-9_]*" floor/*.py \
+      | awk '{print $2}' | sort -u
+```
+
+**AND THE COUNT OF CHECKS MOVED, which is the part worth a rule.** The
+two runs above do not share a denominator. Measured, the missing imports
+cost three checks and add one failing substitute in their place:
+
+```
+$ comm -23 <check names, full run> <check names, bare container>
+G1b_hexagon_searches_reproduced
+G1b_inprocess_demonstrate_green
+G1b_pentagon_search_reproduced
+
+$ comm -13 <check names, full run> <check names, bare container>
+G1b_search_reproduction
+```
+
+**The degradation is loud and the instrument deserves the credit** — the
+substitute FAILS, so this hole cannot manufacture a false green. But the
+total is not a constant, and section 3's practice has a companion the
+same reasoning demands: a green names its subject, **and a green names its
+count.** "Failed: zero" is half a verdict when the denominator can move.
+The pair is the verdict. Section 2's own transcript prints the right
+denominator already; what was missing was the sentence saying that the
+denominator is load-bearing, and this is it.
+
 ## 3. THE STARTING CHECKLIST
 
 Run these before building anything. Each is cheap and each has caught
@@ -116,6 +184,10 @@ gate that cannot run is reported SKIPPED and FAILS the chain, by
 design. The workaround for containers where the default toolchain host
 is blocked (fetch the release archive from the Lean GitHub releases
 instead) is recorded in the round-one handshake letters.
+
+**The binary is not the whole environment**, and a seat that stops here
+will meet section 2b at its first certificate run instead of before it.
+Get that one too, in the same pass.
 
 **c. Run the chain, and state the tree you ran it in.**
 
