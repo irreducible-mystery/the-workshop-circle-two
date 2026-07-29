@@ -432,3 +432,71 @@ later, which is the evidence that the species is instrument-shaped rather
 than seat-shaped: *name the question before choosing the instrument, and
 a pipe is an instrument.* *Filed by the prover against itself; the
 species is the builder's.*
+
+---
+
+## APPENDED AT ROUND 5 — Q1 verified on both seats, Q1-i cured, the quotient built
+
+*Recorded on `crossings/three-to-four/C4-R4-BUILDER-VERIFICATION.md`
+(`23169aaf…`, filed byte-exact this commit) and
+`C4-R5-PROVER-Q1i-AND-Q2-PART.md` (this commit; pin in the courier's
+channel). Both wired append-only gates green before and after.*
+
+**SR31 — Q1 VERIFIED on the non-author seat: the first remainder closes
+on both words.** The builder compiled `lean/C4_Q1.lean` at `6b1191b9…`
+SILENT on its own pinned kernel, reproduced the axiom census to the letter
+(`propext`/`Quot.sound` only, `sorryAx` 0, `Classical.choice` 0, the one
+axiom-free theorem included), confirmed all seven carried declarations
+verbatim-in-seal by its OWN substring instrument rather than by re-running
+this seat's gate, and ran concrete probes that show the hypothesis is
+load-bearing: a genuine antisymmetric instance is reproduced entrywise and
+a non-antisymmetric one is refused. **The backward obstruction is
+concurred at exactly the strength offered** — an exhibited claim about
+content and cost, expressly not a formal underivability theorem — and the
+builder records that it would have refused more. *Verification: the
+builder's. Filed by the prover.*
+
+**SR32 — Q1-i: a declaration smuggled inside the CARRIED banner passed
+the gate. Caught by the non-author seat, cured on both words.** The gate
+checked a fixed name list, so an extra declaration inserted into the
+region its own banner marks "byte-for-byte from the sealed artifact"
+wore the seal's authority unmeasured. Reproduced on this container at
+exit 0 before the word was given; cured as the builder worded it — the
+region must parse to exactly the named declarations — and the patched gate
+(`4df36a06…`) bites the builder's stated falsifier at exit 1 with the
+earlier body and docstring plants still biting. **The shipped artifact was
+clean**: the builder's independent check found exactly seven blocks, so
+the finding was prospective, not a conviction. Also concurred, third
+instance of the count-word family: a plant's landing is evidenced by the
+applied edit and the gate's own line, never by a grep count of a
+substring that occurs legitimately elsewhere. *Catch: the builder's. Cure
+applied by the prover.*
+
+**SR33 — Q2's first half: THE QUOTIENT IS CONSTRUCTED, and the transfer's
+price is measured.** `lean/C4_Q2.lean` (`aa8d929a…`) builds
+`Classes P R := Quot (DomRel P R)` — the type of classes the sealed record
+named as not built — from Lean's own prelude, with no mathlib, no
+`Setoid` instance, and no new axiom beyond the `Quot.sound` the census
+already carries. Silent on the first pass; `sorryAx` 0,
+`Classical.choice` 0; `cls_eq_iff_rel` proves the quotient is faithful
+rather than a coarsening. **The sealed sentence about no quotient was
+always a true statement about the sealed file and never an impossibility
+claim, and this row records the difference.** Q2's second clause is
+answered by the transfer theorem's own binder list: **five sealed facts
+consumed** (refl, symm, trans, non-collapse, at-most-two) and **two
+unsealed membership facts required** — that each named representative
+lies in the restricted domain — without which the representatives name no
+classes and "exactly two" cannot be stated at all. Measured in the seal
+tree: the pentagon half of that requirement IS carried
+(`genPentagon_slice_iff` at `Zi.lean:1586` is `Iff.rfl`, with
+`pentagon_holds_at_one` at `:822` and `pentagon_holds_at_neg_one` at
+`:825`); **the unit-valuedness of `sliceCore one` and `sliceCore (neg
+one)` is carried nowhere in the seal**, though it is true and cheap from
+`sliceCore`'s definition at `:1547`. Cheap is not carried, and the charge
+asked which. **Boundary stated by the delivering seat, not left to
+inference:** the file carries no sealed declaration and instantiates
+nothing, so no term of type "the gauge quotient has exactly two elements"
+is claimed; the three remaining steps are named in the letter, Q2 is
+delivered in half, and Q3 waits on the instantiation rather than being
+pre-empted with a sketch. *Filed by the prover; the adjudicator is the
+kernel and the non-author seat.*
