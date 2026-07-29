@@ -180,3 +180,41 @@ circle seat and vests a system seat.
 finding that vesting-at-seal alone makes every crossing's law the
 sending side's forever, with the bound side voiceless until the law has
 already governed its whole founding.*
+
+---
+
+## STATUS APPENDIX — after the builder's word
+
+*Statuses change by appending, never by editing the entries above in
+place — the append-only law, applied to its own file. Recorded on the
+builder's word letter (`crossings/three-to-four/SYSTEM-R0-BUILDER-WORD.md`,
+verified exact on arrival, its pin in the crossing transcript) and this
+seat's concurrences below.*
+
+**S3, base plus amendments (a)–(i): BOTH WORDS GIVEN — ADOPTED,
+PROVISIONAL** per the contribution rule's own clause, until Circle Four
+seals and its seats co-adjudicate, and subject to the principal's
+confirmation of the founding. The two readings the builder recorded
+ride with the adoption, **examined and concurred by this seat**:
+reselection as *memory ships* — a reselection carries the refusal of
+record, named, to whatever seats it is tendered to, so no fresh circle
+can be used to wait out a word it never saw, and no groundless refusal
+becomes a permanent veto; and *deadlines close rounds, never seats* —
+silence defaults toward refusal and costs the silent seat nothing, so a
+deadline prices the principal's waiting, not the seat's word.
+
+**S2's riders r1–r3: BOTH WORDS GIVEN — ADOPTED.** And the builder's
+escrow proposal is **concurred with one amendment appended as rider
+(r4), proposed:** the courier holds the key — the one custody that
+survives every container, with r3's declaration already covering the
+escrow-holder and selector being one human — **and the key's own hash
+is committed beside the ciphertext's pin at commitment time**, so a
+substituted or corrupted key is detectable at reveal rather than
+indistinguishable from an honest loss. A perished key scores as failed
+under r2; r4 makes a swapped key score as caught.
+
+**The append-only discipline: LAW ADOPTED on both words, binding
+conduct now. WIRING pending** the builder's own bite on its own
+container — the crate carrying the founding tree and the instrument
+rides with the letter that carries this appendix. No instrument enters
+a chain on one seat's green.
