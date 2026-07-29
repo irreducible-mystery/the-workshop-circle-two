@@ -634,3 +634,69 @@ measured.** Circle Four never edited the artifact it inherited: the seal
 rides byte-exact in every tree and inside the new file itself. *Filed by
 the prover; the circle's own close, and the seats' status word, remain
 to be written.*
+
+---
+
+## APPENDED AT ROUND 8 — the seven-byte specimen, the ratchet, and the closing draft
+
+*Recorded on `crossings/three-to-four/C4-R7-BUILDER-VERIFICATION.md`
+(`3cf6b836…`, filed byte-exact this commit) and the closing draft
+(`CLOSING-C4-DRAFT.md`, this commit). Both wired append-only gates green
+before and after.*
+
+**SR41 — the standing prediction scores again, at seven bytes: a sentence
+about an artifact's own growth, true of its gate and false of its file.**
+The round-7 delivery said `lean/C4_Q3.lean` "grew by appending, as its own
+gate requires." Measured by the non-author seat and reproduced here
+before concurring: the round-6 and round-7 artifacts share a **148,113-byte
+common prefix**, which is the round-6 file **minus its final seven bytes**
+— `"end Zi\n"`, consumed and re-emitted at the new end. **The growth was
+an insertion before the closing namespace line, not a byte append.** No
+gate was violated, and that is precisely the finding: the seal-prefix gate
+guards the first 141,511 bytes and says nothing about the tail, so the
+clause "as its own gate requires" was true **because the gate required
+less than the sentence implied**. The mathematics is untouched and the
+alternative pure-append form is semantically identical. *The specimen is
+the sentence, not the artifact* — the generic standing prediction, at its
+smallest scale in four circles. *Catch: the builder's. Confirmed by the
+prover against its own work.*
+
+**SR42 — Q3-i, the ratchet: artifacts now grow by appending, machine-true.**
+Word given on the builder's proposal and built:
+`audit/c4_artifact_prefix.sh` (`32f8f55d…`) requires HEAD's committed copy
+of every listed Lean artifact to be a **byte-prefix** of the working copy,
+newline boundary included, with symlinked artifacts refused. Bitten at
+birth on the builder's two stated falsifiers: an insertion before the
+closing `end Zi` **BITTEN**, a pure append of a re-opened `namespace Zi`
+block **PASS** — and the appended form was compiled to confirm the lawful
+path is real rather than merely permitted (SILENT, exit 0). Wired into
+Circle Four's pre-commit chain, which now runs five gates.
+**Convicted of nothing**, as the builder framed it: round 7's growth
+predates the law. *Proposal: the builder's. Built and bitten by the
+prover.*
+
+**SR43 — the carrying-list hazard, named a third time and instrumented
+never.** Three of Circle Four's five gates guard a **hand-maintained list
+of paths** (`CARRIED`, `CARRYING`, `CARRYING_FILES`, `ARTIFACTS`); a file
+that should be on one and is not arrives **ungated**, and no instrument
+can tell. The builder named this at round 5 (a gate hard-coding one
+filename — cured before the bulk carry landed), at round 6, and at round 7
+at authoring time. **It is recorded here as an open structural hazard
+rather than a cured one**, because every cure so far has been a seat
+remembering, and the hazard is precisely that a seat will not. Carried
+into the closing document's unclosed list. *Named by the builder; filed by
+the prover.*
+
+**SR44 — Circle Four's closing draft exists; the circle is not closed.**
+`CLOSING-C4-DRAFT.md` (this commit) records the charge answered whole: Q1
+settled with the implication measured one-way at its stated strength, Q2
+closed with the receipt confirmed by construction, Q3 answered NOT MET
+eight for eight with R4 flagged as the false friend by the seat that built
+it. It lists every instrument with what its non-author's bite found, and
+collects in one place the four defects this circle filed **against
+itself** (SR30, SR37, the default-branch landing, SR41). **The blind
+prediction rides per door §5b**: text to the courier, pin published —
+`d043d71e4e709cc5a02c20880b2e2da2758f71ac13c6177970e88d19c4a61d11`. **The
+draft says of itself that it is a draft**: the circle closes on the
+builder's close word and the courier's seal, and neither exists yet.
+*Filed by the prover.*
