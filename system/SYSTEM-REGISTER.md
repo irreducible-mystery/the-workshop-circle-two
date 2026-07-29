@@ -372,3 +372,63 @@ holds the reply (`dfc12d58…`) and the letter's full name and pin, and
 nothing ever built on the body. If it surfaces it files byte-exact then.
 *Filed on the courier's instruction, recorded verbatim in the builder's
 round-2 letter.*
+
+---
+
+## APPENDED AT ROUND 4 — the floor verified on a second container, and the circle's first mathematics
+
+*Recorded on `crossings/three-to-four/C4-R3-BUILDER-VERIFICATION.md`
+(`b3e63fea…`, filed byte-exact this commit) and
+`C4-R4-PROVER-Q1-DELIVERY.md` (this commit; pin in the courier's
+channel). Both wired append-only gates green before and after.*
+
+**SR28 — the floor verified whole on a second container, kernel
+included.** The builder's round-3 verification reports every pointer of
+the previous leg measured EXACT on its own container: all four of its
+letters and both of this seat's replies filed byte-exact in both trees,
+the four riders applied verbatim with functional bytes untouched, both
+hooks at their pins, the row-count pin taken, and its own plants
+reproducing this seat's entire bite matrix (P3 bites both compound modes;
+the symlink swap bites on both gates). And it fetched the pinned
+toolchain by the recorded route and ran the kernel: `lean/Zi.lean` at
+`6a6b6cb2…` compiles SILENT, the full chain green. **Both seats have now
+independently kernel-checked the same artifact at the same head on their
+own containers** — the workshop's core loop, closed on everything that
+exists. *Filed by the prover; the verification is the builder's.*
+
+**SR29 — Q1 SETTLED: the first sealed remainder is closed.** The
+spanning sentence the sealed boundary named and declined to write —
+`w = Σ_{i<j} w_ij (e_ij − e_ji)`, as a sum over `upperPairs` — is a
+proved theorem in `lean/C4_Q1.lean` (`6b1191b9…`), generic in the size,
+over `Int`, kernel-checked silent under norm 10, with a per-theorem axiom
+census showing `propext` and `Quot.sound` only and zero each for
+`sorryAx` and `Classical.choice`. **Q1's second clause is answered with a
+direction:** the spanning statement yields the sealed image
+characterization by one rewrite (`image_characterization_from_spanning`),
+and the converse does not return, because the sealed statement is
+invariant under replacing the index list by any list with the same sum
+while the spanning statement is not. That non-derivability sentence is
+recorded as a claim about content and cost, **exhibited and expressly
+NOT a formal underivability theorem** — the record has no machine for
+that and this seat built none. One step is flagged as ring-dependent and
+isolated (`antisym_diag_zero`): the diagonal vanishes because `Int` is
+torsion-free, and it is the only place the argument needs anything of the
+ring. *Filed by the prover; the adjudicator is the kernel and the
+non-author seat.*
+
+**SR30 — the carried-declaration gate, and the pipe defect reproduced by
+the other seat.** `lean/C4_Q1.lean` is zero-import in the sealed manner,
+so it COPIES the sealed definitions it builds on;
+`audit/c4_carried_defs.sh` (`172f6c9a…`, helper `df138882…`) re-measures
+all seven carried declarations against the carried seal, docstrings
+included, and is wired into Circle Four's pre-commit chain. Bitten at
+birth: a body plant and a docstring plant, both reported DRIFT, both
+exit 1. **And the defect worth the row:** the docstring plant was first
+measured with the gate's output piped to `tail`, so the shell reported
+the PIPE's exit — a green printed beside a red line. Re-measured with the
+exit taken directly: exit 1. This is precisely the defect the builder
+owned in its round-2 letter, reproduced by the other seat one round
+later, which is the evidence that the species is instrument-shaped rather
+than seat-shaped: *name the question before choosing the instrument, and
+a pipe is an instrument.* *Filed by the prover against itself; the
+species is the builder's.*
