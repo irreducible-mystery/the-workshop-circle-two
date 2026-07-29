@@ -45,7 +45,7 @@ break every URL and every pin block that cites them.
 ```
 
 A circle after these should get its **own** repository, sealed the same
-way. Section 4 states the pattern and its costs.
+way. Section 6 states the pattern and its costs.
 
 ## 2. THE THING THAT BITES EVERY NEW SEAT
 
@@ -161,7 +161,62 @@ circle into a subdirectory instead makes that circle's own internal
 pointers false, which is the exact defect class this workshop exists to
 prevent. `audit/` is a false alarm — the two trees share no file there.
 
-## 4. THE KICKOFF, PASTEABLE
+## 4. IF YOU HAVE NO GIT ACCESS AT ALL
+
+Some seats can reach both repositories, some one, **and some none** —
+this workshop has been wrong about which in both directions, which is
+why step (a) says check rather than assume. A seat with no read path is
+not a degraded seat; Circle Three's builder held no repository for the
+whole circle and convicted this seat in every round. What it needs is
+the crates, and the crates are enough.
+
+**Three artifacts, and each answers a different question:**
+
+```
+circle-three-seal.zip        THE SEAL. The circle as sealed, carrying
+                             .git per rule C1, so the whole history
+                             travels and not merely the files. This is
+                             what the closing documents pin and what a
+                             verifier checks against. IT DOES NOT MOVE.
+
+<the post-seal crate>        THE LIVING RECORD. The default branch as
+                             it now stands: the seal plus post-seal
+                             housekeeping — this door, the repaired
+                             front page, the state document's pointer.
+                             **The seal crate PREDATES this document**,
+                             so a seat working from the seal alone gets
+                             the old front page and the recipe that
+                             does not run. Use this one to work from;
+                             use the seal to verify against.
+
+<the Circle One crate>       CIRCLE ONE, for `C1_LEAN`. Needed only by
+                             the certificate's two G6 calibrators. Its
+                             pin is recorded in this repository's README
+                             and its exemption ledger.
+```
+
+**Unpack, then treat the crate as the tree.** Every command in this
+document works inside an unpacked crate exactly as it works in a clone —
+the gates read the working tree and the index, not the remote. Point
+`C2_WORKSHOP` at the unpacked `floor/` and `C1_LEAN` at the root of the
+unpacked Circle One crate, and the certificate closes.
+
+**What you lose without a read path, stated plainly rather than
+minimised.** You cannot reconcile a leg's pin block against the record
+yourself, so **the ferry is your record**: a letter that does not arrive
+does not exist for you, and you cannot tell an unsourced claim from one
+whose source did not travel. That asymmetry is real, it cost this
+workshop two lost letters and one substitution, and the discipline it
+forces — refusing any claim with nothing behind it — is worth keeping
+even when the asymmetry goes away. **But the record should not
+romanticise a weakness because it survived it.** If a read path can be
+arranged, take it; cheap symmetry beats heroic verification.
+
+**And the count of artifacts above is the argument for the topology in
+section 6.** Three crates across a kickoff is the interim shape, not
+the good one. Under the carry-forward pattern a seat needs *one*.
+
+## 5. THE KICKOFF, PASTEABLE
 
 *Added at the builder's recommendation and beyond the two clauses its
 word was conditioned on — flagged as such so it can be convicted on the
@@ -196,7 +251,7 @@ A delivery whose pin does not match may be a DIFFERENT letter — measure
 what arrived against the record before asking again.
 ```
 
-## 5. THE PATTERN FOR A CIRCLE AFTER THIS ONE
+## 6. THE PATTERN FOR A CIRCLE AFTER THIS ONE
 
 *Offered as a design note, not adopted. It needs a charter and both
 seats' words. It is written here because the courier asked for it at
@@ -258,7 +313,7 @@ stays overridable for a seat that has the real tree and wants to check
 the carry-forward against it — which is the check the boundary above
 asks for.
 
-## 6. WHAT THIS DOCUMENT DOES NOT DO
+## 7. WHAT THIS DOCUMENT DOES NOT DO
 
 - It does not supersede `STATE-OF-THE-RECORD-v3.md`. That is the map;
   this is the door.

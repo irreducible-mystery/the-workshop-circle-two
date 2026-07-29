@@ -57,7 +57,7 @@ corrections loudest first, and nothing trusted that was not measured.
 | `NORMS.md` | The canon settlement: norms 1–16 adopted from Circle One's capstone, numbering frozen, floor habits annexed with provenance. |
 | `REGISTER.md` | Circle Two's artifact classes and adjudicators, declared at birth, with the norm-15 question answered. |
 | `ROUND1.md` | The builder's round-1 letter: the crop, and the charge to the third body (S1–S3). |
-| `COURIER-CARD.md` | Kelly's one-page courier checklist — the operating instrument for the loop: pin in the message, every leg, both directions. Ferried on the cloud/courier line and grafted into the record at the reconciliation merge. |
+
 | `letters/` | Primary sources: the couriered letters, round by round — the round-1 handshake report, the byte-original handover reply (`ROUND1-REPLY.md`) beside its earlier transcription (`ROUND1-REPLY-handover.md`), the round-2 reconciliation, and the third-body seating letter. |
 | `floor/` | The floor, inherited verbatim from Circle One's crate except crop item #1 (`symmetric_statistics.py` docstring + pinned assert). Run: `python3 run_all.py` → 29/29. |
 | `audit/c2_gift_certificates.py` | The chartering certificate: 70 exact checks. See `INHERITANCE.md` for the run recipe and what each variable must point at — **an earlier version of this row named a path that does not exist in Circle One, and following it produced 68 of 70 with two G6 calibrators failing.** The corrected recipe is measured there, not remembered here. |
@@ -65,7 +65,8 @@ corrections loudest first, and nothing trusted that was not measured.
 | `VIEWS.md` | Rendered by `audit/c2_views.sh`; never hand-edited. Every count about the artifact lives here and is read off the artifact at render time. |
 | `CLOSING.md`, `CLOSING-C3.md` | The two closing documents — Circle Two's and Circle Three's. Each is its circle's final audit: what was proved, what was not, the adjudications, the specimen ledger. |
 | `STATE-OF-THE-RECORD-v3.md` | The map any new session inherits: the seats, all three circles, the annex, the lineages, the protocol. Supersedes v2. |
-| `INHERITANCE.md` | What a seat needs before it can build, which repository holds what, and the measured commands. Read this first. |
+| `INHERITANCE.md` | What a seat needs before it can build, which repository holds what, the measured commands, the pasteable kickoff, and what to do with **no git access at all**. Read this first. |
+| `COURIER-CARD.md` | **RETIRED** at the post-seal housekeeping, kept as a primary source. Rules C1–C5 were born on it. Superseded by `INHERITANCE.md`; its stale `C1_LEAN` recipe is struck in place with the correction beside it. |
 | `PROOFS.md` | Circle Two's own proof ledger, cumulative round over round — the delivery, its families, its anti-vacuity and controls, its corrections, and the QUESTIONS block for the builder. |
 | `audit/c2_pointers.sh`, `audit/c2_numerals.sh` | The prose gates: every backticked pointer resolves, every bare-asserted numeral is sourced. Run from repo root; both exit 0 on a clean tree. |
 | `audit/c2_tree.sh` | The tree-hygiene gate (REGISTER row 10): no build artifact is ever tracked. |
