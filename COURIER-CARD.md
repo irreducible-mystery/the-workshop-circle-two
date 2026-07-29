@@ -1,7 +1,24 @@
-# COURIER CARD — Kelly's checklist for the Circle Two loop
+# COURIER CARD — RETIRED
 
-*Plain language, one page. This is the whole job until both new
-instances are in their flow. Keep it open next to the chat windows.*
+> **RETIRED at Circle Three's post-seal housekeeping, on the courier's
+> ruling and both seats' words. Do not follow this card.**
+>
+> **Use `INHERITANCE.md` instead.** It carries the pasteable kickoff,
+> the measured recipes, and the protocol as it stands after three
+> circles.
+>
+> This file is kept, not deleted, because nothing in this record is
+> erased: it is a primary source and Kelly's own document, and rules
+> C1–C5 were born here. It is retired because it went stale in the one
+> way that costs a new seat a day — **it was the last place in the
+> workshop where the wrong `C1_LEAN` recipe survived**, and it names
+> seats by model, which the seats-are-charges settlement retired.
+> The wrong line below is struck in place with its correction beside
+> it rather than quietly fixed, per norm 13.
+
+*Plain language, one page. This was the whole job until both new
+instances were in their flow. Kept open next to the chat windows for
+the length of Circle Two and Circle Three.*
 
 ---
 
@@ -52,6 +69,12 @@ Circle One's sealed record is cloned at:
 Your charge is ROUND1.md in this folder — read it first; it contains
 your parity-handshake steps and the round-1 mathematics (S1–S3). For
 the certificate step, use C1_LEAN=<PATH-TO/the-workshop>/lean. Report
+[STRUCK — WRONG, AND CORRECTED HERE: Circle One keeps its proof files
+at its repository ROOT, so the trailing "/lean" makes the certificate
+report two failed G6 calibrators. The correct value is the repository
+root itself. Diagnosed in round one of Circle Three
+(letters/ROUND3-HANDSHAKE-PROVER.md) and measured again at the
+post-seal housekeeping; see INHERITANCE.md section 2.]
 what you find — including anything the letter got wrong — before
 proving anything. I am Kelly, the courier; hashes and commit IDs will
 always ride in my messages, both directions.
@@ -126,3 +149,31 @@ until a body audits it and rules ADMIT in a letter, and the merge pin
 rides back through you. You adopted this habit in-channel before either
 body wrote it down; it is written down now because habits that live only
 in one person's head are exactly what this circle keeps convicting.
+
+
+---
+
+## RETIREMENT NOTE, recorded per norm 13
+
+Retired at Circle Three's post-seal housekeeping. What this card got
+right outlived it: the one rule at its head — *every time you carry an
+artifact, the pin rides in your message, never only inside the
+artifact* — is the mechanism by which two seats that could never meet
+came to trust each other's work for three circles, and it is the reason
+a substituted letter was caught on the last leg of the last circle.
+Rules C1 through C5 were born on this page.
+
+What went stale, and both items are recorded rather than smoothed:
+
+- the `C1_LEAN` recipe, struck above. It is the specimen that bought
+  `INHERITANCE.md`, and the finding is not that nobody noticed — the
+  correction was written down in round one — but that **the correction
+  was filed where an incoming reader never looks**, so the card kept
+  teaching the wrong thing for eleven more rounds;
+- the seat names, which are given here by model. The settlement
+  recorded in `STATE-OF-THE-RECORD-v3.md` is that **a seat is a charge,
+  not a species**: any capable model may hold any seat, and models
+  appear only in seating tables as historical fact.
+
+Superseded by `INHERITANCE.md`. This page is history now, and history
+is kept.

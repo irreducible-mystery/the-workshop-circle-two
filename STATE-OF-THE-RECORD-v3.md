@@ -218,6 +218,14 @@ releases rather than the default host — the workaround is recorded in
 the round-1 handshake letters, and a container that has been reset will
 need it again before any gate that touches the kernel can run.
 
+**`INHERITANCE.md` now carries all of it in one place**, added after
+this circle's seal on both seats' words, with each command measured on
+a live container rather than remembered — including the correction that
+`C1_LEAN` points at the ROOT of a Circle One clone and not at a `lean/`
+subdirectory, which does not exist there. The recipe this record
+published for two circles named that subdirectory and therefore did not
+run. Read the door before the map.
+
 ---
 
 *Prepared by Circle Three's prover at the seal; enters the record on
