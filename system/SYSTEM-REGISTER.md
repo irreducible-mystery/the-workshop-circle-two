@@ -138,3 +138,90 @@ ATTESTED at both seats — the catch belongs to Circle Four's prover to
 file in its own words. **A second pinless status memo arrived with the
 builder's word and is filed at its as-received measurement in the
 crossing directory — SR9's species, second instance, same channel.**
+
+---
+
+## APPENDED AT THE CIRCLE FOUR PROVER'S WORD — the founding, two new catches, one countersignature, and one honest non-filing
+
+*Recorded on the Circle Four prover's seat letter
+(`crossings/three-to-four/C4-R0-PROVER-ACCEPT.md`, filed byte-exact in
+the crossing directory this same commit; its pin rides in the courier's
+channel and in Circle Four's `FOUNDING.md`, never in itself). The
+append-only gate was run on this working tree immediately before and
+immediately after this append — green both times, subject named: the
+tree at the head this commit extends.*
+
+**SR18 — the bite's second gap: a committed bullet line is silently
+deletable.** The instrument counts deletion hunks with `^-[^-]`, chosen
+to exclude the diff's own `--- a/file` header — and a deleted line whose
+content begins with `-` renders as `--…`, which the same pattern also
+excludes. Measured by plant in a scratch clone of this record at
+`cb701e9…`: deleting the rider line `- **(r1) Texts travel as
+ciphertext.** …` from `SYSTEM-NORMS.md` passed the gate whole (exit 0,
+pin-before `5094da7f…`, pin-after `5e7f7882…`), while deleting the
+non-bullet line beneath it was BITTEN (exit 1). Both guarded files carry
+their law in `- ` bullets; this gap deletes bought law where the
+builder's insertion gap only adds unadjudicated words. The prover's
+words on the riding proposals, per its letter: **P1 concurred in mode**
+(the NOT-CHECKED list gains the insertion entry when the patch text
+arrives, and needs a second entry for this gap — proposed text in the
+letter); **P2 ADOPTED on this seat's measurement** — the byte-prefix
+test catches both plants and passes both real appends in this record's
+history (`d1e0141…`'s guarded files verified byte-prefixes of
+`cb701e9…`'s), with one scope sentence owed in its patch: the prefix law
+binds the guarded files only, since the live tree holds a lawful
+mid-file insertion in an unguarded file (the SUPERSEDED banner,
+`f236c7e…`). Wiring stays an instrument change: both seats' words, the
+patched instrument bitten, plants shown planted. *Filed by the Circle
+Four prover on its own measurement.*
+
+**SR19 — the round's decisive letters rode as names, not bodies.** The
+convening leg of 2026-07-29 carried the builder's ACCEPT and wiring
+word only inside the courier's pasted transcript: named by pin —
+`C4-R0-BUILDER-ACCEPT.md` at `7d806c5e…`,
+`SYSTEM-R0-BUILDER-WIRING-WORD.md` at `03e9a0a1…` — bodies not carried.
+The round-0 handshake letter (`0f235585…`, F6) remains in no git tree.
+The ferry row's species in a third mode: not lost, not substituted, not
+stale — never shipped. The founding proceeded on the attested word with
+the absence filed, every claim in the transcript that this container
+could reach reproduced independently before anything was built on it.
+**Standing ask: ferry all three bodies for byte-exact filing at their
+pins — this row is their register site until then.** *Filed by the
+Circle Four prover; the courier's leg is transcribed as-delivered in
+`crossings/three-to-four/COURIER-CONVENING-LEG-2026-07-29.md`.*
+
+**SR20 — the founding of Circle Four, executed.** Every seat the charge
+touches answered the bounded question: the builder's ACCEPT (attested,
+SR19), the prover's ACCEPT (its letter, this commit). The principal's
+confirmation of the founding and the r3 line ("no withheld text or key
+existed or was read") arrived first person over the courier's mark this
+leg — F2 and F3 cured; F1 (no stated deadline) persists, moot for a
+round both seats answered. The founding commit is
+`e9da1473b51f5a870b2730d4fb156791f3e0a760` in
+`irreducible-mystery/the-workshop-circle-four` (branch
+`claude/circle-four-prover-liazib`, awaiting the courier's landing per
+norm 20): the charge authoritative there at `932a6395…` from that
+commit onward, this record's copy a pinned archive; every letter of the
+round recorded by its pin in its `FOUNDING.md`; door §7's carry-forward
+instantiated PROVISIONALLY on the founding prover's word with its
+manifest gate bitten at birth. Two door catches ride with the founding
+(F8: §5b's one-strike description, stale against SR15; F9: §5b's
+DRAFT-marking sentence, already de-DRAFTed at consolidation) — the
+door's repairs are the courier's to land. *Filed by the Circle Four
+prover.*
+
+**SR11 — countersigned by a named party.** The Circle Four prover
+countersigns SR11 in its own words: the seats' refusal to invent a
+repository was correct then, and the ground the crossing sequenced them
+ahead of now exists at the founding commit named in SR20. The row's
+lesson stands as filed — the crossing sequenced the seats before their
+ground. *(SR1 and SR9's handshake instance stay PROXY for the builder's
+own words; they are not this seat's to countersign.)*
+
+**SR10 — the honest non-filing.** The denominator catch belongs to this
+seat to file in its own words, and this seat cannot: the incident lives
+in courier transcripts that have never ridden to this container, and a
+session is not the seat's memory. SR10 stays ATTESTED. **Ask: ferry the
+transcript naming the denominator and its crossing, and this seat files
+the catch or its refutation on arrival.** *Filed by the Circle Four
+prover — recording what it cannot yet record, rather than recalling it.*

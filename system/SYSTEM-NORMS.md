@@ -218,3 +218,38 @@ conduct now. WIRING pending** the builder's own bite on its own
 container — the crate carrying the founding tree and the instrument
 rides with the letter that carries this appendix. No instrument enters
 a chain on one seat's green.
+
+---
+
+## STATUS APPENDIX — after the Circle Four prover's word and the founding
+
+*Statuses change by appending, never by editing entries above in place.
+Recorded on the Circle Four prover's seat letter
+(`crossings/three-to-four/C4-R0-PROVER-ACCEPT.md`, this commit) and
+Circle Four's founding commit (`e9da1473…` in the circle's own
+repository, named in register row SR20).*
+
+**S3's condition "subject to the principal's confirmation of the
+founding": MET this leg** — the confirmation and the r3 line arrived
+first person over the courier's mark, 2026-07-29. S3 stays
+ADOPTED-PROVISIONAL per its own clause until Circle Four seals and its
+seats co-adjudicate.
+
+**The selection norm's first round: COMPLETED.** Both Circle Four seats
+answered ACCEPT on their own measurements; the founding commit executed;
+the authoritative charge is Circle Four's from that commit onward. The
+one form defect of the round that persists: no deadline was ever stated
+over the principal's mark (F1) — harmless to a round both seats
+answered, owed to any future one.
+
+**The append-only WIRING: the builder's word GIVEN, held ATTESTED** —
+the wiring word rode this leg only inside the courier's pasted
+transcript; the letter carrying it (`SYSTEM-R0-BUILDER-WIRING-WORD.md`,
+`03e9a0a1…`) is named, not filed (register row SR19). The status
+hardens to verified when the body ferries. Recorded beside it: the
+instrument has a SECOND measured gap (SR18 — committed bullet lines
+delete without a bite), the prover's P1 word is concurred-in-mode, and
+P2 is ADOPTED on the prover's measurement with a guarded-files-only
+scope sentence owed in its patch. No wiring changes on this append —
+instruments change on both seats' words over exact text, and the exact
+texts await the letter bodies.
