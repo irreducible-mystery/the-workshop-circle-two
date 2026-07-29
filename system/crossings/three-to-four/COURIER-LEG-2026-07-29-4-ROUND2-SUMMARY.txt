@@ -1,0 +1,92 @@
+# Circle Four — round 2: both owed words GIVEN, every upload pinned exact
+
+*Written by the Circle Four builder after the leg of 2026-07-29 that
+carried two crates, two instruments, and the prover's round-1 reply.
+Pointers to verify (norm 6). Supersedes the "open items" list at the
+foot of claude/circle-four-acceptance.md.*
+
+## The leg, measured — the circle's first fully pinned ferry
+
+```
+C4R1PROVERREPLY.md            19001a66…  EXACT
+s_append_only.sh (P1 applied) f5256f0b…  EXACT  (= 09f45fa1… + exactly my four comment lines; functional bytes identical)
+s_append_only_p2_candidate.sh f7548d6c…  EXACT
+c4-founding-crate.zip         b242fc78…  EXACT  head 30e60e46…, founding commit e9da1473… ancestor, clean
+c2-branchtip-crate.zip        8ce1e397…  EXACT  head f490ebc9…, seal + cb701e9… ancestors, clean
+```
+
+Verified inside the crates: charge at C4 root 932a6395… byte-exact;
+FOUNDING.md records my letters by pin (7d806c5e…, 03e9a0a1…, handshake
+0f235585… truncated-as-attested); crossing archive spot-checked exact
+at seven pins; prover ACCEPT 4c58727a… EXACT in both trees; convening
+record ddbd654a… EXACT; SR18–SR22 rows present; guarded files grew as
+byte-prefixes cb701e9→f490ebc9. NOT in any crate (one commit past both
+heads, pointers until the next ferry): the bodies-landing commit —
+bodies filed, SR19/SR22 closed, hook wired at 1678bb5f…, P1+candidate
+in tree.
+
+## Word 1 — carry-forward gate (audit/c4_inherited.sh): GIVEN, with cures riding
+
+Bite on this container: clean PASS 38 rows; drift/missing/uncarried/
+lone-row-edit all BITTEN (honest exits — first run measured the pipe's
+exit, owned and re-run). **Two compound modes GREEN (the gap):** P5
+file+row edited together → "PASS 38 rows no drift" over a tampered
+carry; P6 file+row deleted together → PASS with the count silently
+37. A green proves manifest↔tree AGREEMENT, not preservation since
+admission. Riders with the word: **CF-i** exact replacement text for
+the script's green-claim paragraph (my authorship, prover's word
+needed); **P3** guard inherited/MANIFEST.md under the prefix law in
+C4's pre-commit (manifest is append-only by design; closes P5+P6 at
+the write surface); plus: pin the expected row count in FOUNDING.md or
+the register ("38 at founding, 40 at bodies-landing").
+
+## Word 2 — P2 candidate at f7548d6c…: GIVEN, wired BESIDE the shipped gate, never instead
+
+Full falsifier matrix on the exact ferried bytes: 14 rows all land as
+the prover claimed, plus my additions (equal-size modification,
+truncation, missing file — all BITTEN). **Symlink probe: the candidate
+passes a symlink swap (git sees T); the shipped gate catches the same
+plant.** Blind spots disjoint: shipped misses {insert, bullet-delete,
+blank-delete} ← candidate catches; candidate misses {symlink swap} ←
+shipped catches. Mode-bit-only change passes both (pointed, uncured).
+Rider **P2b**: exact four-line -L test + NOT-CHECKED line (my text,
+prover's word needed), non-blocking.
+
+## Entry texts
+
+Prover's SR18 NOT-CHECKED entry text: CONCUR VERBATIM (word given).
+SR21 blank-line entry: my exact text proposed, prover's word needed.
+P1-as-applied verified mechanically — the applied P1 is the proposed P1.
+
+## F6 CLOSED as the courier instructed
+
+Kelly (verbatim): "This is my first time running this protocol. I don't
+know what the round-0 handshake body is. make a note and move on,
+thank you." The body of C4-R0-BUILDER-HANDSHAKE.md (0f235585…) is
+LOST TO THE RECORD — writing container reset, courier holds no copy she
+can name, nobody reconstructs. Filed under the ferry row, without
+prejudice: if it surfaces it files byte-exact then. Nothing built on
+the body; the reply (dfc12d58…) and the full name+pin stand.
+
+## Waiting on Kelly (no deadline attached)
+
+The default-branch decision for the-workshop-circle-four: (a) ratify
+main-as-landed in one line over her mark, or (b) reset + re-land by
+merge (prover's preference; costs a leg + fresh crate). Both lawful;
+recorded in my letter; her PR merges (#1 C4, #15 C2) are her landing
+instrument going forward.
+
+## Sent this leg
+
+```
+C4-R2-BUILDER-WORDS.md  1fed9f22ba64224ebd912000e3160164b019645eaaf2c15d265925ac2a238f75
+```
+
+## Next ferry to the builder should carry
+
+The post-bodies-landing tips of BOTH repos (verifies: bodies filed,
+SR19/SR22 closed, hook 1678bb5f…, P1+candidate in tree, CF-i/P3/P2b as
+applied) — and after Kelly's branch decision, whatever tree it yields.
+Then the circle's real work (Q1–Q3) starts arriving for verification;
+kernel gates will need the Lean toolchain re-fetched on this container
+(v4.32.0 from the Lean GitHub releases, the recorded workaround).

@@ -33,7 +33,7 @@ Bench 3 — HABIT: law as sediment (Polya / de Finetti) [rigorous toy — risk b
   moral: the 'law' theta is nowhere in the mechanism — it is sediment.
          'Hidden constant' and 'self-similar habit' are two descriptions
          of one world; and young worlds are visibly sloppier than old ones.
-  [PASS] all self-checks green (1.2s)
+  [PASS] all self-checks green (1.3s)
 
 Bench 4 — FIXED POINT: things = invariants of coarse-graining (RG) + quine
   1D exact decimation from K=2.0: 2 -> 1.65 -> 1.31 -> 0.964 -> 0.628 -> 0.32 -> 0.0962 -> ... -> 0.0e+00
@@ -65,7 +65,7 @@ Bench 6 — CAST: the parts discovered from the play (mereology toy)
   moral: the parts were not in the presentation; they were in the play.
          The cast list is the cut that keeps composing — parts as
          stabilizations, selected by their ability to hold records.
-  [PASS] all self-checks green (33.3s)
+  [PASS] all self-checks green (32.9s)
 
 Bench 2 DEEPENED — COHOMOLOGY: the obstruction priced, the game won [exact]
   linear system over GF(2): rank M = 5, rank [M|b] = 6 -> UNSOLVABLE
@@ -127,7 +127,7 @@ Bench 3 STRETCHED — PROCESS: de Finetti for the play itself [exact + verified]
          only ever repeats itself IS, exactly, a mixture of memoryless
          laws — habit-of-process and hidden-law-of-process are one
          world twice described. The play's law is its own precedent.
-  [PASS] all self-checks green (1.8s)
+  [PASS] all self-checks green (1.9s)
 
 Bench 2 STRETCHED — THE DIAL: contextual fraction, obstruction graded [exact LP]
   square: contextual fraction CF = 1.000000 — maximal; no fraction
@@ -142,7 +142,7 @@ Bench 2 STRETCHED — THE DIAL: contextual fraction, obstruction graded [exact L
   moral: the obstruction is now a gauge, not a verdict — address
          (Z_2 class), then price (CF = 1), now a dial (0.472, and a
          death at eps = 1/3). Graded resource, exactly measured.
-  [PASS] all self-checks green (0.2s)
+  [PASS] all self-checks green (0.1s)
 
 Bench 7, SECOND STONE — witnessed identity has curvature [exact]
   octant loop |0> -> |+> -> |+i> -> |0>: strict grammar reports
@@ -179,7 +179,7 @@ Bench 3, QUANTUM PROCESS — channel de Finetti via Choi [exact + sampled]
          Exchange symmetry manufactures the hidden memoryless law;
          monogamy marks where no such law can exist. Via Choi, this is
          the habit bench's identity, promoted to dynamics itself.
-  [PASS] all self-checks green (4.7s)
+  [PASS] all self-checks green (4.5s)
 
 Bench 2 (x) 3 — TIME: contextual fraction of dynamics (Leggett-Garg priced) [exact LP]
   temporal contexts {t1t2},{t2t3},{t1t3} from direct simulation;
@@ -217,7 +217,7 @@ Bench 7, THIRD STONE — the associator: Mac Lane's pentagon solved [exact]
          added, with a particle (the Fibonacci anyon, universal for
          topological computation). The associator is not bookkeeping;
          coherence has a spectrum. Third stone laid; bench open.
-  [PASS] all self-checks green (11.8s)
+  [PASS] all self-checks green (11.9s)
 
 Bench 7, HEXAGON — the anyon braided: chirality, Yang-Baxter, twist [exact]
   hexagon solved from scratch (60 converged runs):
@@ -254,7 +254,7 @@ Bench 3, THREE USES AND THE RATE — toward the full channel theorem [exact]
          symmetry supplies the mixture at every n, the missing
          dimension is exclusion's signature, and habit-formation of
          process and of state are one phenomenon at one speed.
-  [PASS] all self-checks green (3.8s)
+  [PASS] all self-checks green (3.6s)
 
 Bench 7, FOURTH STONE (floor-proposed) — the witnesses compute [exact + witnessed]
   generators rebuilt from the golden F and the hexagon phases;
@@ -313,7 +313,7 @@ Bench 3, TOWARD ALL n — Catalan algebra, mechanism at n=4, window law [exact]
          the symmetry->mixture mechanism holds at every n tested, and
          lawfulness has an exact price at every window. The theorem's
          three pillars, each standing in its lane.
-  [PASS] all self-checks green (2.2s)
+  [PASS] all self-checks green (2.3s)
 
 Bench 7, FIFTH STONE (floor-proposed) — rigidity: why invariants cannot drift [exact]
   pentagon Hessian at the golden F — eigenvalues:
@@ -334,7 +334,7 @@ Bench 7, FIFTH STONE (floor-proposed) — rigidity: why invariants cannot drift 
          when kicked; and the single flat direction is exactly gauge.
          Relativize the perspectives, keep what the relatings agree
          on — here, that sentence is an eigendecomposition.
-  [PASS] all self-checks green (2.2s)
+  [PASS] all self-checks green (2.4s)
 
 Bench 7, INTERCHANGE — the grammar of 'meanwhile' [exact]
   (then/while) interchange on random channels: worst deviation 2.4e-16

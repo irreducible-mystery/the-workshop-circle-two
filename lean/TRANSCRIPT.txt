@@ -1,0 +1,241 @@
+CIRCLE TWO — COMPILE TRANSCRIPT (the whole file, every section)
+==================================================================
+Everything below was produced by an instrument on this machine this
+session. Wall-times are recorded and never load-bearing.
+
+This transcript is rewritten whenever the artifact moves; it is a record
+of the compile that produced the hashes below, and it is dated by them
+rather than by a claim to be current. It carries NO counts of its own —
+those are rendered in VIEWS.md and gated there (norm 19). It was stale
+across several crates: its title named three sections when the file held
+many more, its scope sentence and wall-time still said "S1 + S2 + S3", its
+source hash was from an earlier head, and it carried a full typed census
+that VIEWS.md had long since contradicted — under a note explaining why
+that block was allowed to stay. That was my own crop, found by
+re-measuring the file the artifact's header points readers at, and it is
+recorded in PROOFS.md under the repairs-pass corrections.
+
+MACHINE
+  Linux x86_64, cloud container (Claude Code session), 2026-07-26.
+  The same platform class as the round-1 handshake, and a different one
+  from the record's original MINGW64/Windows reference.
+
+TOOLCHAIN — the pin, measured, not assumed
+  requested : leanprover/lean4:v4.32.0        (lean/lean-toolchain)
+  measured  : Lean (version 4.32.0, x86_64-unknown-linux-gnu,
+              commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
+  The commit matches the reference transcript's 8c9756b2… exactly, so the
+  pin closes on this machine as it did on the builder's.
+
+  ENVIRONMENT NOTE, per norm 14 and the builder's operational intel:
+  release.lean-lang.org is unreachable from this sandbox, exactly as the
+  builder reported from theirs. The working route was the official GitHub
+  release asset for v4.32.0 (lean-4.32.0-linux.tar.zst under the
+  leanprover/lean4 releases), fetched over HTTPS (200, 559392068 bytes),
+  unpacked, and invoked by absolute path. `lean --version` adjudicates
+  identity, and it matches. No re-pin was needed; none is claimed.
+
+THE COMPILE — the pass condition is silence
+  command : lean lean/Zi.lean
+  exit    : 0
+  bytes   : 0          <-- norm 10: exit 0 AND zero bytes, both measured
+                           (stdout 0, stderr 0, measured separately)
+  time    : 10.3s real (the whole file, every section, on this container;
+                        the builder measured 29.8s for S1 alone on its
+                        own — wall-times are recorded and never
+                        load-bearing, and this one is not comparable to
+                        that one)
+
+  Silence here is earned rather than configured: no linter is disabled
+  anywhere in the file, and no `set_option` suppresses a warning. The one
+  place silence was at risk — the unused-simp-argument linter, which fires
+  on per-call simp argument lists — was resolved by declaring the
+  arithmetic normalisation lemmas ONCE as `attribute [local simp]`, so the
+  proofs carry no explicit simp arguments to be unused.
+
+  THE NORMALISATION SET IS MINIMAL, measured one lemma at a time: each of
+  the eleven was removed in turn and the file was recompiled; every removal
+  broke the compile. An earlier draft carried twenty-one, ten of which were
+  redundant (the tenth, Int.neg_zero, was missed by the first accounting of
+  this very correction and caught by the builder's pass), under a comment
+  claiming the toolchain's default simp lacks
+  the Int units. Measured, that was backwards — `a + 0 = a` and `a * 1 = a`
+  ARE closed by a bare `simp` here; `a + -a = 0` is not, which is why
+  Int.add_right_neg stays. See PROOFS.md correction #2.
+
+THE ARTIFACT
+  sha256  lean/Zi.lean
+          593a223fcead9816989e9d18986aa7053f3f292dd36d4e79634e0bd4ec3c2594
+  sha256  lean/lean-toolchain
+          2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
+
+  .olean, produced by `lean -o Zi.olean lean/Zi.lean`:
+  sha256  9a95f4c7b82bc20712ac9240c6f9950e0bea25a1bdc3340a508e44b231ef1747
+
+  REPRODUCIBILITY, measured twice, in both directions:
+    SAME machine, two builds from the same source -> BYTE-IDENTICAL.
+    CROSS machine -> DIFFERENT. The builder built the S1 head on its own
+    container, same toolchain commit, same architecture, and got
+    9ae2dbd6...; this seat got 85f7a957.... So cross-machine .olean
+    reproducibility does NOT hold, even same-platform. That is Circle One's
+    VERIFY warning, now measured from inside Circle Two, and it is the
+    answer to this delivery's Q4.
+  The source hash and the toolchain commit are the pins that travel; the
+  .olean hash is offered as the charge asks for it, with its scope stated.
+
+  The .olean itself is NOT committed — it is a build artifact, and
+  audit/c2_tree.sh exits 1 on a tracked .olean. Its hash rides here
+  instead, which is the whole point of shipping hashes rather than blobs.
+
+NOTE ON FIGURES. This file states none. Every count — theorems,
+axiom-free, propext, the Quot.sound carriers, and the per-section
+inventory — is rendered in VIEWS.md by audit/c2_views.sh and gated by its
+`check`. An earlier version of this section carried the whole census typed
+out, under a note explaining that the block was "the census's own output"
+and therefore allowed to stand. It went stale exactly as a typed count
+does, and the note did not save it. Norm 19 has no exception for a figure
+that was correct when it was pasted.
+
+THE CENSUS — audit/c2_axioms.sh, this tree, this toolchain
+  RESULT: PASS. The two findings the census JUDGES are both zero: no
+  sorryAx, no Classical.choice. Those two zeros are the load-bearing
+  content of a census run and they are stated here as facts, not as
+  figures — a zero is a verdict. Everything the census COUNTS is in
+  VIEWS.md.
+
+  propext and Quot.sound are reported, not judged: Quot.sound is the
+  footprint omega leaves on this toolchain, and the census NAMES every
+  carrier rather than counting them anonymously, which is the builder's
+  crop #6.
+
+  An earlier header in lean/Zi.lean claimed every theorem depended on
+  propext alone. That was false in both directions and contradicted this
+  transcript; it is PROOFS.md correction #1. A LATER header spelled the
+  whole census out in prose and went stale in every row, which is the
+  repairs-pass crop, and both are why this file now points instead.
+
+EVERY PLANT FIRED THIS SESSION — norm 16
+  The census (audit/c2_axioms.sh):
+    Plant A, a hole reaches the record:
+      theorem plant : False := by sorry
+      -> SORRY: 'P.plant' depends on axioms: [sorryAx]
+      -> sorryAx 1, RESULT: FAIL, exit 1.
+    Plant B, the HANDOFF trap itself, reproduced:
+      theorem trap (a : Int) : a + 0 = a ∧ a + 1 = 1 + a := by omega
+      -> CHOICE: 'Q.trap' depends on axioms:
+         [propext, Classical.choice, Quot.sound]
+      -> Classical.choice 1, RESULT: FAIL, exit 1.
+    Plant C, fired after my audit repaired the census's dead alarm:
+      a file opening two namespaces, so a query names a constant that does
+      not exist
+      -> CENSUS ERROR ... error(lean.unknownIdentifier): Unknown constant
+         `A.two`, RESULT: FAIL, exit 1.
+      Before the repair this alarm was DEAD: it grepped for "error:", which
+      never matches Lean 4.32.0's "error(lean.unknownIdentifier):", so the
+      census would have reported zero theorems and PASSED. See PROOFS.md
+      correction #7.
+  The pointer gate: a dangling path (`phantom_nonexistent_bench.py`) and a
+    well-formed but non-existent Lean name (`Zi.theorem_that_was_never_-
+    proved`) — both FAIL, exit 1, then PASS on restore. The second exists
+    to prove rule (b2) resolves real declarations rather than anything
+    dotted.
+  The numeral gate: a fresh bare numeral in a scanned document — FAIL,
+    exit 1, then PASS on restore.
+  The tree gate: a tracked .pyc AND a tracked .olean (the class this very
+    delivery produces) — both FAIL, exit 1, then PASS on restore.
+  The certificate: the stale "0.53" re-introduced into the bench docstring
+    -> G1h_docstring_carries_exact_4 FAIL, exit 1, restored byte-identical.
+  THE PORTABILITY FALSIFIER, run for real this time (the builder's crop
+    #2: the first fix copied the pin but kept compiling from the repo root,
+    so the pin travelled and was never read; and the falsifier that
+    mattered was never run, because this container has no toolchain manager
+    and its absence masked the defect -- norm 14's exact species inside a
+    sentence about norm 16). A wrapper standing in for a manager with NO
+    default configured:
+      BEFORE the real fix -> CENSUS ERROR ... error: no default toolchain
+        configured, RESULT: FAIL, exit 1.
+      AFTER  the real fix (compile from inside the temp directory, where
+        the pin lives) -> RESULT: PASS, exit 0.
+    Both plants re-bitten under that wrapper as well: sorryAx exit 1,
+    conjunctive-omega exit 1, clean tree PASS between them.
+  The census AGAIN, after the builder's portability fix (it now copies the
+    repo's lean-toolchain beside the generated query file, so the pin
+    travels with the instrument instead of depending on the machine's elan
+    default): both the sorryAx plant and the conjunctive-omega plant
+    re-fired, exit 1 each, PASS on the clean tree between them. An
+    instrument that changes gets re-bitten; norm 16 has no grandfather
+    clause.
+
+  The view gate (audit/c2_views.sh): one rendered number edited by hand ->
+    `check` printed the drift and exited 1; restored -> PASS. Norm 16 at
+    birth for the instrument that exists because four hand-typed counts
+    went stale.
+
+  THE MIRROR'S CONTROLS, this crate: control_mirror_fixes_a_non_unit
+    evaluates a non-unit the mirror FIXES and which is not self-inverse,
+    so the unit hypothesis in the Galois reading cannot be dropped; and
+    control_semion_fails_the_filter exhibits a catalog member the filter
+    removes. Both by kernel evaluation.
+
+  The artifact-prose census guard (audit/c2_views.sh censusguard), new
+    the previous crate and bitten before it was trusted:
+      "115 theorems depend on propext and nothing else" planted in
+      lean/Zi.lean's header -> named the paragraph, exit 1.
+      Removed -> PASS, exit 0.
+    It exists because the seam between the numeral gate's territory (the
+    DOCS) and this gate's territory (the rendered view) contained the
+    artifact's own prose, and the largest stale count in this tree lived
+    there across every crate.
+
+  The numeral gate's rule (n2), the norm 19 guard, new this crate and
+    bitten on BOTH sub-rules:
+      n2a: "Thirty-one theorems." appended to PROOFS.md -> named, exit 1;
+           restored -> PASS.
+      n2b: "The view had been rendering seventeen all along." appended
+           -> named, exit 1; restored -> PASS.
+    Before either plant it fired on the real tree, naming seven live
+    specimens across two documents (PROOFS.md and NORMS.md); all seven
+    were repaired rather than exempted. It also named one line in a third
+    document, REGISTER.md, which on reading was ordinary English — "one
+    rendered number", in the row describing its own norm-16 bite — and
+    that took the rule's single labeled exemption.
+
+    THE CLASS-c8 DEFECT, found after the crate was couriered, when PR #3
+    merged and STATE-OF-THE-RECORD.md arrived on the default branch from
+    outside the loop. The gate's identifier stripping used two ordered
+    rules; on a digit-leading hex identifier the letter-first rule ate the
+    tail and left the leading digits as a bare numeral -- a SHA-256 prefix
+    and a commit id read as unsourced counts. The same ordered pair in
+    harvest() ran the other way and would have fed those stray runs into
+    the KNOWN set, sourcing a matching bare number anywhere in the record.
+    Repaired to ONE rule over maximal alphanumeric runs in the decision
+    path, and re-bitten three ways:
+      a fresh bare 8675309 in PROOFS.md      -> FAIL, exit 1.
+      a line carrying 499ebb8 and 73a475f3   -> PASS, exit 0.
+      the clean tree                         -> PASS, exit 0.
+    The census guard was re-bitten in the same commit, since it was edited
+    in the same commit: the planted census sentence named and exit 1,
+    removed and PASS. An instrument that changes gets re-bitten; norm 16
+    has no grandfather clause.
+
+    And it was measured against the two historical specimens rather than
+    argued about: it catches "twelve live instances" and does NOT catch
+    "tracks thirty-one compiled-bytecode files". One of two. The gate's
+    header says so; a first draft of that header said the rule covered
+    where every specimen had walked, which the measurement refuted.
+
+  Plant B is worth one line of record: it confirms on THIS toolchain that
+  an `omega` aimed at a conjunctive goal pulls Classical.choice — the trap
+  Circle One's HANDOFF.md records being bitten by twice. S1 avoids it by
+  splitting every conjunctive goal (`constructor`) before any `omega` runs,
+  and the census's Classical.choice count of 0 is the receipt.
+
+THE OTHER GATES, same tree, same session — chained by audit/c2_gates.sh,
+one exit code, and run by .githooks/pre-commit so a red gate blocks rather
+than advises:
+  audit/c2_pointers.sh   PASS   (every backticked token resolves)
+  audit/c2_numerals.sh   PASS   (main rule and rule (n2))
+  audit/c2_tree.sh       PASS   (no build artifact tracked)
+  audit/c2_axioms.sh     PASS   (the census above)
+  audit/c2_views.sh      PASS   (no drift; artifact prose states no census)
+  floor: python3 run_all.py     29 of 29 PASS, exit 0

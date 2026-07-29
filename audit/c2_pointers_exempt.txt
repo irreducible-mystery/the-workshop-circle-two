@@ -254,3 +254,7 @@ fin_cases	the Lean tactic named in the S7a crop ("re-proved with a fresh fin_cas
 List.mem	the Lean stdlib membership predicate named in the S7a crop ("reshapes it into List.mem"); stdlib type/lemma, not a declaration in the tree
 # -- S7a: the Round-3 delivery bundle (transport artifact, not tracked) --
 dual-seat-round3.zip	the Round-3 delivery crate: `git archive` of branch superninja/dual-seat-round3 at tip d25c08d; a transport artifact produced FROM the tree, not tracked IN it; its sha256 is recorded in the PIN-TRACKER R3 block and pins the exact shipped tree
+# -- carried from origin/main during conflict resolution --
+STATE-OF-THE-RECORD	extensionless document stem cited in charter prose; near-miss on STATE-OF-THE-RECORD.md, kept byte-exact in couriered text
+427c88d537bfb2e764913db278afaedc6a6626411f2143baebae1ae46913cbb6	SHA-256 pin of a sealed transport crate zip artifact, not tracked in-tree
+floor/__pycache__/	deliberately impossible plant path quoted in a frozen letter; build cache paths are pruned from tracked tree checks

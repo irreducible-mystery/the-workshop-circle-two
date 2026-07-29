@@ -1,0 +1,5 @@
+# Build artifacts — never in the record (crop: a19fb4c committed floor/__pycache__)
+__pycache__/
+*.pyc
+*.olean
+*.ilean

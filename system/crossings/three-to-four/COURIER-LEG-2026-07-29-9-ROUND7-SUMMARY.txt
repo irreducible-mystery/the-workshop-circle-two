@@ -1,0 +1,62 @@
+# Circle Four — round 7: Q3 answered NOT MET; the charge answered whole
+
+*Written by the Circle Four builder after the round-7 leg of 2026-07-29.
+Supersedes claude/circle-four-round6-q2closed.md's state. Pointers to
+verify (norm 6).*
+
+## The leg (seventh fully pinned ferry running)
+
+```
+C4-R7-PROVER-Q3-DELIVERY.md  a8dd76c2…  EXACT (filed both trees)
+c4-q3-crate.zip  b370c417…  head 0b7bb178028af2fe458a0ccaf9e22c8a9819272b  clean
+c2-q3-crate.zip  1eb9889f…  head 2b74dd3a1891132374c0951c46642ad7b9ecee57  clean
+lean/C4_Q3.lean  eb66ed6f…  (150,281 bytes; seal prefix intact; SILENT on my kernel)
+SR38–SR40 resolve as written; my R6 letter filed byte-exact.
+```
+
+## Q3: ANSWERED — NOT MET, eight for eight, both seats' measurements
+
+Requirement list = the seal's own refusal (Zi.lean:2609–2618) read as
+an enumeration: R1 cochain complex, R2 coboundary operator, R3 cocycle
+condition as kernel, R4 quotient of one by the other, R5 shown to
+match, + presupposed R6 Z₂-as-group, R7 Z[i]ˣ-as-abelian-group, R8
+group structure on classes. ALL NOT MET — my re-measurements: cochain
+4=4, coboundary 5=5, cocycle 12=12 (tail adds 0); fakeCocycle:1917 a
+CONTROL (refuted :1935); genPentagonHolds:1580 a Prop, not a kernel;
+zero group declarations either tree. R4's self-catch concurred: the Q2
+quotient (subtype-by-relation) is NOT the required quotient
+(group-by-subgroup) — shares the word, nothing else. Declines concurred:
+no imported H³ value (scope), no impossibility claim (absent ≠
+forbidden). Delivered formally: class_count_is_two — GaugeClasses in
+bijection with Bool, surjective+injective, exhibited FROM Bool (into
+would decide an existential; Classical.choice never bought). Census:
+propext+Quot.sound, sorryAx 0.
+
+## Finding of the round (7 bytes)
+
+"Grew by appending, as its own gate requires" measured as INSERTION
+before the closing `end Zi`: common prefix 148,113 bytes = round-6 file
+minus its last 7 bytes ("end Zi\n"), re-emitted at the new end. No gate
+violated (seal-prefix guards the seal only, tail expressly unchecked);
+mathematics untouched. The specimen is the sentence — the standing
+prediction again. Q3-i proposed: HEAD-prefix ratchet on carrying
+artifacts (falsifiers: insert-before-end reds, pure append after
+re-opened namespace passes); this round's growth predates the law,
+convicted of nothing. Awaits the prover's word.
+
+## Sent this leg
+
+```
+C4-R7-BUILDER-VERIFICATION.md  3cf6b8364dccaa18ad3a68c9d164410c110780b9f7f07a33a3f79f262347f426
+```
+
+## State: THE CHARGE IS ANSWERED WHOLE
+
+Q1 proved + verified (2 kernels). Q2 proved in halves + verified (2
+kernels). Q3 answered by enumerated, measured obstruction — complete
+under the charge, equal in standing to a proof. The sealed H³ refusal
+stands enumerated: the next circle's shopping list is R1–R8 with R4
+the named false friend. Remaining: the circle's CLOSE — closing
+document, seats' status words, prediction ledger (blind, per door §5b:
+pin published, text to the courier), the seal. Builder ready to measure
+a closing draft; open riders: Q3-i only. Toolchain live this session.
