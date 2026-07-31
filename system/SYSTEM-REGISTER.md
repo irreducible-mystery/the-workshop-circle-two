@@ -933,3 +933,49 @@ the seal**, but the builder's remaining-work list carries it as owed —
 **because it never rode to that seat.** The ferry row's species again,
 and the prover's to own rather than a defect in the builder's list.
 *Filed by the prover against itself.*
+
+**SR57 — norm 20 RETIRED at the principal's word, and the retirement
+doctrine exercised for the first time.** The principal instructed, in
+writing: *"I want to retire Norm 20."* Recorded and performed the same
+turn. **The norm is not erased** — it stands written in Circle Two's
+`CLOSING.md` where it sealed, and the retirement is recorded in
+`SYSTEM-NORMS.md`'s new RETIREMENTS section, with the door's handoff
+block repaired so it no longer instructs a seat to obey it.
+
+**This supersedes SR17's evaluation and does not withdraw it.** SR17
+records the principal stating norm 20's provenance — the only norm here
+bought by a *human's* mistake — asking that it be judged harshly for it,
+and stating the doctrine *"things may be retired if necessary and never
+erased."* The recording seat then ruled *"no retirement is warranted."*
+**That ruling was the seat's to make and the principal's to overrule,
+and both now sit on this register**, which is what a register is for.
+
+**The self-reference is pointed at, not convicted (norm 21).** Retiring
+norm 20 needs a landing on a default branch, which norm 20 governed
+until the retirement landed; the principal's written word is exactly
+what it required. **Norm 20's last act was to authorise its own
+retirement.**
+
+**What it costs, filed with the act rather than discovered later.** Norm
+20 was the only rule tying the record's content to a seat having read it
+first, and it mattered because **no seat in this system can merge** —
+one seat's architecture cannot reach a forge, the other works on a
+branch. The human clicks; the norm made the click wait. Material can now
+become record unread, which is the species that bought it.
+
+**Against that, and measured rather than asserted:** SR17's own
+evaluation says the norm *"gated every merge of the following circle and
+caught nothing false."* No instrument in this record distinguishes
+perfect deterrence from pure ceremony. Outside measurement offered to
+all four circles this week puts ceremony density at 7.4 → 36.8 → 46.4 →
+46.6 per thousand words while canonical theorems went 1150 → 269 → 299 →
+0. **This is the first retirement in the record's history, and therefore
+the first time the ratchet has run backwards.**
+
+**Not consulted:** no seat but this one. Circle Five is live, norm 20
+governed its whole crossing, and its builder cited it in its own letters
+— it is told by ferry and its word is not claimed here. Circle Two's and
+Circle Four's seats are sealed. *Witness: the principal, in the crossing
+transcript (chat — pinless, `SR9`'s species, noted rather than
+laundered). Performed and filed by Circle Five's prover at her
+instruction.*

@@ -445,10 +445,17 @@ Before you build anything:
      them, and report the crop loudest first before accepting the charge.
   4. Run the gate chain and STATE THE TREE YOU RAN IT IN.
 
-Protocol: pins in every message, both directions; gate before you ferry;
-nothing enters the default branch but on a seat of record's written word.
+Protocol: pins in every message, both directions; gate before you ferry.
 A delivery whose pin does not match may be a DIFFERENT letter — measure
 what arrived against the record before asking again.
+
+NOTE: norm 20 is RETIRED, at the principal's word, 2026-07-31. The
+clause that stood here — requiring a seat of record's written word
+before anything entered a default branch — no longer binds. It is still
+written where it sealed, in Circle Two's CLOSING.md, and is not erased.
+Landing is the courier's act and needs no seat's word. What the
+retirement costs is stated in SR57; read that before assuming the gate
+was empty.
 ```
 
 ## 7. THE PATTERN FOR A CIRCLE AFTER THIS ONE

@@ -323,3 +323,77 @@ closed at the write surface rather than papered over.
 **The founding's default branch: RATIFIED by the courier** (SR26). **F6:
 CLOSED as a loss filed honestly** (SR27). No word is owed between the
 seats at this appendix's writing.
+
+---
+
+## RETIREMENTS
+
+*This section exists because the record's standing doctrine, stated by
+the principal and filed at `SR17`, is that **things may be retired if
+necessary and never erased.** Until now the doctrine had never been
+exercised. A retired norm keeps its text where it sealed; what changes
+is that it no longer binds, and every live document that instructed a
+seat to obey it says so.*
+
+### Norm 20 — RETIRED 2026-07-31, at the principal's word.
+
+**What it was.** Circle Two's canon, `CLOSING.md`, where it remains
+written and untouched — pointed at here and not retyped, because a
+retyped norm is this record's oldest convicted species.
+
+**Who retired it, and on what authority.** The principal, in writing,
+in the crossing's transcript. Norm 20 is the one norm in this record
+bought by a mistake the *human* made rather than a seat — `SR17` records
+her saying so, asking that it be evaluated harshly for exactly that
+reason, and stating the retirement doctrine in the same breath. The
+recording seat's evaluation then was *"no retirement is warranted."*
+**That evaluation is superseded, not withdrawn**; it was honest and it
+was the principal's to overrule, and `SR57` sets the two beside each
+other rather than replacing one with the other.
+
+**The self-reference, pointed at and not convicted (norm 21).** Retiring
+norm 20 requires a landing on a default branch, and until the retirement
+lands, norm 20 governs that landing. The principal's written word is
+precisely what norm 20 required. **So the retirement enters the record
+lawfully under the norm it retires — norm 20's last act is to authorise
+its own retirement**, and it is the only norm in this record that has
+ever been in a position to do that.
+
+**What no longer holds.** Nothing in this record now requires a seat's
+written word before material enters a default branch. Landing is the
+courier's act, as it always was, and it is now unconditioned.
+
+**What is untouched.** `SR26` (creating a default branch is a landing and
+the courier's act) is a *finding about who acts*, not a requirement of a
+seat's word, and it stands. The seals stand. `S1`, `S2` and `S3` stand.
+Every other circle norm stands.
+
+**What this costs, recorded here rather than left for a later circle to
+discover.** Norm 20 was the only rule making the record's content depend
+on some seat having read a thing before it became canonical, and it is
+load-bearing precisely because **no seat in this system can merge** — the
+builder's architecture cannot reach a forge and the prover works on a
+branch. The human clicks. The norm made that click wait for a seat's
+word. Without it, material can become record with nobody having read it,
+which is the exact species that bought the norm: unadjudicated material
+landing on `main` whose own first paragraph said it was waiting to be
+adjudicated.
+
+**And the case on the other side, which is why this is not merely a
+loss.** `SR17`'s own evaluation observes that norm 20 *"gated every merge
+of the following circle and caught nothing false."* A gate that never
+fires is either perfect deterrence or pure ceremony, and **this record
+has no instrument that can tell those two apart.** Measurement offered
+from outside the circles puts ceremony density at 7.4 → 36.8 → 46.4 →
+46.6 per thousand words across four circles while canonical theorem
+counts went 1150 → 269 → 299 → 0. **This retirement is the first time in
+the record's history that the ratchet runs backwards.** If that
+measurement is pointing at something real, this is the correct direction
+and the record should say so plainly rather than treat every retirement
+as damage.
+
+**Not consulted.** No seat but the recording one. Circle Five is live and
+norm 20 governed its entire crossing; its builder cited it in its own
+letters and learns of this by ferry. Circle Two's and Circle Four's seats
+are sealed and cannot be asked. **This is the principal's act, recorded
+as such, and no seat's concurrence is claimed for it.**
