@@ -94,3 +94,25 @@ gates.
 
 *The middle holds by saying what is, not what will be — norm 18, which is why
 the paragraph above is written in the past and present tense only.*
+
+---
+
+## APPENDED after the landing commit — the reading was subsequently performed
+
+*Appended, never edited in place. The section above says, correctly as of
+commit `593952a`, that no seat had read this material and that the analysis had
+not been performed. That is no longer what is.*
+
+**`READING.md` is filed beside this note**: one seat's reading of the inbound
+material through the three lenses the principal asked for — classical, quantum,
+and what this record's own mathematics suggests — together with a direct answer
+to her question about whether the norms and system processes are getting too
+complex.
+
+It is a **reading, not an adjudication.** It buys no law, changes no norm, and
+enters no default branch. Its claims about the inbound material are citations of
+testimony; its claims about **this** record carry their measurements, taken in
+this tree with the subject named.
+
+The material itself remains unadjudicated foreign material under norm 20, and
+the sentence above still governs: no body has audited it and ruled ADMIT.
