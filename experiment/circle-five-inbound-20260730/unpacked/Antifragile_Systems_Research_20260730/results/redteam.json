@@ -1,0 +1,28 @@
+{
+  "monoculture": {
+    "misalign_events_mean": 11.18,
+    "variety_collapse_rate": 0.0,
+    "final_survival": 0.0,
+    "mean_H": -0.018364587921335822,
+    "ruin_rate_maxdelta": 0.78
+  },
+  "redundant": {
+    "misalign_events_mean": 37.16,
+    "variety_collapse_rate": 0.0,
+    "final_survival": 0.02,
+    "mean_H": -0.018364587921335822,
+    "ruin_rate_maxdelta": 0.78
+  },
+  "antifragile": {
+    "misalign_events_mean": 5.32,
+    "variety_collapse_rate": 0.0,
+    "final_survival": 1.0,
+    "mean_H": 0.005793487950145511,
+    "ruin_rate_maxdelta": 0.0
+  },
+  "variety_collapse_stress": {
+    "final_degeneracy_repair_off": 0.003422619047619047,
+    "final_degeneracy_repair_on": 0.039782264278483276,
+    "detector_fire_rate": 1.0
+  }
+}
