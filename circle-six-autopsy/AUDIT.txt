@@ -1,0 +1,131 @@
+Axiom audit — lean/C6_Twist.lean, Lean 4.22.0, no Mathlib, no imports.
+
+Every DECLARATION in the file — theorems, defs, abbrevs and instances —
+carried through '#print axioms'. Not a curated sample.
+
+theorems             : 49
+declarations audited : 100
+depend on NO axiom   : 100
+
+propext          : 0
+Classical.choice : 0
+Quot.sound       : 0
+sorryAx          : 0
+ofReduceBool     : 0   (native_decide)
+ofReduceNat      : 0
+
+SOURCE SCAN (comments stripped): 0 occurrences of each of
+  axiom / sorry / admit / native_decide / unsafe / partial / opaque /
+  @[extern] / @[implemented_by] / Classical / noncomputable / macro_rules
+
+set_option lines: maxRecDepth, maxHeartbeats. Neither affects soundness.
+  No debug.skipKernelTC. No debug.byAsSorry.
+
+THE NON-AXIOM DECISION POINT, stated because it is the only one:
+  every 'decide' routes through the two hand-written Decidable instances
+  decAllU and decAllBool. These cannot lie. 'isTrue' demands a proof term
+  of the proposition, which the kernel typechecks; the only way to supply
+  a fake one is sorry or an axiom, and both are reported above as 0.
+  Verified empirically: an instance written as 'isTrue (by sorry)' compiles
+  but reports sorryAx; written without sorry it does not compile at all.
+
+'GZ' does not depend on any axioms
+'decAllU' does not depend on any axioms
+'decAllBool' does not depend on any axioms
+'toGZ_mul' does not depend on any axioms
+'toGZ_conj' does not depend on any axioms
+'toGZ_inj' does not depend on any axioms
+'is_unit' does not depend on any axioms
+'conj_eq_inv' does not depend on any axioms
+'conj_is_the_inverse' does not depend on any axioms
+'conj_not_inv_off_units' does not depend on any axioms
+'sigma_ne_id' does not depend on any axioms
+'Sym' does not depend on any axioms
+'Gge' does not depend on any axioms
+'act' does not depend on any axioms
+'d3' does not depend on any axioms
+'d2' does not depend on any axioms
+'isCocycle' does not depend on any axioms
+'pentagon' does not depend on any axioms
+'decU' does not depend on any axioms
+'gge' does not depend on any axioms
+'eqSym' does not depend on any axioms
+'cobAux' does not depend on any axioms
+'isCoboundary' does not depend on any axioms
+'GZ.zero' does not depend on any axioms
+'boolOf' does not depend on any axioms
+'lab' does not depend on any axioms
+'Fint' does not depend on any axioms
+'Fgen' does not depend on any axioms
+'genPentLhs' does not depend on any axioms
+'genPentRhs' does not depend on any axioms
+'lhs_reduces' does not depend on any axioms
+'rhs_reduces' does not depend on any axioms
+'lhs_reduces_U' does not depend on any axioms
+'rhs_reduces_U' does not depend on any axioms
+'pentagon_iff_seal' does not depend on any axioms
+'topCell' does not depend on any axioms
+'boson' does not depend on any axioms
+'fermion' does not depend on any axioms
+'sliceI' does not depend on any axioms
+'twistedBoson' does not depend on any axioms
+'fakeCocycle' does not depend on any axioms
+'row_one_untwisted' does not depend on any axioms
+'row_one_twisted' does not depend on any axioms
+'row_i_untwisted' does not depend on any axioms
+'row_i_twisted' does not depend on any axioms
+'row_neg1_untwisted' does not depend on any axioms
+'row_neg1_twisted' does not depend on any axioms
+'row_negi_untwisted' does not depend on any axioms
+'row_negi_twisted' does not depend on any axioms
+'gFermion' does not depend on any axioms
+'fermion_is_sigma_coboundary' does not depend on any axioms
+'fermion_not_untwisted_coboundary' does not depend on any axioms
+'twistedBoson_pentagon' does not depend on any axioms
+'twistedBoson_not_sigma_cocycle' does not depend on any axioms
+'twistedBoson_untwisted_cocycle' does not depend on any axioms
+'twistedBoson_gauge_trivial' does not depend on any axioms
+'sliceI_fails_pentagon' does not depend on any axioms
+'sliceI_is_sigma_cocycle' does not depend on any axioms
+'sliceI_not_sigma_coboundary' does not depend on any axioms
+'fakeCocycle_fails_both' does not depend on any axioms
+'isReal' does not depend on any axioms
+'conj_fixes_reals' does not depend on any axioms
+'twist_vanishes_on_reals' does not depend on any axioms
+'boson_real' does not depend on any axioms
+'fermion_real' does not depend on any axioms
+'gaugeEq' does not depend on any axioms
+'symEq' does not depend on any axioms
+'seenBefore' does not depend on any axioms
+'countB' does not depend on any axioms
+'countKer' does not depend on any axioms
+'cobAreCocycles' does not depend on any axioms
+'B3_untwisted' does not depend on any axioms
+'B3_twisted' does not depend on any axioms
+'ker_untwisted' does not depend on any axioms
+'ker_twisted' does not depend on any axioms
+'cob_subset_cocycles_untwisted' does not depend on any axioms
+'cob_subset_cocycles_twisted' does not depend on any axioms
+'Fs' does not depend on any axioms
+'Rs' does not depend on any axioms
+'hexLhs' does not depend on any axioms
+'hexRhs' does not depend on any axioms
+'hexagonHolds' does not depend on any axioms
+'hexInvHolds' does not depend on any axioms
+'SelfInverse' does not depend on any axioms
+'intBool' does not depend on any axioms
+'hexB' does not depend on any axioms
+'hexagonHolds_iff' does not depend on any axioms
+'boson_braids_real' does not depend on any axioms
+'fermion_braids_imaginary' does not depend on any axioms
+'sigma_fixes_boson_braidings' does not depend on any axioms
+'sigma_swaps_fermion_braidings' does not depend on any axioms
+'edict_boson' does not depend on any axioms
+'edict_fermion_fails' does not depend on any axioms
+'GZ.one' does not depend on any axioms
+'GZ.mul' does not depend on any axioms
+'GZ.conj' does not depend on any axioms
+'U.toGZ' does not depend on any axioms
+'U.mul' does not depend on any axioms
+'U.conj' does not depend on any axioms
+'U.inv' does not depend on any axioms
