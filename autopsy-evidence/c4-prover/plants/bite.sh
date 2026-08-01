@@ -103,6 +103,53 @@ set +e; sh "$GATE_HOOK" "$WORK" >/dev/null 2>&1; H4=$?; set -e
 expect "no hook shipped               -> GREEN (nothing to wire)" 0 "$H4"
 
 echo ""
+echo "PLANTS FOR verdict_exit.sh"
+GATE_VERDICT="$HERE/../verdict_exit.sh"
+
+# V1 -- independent_math_check.py's exact shape: verdict is a print, exit is a
+#       constant. MUST go RED.
+cat > V1.py <<'EOF'
+ok = lambda name, cond: print(("PASS " if cond else "FAIL ") + name)
+ok("two plus two", 2 + 2 == 5)
+print("All independent checks complete.")
+EOF
+
+# V2 -- same verdicts, but an assert can fail the process. MUST stay GREEN.
+cat > V2.py <<'EOF'
+print("PASS arithmetic")
+assert 2 + 2 == 4
+EOF
+
+# V3 -- same verdicts, sys.exit escape. MUST stay GREEN.
+cat > V3.py <<'EOF'
+import sys
+bad = 0
+print("FAIL something" if bad else "PASS something")
+sys.exit(1 if bad else 0)
+EOF
+
+# V4 -- no verdict vocabulary at all; a plain script. MUST stay GREEN.
+cat > V4.py <<'EOF'
+print("the sum is", 1 + 1)
+EOF
+
+git add -A && git commit -qm verdicts
+set +e; sh "$GATE_VERDICT" "$WORK" > "$WORK/out.v" 2>&1; V=$?; set -e
+grep -q 'V1.py' "$WORK/out.v" && v1=1 || v1=0
+grep -q 'V2.py' "$WORK/out.v" && v2=1 || v2=0
+grep -q 'V3.py' "$WORK/out.v" && v3=1 || v3=0
+grep -q 'V4.py' "$WORK/out.v" && v4=1 || v4=0
+expect "V1 print-only verdict         -> gate RED" 1 "$V"
+expect "V1 named in output" 1 "$v1"
+expect "V2 has assert                 -> NOT flagged" 0 "$v2"
+expect "V3 has sys.exit               -> NOT flagged" 0 "$v3"
+expect "V4 no verdict vocabulary      -> NOT flagged" 0 "$v4"
+
+rm V1.py && git add -A && git commit -qm dropv1
+set +e; sh "$GATE_VERDICT" "$WORK" >/dev/null 2>&1; V2E=$?; set -e
+expect "V1 removed                    -> gate GREEN" 0 "$V2E"
+
+echo ""
 if [ "$FAIL" -eq 0 ]; then echo "BITE: all plants produced their expected verdict."; exit 0; fi
 echo "BITE FAILED. A gate that cannot pass its own plants is not an instrument."
 exit 1

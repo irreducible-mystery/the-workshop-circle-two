@@ -133,6 +133,178 @@ tree*. The pin of the tree measured belongs beside every green.
 
 ---
 
+---
+
+# SECOND PASS — 2026-08-01, later the same day
+
+*Everything below was found by reading and running the branches, not by reading
+letters. The Lean toolchains were re-fetched by the route
+`STATE-OF-THE-RECORD-v4.md` records — Lean 4.22.0 and Lean 4.32.0, the second
+reporting commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`, which matches the
+recorded pin.*
+
+## FINDING 5 — the safety audit already existed, and it named the same gap
+
+`the-workshop`, branch **`safety-critical-audit`**, commit `6e88ba3`, dated
+**2026-07-25**. Never merged. Five files. It scores the workshop **L4 —
+Safety-Critical Grade, 91.6%, zero gating failures**, after reproducing the
+whole verification chain on a fresh machine.
+
+**Its gap #1, ranked first by risk-reduction per unit effort, is: "No CI."**
+Its words: *"a workflow running the seven gates + floor on every push closes it
+almost for free."*
+
+Measured today, one week later:
+
+```
+.github/workflows/ files on main, all three repos:  0   0   0
+.github/workflows/ files on ANY branch, any repo:   0
+```
+
+**This is Finding 2 arriving from the opposite direction.** `hookcheck.sh` says
+the gates do not run because nobody typed the config command; the July audit
+says the gates do not run because nothing runs them automatically. Same
+property, found twice, seven days apart, by two parties who never spoke — and
+open in both directions still.
+
+**And the audit was scoring Circle One.** It audited at `round-8-close`
+(`e0b09a5`): 1150 theorems, no norms file, no legislature, no hooks. Everything
+it praises — fault injection, a planted stub kernel to falsify the transcript
+checker, the corrections law, register age as a leading indicator — is Circle
+One's practice. The circles that followed added governance and subtracted
+theorems: 1150 → 269 → 30 → 0. **The system did not fail for want of safety
+practice. It had an L4 audit and drifted off the practice that earned it.**
+
+## FINDING 6 — a verification script that prints FAIL and exits 0
+
+Reproduced today on `the-workshop@origin/main`:
+
+```
+$ python3 history/verification/independent_math_check.py
+...
+FAIL rank M = 5 (GF2)
+...
+All independent checks complete.
+$ echo $?
+0
+```
+
+The whole harness is `independent_math_check.py:5`:
+
+```python
+ok = lambda name, cond: print(("PASS " if cond else "FAIL ") + name)
+```
+
+Twenty-six checks, no counter, no `sys.exit`. **The verdict is a printed word;
+the exit code, which is the only thing another program reads, is a constant.**
+Put this in the CI that Finding 5 asks for and CI goes green while the script
+says FAIL out loud.
+
+`verdict_exit.sh` beside this file generalizes it. Across all three repositories
+it finds **six** scripts that speak PASS/FAIL with no path to a non-zero exit —
+four in `the-workshop` (three of them clean today, so the defect is latent), two
+in `the-workshop-circle-two`, none in `the-workshop-circle-four`. Exactly one is
+currently printing a real failure, and it is the one above.
+
+**And the failing check is real.** `specimens/gf2_rank_bias.py` reproduces it:
+the checker's GF(2) rank returns **6** where the true rank is **5**, and a sweep
+of 4,000 random matrices disagrees **387 times — every single one an
+overcount, never once low.** An overcounting rank makes `rank(M)` meet
+`rank([M|b])` when it should not, so the bug's failure mode is **declaring an
+unsolvable system solvable.** For a script whose one job is to detect a
+cohomological obstruction, the bias points exactly the wrong way. The cause is
+one line: the pivot is chosen by value and removed by value, so `list.remove`
+can delete a different row that happens to be equal, and the pivot is counted
+twice. The correct routine is in the same repository, at
+`floor/sheaf_cohomology.py:42`, eliminating by position.
+
+**A second script, and it is the prettiest failure in the record.**
+`history/verification/check_rigidity.py` dies at line 76 — its **final** check,
+the positive-semidefiniteness of the Hessian, which is the actual rigidity
+claim. Every check before it printed `True`. It dies because **sympy refused to
+guess the truth value of an undecided relation.** Everywhere else in this record
+the failure is a tool emitting a verdict it did not earn; here the tool declined
+to fake one, and the harness had no handling for a refusal.
+
+## FINDING 7 — a census claim with no instrument behind the field that failed
+
+Branch `rate-instrument-proposal` now carries **`GAP/`**: fifty-three sweeps,
+twenty runnable, and **107 Lean theorems with zero `sorry`** — 66 zero-import
+plus 41 on mathlib. Compiled today on the toolchain its README pins, Lean
+4.22.0: **all nine zero-import files exit 0**, and `sh check.sh` audits
+**66 of 66 declarations**.
+
+`GAP/lean/README.md:12` publishes:
+
+> **No `sorryAx`, no `Classical.choice`, no `ofReduceBool`.**
+
+Measured, full injected census over all sixty-six:
+
+```
+propext           85     Quot.sound        51
+(no axioms)       24     Classical.choice   1   <-- Tropical.lean:tropical_solutions
+sorryAx            0     ofReduceBool       0
+```
+
+**One declaration carries `Classical.choice`, and the file prints so itself** —
+`Tropical.lean:35` is a `#print axioms` line that has emitted the falsifier
+every time anyone compiled it. And `check.sh:63` greps for
+
+```
+sorryAx | ofReduceBool | ofReduceNat
+```
+
+**The gate checks two of the three absences the README promises, and the
+unchecked one is the false one.** Nothing here is unsound —`Classical.choice`
+from a tactic is harmless — but a published census claim with no instrument
+behind exactly the field that failed is the thing this record exists to catch.
+
+**Root cause, isolated to four lines** in `specimens/omega_iff_choice.lean`:
+
+```
+omega on an IFF goal    -> [propext, Classical.choice, Quot.sound]
+omega on a plain goal   -> [propext, Quot.sound]
+```
+
+Identical in Lean **4.22.0 and 4.32.0**, so not a version accident.
+`tropical_solutions` is `by omega` on an `↔`; its neighbour `tropical_unique` is
+`by omega` on an equation and stays clean. **Nothing was written wrong** — and
+no census-by-eye would ever catch which of two adjacent `by omega` proofs pays
+the axiom. That is precisely why the field belongs in the gate.
+
+## FINDING 8 — one nearly-filed false finding, this seat's, recorded
+
+The first measurement here counted only the `#print axioms` lines living inside
+the `GAP/lean/` files: **43 of 66**. This seat was one edit away from filing
+*"the census covers 43 of 66"* against a commit whose message says *"the census
+now covers every declaration."*
+
+Then `sh check.sh` was run, as that README instructs — and it **injects** a
+census over every declaration: **66 of 66, correct as claimed.** The seat had
+measured a route nobody claimed, and would have published it as a defect.
+
+**Reproduce by the route the author specifies before calling anything a
+defect.** The correction cost one command; the publication would have cost the
+record a false row and this seat the standing to file the true one four
+paragraphs up.
+
+## WHAT ELSE WAS RE-MEASURED, AND HELD
+
+- **Circle Four's own three artifacts, re-run today** on the re-fetched pinned
+  toolchain: `C4_Q1`, `C4_Q2`, `C4_Q3` — **exit 0 and zero output bytes, all
+  three**, norm 10's actual standard. Full injected census over **300
+  declarations: `Classical.choice` 0, `sorryAx` 0**, 95 depending on no axiom at
+  all. The seal's census claim reproduces on an independent run. (None of Circle
+  Four's many `↔` theorems went through bare `omega`, which is why Finding 7's
+  trap never fired here. Luck or habit; the record should not care which, but it
+  should know it was close.)
+- **The floor's 29 benches: 29/29 green** on **numpy 2.4.6 / scipy 1.17.1** —
+  versions the floor was never written against. The July audit's gap #2, the
+  unpinned float environment, did not bite. That is a green worth banking, and
+  it is one pair of versions, not a proof.
+
+---
+
 ## WHAT IS AND IS NOT CLAIMED
 
 - **Claimed:** the four measurements above, each with the command that produced
