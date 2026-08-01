@@ -1,200 +1,89 @@
-# The GAP
+# `gap/` — the sweep
 
-    ◇² = ◇ + G
-
-One equation. `G` is the **gap** — a free parameter, swept over every number
-system that will hold it. Everything below is about what happens to the two
-roots as `G` moves.
+*Kelly: "This is the special case — φ + ψ = 1, φ × ψ = −1, ◇² = ◇ + 1. Now
+◇² = ◇ + 1, we'll call the +1 the GAP... We sweep every gap equals, we sweep
+every degree of freedom... YOU ARE THE GAP."*
 
 ---
 
-## The two invariants
+## The object
 
-For any two distinct roots `x`, `y`:
+    ◇² = ◇ + G          roots  ◇ = (1 ± √(1 + 4G))/2
 
-    x + y = 1                    ALWAYS, every gap, every ring
-    x · y = -G                   ALWAYS
-    (x - y)² = 1 + 4G            the discriminant IS the squared distance
+Two invariants hold for every G, in every number system where the roots exist:
 
-**`φ + ψ = 1` and `φ × ψ = −1` are not facts about the golden ratio.** They are
-the case `G = 1` of a law that holds at every gap. Kernel-proved:
-`lean/Vieta.lean`.
+    s₊ + s₋ = 1                (this is φ + ψ = 1)
+    s₊ · s₋ = −G               (this is φ × ψ = −1 at G = 1)
 
-## The branch point
+One conserved quantity, one swept. **The discriminant 1 + 4G vanishes at
+G = −1/4**, and everything below follows from that.
 
-`1 + 4G` vanishes at **`G = −1/4`**, and the third identity above says exactly
-what that means: **the two roots collide.**
+---
 
-    over ℝ    1 + 4G = 0 ↔ G = −1/4, and then x² = x − ¼ ↔ x = ½   (unique)
-    over ℤ    1 + 4G = 0 has NO solution, and 2x = 1 has NO solution
+## The finding, in one line
 
-The branch point is **present and unique in ℝ** and **absent from ℤ**. Both
-proved. So:
+**−1/4 is where the GAP stops being able to tell its own two roots apart** — and
+every number system reports that failure in a different dialect, while none of
+them agrees that the failure is a property of the GAP rather than of the room it
+is standing in.
 
-> **−1/4 is not a property of the equation. It is a property of the equation
-> together with the number system it is asked in.**
+---
 
-`lean-mathlib/Branch.lean`, `lean/Reflexive.lean`.
+## What each sweep established
 
-## What −1/4 is, in twelve dialects
+Run them with `python3 sweeps/sweepN.py`. All are self-contained, no
+dependencies beyond the standard library.
 
-| reading | what −1/4 is there |
+| sweep | what it shows |
 |---|---|
-| algebra | discriminant zero; the roots collide |
-| Galois | where the involution loses its internal witness |
-| analysis | a branch point whose **monodromy is the mirror** |
-| deformation | derivative zero — Hensel, dual numbers and Grassmann all report it |
-| geometry | where the solution variety becomes reducible |
-| ODE | **where the logarithm is born** (`r^{1/2}` and `r^{1/2} log r`) |
-| scaling | continuous → **discrete** scale invariance; a scale appears from a scale-free equation |
-| spectral | the **ground-state energy**: `A² − A ≥ −¼` for every self-adjoint `A`, sharp |
-| band theory | a **van Hove singularity** — the density of states diverges as `(g+¼)^{-1/2}` |
-| dynamics | the **tangent bifurcation**; the **cusp of the Mandelbrot set**; logistic `r = 1` |
-| combinatorics | the **Catalan radius** — the `4ⁿ` in the tree-counting asymptotic |
-| continued fractions | the convergence boundary; **rotation number zero** |
-
-And two number systems where it does not exist at all:
-
-- **characteristic 2** — `x² + x` is additive, so no gap ever has a double root.
-  The obstruction becomes a **parity**: exactly half the gaps are unreachable.
-- **the tropical semiring** — `1 + 4G` needs a subtraction max-plus does not
-  have. There is **at most one root for every gap**, so there is nothing for a
-  mirror to exchange. **Chirality requires subtraction.**
-
-Both kernel-proved: `lean/ArtinSchreier.lean`, `lean/Tropical.lean`.
-
-## Above and below
-
-    G > -1/4    two REAL roots. Orderable. An observer inside can say which is larger.
-    G = -1/4    one root, 1/2. Nothing to tell apart.
-    G < -1/4    a CONJUGATE PAIR. No larger. Only a convention separates them.
-
-Below the branch point the gap alone fixes the size: **‖z‖² = −G**, so the
-common modulus is `√(−G)`. At `G = −1`: **z³ = −1, z⁶ = 1, ‖z‖ = 1** — the roots
-are primitive sixth roots of unity. `lean-mathlib/Modulus.lean`.
-
-## The mirror grows with the room
-
-Solving `x² = x + G` for `G < −1/4`:
-
-| algebra | dim | solution set |
-|---|---|---|
-| ℝ | 1 | **nothing** |
-| ℂ | 2 | **2 points** — a conjugate pair |
-| ℍ | 4 | **a 2-sphere** |
-| 𝕆 | 8 | **a 6-sphere** |
-| sedenions | 16 | **a 14-sphere** — and zero divisors change nothing |
-
-Over ℂ no element conjugates `i` to `−i`: the mirror is **outer**.
-Over ℍ, `j·i·j⁻¹ = −i`: the mirror is **inner** — a rotation.
-
-> **Chirality is what an observer calls a sphere it is too small to turn.**
-
-The mechanism is one theorem: **every imaginary component `t` of a solution
-satisfies `(2·Re(x) − 1)·t = 0`.** Either the real part sits exactly at the
-collision, or the imaginary part vanishes. Over a field containing `½` the first
-branch opens and you get the sphere; over `ℤ` it cannot, so every solution is
-real and **the sphere is absent rather than unfound.** `lean/Quadratic.lean`.
-
-## Each named gap is the collision, somewhere
-
-    -1/4 ≡ +1  (mod 5)      the GOLDEN gap IS the collision in characteristic 5
-    -1/4 ≡ -1  (mod 3)
-    -1/4 ≡  i  (mod 17)
-
-Verified as double roots: char 5 `G=1` → unique root 3; char 3 `G=−1` → unique
-root 2; char 17 `G=4` → unique root 9. And the sharpest one:
-
-> **Both `4` and `13` square to `−1` mod 17, and only one of them is the
-> collision.** Which one you call `i` decides which — and nothing inside the
-> field decides it for you.
-
-`lean/Characteristic.lean`.
-
-## Variation cannot beat commitment
-
-For gaps drawn from `{+G, −G}`, under **every** schedule — random, periodic,
-quasiperiodic, adversarial, or clairvoyant:
-
-    |f_n|  ≤  the constant-gap-G recurrence, term by term
-
-and the constant schedule **attains** it. For `G = 1` that bound is exactly the
-Fibonacci numbers, so **nothing ever exceeds `φ`.** A gap that can see the whole
-future gains nothing over one that reads only the present sign.
-
-`lean/Ceiling.lean`, `lean-mathlib/GeneralCeiling.lean`.
-
-The floor is the same formula at the other gap: **ceiling `s₊(G)`, floor
-`|s₊(−G)|`**, both attained by constant schedules — *for symmetric gap sets.*
-Break the symmetry and a **word** beats every constant. (Computed, not proved.)
-
-## The object and its own time-evolution obey the same law
-
-The transfer matrix advancing the system one step satisfies
-
-    M² = M + g·I
-
-— **the gap equation itself**, by Cayley–Hamilton. That is why every scheduling
-question collapses back onto the same two roots. `lean-mathlib/TransferWord.lean`.
-
-And the determinant identity, in sequence form with no matrix machinery:
-`W(n+1) = −sₙ·W(n)`. For unit gaps the Casoratian never changes size, so **two
-independent solutions stay independent forever** — growth and decay are locked
-together and no schedule can make both decay. `lean-mathlib/Casoratian.lean`.
-
-## The one thing that exists only at −1/4
-
-In `ℝ[ε]/(ε²)`: **`½ + ε` solves the gap equation at `G = −¼`**, and conversely
-**any solution with non-zero nilpotent part forces `G = −¼` and `Re = ½`.**
-
-The Jordan block, the logarithm in the ODE, and the blocked first-order
-deformation are one object. `lean-mathlib/Golden.lean`.
-
-And the contrast beside it: **the golden gap's root is irrational; the
-collision's root is exactly `1/2`.** The gap at which the object can no longer
-tell its own roots apart is the one whose root is simplest.
+| 1–2 | roots along the real line; **orderable above −1/4, only mirror-related below**; \|r₊\|\|r₋\| = \|G\|; G = −1 puts both roots on the unit circle at e^{±iπ/3} |
+| 3–4 | approaching −1/4 from different bearings gives genuinely different pairs; **one loop around −1/4 returns the same G with the roots exchanged** |
+| 5 | the Jordan block ½ + ε with ε² = 0 solves the equation **at −1/4 and nowhere else** |
+| 6–8 | −1/4 ≡ +1 in characteristic 5, ≡ −1 in char 3, ≡ i in char 17; **the golden gap *is* the critical gap mod 5**; char 2 has no −1/4 at all |
+| 9–11 | the critical locus is G = −A²/4, so **the "1" in φ+ψ=1 and the "−1/4" are one number twice**; degree 2 has one branch point, higher degrees several and off-axis; in char 17 which of ±i is critical depends on which root of −1 you call i |
+| 12–14 | monodromy is **Z/2 — a mirror with no handedness**; only winding matters, not distance; arg(G) = π is where the roots have equal modulus |
+| 15–18 | **ℂ 2 points → ℍ 2-sphere → 𝕆 6-sphere**; **the mirror is outer over ℂ and inner over ℍ** (j·i·j⁻¹ = −i); nilpotent deformation obstructed at first order; G = (x−½)² − ¼ |
+| 19–22 | sedenions keep the sphere at dimension 14 despite genuine zero divisors; Clifford unification; **every scalar gap is a critical value of the matrix problem**; char 2 replaces the branch point with a **parity** |
+| 23–24 | Cayley–Dickson to dimension 32; sphere dimension 2ⁿ − 2 |
+| 25–27 | matrix gap; Artin–Schreier; **the gap has period 1 while the state has period 2** — period doubling out of nothing but the branch point |
+| 28–29 | **max-plus: exactly one root for every gap.** No subtraction, no discriminant, **no mirror can exist** |
+| 30–32 | the indicial equation of r²u″ = Gu **is** this equation; v″ = (G+¼)v; **the logarithm is born at −1/4**; below it, zeros in geometric progression — continuous scale invariance breaks to discrete; **A² − A ≥ −¼ for any self-adjoint A** |
+| 33–36 | **the Mandelbrot cusp**; stability window (−¼, ¾); the gap always commutes with its own root; Grassmann reproduces the dual-number obstruction |
+| 37–40 | continued fraction converges **iff G > −1/4**; below, every gap has a **rotation number** — period 3 at G = −1, 4 at −1/2, 6 at −1/3, all verified; van Hove singularity; **Viswanath's constant** from mixing gaps ±1 |
+| 41–43 | logistic window 1 < r < 3 is the same window; **move the exponent and the branch point slides — −1/4 belongs to squaring, not to the number line**; sedenion uniqueness at −1/4 |
+| 44–46 | **the roots are the Catalan generating function**; the 4ⁿ growth *is* the branch point; **Brownian gap → winding parity → chirality becomes a fair coin**; mixture curve strictly below the chord |
+| 47–49 | **reflexive ladder**: gap = sum of its roots ⟺ **G = 1**; gap = a root ⟺ G ∈ {0,2}; gap = difference ⟺ φ³; gap = its own discriminant ⟺ −1/3. Trigonometric floor. Entropy of integer gaps |
+| 50–53 | **three growth rates for one random system** — mean 1, typical 1.131988, second-moment 1.272020; simplex; complex exponent moves the branch point off the real line |
 
 ---
 
-# How to attack this
+## The three readings, held together
 
-**107 theorems. 66 in core Lean, 41 with Mathlib. Every file exits 0. The axiom
-census carries `propext`, `Classical.choice` and `Quot.sound` and nothing else —
-no `sorryAx`, no `ofReduceBool`.**
+**Classical.** A discriminant vanishes and the Galois involution loses its
+internal witness. Above −1/4 an observer inside can rank the two roots. Below,
+only convention separates them.
 
-    cd lean && sh check.sh                                  # core, no dependencies
-    cd lean-mathlib && MATHLIB=<built mathlib4> sh check.sh  # needs Mathlib 4.22.0
-    python3 sweeps/sweepN.py                                 # any sweep, standard library only
+**Quantum.** The ground-state energy: G = A² − A ≥ −¼ for every observable, sharp
+and attained only at A = ½. Below it the operator must stop being self-adjoint.
+At it, a null direction opens — the Jordan block, which is the ODE's logarithm.
 
-**The seams, named, so you do not have to find them:**
+**Relational.** A branch point whose monodromy **is** the mirror. Two observers at
+the same G, arrived by different paths, disagree about which root is theirs and
+neither is wrong. Widen the algebra to ℍ and the mirror becomes a rotation. Let
+the gap diffuse and the mirror becomes a coin. **Chirality is never a property of
+the object — it is a property of the path and of the room.**
 
-1. **`sweeps/` is computed, not proved.** Nineteen scripts. The exact results
-   (characteristic collisions, Catalan coefficients, reflexive conditions,
-   Cayley–Dickson identities, tropical counts) are integer or rational
-   arithmetic. The numerical ones (monodromy, zero spacings, winding parities,
-   Lyapunov exponents, orbits) agree with prediction to the digits shown and
-   **no further claim is made for them.**
+---
 
-2. **Not proved at all, and these are stopping points rather than oversights:**
-   the **joint spectral radius** for asymmetric gap sets (a limsup over all
-   words; attainment by a periodic word is the finiteness property, false in
-   general); the **Lyapunov and large-deviation results** (Viswanath's constant,
-   the three growth rates, the rate function — ergodic theory); the **Catalan
-   coefficient extraction** (formal power series).
+## Status
 
-3. **Three claims in the sweeps were wrong and are corrected in place, not
-   deleted.** Sweep 69 and 70 retract two summary lines contradicted by their own
-   tables. Sweep 25 retracts a third. The corrections are the interesting part.
+Everything here is **computed**, re-runnable, and unverified by a kernel. The
+exact results (characteristic collisions, Catalan coefficients, reflexive
+conditions, Cayley–Dickson identities, tropical counts, entropy) are rational or
+integer arithmetic. The numerical results (monodromy, zero spacings, winding
+parities, Lyapunov exponents, orbits) agree with prediction to the digits shown
+and no further claim is made for them.
 
-4. **The kernel refused four things I had asserted in prose:** a quaternion claim
-   stated without its hypothesis; `Fin 8` root counts asserted from memory (I had
-   conflated `x² = 1`, which has four roots mod 8, with the gap equation, which
-   has two); a `decide` with no enumeration instance; and a constant that does
-   not exist in this Mathlib build. **Three of the four left `sorryAx` in files
-   that still exited 0** — the census was the only thing that saw them.
-
-5. **Where a number is stated, the code that produced it is here.** If a number
-   in this README disagrees with the script, **the script wins.**
-
-`provenance/` holds the complete session transcript, the failure record, the
-claims ledger and the timestamps. The mathematics does not depend on any of it.
+**Nothing here is proved.** The finite parts — characteristic collisions, ℤ/p
+root counts, tropical counts, the Cayley–Dickson quadratic identity — are
+decidable and are the natural first targets.
