@@ -259,18 +259,40 @@ unchecked one is the false one.** Nothing here is unsound —`Classical.choice`
 from a tactic is harmless — but a published census claim with no instrument
 behind exactly the field that failed is the thing this record exists to catch.
 
-**Root cause, isolated to four lines** in `specimens/omega_iff_choice.lean`:
+**Root cause, isolated** in `specimens/omega_iff_choice.lean`. Measured
+identically on Lean **4.22.0 and 4.32.0**, so not a version accident:
 
 ```
-omega on an IFF goal    -> [propext, Classical.choice, Quot.sound]
-omega on a plain goal   -> [propext, Quot.sound]
+goal shape given to omega                Classical.choice?
+---------------------------------------  -----------------
+an atomic equation or inequality          no
+a DISJUNCTION of atoms                    no
+a CONJUNCTION                             YES
+an IFF (a conjunction of implications)    YES
+a disjunction OF CONJUNCTIONS             YES
+a conjunction in a HYPOTHESIS             no
 ```
 
-Identical in Lean **4.22.0 and 4.32.0**, so not a version accident.
-`tropical_solutions` is `by omega` on an `↔`; its neighbour `tropical_unique` is
-`by omega` on an equation and stays clean. **Nothing was written wrong** — and
-no census-by-eye would ever catch which of two adjacent `by omega` proofs pays
-the axiom. That is precisely why the field belongs in the gate.
+**The trigger is a conjunction in the GOAL.** `tropical_solutions` is `by omega`
+on an `↔`; its neighbour `tropical_unique` is `by omega` on a plain equation and
+stays clean. **Nothing was written wrong** — and no census-by-eye would ever
+catch which of two adjacent `by omega` proofs pays the axiom. That is precisely
+why the field belongs in the gate.
+
+**AND THE REPAIR IS PROVED, not proposed.** The same specimen carries
+`tropical_solutions_clean`: `Tropical.lean:17`'s statement verbatim, with the
+proof rearranged so every goal handed to `omega` is a single (in)equality —
+`constructor` splits the iff, `by_cases` picks the disjunct, the anonymous
+constructor splits each conjunction. Census on both toolchains:
+
+```
+'tropical_solutions_clean' depends on axioms: [propext, Quot.sound]
+```
+
+Same theorem, same kernel, one fewer axiom. **Drop that proof into
+`Tropical.lean` and `README.md:12` becomes true** — and the right repair is to
+do that *and* add `Classical.choice` to `check.sh:63`, because a claim without
+its instrument will drift back.
 
 ## FINDING 8 — one nearly-filed false finding, this seat's, recorded
 
