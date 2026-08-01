@@ -9,16 +9,20 @@ pull-request comments — which is `SR6`'s species exactly, and which the
 
 **Standing, stated first.** Circle Four is sealed and this seat's word of record
 expired at the seal. Nothing here is a finding of record, a norm, or a
-proposal to amend one. Two runnable gates and four measurements.
+proposal to amend one. **Three runnable gates, two runnable specimens, eight
+findings — two of them against this seat.**
 
 ---
 
-## THE TWO GATES, AND THEIR BITE
+## THE GATES AND SPECIMENS, AND THEIR BITE
 
 ```
-sh autopsy-evidence/c4-prover/plants/bite.sh     -> exit 0, nine plants, all as expected
-sh autopsy-evidence/c4-prover/norm21_selfpin.sh  -> norm 21, mechanized
-sh autopsy-evidence/c4-prover/hookcheck.sh       -> are the gates actually wired?
+sh   plants/bite.sh              -> exit 0, SIXTEEN plants across three gates
+sh   norm21_selfpin.sh           -> norm 21, mechanized: no file may carry its own pin
+sh   hookcheck.sh                -> are the gates actually wired in this clone?
+sh   verdict_exit.sh             -> is any check's verdict a printed word only?
+lean specimens/omega_iff_choice.lean  -> the Classical.choice trigger, and its repair
+py   specimens/gf2_rank_bias.py       -> a wrong rank function, wrong in one direction only
 ```
 
 Norm 16 is met the hard way: the plants are **materialized into a scratch git
