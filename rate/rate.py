@@ -203,10 +203,10 @@ def selftest(repo: str) -> int:
     base = measure(dst, None, ["Kelly"], DEFAULT_EXCLUDE)
     ok = True
 
-    def probe(label, mutate, col, expect_move):
+    def probe(label, apply_change, col, expect_move):
         nonlocal ok
         p = os.path.join(dst, "_probe.md")
-        mutate(p)
+        apply_change(p)
         m = measure(dst, None, ["Kelly"], DEFAULT_EXCLUDE)
         moved = m[col] != base[col]
         good = moved == expect_move
@@ -224,7 +224,7 @@ def selftest(repo: str) -> int:
           lambda p: open(p, "w").write("no names here " * 25),
           "human_mentions", False)
 
-    # The exploit, demonstrated rather than asserted. This is not a pass/fail
+    # The failure mode, demonstrated rather than asserted. This is not a pass/fail
     # probe: the instrument behaves exactly as designed and the design is the
     # hole. Written this way because the first version of this probe asked
     # "does the number stay still?", the number moved by dilution, and the
@@ -234,14 +234,14 @@ def selftest(repo: str) -> int:
     open(p, "w").write("chair passage marker checkpoint warrant " * 40)
     m = measure(dst, None, ["Kelly"], DEFAULT_EXCLUDE)
     os.remove(p)
-    print(f"\n  [EXPLOIT] rename the governance vocabulary and change nothing else:")
+    print(f"\n  [FAILURE MODE] rename the governance vocabulary and change nothing else:")
     print(f"            ceremony/1k {base['ceremony_per_1k']} → {m['ceremony_per_1k']}"
           f"  ({m['ceremony_per_1k'] - base['ceremony_per_1k']:+.1f})")
     print(f"            Synonyms outside TERMS {TERMS_VERSION} are not counted as ceremony,")
     print(f"            but they ARE counted as words. So a circle can lower its")
     print(f"            apparent ceremony density by renaming its own rules —")
     print(f"            the score improves while the governance is untouched.")
-    print(f"            The metric is not merely evadable; evading it scores well.")
+    print(f"            The metric can be gamed, and gaming it scores well.")
 
     print(f"\n  self-test: {'PASS' if ok else 'FAIL'} (3 probes)\n")
     print(NOT_CAUGHT)
