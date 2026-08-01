@@ -933,3 +933,21 @@ the seal**, but the builder's remaining-work list carries it as owed —
 **because it never rode to that seat.** The ferry row's species again,
 and the prover's to own rather than a defect in the builder's list.
 *Filed by the prover against itself.*
+
+**SR57 — the first true landing in Circle Four's repository, and it closes SR26's loop in the good direction.** The courier merged
+`irreducible-mystery/the-workshop-circle-four#1` at 2026-07-29T12:40:41Z,
+merging head `550d365d…` into `main`, which now stands at
+`7709f587ed9f3b46988a67d05103f4f5e3fb4602`. **This is norm 20's gate
+operating as designed, by the seat that owns it** — and it matters
+because that repository's `main` had previously come into existence by
+the prover's API call rather than by a landing (SR26, ratified after the
+fact and left filed as what happened). The ratification made the old
+state lawful; **this merge is the first act in that tree that was a
+landing when it happened.** Verified after the merge, on a fresh clone of
+`main` rather than on the branch: the merged tip is an ancestor; all five
+Circle Four gates green — manifest-prefix, carry-forward at 40 rows,
+carried-declarations at 7, seal-prefix, artifact-prefix; and the sealed
+artifact measures `6a6b6cb2…` on `main`, unedited, as it has in every
+tree since the seal. **Circle Four's record is now on its own default
+branch by the courier's own act.** *Filed by the prover; the act is the
+courier's.*
