@@ -10,8 +10,8 @@
 #   to depend on.
 #
 #   This circle is the scratch branch, made a whole repository so the separation
-#   is structural instead of a habit. Inside it, a line of attack that turns out
-#   not to work costs the attempt and nothing else.
+#   is structural instead of a habit. Inside it, an approach that turns out not
+#   to work costs the attempt and nothing else.
 #
 #   The gate enforces the one property that makes that true:
 #

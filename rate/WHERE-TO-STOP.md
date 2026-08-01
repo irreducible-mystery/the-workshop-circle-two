@@ -72,7 +72,7 @@ Applied to this system:
 The repository this instrument came from is itself a meta-level. In the same
 span it caught real things, it also produced: four separate errors of its own
 (a miscount of its own output, an unchecked claim about a repository setting, a
-materials cut that voided an experiment, and a force-push that destroyed a
+materials cut that voided an experiment, and a force-push that erased a
 commit); one conclusion asserted and then retracted as a malformed dichotomy;
 and one asymmetric scoring error, caught by the party it went against.
 

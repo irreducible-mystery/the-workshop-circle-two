@@ -1,8 +1,8 @@
 # Arm C — a heavy canon *and* an external terminal condition
 
 *Run 2026-07-31 at the courier's direction, immediately after the control. This
-is the experiment the control called for and named as the cheapest way to kill
-its own conclusion.*
+is the experiment the control called for and named as the cheapest way to
+overturn its own conclusion.*
 
 **Result: P9 confirmed in direction, in both bodies. Significant pooled, not
 significant in the blind arm alone. One clean counter-example inside the data,
@@ -13,7 +13,7 @@ named below.**
 ## The design
 
 `control-no-norms-file.md` concluded: *the ratchet is intrinsic; what bounds it
-is an external terminal condition, not fewer norms.* It named its own killer —
+is an external terminal condition, not fewer norms.* It named what would overturn it —
 **a body with a heavy canon AND a terminal condition.** If that body ratchets
 just as hard, the story is wrong.
 

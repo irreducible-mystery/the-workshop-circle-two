@@ -64,10 +64,10 @@ the failures its author imagined certifies the author's imagination. That is
 SR43 (five gates, each bitten at birth by the seat that did not write it, all
 five blind to a file that was not on the list), and it applies here too.
 
-The self-test also **demonstrates a live exploit rather than asserting one**:
+The self-test also **demonstrates a real weakness rather than asserting one**:
 rename your governance vocabulary to words outside TERMS v1 and your ceremony
-density *falls*, because the synonyms still count as words. The metric is not
-merely evadable — **evading it scores well.**
+density *falls*, because the synonyms still count as words. The metric can be
+gamed — and **gaming it scores well.**
 
 Which gives the one rule that matters for using this at all:
 
