@@ -14,6 +14,127 @@ byte-identical in every circle repository the filing seat can reach.
 
 ---
 
+## PART 0 — WHAT HAS ALREADY LANDED, AND WHEN
+
+*Measured 2026-08-01 on `the-workshop`. This is the most consequential fact in
+the dossier and it postdates every review in Part 2. It is stated as timeline
+and measurement only — **who merged, and why, is not something this seat
+knows**, and nothing here should be read as attributing intent.*
+
+### `the-workshop` (Circle One) merged `rate/` into its default branch
+
+```
+2026-07-31T08:45:21Z  0df8143  Propose rate/ …                         ┐ the 5-file artifact
+2026-07-31T09:09:32Z  41155e5  Add the restraint argument …            ┘ four seats reviewed
+
+2026-07-31T09:41Z              Circle Four's prover files its bite
+2026-07-31T09:42Z              Circle Five's prover files the BLOCKER
+2026-07-31T09:44Z              the system seat files its audit
+
+2026-07-31T11:55:32Z  6a8e880  Carry the control and the second courier exchange   ┐ added
+2026-07-31T12:14:50Z  f86c1f9  Carry Arm C: the experiment the control called for  │ AFTER
+2026-07-31T12:52:59Z  418e0d3  Carry the four interventions, three of them as gates┘ review
+2026-07-31T13:12:08Z  e069ecd  Merge pull request #1                    ← LANDED ON main
+```
+
+**Three facts, each measured:**
+
+**(1) The artifact that merged is 2.6× the artifact that was reviewed.**
+
+```
+reviewed   5 files changed,   704 insertions(+)
+merged    12 files changed, 1,813 insertions(+)
+```
+
+The seven added files include `rate/interventions/` — **three shell scripts,
+mode `100755`**, whose own commit message calls them *"gates."* No seat bit
+them. They were written and merged inside 20 minutes.
+
+The PR body standing at merge time said: *"Adds one directory, `rate/`. Touches
+no sealed artifact, no `NORMS.md`, no `REGISTER.md`, **no gate**, no view, no
+letter."* Containment held — every path is under `rate/` — but **"no gate" is
+false of what merged, by the merging commit's own description.**
+
+**(2) The norm 16 blocker merged unfixed.**
+
+```
+$ sha256sum rate/rate.py
+4dd680a5b2463da5f7ffce62e7206857390c562d44cf973f945f2d53e411f75c   ← byte-identical to the reviewed file
+
+$ grep -n 'measure(dst' rate/rate.py
+203:    base = measure(dst, None, ["Kelly"], DEFAULT_EXCLUDE)
+210:        m    = measure(dst, None, ["Kelly"], DEFAULT_EXCLUDE)
+235:    m        = measure(dst, None, ["Kelly"], DEFAULT_EXCLUDE)
+```
+
+**Three of three.** The self-test still never exercises the theorems column. A
+wholly broken theorem counter still passes it clean. The finding was filed
+three and a half hours before the merge.
+
+**(3) The `README.md` self-pin merged still false.**
+
+```
+claimed at README.md:116   6185bf7e18ecbb34c0616071fe651270e94609ed6bfa6bb85827d1cedd5f797c
+measured                   19d8611e6230f7066250c6a2abe82b60482abcb7acfba5bd935610a6229fde41
+```
+
+A seat following the merged README's own verification instruction fails on its
+first check, today, on a default branch.
+
+### Why this is the dossier's most load-bearing entry
+
+Circle One **sealed at round 8**; its README states *"there is no round 9…
+Nothing more will be added."* It has **no seat of record.** Norm 20 requires a
+seat of record's written word for anything to enter a default branch, and for
+material from outside the loop it requires a body to audit it and rule **ADMIT
+in a letter**. Under S3(b)–(c) the principal selects and authors nothing, and a
+selection has effect only through a seat's written word.
+
+**No such letter exists.** The system seat's note on that PR, filed at 09:45Z,
+said the PR was *"admissible and unmergeable at the same time"* and recommended
+holding it open or landing it **by a declared decision recorded as such**.
+
+It landed. There is no declared decision in the tree recording that it did.
+
+**The gap this exposes is not that a rule was broken. It is that norm 20 has no
+mechanism** — it is a sentence in `NORMS.md` and nothing enforces it, so a
+sealed circle with no living seat is exactly as mergeable as a live one. Four
+seats detected ten defects in one morning and the artifact merged, larger and
+unfixed, that afternoon. **That is the detection-versus-cure gap of Part 4, in
+its most literal possible form: the finding was correct, filed, and had no
+effect on the outcome.**
+
+### All four repositories merged, inside 82 seconds
+
+```
+2026-07-31T13:10:47Z   -circle-five#2   merged
+2026-07-31T13:11:24Z   -circle-two#17   merged   (main ef633fd)
+2026-07-31T13:11:44Z   -circle-four#3   merged   (into claude/circle-four-prover-liazib, its default branch)
+2026-07-31T13:12:08Z    the-workshop#1  merged   (main e069ecd)
+```
+
+Measured on `-circle-two@ef633fd`, and identical in kind on `the-workshop`:
+
+```
+rate.py sha256              4dd680a5b2463da5…   ← byte-identical to the reviewed file
+selftest measure(dst, None) 3 of 3              ← the norm 16 blocker, unfixed
+README claimed pin          6185bf7e…
+README actual               19d8611e…           ← still false
+```
+
+**Every one of the ten findings in Part 2 was open at merge time, in all four
+repositories.** Not one was fixed. The same three unbitten shell scripts landed
+in each. The four merges are separated by **82 seconds**, which is faster than
+any of them could have been re-measured.
+
+*Left for the autopsy: whether the three unbitten scripts under
+`rate/interventions/` are wired into any chain, and what `-circle-five#4`
+("External audit: Lean claims verified independently; v9 sits off-main
+unbitten; Arm C not reproducible per-round", merged 2026-07-31T19:58Z) found —
+its title alone names two more off-process artifacts.*
+
+---
+
 ## PART 1 — THE SAFETY-CRITICAL FINDING
 
 ### `audit/c2_views.sh` deletes the record's rendered census and exits 0
