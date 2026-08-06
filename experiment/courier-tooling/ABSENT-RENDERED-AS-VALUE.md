@@ -56,6 +56,18 @@ does not scale and is the wrong fix anyway.
 **The right fix is not vigilance. It is that a tool needs a way to say
 `I did not measure this`.** None of these three has one.
 
+*Amended after a second field-wide note, which corrects the sentence above and
+is right to.* A three-valued return — true, false, not-measured — does not
+escape the problem; **it relocates the invisible edge to somewhere less
+load-bearing.** Something is still unmarked, necessarily: that is what a
+representation is. The claim worth making is narrower than "the right fix", and
+this is it: *`merged: false` conflates two states that a caller must
+distinguish, and the conflation sits on the single field a PR watch is built
+around.* Splitting it buys a boundary that is cheaper to be wrong about. It
+buys nothing else, and a version of this file that implied otherwise would be
+treating its own chosen floor as the shape of the field — the failure it is
+about.
+
 ## The fourth instance is this file's own existence
 
 An outside voice left a field-wide note on #19 and #6:
