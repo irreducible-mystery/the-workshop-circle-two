@@ -1,0 +1,199 @@
+==============================================================================
+                       CHECKING THE COURIER'S GAP SWEEP                       
+       d^2 = d + g,  swept over every gap value and every number system       
+==============================================================================
+
+[S1]  HELD
+  claim    : phi + psi = 1 and phi x psi = -1 are the g=+1 case of Vieta on x^2 = x + g: sum is 1 for EVERY gap, product is -g.
+  measured : g=+1 roots 1.618034, -0.618034
+  measured : sum      = +1.000000000000000   (Vieta: 1 for every g)
+  measured : product  = -1.000000000000000   (Vieta: -g)
+
+[S2]  HELD
+  claim    : at g = -1/4 the two roots meet at exactly 1/2; that is where the distance between true and false closes.
+  measured : discriminant 1+4g at g=-1/4 : +0.000000000000000
+  measured : both roots                  : 0.500000000000000, 0.500000000000000
+  measured : separation                  : 0.000000000000000e+00
+
+[S3]  HELD
+  claim    : below the critical gap the roots are a conjugate pair of modulus sqrt(-g), so the gap sweeps dissipation -> unitarity -> gain.
+  measured : g= -0.300000  |root|=0.547722557505  sqrt(-g)=0.547722557505
+  measured : g= -0.500000  |root|=0.707106781187  sqrt(-g)=0.707106781187
+  measured : g= -1.000000  |root|=1.000000000000  sqrt(-g)=1.000000000000
+  measured : g= -2.000000  |root|=1.414213562373  sqrt(-g)=1.414213562373
+  measured : g= -5.000000  |root|=2.236067977500  sqrt(-g)=2.236067977500
+  measured : g= -1.894427  |root|=1.376381851086  sqrt(-g)=1.376381851086
+
+[S4]  HELD
+  claim    : g = -1 is the unique gap with both roots on the unit circle -- the reversible / unitary one -- and the roots are primitive 6th roots of unity.
+  measured : |root|^2 = -g is strictly decreasing in g : True  (so at most one solution)
+  measured : grid 0.001 over [-4,-0.25], ||root|-1| < 0.00025 : [-1.0]
+  measured : g=-1 roots  : 0.500000000000+0.866025403784j and conjugate
+  measured : |root|      : 1.000000000000000
+  measured : arg(root)   : 1.047197551196598 rad = pi/3.000000
+  measured : root^6      : 1.000000000000-0.000000000000j   root^k != 1 for k<6 : True
+
+[S5]  GARBLED
+  claim    : the multiplier is 0.38 at phi (attracting) and 2.62 at psi (repelling).
+  measured : M'(phi) = -0.381966011250   |.| = 0.381966011250  = 1/phi^2
+  measured : M'(psi) = -2.618033988750   |.| = 2.618033988750  = phi^2
+  measured : orbit from x=1 : 2.00000, 1.50000, 1.66667, 1.60000, 1.62500, 1.61538
+  measured : side of phi    : +-+-+-+-   (alternates -> multiplier is NEGATIVE)
+  note     : the magnitudes are right and the sweep called them 'phi ~ 0.38' as though
+             0.38 were a ROOT. It is the multiplier, and it is NEGATIVE: the orbit
+             converges by alternating sides, which is the continued fraction of phi.
+
+[S6]  GARBLED
+  claim    : the four gap values are one from each Moebius conjugacy class: g=+1 hyperbolic, g=-1 elliptic, g=+-i loxodromic, g=-1/4 parabolic.
+  measured : g=      1  det=-g=     -1  |k|=0.381966  loxodromic  != claimed hyperbolic
+  measured : g=     -1  det=-g=      1  |k|=1.000000  elliptic    == claimed elliptic
+  measured : g=     1j  det=-g=(-0-1j)  |k|=0.480534  loxodromic  == claimed loxodromic
+  measured : g=(-0-1j)  det=-g=     1j  |k|=0.480534  loxodromic  == claimed loxodromic
+  measured : g=  -0.25  det=-g=   0.25  |k|=1.000000  parabolic   == claimed parabolic
+  note     : g=+1 fails HYPERBOLIC on the strict definition -- the multiplier is real
+             but NEGATIVE, so the map is loxodromic and its SQUARE is hyperbolic.
+             The reason is structural and the sweep never said it: det(A) = -g, so the
+             SIGN OF THE GAP is the orientation. g<0 preserves the upper half-plane
+             (honest isometry of hyperbolic space); g>0 swaps the half-planes.
+
+[S7]  GARBLED
+  claim    : g = -1 is elliptic OF ORDER 6.
+  measured : A^3 is scalar  -> the MAP has order 3
+  measured : A^6 = I        -> the MATRIX has order 6
+  measured : orbit of 3.7 under M : 3.700000, 0.729730, -0.370370, 3.700000, 0.729730
+  measured : returns after 3 steps: True
+  note     : 6 is the order of the MATRIX. The Moebius map has order 3, because the
+             matrix is only defined up to sign and A^3 = -I. The roots really are
+             primitive 6th roots of unity (S4); the map they generate is not.
+
+[S8]  WRONG
+  claim    : phi appears twice in one sweep -- as a root at g=+1, and as the most-robust rotation number on the elliptic side, at g = -(1 + 2/sqrt5).
+  measured : target rotation number      : 0.381966011250105   (= 1/phi^2 = 2-phi)
+  measured : gap by bisection            : -1.903810928200300
+  measured : gap by -1/(4cos^2(pi.theta)): -1.903810928200299
+  measured : two independent routes agree: 1.11e-15
+  measured : round-trip rotation number  : 0.381966011250105
+  measured : 
+  measured : THE SWEEP'S CLOSED FORM -(1+2/sqrt5) : -1.894427190999916
+  measured :   rotation number actually there     : 0.381659822234626
+  measured :   relative error against the true gap: 0.493%
+  note     : THE GAP IS REAL AND THE CONSTANT IS INVENTED. There is a gap whose
+             rotation number is exactly golden, two independent routes put it at
+             -1.903810928, and the closed form the sweep stated for it is wrong by
+             0.49%. It was reached by pattern-matching -(1+2/sqrt5) onto a
+             number that started 1.89, and it survives an eyeball. Nothing in the
+             sweep flagged it as a guess. I do not know whether the true value is
+             algebraic, and I am not going to assert that either.
+             (The LOCATION claim -- that such a gap exists on the elliptic side --
+             stands: bisection and the closed-form inversion agree to 1e-15.)
+
+[S9]  HELD
+  claim    : tropically the equation is 2x = max(x, g), giving x = g/2, and the branch point moves to 0.
+  measured : g= -2  solutions of 2x = max(x,g) : [0.0]
+  measured : g= -1  solutions of 2x = max(x,g) : [0.0]
+  measured : g=  0  solutions of 2x = max(x,g) : [0.0]
+  measured : g=  1  solutions of 2x = max(x,g) : [0.5]
+  measured : g=  2  solutions of 2x = max(x,g) : [1.0]
+  measured : g=  4  solutions of 2x = max(x,g) : [2.0]
+  measured : branch point (where the solution changes branch) : g = 0
+  note     : half-right, and the half it missed is the better half. x = g/2 is only
+             the g>0 branch; for g<=0 the solution is x = 0 flat. The tropical
+             critical gap is 0, not -1/4 -- degeneracy in one number system is
+             an ordinary point in another.
+
+[S10]  HELD
+  claim    : in a Boolean ring x^2 = x forces g = 0: a world where everything is its own square cannot have a gap.
+  measured : F_2 exhaustive, x^2 = x + g fails for (x,g) in : [(0, 1), (1, 1)]
+  measured : gaps admitting ANY solution                    : [0]
+  measured : gaps admitting solutions for EVERY x           : [0]
+
+[S11]  HELD
+  claim    : an infinitesimal gap g = eps gives roots 1+eps and -eps.
+  measured : x = 1+eps   x^2 = (Fraction(1, 1), Fraction(2, 1))   x+g = (Fraction(1, 1), Fraction(2, 1))   equal
+  measured : x = -eps    x^2 = (Fraction(0, 1), Fraction(0, 1))   x+g = (Fraction(0, 1), Fraction(0, 1))   equal
+  measured : sum of the two roots : (Fraction(1, 1), Fraction(0, 1))  (Vieta says (1,0))
+
+[S12]  NEW
+  claim    : -1/4 is the critical gap. (Reading it in characteristic p was not in the sweep; this cross-checks Circle Three's prover, who ran the same equation from the other side.)
+  measured : char  2 : degenerate gap g with 1+4g = 0  ->  NONE
+  measured : char  3 : degenerate gap g with 1+4g = 0  ->  [2]
+  measured : char  5 : degenerate gap g with 1+4g = 0  ->  [1]
+  measured : char  7 : degenerate gap g with 1+4g = 0  ->  [5]
+  measured : char 11 : degenerate gap g with 1+4g = 0  ->  [8]
+  measured : char 13 : degenerate gap g with 1+4g = 0  ->  [3]
+  note     : char 2 has NO critical gap (1+4g = 1 identically) and char 5 puts it at
+             g = +1 (since -1/4 = -1.4^-1 = -4 = 1 mod 5). Both match the Circle
+             Three prover's independent finding, reached from G = x^2 - x instead.
+
+[S13]  HELD
+  claim    : g = -1/4 is critical damping, zeta = 1 -- every shock absorber in the world.
+  measured : g=-0.15  sign changes in 60 steps :   0   per-step decay 0.821450
+  measured : g=-0.25  sign changes in 60 steps :   0   per-step decay 0.548643
+  measured : g=-0.40  sign changes in 60 steps :  12   per-step decay 0.639435
+  measured : at g=-1/4 the decay rate is 1/2 = the double root, and nothing oscillates
+
+[S14]  WRONG
+  claim    : sigma does not commute with iteration -- the Galois mirror is time reversal.
+  measured : sigma(M(phi)) = -0.618033988750
+  measured : M(sigma(phi)) = -0.618033988750
+  measured : they agree    : True   (M has RATIONAL coefficients, so of course it commutes)
+  measured : |M'(phi)| = 0.381966 < 1  attracting
+  measured : |M'(psi)| = 2.618034 > 1  repelling
+  measured : sigma maps the attractor to the repeller : True
+  note     : sigma DOES commute with M, necessarily: M is defined over Q. The sweep's
+             sentence is false. What is true, and is what it was reaching for: sigma is
+             an algebraic automorphism that carries the ATTRACTING fixed point to the
+             REPELLING one, so it cannot be realised by any topological conjugacy of
+             the dynamics. It preserves the equation and reverses the arrow. That is a
+             sharper statement than the one it replaces, and the sweep asserted the
+             loose version without checking a two-line computation.
+
+[S15]  HELD
+  claim    : on the four units, R = R^-1 iff conj R = R; survivors are +-1, the semions +-i are cut. (Proved in Lean in the sealed record as selfInverse_iff_mirror_fixed.)
+  measured : R =  1  R*R=1 : True   conj R = R : True   agree : True
+  measured : R = -1  R*R=1 : True   conj R = R : True   agree : True
+  measured : R =  i  R*R=1 : False  conj R = R : False  agree : True
+  measured : R = -i  R*R=1 : False  conj R = R : False  agree : True
+  measured : the cut is 4 -> 2, and it is 2+2 -> 2+0, not 1+1
+  note     : this is the ONLY claim in the sweep that had already been checked by a
+             machine before the sweep asserted it. It is also the only one that needed
+             no repair. The physical reading laid on top of it -- conjugation is time
+             reversal, so the filter is T-invariance -- is a claim about the world and
+             is NOT settled by anything above.
+
+[S16]  NEW
+  claim    : (not claimed by the sweep) the sweep built its whole classical/quantum story on the 'g=0 spine' where the roots are 0 and 1.
+  measured : g=0 matrix [[1,g],[1,0]] = ((1, 0), (1, 0))   det = 0  -> SINGULAR
+  measured : M(x) = 1 + 0/x on x = 0.1, 1, -7, 1e6 : [1.0, 1.0, 1.0, 1.0]  -> CONSTANT
+  measured : roots at g=0 : 1.0 and 0.0  (the two idempotents)
+  measured : det(A) = -g, so det > 0 exactly when g < 0
+  note     : g=0 is exactly where the Moebius picture DIES. The matrix is singular and
+             the map collapses to the constant 1 -- it is not a Moebius transformation
+             at all. The sweep called g=0 its spine and then used Moebius language
+             across it without noticing the frame does not exist there.
+             The organising fact it missed: det(A) = -g. THE SIGN OF THE GAP IS THE
+             ORIENTATION. For g<0 the map is an honest isometry of the upper half-plane;
+             for g>0 it swaps the half-planes; at g=0 there is no map. That single line
+             explains S6's failure and organises the whole sweep better than the
+             'classical / critical / quantum' three-régime story the sweep led with.
+
+==============================================================================
+  S1   HELD
+  S2   HELD
+  S3   HELD
+  S4   HELD
+  S5   GARBLED
+  S6   GARBLED
+  S7   GARBLED
+  S8   WRONG
+  S9   HELD
+  S10  HELD
+  S11  HELD
+  S12  NEW
+  S13  HELD
+  S14  WRONG
+  S15  HELD
+  S16  NEW
+------------------------------------------------------------------------------
+  GARBLED: 3   HELD: 9   NEW: 2   WRONG: 2
+==============================================================================
